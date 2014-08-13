@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Index2";
+}
+
+<div id="l1" style="border: 0px solid; padding: 8px; padding-bottom: 25px; width: inherit; height: inherit; position: relative; z-index: 1; 
+-moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border-radius: 10px; 
+-moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Home")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+    <div id="okvir-bijeli" style="padding: 10px; width: 95%; height: 90%; border-radius: 10px; -moz-border-radius: 10px; background-color: #fff">
+
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 712px">
+                    <h2 align="left" style="line-height: 0px"><font size="5" color="#0360a3" >AUSWERTUNG</font></h2>
+
+                                @Html.Partial("Report")
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

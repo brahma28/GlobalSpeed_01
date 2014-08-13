@@ -1,0 +1,246 @@
+﻿@model MvcTEST.Models.tblGame
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>tblGame</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NameHR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NameHR)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NameENG)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NameENG)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsRandom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsRandom)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RandomValue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RandomValue)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RandomType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RandomType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsTimeLimit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsTimeLimit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TimeLimit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TimeLimit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Objectives)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Objectives)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Definition)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Definition)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DescriptionHR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DescriptionHR)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumShownFields)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumShownFields)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumRepetition)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumRepetition)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RandomFields)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RandomFields)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.QuickGamePool)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.QuickGamePool)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tblCategory.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tblCategory.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MinStayTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MinStayTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MaxStayTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MaxStayTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MinFlyTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MinFlyTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MaxFlyTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MaxFlyTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StartField)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartField)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Countdown)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Countdown)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LegLeft)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LegLeft)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LegRight)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LegRight)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Quantity)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Quantity)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Distance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Distance)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DescriptionDuration)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DescriptionDuration)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReactionSignalID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReactionSignalID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Reaction)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Reaction)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReactionTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReactionTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReactionFootDef)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReactionFootDef)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReactionTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReactionTypeID)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

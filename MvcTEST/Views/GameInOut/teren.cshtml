@@ -1,0 +1,300 @@
+﻿@using MvcTEST.HtmlHelpers
+@*@model MvcTEST.Models.tblTemplate*@
+
+@{
+    ViewBag.Title = "teren";
+    Layout = null;
+    
+}
+
+<style>
+
+.polje_red
+{ 
+    color:red; 
+    width:50px; 
+    height:50px; 
+    background-color:red;
+
+} 
+.polje_white
+{ 
+    color:red; 
+    width:50px; 
+    height:50px; 
+    background-color:white;
+
+} 
+
+.polje_lgray
+{ 
+    color:red; 
+    width:30px; 
+    height:30px; 
+    background-color:lightslategray;
+} 
+.teren
+{ 
+    width: 100%; 
+    text-align: left; 
+    height:470px; 
+    vertical-align:top; 
+    border-spacing:0px; 
+    border:0px; 
+    PADDING:0px; 
+    border-collapse:collapse;
+} 
+.polje_text
+{ 
+    width:20px; 
+    position:relative; 
+    border:0px;
+    /*top:13px;*/
+
+} 
+.polje_text_malo
+{ 
+    width:12px; 
+    position:relative; 
+    border:0px;
+} 
+.square
+{ 
+   text-align:center;
+   /*align:center;*/
+   line-height:50px;
+   text-align: center;
+} 
+</style>
+
+
+<link id="size-stylesheet" href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+@*<script src="~/Scripts/teren.js"></script>*@
+
+<div id="vanjski" name="vanjski" style="width:@((ViewBag.teren.Width-25).ToString())px; height:@((ViewBag.teren.Height-25).ToString())px; color:black; background-color:white; position:relative;">
+    <!-- 01 -->     
+    @if (ViewBag.teren.F01Active == true && ViewBag.teren.F01PhotoCell != true)
+    { 
+    <div class="square" title="@(ViewBag.teren.F01Name)" id="dF01" style=" position:absolute; width:@(ViewBag.teren.F01DimensionX.ToString())px; height:@(ViewBag.teren.F01DimensionX.ToString())px; color:red; background-color:red; left:@(ViewBag.teren.F01PositionX.ToString())px; top:@(ViewBag.teren.F01PositionY.ToString())px; " > 
+        <input disabled id="F01" value="@(ViewBag.teren.F01Name)" class="polje_text"/> 
+
+    </div>
+    }  
+    <!-- 02 -->        
+    @if (ViewBag.teren.F02Active == true && ViewBag.teren.F02PhotoCell != true)
+    { 
+    <div class="square" title="@(ViewBag.teren.F02Name)" id="dF02" style=" position:absolute; width:@(ViewBag.teren.F02DimensionX.ToString())px; height:@(ViewBag.teren.F02DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F02PositionX.ToString())px; top:@(ViewBag.teren.F02PositionY.ToString())px; " >  <input disabled id="F02" value="@(ViewBag.teren.F02Name)" class="polje_text"/> </div>
+    } 
+    <!-- 03 -->         
+    @if (ViewBag.teren.F03Active == true && ViewBag.teren.F03PhotoCell != true)
+    {     
+    <div class="square" title="@(ViewBag.teren.F03Name)" id="dF03" style=" position:absolute; width:@(ViewBag.teren.F03DimensionX.ToString())px; height:@(ViewBag.teren.F03DimensionX.ToString())px;  color:red; background-color:red;   left:@(ViewBag.teren.F03PositionX.ToString())px; top:@(ViewBag.teren.F03PositionY.ToString())px; " > <input disabled id="F03" value="@(ViewBag.teren.F03Name)" class="polje_text"/>  </div>
+    } 
+    <!-- 04 -->         
+    @if (ViewBag.teren.F04Active == true && ViewBag.teren.F01PhotoCell != true)
+    {      
+    <div class="square" title="@(ViewBag.teren.F04Name)" id="dF04" style=" position:absolute; width:@(ViewBag.teren.F04DimensionX.ToString())px; height:@(ViewBag.teren.F04DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F04PositionX.ToString())px; top:@(ViewBag.teren.F04PositionY.ToString())px; " >  <input disabled id="F04" value="@(ViewBag.teren.F04Name)" class="polje_text"/> </div>
+    }    
+    <!-- 05 -->       
+    @if (ViewBag.teren.F05Active == true && ViewBag.teren.F05PhotoCell != true)
+    {     
+    <div class="square" title="@(ViewBag.teren.F05Name)" id="dF05" style=" position:absolute; width:@(ViewBag.teren.F05DimensionX.ToString())px; height:@(ViewBag.teren.F05DimensionX.ToString())px;  color:red; background-color:red;   left:@(ViewBag.teren.F05PositionX.ToString())px; top:@(ViewBag.teren.F05PositionY.ToString())px; " > <input disabled id="F05" value="@(ViewBag.teren.F05Name)" class="polje_text"/> </div>
+    }  
+    <!-- 06 -->        
+    @if (ViewBag.teren.F06Active == true && ViewBag.teren.F06PhotoCell != true)
+    {        
+    <div class="square" title="@(ViewBag.teren.F06Name)" id="dF06" style=" position:absolute; width:@(ViewBag.teren.F06DimensionX.ToString())px; height:@(ViewBag.teren.F06DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F06PositionX.ToString())px; top:@(ViewBag.teren.F06PositionY.ToString())px; " > <input disabled id="F06" value="@(ViewBag.teren.F06Name)" class="polje_text"/> </div>
+    }  
+    <!-- 07 -->       
+    @if (ViewBag.teren.F07Active == true && ViewBag.teren.F07PhotoCell != true)
+    {    
+    <div class="square" title="@(ViewBag.teren.F07Name)" id="dF07" style=" position:absolute; width:@(ViewBag.teren.F07DimensionX.ToString())px; height:@(ViewBag.teren.F07DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F07PositionX.ToString())px; top:@(ViewBag.teren.F07PositionY.ToString())px; " > <input disabled id="F07" value="@(ViewBag.teren.F07Name)" class="polje_text"/> </div>
+    } 
+    <!-- 08 -->         
+    @if (ViewBag.teren.F08Active == true && ViewBag.teren.F08PhotoCell != true)
+    {     
+    <div class="square" title="@(ViewBag.teren.F08Name)" id="dF08" style=" position:absolute; width:@(ViewBag.teren.F08DimensionX.ToString())px; height:@(ViewBag.teren.F08DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F08PositionX.ToString())px; top:@(ViewBag.teren.F08PositionY.ToString())px; " > <input disabled id="F08" value="@(ViewBag.teren.F08Name)" class="polje_text"/> </div>
+    }    
+    <!-- 09 -->     
+    @if (ViewBag.teren.F09Active == true && ViewBag.teren.F09PhotoCell != true)
+    {      
+    <div class="square" title="@(ViewBag.teren.F09Name)" id="dF09" style=" position:absolute; width:@(ViewBag.teren.F09DimensionX.ToString())px; height:@(ViewBag.teren.F09DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F09PositionX.ToString())px; top:@(ViewBag.teren.F09PositionY.ToString())px; " > <input disabled id="F09" value="@(ViewBag.teren.F09Name)" class="polje_text"/> </div>
+    }   
+    <!-- 10 -->        
+    @if (ViewBag.teren.F10Active == true && ViewBag.teren.F10PhotoCell != true)
+    {      
+    <div class="square" title="@(ViewBag.teren.F10Name)" id="dF10" style=" position:absolute; width:@(ViewBag.teren.F10DimensionX.ToString())px; height:@(ViewBag.teren.F10DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F10PositionX.ToString())px; top:@(ViewBag.teren.F10PositionY.ToString())px; " > <input disabled id="F10" value="@(ViewBag.teren.F10Name)" class="polje_text"/> </div>
+    } 
+    <!-- 11 -->          
+    @if (ViewBag.teren.F11Active == true && ViewBag.teren.F11PhotoCell != true)
+    {      
+    <div class="square" title="@(ViewBag.teren.F11Name)" id="dF11" style=" position:absolute; width:@(ViewBag.teren.F11DimensionX.ToString())px; height:@(ViewBag.teren.F11DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F11PositionX.ToString())px; top:@(ViewBag.teren.F11PositionY.ToString())px; " > <input disabled id="F11" value="@(ViewBag.teren.F11Name)" class="polje_text"/> </div>
+    } 
+    <!-- 12 -->          
+    @if (ViewBag.teren.F12Active == true && ViewBag.teren.F12PhotoCell != true)
+    {     
+    <div class="square" title="@(ViewBag.teren.F12Name)" id="dF12" style=" position:absolute; width:@(ViewBag.teren.F12DimensionX.ToString())px; height:@(ViewBag.teren.F12DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F12PositionX.ToString())px; top:@(ViewBag.teren.F12PositionY.ToString())px; " > <input disabled id="F12" value="@(ViewBag.teren.F12Name)" class="polje_text"/></div>
+    }   
+    <!-- 13 -->         
+    @if (ViewBag.teren.F13Active == true && ViewBag.teren.F13PhotoCell != true)
+    {     
+    <div class="square" title="@(ViewBag.teren.F13Name)" id="dF13" style=" position:absolute; width:@(ViewBag.teren.F13DimensionX.ToString())px; height:@(ViewBag.teren.F13DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F13PositionX.ToString())px; top:@(ViewBag.teren.F13PositionY.ToString())px; " > <input disabled id="F13" value="@(ViewBag.teren.F13Name)" class="polje_text"/>  </div>
+    } 
+    <!-- 14 -->         
+    @if (ViewBag.teren.F14Active == true && ViewBag.teren.F14PhotoCell != true)
+    {      
+    <div class="square" title="@(ViewBag.teren.F14Name)" id="dF14" style=" position:absolute; width:@(ViewBag.teren.F14DimensionX.ToString())px; height:@(ViewBag.teren.F14DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F14PositionX.ToString())px; top:@(ViewBag.teren.F14PositionY.ToString())px; " >  <input disabled id="F14" value="@(ViewBag.teren.F14Name)" class="polje_text"/> </div>
+    } 
+    <!-- 15 -->          
+    @if (ViewBag.teren.F15Active == true && ViewBag.teren.F15PhotoCell != true)
+    {     
+    <div class="square" title="@(ViewBag.teren.F15Name)" id="dF15" style=" position:absolute; width:@(ViewBag.teren.F15DimensionX.ToString())px; height:@(ViewBag.teren.F15DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F15PositionX.ToString())px; top:@(ViewBag.teren.F15PositionY.ToString())px; " > <input disabled id="F15" value="@(ViewBag.teren.F15Name)" class="polje_text"/> </div>
+    }  
+    <!-- 16 -->          
+    @if (ViewBag.teren.F16Active == true && ViewBag.teren.F16PhotoCell != true)
+    {        
+    <div class="square" title="@(ViewBag.teren.F16Name)" id="dF16" style=" position:absolute; width:@(ViewBag.teren.F16DimensionX.ToString())px; height:@(ViewBag.teren.F16DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F16PositionX.ToString())px; top:@(ViewBag.teren.F16PositionY.ToString())px; " > <input disabled id="F16" value="@(ViewBag.teren.F16Name)" class="polje_text"/> </div>
+    } 
+    <!-- 17 -->        
+    @if (ViewBag.teren.F17Active == true && ViewBag.teren.F17PhotoCell != true)
+    {    
+    <div class="square" title="@(ViewBag.teren.F17Name)" id="dF17" style=" position:absolute; width:@(ViewBag.teren.F17DimensionX.ToString())px; height:@(ViewBag.teren.F17DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F17PositionX.ToString())px; top:@(ViewBag.teren.F17PositionY.ToString())px; " > <input disabled id="F17" value="@(ViewBag.teren.F17Name)" class="polje_text"/> </div>
+    } 
+    <!-- 18 -->        
+    @if (ViewBag.teren.F18Active == true && ViewBag.teren.F18PhotoCell != true)
+    {     
+    <div class="square" title="@(ViewBag.teren.F18Name)" id="dF18" style=" position:absolute; width:@(ViewBag.teren.F18DimensionX.ToString())px; height:@(ViewBag.teren.F18DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F18PositionX.ToString())px; top:@(ViewBag.teren.F18PositionY.ToString())px; " > <input disabled id="F18" value="@(ViewBag.teren.F18Name)" class="polje_text"/> </div>
+    }   
+    <!-- 19 -->       
+    @if (ViewBag.teren.F19Active == true && ViewBag.teren.F19PhotoCell != true)
+    {      
+    <div class="square" title="@(ViewBag.teren.F19Name)" id="dF19" style=" position:absolute; width:@(ViewBag.teren.F19DimensionX.ToString())px; height:@(ViewBag.teren.F19DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F19PositionX.ToString())px; top:@(ViewBag.teren.F19PositionY.ToString())px; " > <input disabled id="F19" value="@(ViewBag.teren.F19Name)" class="polje_text"/> </div>
+    }     
+    <!-- 20 -->  
+    @if (ViewBag.teren.F20Active == true && ViewBag.teren.F20PhotoCell != true)
+    {      
+    <div class="square" title="@(ViewBag.teren.F20Name)" id="dF20" style=" position:absolute; width:@(ViewBag.teren.F20DimensionX.ToString())px; height:@(ViewBag.teren.F20DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F20PositionX.ToString())px; top:@(ViewBag.teren.F20PositionY.ToString())px; " > <input disabled id="F20" value="@(ViewBag.teren.F20Name)" class="polje_text"/> </div>
+    }  
+    <!-- 21 -->              
+    @if (ViewBag.teren.F21Active == true && ViewBag.teren.F21PhotoCell != true)
+    {      
+    <div class="square" title="@(ViewBag.teren.F21Name)" id="dF21" style=" position:absolute; width:@(ViewBag.teren.F21DimensionX.ToString())px; height:@(ViewBag.teren.F21DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F21PositionX.ToString())px; top:@(ViewBag.teren.F21PositionY.ToString())px; " > <input disabled id="F21" value="@(ViewBag.teren.F21Name)" class="polje_text"/></div>
+    }  
+    <!-- 22 -->        
+    @if (ViewBag.teren.F22Active == true && ViewBag.teren.F22PhotoCell != true)
+    {     
+    <div class="square" title="@(ViewBag.teren.F22Name)" id="dF22" style=" position:absolute; width:@(ViewBag.teren.F22DimensionX.ToString())px; height:@(ViewBag.teren.F22DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F22PositionX.ToString())px; top:@(ViewBag.teren.F22PositionY.ToString())px; " > <input disabled id="F22" value="@(ViewBag.teren.F22Name)" class="polje_text"/></div>
+    } 
+    <!-- 23 -->      
+    @if (ViewBag.teren.F23Active == true && ViewBag.teren.F23PhotoCell != true)
+    {     
+    <div class="square" title="@(ViewBag.teren.F23Name)" id="dF23" style=" position:absolute; width:@(ViewBag.teren.F23DimensionX.ToString())px; height:@(ViewBag.teren.F23DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F23PositionX.ToString())px; top:@(ViewBag.teren.F23PositionY.ToString())px; " > <input disabled id="F23" value="@(ViewBag.teren.F23Name)" class="polje_text"/>  </div>
+    }  
+    <!-- 24 -->         
+    @if (ViewBag.teren.F24Active == true && ViewBag.teren.F24PhotoCell != true)
+    {      
+    <div class="square" title="@(ViewBag.teren.F24Name)" id="dF24" style=" position:absolute; width:@(ViewBag.teren.F24DimensionX.ToString())px; height:@(ViewBag.teren.F24DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F24PositionX.ToString())px; top:@(ViewBag.teren.F24PositionY.ToString())px; " >  <input disabled id="F24" value="@(ViewBag.teren.F24Name)" class="polje_text"/> </div>
+    }     
+    <!-- 25 -->  
+    @if (ViewBag.teren.F25Active == true && ViewBag.teren.F25PhotoCell != true)
+    {     
+    <div class="square" title="@(ViewBag.teren.F25Name)" id="dF25" style=" position:absolute; width:@(ViewBag.teren.F25DimensionX.ToString())px; height:@(ViewBag.teren.F25DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F25PositionX.ToString())px; top:@(ViewBag.teren.F25PositionY.ToString())px; " > <input disabled id="F25" value="@(ViewBag.teren.F25Name)" class="polje_text"/> </div>
+    }  
+    <!-- 26 -->         
+    @if (ViewBag.teren.F26Active == true && ViewBag.teren.F26PhotoCell != true)
+    {        
+    <div class="square" title="@(ViewBag.teren.F26Name)" id="dF26" style=" position:absolute; width:@(ViewBag.teren.F26DimensionX.ToString())px; height:@(ViewBag.teren.F26DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F26PositionX.ToString())px; top:@(ViewBag.teren.F26PositionY.ToString())px; " > <input disabled id="F26" value="@(ViewBag.teren.F26Name)" class="polje_text"/> </div>
+    } 
+    <!-- 27 -->          
+    @if (ViewBag.teren.F27Active == true && ViewBag.teren.F27PhotoCell != true)
+    {    
+    <div class="square" title="@(ViewBag.teren.F27Name)" id="dF27" style=" position:absolute; width:@(ViewBag.teren.F27DimensionX.ToString())px; height:@(ViewBag.teren.F27DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F27PositionX.ToString())px; top:@(ViewBag.teren.F27PositionY.ToString())px; " > <input disabled id="F27" value="@(ViewBag.teren.F27Name)" class="polje_text"/> </div>
+    }  
+    <!-- 28 -->         
+    @if (ViewBag.teren.F28Active == true && ViewBag.teren.F28PhotoCell != true)
+    {     
+    <div class="square" title="@(ViewBag.teren.F28Name)" id="dF28" style=" position:absolute; width:@(ViewBag.teren.F28DimensionX.ToString())px; height:@(ViewBag.teren.F28DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F28PositionX.ToString())px; top:@(ViewBag.teren.F28PositionY.ToString())px; " > <input disabled id="F28" value="@(ViewBag.teren.F28Name)" class="polje_text"/> </div>
+    }  
+    <!-- 29 -->         
+    @if (ViewBag.teren.F29Active == true && ViewBag.teren.F29PhotoCell != true)
+    {      
+    <div class="square" title="@(ViewBag.teren.F29Name)" id="dF29" style=" position:absolute; width:@(ViewBag.teren.F29DimensionX.ToString())px; height:@(ViewBag.teren.F29DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F29PositionX.ToString())px; top:@(ViewBag.teren.F29PositionY.ToString())px; " > <input disabled id="F29" value="@(ViewBag.teren.F29Name)" class="polje_text"/> </div>
+    }  
+    <!-- 30 -->   
+    @if (ViewBag.teren.F30Active == true && ViewBag.teren.F30PhotoCell != true)
+    {      
+    <div class="square" title="@(ViewBag.teren.F30Name)" id="dF30" style=" position:absolute; width:@(ViewBag.teren.F30DimensionX.ToString())px; height:@(ViewBag.teren.F30DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F30PositionX.ToString())px; top:@(ViewBag.teren.F30PositionY.ToString())px; " > <input disabled id="F30" value="@(ViewBag.teren.F30Name)" class="polje_text"/> </div>
+    } 
+    <!-- 31 -->           
+    @if (ViewBag.teren.F31Active == true && ViewBag.teren.F31PhotoCell != true)
+    {      
+    <div class="square" title="@(ViewBag.teren.F31Name)" id="dF31" style=" position:absolute; width:@(ViewBag.teren.F31DimensionX.ToString())px; height:@(ViewBag.teren.F31DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F31PositionX.ToString())px; top:@(ViewBag.teren.F31PositionY.ToString())px; " > <input disabled id="F31" value="@(ViewBag.teren.F31Name)" class="polje_text"/></div>
+    } 
+    <!-- 32 -->        
+    @if (ViewBag.teren.F32Active == true && ViewBag.teren.F32PhotoCell != true)
+    {     
+    <div class="square" title="@(ViewBag.teren.F32Name)" id="dF32" style=" position:absolute; width:@(ViewBag.teren.F32DimensionX.ToString())px; height:@(ViewBag.teren.F32DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F32PositionX.ToString())px; top:@(ViewBag.teren.F32PositionY.ToString())px; " > 
+        <input disabled id="F32" value="@(ViewBag.teren.F32Name)" class="polje_text"/></div>
+    }          
+    <div id="log"></div>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+    //$(document).ready(function () {
+    var ss;
+    var mojniz = $('#RandomFields', window.parent.document).val();
+    var trainindIdArray = mojniz.split(',');
+    if (mojniz != '') {
+        $('.square').css('background-color', 'rgb(128, 128, 128)');
+    }
+    $.each(trainindIdArray, function (index, value) {
+        //alert(index + ': ' + value);   // alerts 0:[1 ,  and  1:2]
+        if (value != '') {
+            //debugger;
+            //alert("div[title|='" + value + "']");
+            if (value < 10) {
+                $("div[title|='" + value + "']").css('background-color', 'rgb(255, 0, 0)');
+            }
+            else {
+                $("div[title|='" + value + "']").css('background-color', 'rgb(255, 0, 0)');
+            }
+        }
+    });
+
+    $("[id^='dF']").click(function () {
+        //alert($(this).css('background-color'));
+        if ($(this).css('background-color') == 'rgb(255, 0, 0)') {
+            $(this).css('background-color', 'rgb(128, 128, 128)');
+            }
+            else {
+            $(this).css('background-color', 'rgb(255, 0, 0)');
+        }
+        ss='';
+
+        $("[id^='dF']").each(function (index) {
+            if ($(this).css('background-color') == 'rgb(255, 0, 0)') {
+                ss = ss + ',' + ($(this).attr('title'));
+                //alert(ss);
+            }
+        });
+
+        //alert(ss);
+        $('#log').attr('name',ss)
+
+
+        });
+
+
+
+
+    //});
+
+</script>
+

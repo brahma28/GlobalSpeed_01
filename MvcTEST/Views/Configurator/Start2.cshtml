@@ -1,0 +1,201 @@
+﻿@model MvcTEST.Models.vwTemplate
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Home")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+    <table style="width: 100%">
+        <!-- NAZIV EKRANA-->
+        <tr>
+            <td align="left" colspan="3">
+                <font size="5"><b>@Html.Translate("KONFIGURATOR")</b></font>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left ; vertical-align:bottom; " colspan="2" >
+                <font size="4"><b>2.</b> @Html.Translate("Koji SpeedCourt imate?")</font>
+            </td>
+            <td align="right">
+                <img src="~/ImagesApp/KonfiguratorIkona.png" />
+            </td>
+        </tr>
+        <tr>
+            <td align="left" colspan="3">
+                <hr />
+            </td>
+        </tr>
+        <!-- TABELA:  -->
+        <tr>
+
+            <td colspan="3">
+
+                <div id="tereni">
+                    <table style="width: 100%; text-align: left; height:400px; vertical-align:top; ">
+                        <tr>
+                            <td>
+                                <table style="width: 100%; text-align: center;">
+                                            <tr>
+                                                <td>
+                                            <label for="3x3">
+                                                        <img src="~/ImagesApp/3x3plv.png" />
+                                            </label> 
+                                                </td>
+                                                <td>
+                                            <label for="5x5">
+                                                        <img src="~/ImagesApp/5x5nar.png" />
+                                            </label> 
+                                                </td>
+                                                <td>
+                                            <label for="7x7">
+                                                        <img src="~/ImagesApp/7x7zel.png" />
+                                            </label> 
+                                                </td>   
+                                                <td>
+                                            <label for="9x9">
+                                                        <img src="~/ImagesApp/9x9nar.png" />
+                                            </label> 
+                                                </td>
+                                                <td>
+                                            <label for="XxX">
+                                                        <img src="~/ImagesApp/XxX.png" />
+                                            </label> 
+                                                </td>  
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 150px; ">
+                                                    @Html.RadioButton("rb", Model.Radio3 , Model.Radio3==1?true:false, new {id = "3x3"})
+                                                </td>    
+                                                <td style="width: 150px">
+                                                    @Html.RadioButton("rb", Model.Radio5, Model.Radio5==1?true:false, new {id = "5x5"})
+                                                </td>
+                                                <td style="width: 150px">
+                                                    @Html.RadioButton("rb", Model.Radio7, Model.Radio7==1?true:false, new {id = "7x7"})
+                                                </td>
+                                                <td style="width: 150px">
+                                                    @Html.RadioButton("rb", Model.Radio9, Model.Radio9==1?true:false, new {id = "9x9"})
+                                                </td>
+                                                <td style="width: 150px">
+                                                    @Html.RadioButton("rb", Model.RadioX, Model.RadioX==1?true:false, new {id = "XxX"})
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                        <td style="width: 150px">
+                                            <label for="3x3" style="color: #0360a3; font-weight: bold; font-size: 20px">
+                                                    3 x 3
+                                            </label>
+                                                </td>    
+                                        <td style="width: 150px">
+                                            <label for="5x5" style="color: #0360a3; font-weight: bold; font-size: 20px">
+                                                    5 x 5
+                                            </label>
+                                                </td>
+                                        <td style="width: 150px">
+                                            <label for="7x7" style="color: #0360a3; font-weight: bold; font-size: 20px">
+                                                    7 x 7
+                                            </label>
+                                                </td>
+                                        <td style="width: 150px">
+                                            <label for="9x9" style="color: #0360a3; font-weight: bold; font-size: 20px">
+                                                    9 x 9
+                                            </label>
+                                                </td>
+                                        <td style="width: 150px">
+                                            <label for="XxX" style="color: #0360a3; font-weight: bold; font-size: 20px">
+                                                    @Html.Translate("Drugo")
+                                            </label>
+                                                </td>
+
+                                            </tr>
+                                    </table>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- tabela sa gumbima -->
+                    <table style="width:100%; " >
+                        <tr>
+                            <!-- NATRAG -->
+                            <td>
+                                <input type="button" value='@Html.Translate("BTN:BACK").ToUpper()' onclick="location.href = '/Configurator/Start'" class="cancel"/>
+                            </td>
+                            <!-- OK -->
+                            <td style="text-align:right;">
+                                <input type="button" value='@Html.Translate("Spremi").ToUpper()' onclick="location.href = '/Configurator/Start3'" class="save"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        <script>
+            $(document).ready(function () {
+
+                $('#3x3').click(function () {
+                    //
+                    $.post('@Url.Action("AjaxSetTerens", "Configurator")', { radiobutton: '3x3' },
+                         function (data) {
+                             //alert("1");
+                         });
+
+                });
+                $('#5x5').click(function () {
+                    //
+                    $.post('@Url.Action("AjaxSetTerens", "Configurator")', { radiobutton: '5x5' },
+                         function (data) {
+                             //alert("1");
+                         });
+
+                });
+                $('#7x7').click(function () {
+                    //
+                    $.post('@Url.Action("AjaxSetTerens", "Configurator")', { radiobutton: '7x7' },
+                         function (data) {
+                             //alert("1");
+                         });
+
+                });
+                $('#9x9').click(function () {
+                    //
+                    $.post('@Url.Action("AjaxSetTerens", "Configurator")', { radiobutton: '9x9' },
+                         function (data) {
+                             //alert("1");
+                         });
+
+                });
+                $('#XxX').click(function () {
+                    //
+                    $.post('@Url.Action("AjaxSetTerens", "Configurator")', { radiobutton: 'XxX' },
+                         function (data) {
+                             //alert("1");
+                         });
+
+                });
+            });
+
+
+
+
+
+
+            </script>
+
+
+
+        </tr>
+    </table>
+
+</div>
+
+
+
+
+
+
+

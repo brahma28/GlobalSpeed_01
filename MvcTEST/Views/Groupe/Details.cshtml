@@ -1,0 +1,76 @@
+﻿@model MvcTEST.Models.tblUserGroup
+@using MvcTEST.HtmlHelpers
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        @*<a href="@Url.Action("Index", "Groupe")" > <img src="~/ImagesApp/close.png" border="0" /></a>*@
+                            @if (Html.User().Role == 50)
+                            {
+                                <!-- VLASNIK -->
+                                <a id="aron" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 40)
+                            {
+                                <!-- TRENER -->
+                                <a id="aron" href="@Url.Action("Index", "Groupe")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if (Html.User().Role == 20 || Html.User().Role == 30)
+                            {
+                                <!-- IGRAC -->
+                                <a id="aron" href="@Url.Action("Index", "Groupe")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 10)
+                            {
+                                <!-- QUICKGAME -->
+                                <a id="aron" href="@Url.Action("Index", "Groupe")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else
+                            {
+                                <!-- ... -->
+                                <a id="aron" href="@Url.Action("Index", "Groupe")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+    </div>
+
+    <table class="edit">
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.Translate("Name")
+                </div>
+            </td>
+            <td style="padding-left:10px">
+                <div class="editor-field">
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding-top:20px">                
+            </td>
+            <td style="padding-top:20px;padding-left:14px">
+                <input type="button" value='@Html.Translate("Uredi").ToUpper()' onclick="location.href='@Url.Action("Edit", new {id=Model.ID})'" class="edit" style="margin-left:5px">
+                <input type="button" value='@Html.Translate("Odustani").ToUpper()' onclick="history.back()" class="cancel" style="margin-left:5px">
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        function EditGroup(){
+            localation.href = "";
+        }
+    </script>
+</div>

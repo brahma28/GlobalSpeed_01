@@ -1,0 +1,48 @@
+﻿@model MvcTEST.Models.tblBreak
+
+@{
+    ViewBag.Title = "Delete";
+}
+<div id="l1" style="padding: 10px; padding-left: 40px; width: 800px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Back to Action Menu", "../Action/Index")">
+            <img src="~/ImagesApp/close.png" border="0" />
+        </a>
+    </div>
+
+    <div align="left" style="border: 0px solid;">
+        <div style="vertical-align: central; background-color: white; width: 780px; height:250px;  border: 2px; border-radius: 10px; -moz-border-radius: 10px; border-style: solid; border-color: #aaaaaa; ">
+
+            <div style="padding-left:15px; padding-top:10px; padding-right:15px;">
+                <h2>Delete</h2>
+
+                <h3>Are you sure you want to delete this break?</h3>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="display-label">
+                                @Html.DisplayNameFor(model => model.BreakName)
+                                                    </div>
+                        </td>
+                        <td>
+                            <div class="display-field">
+                                @Html.DisplayFor(model => model.BreakName)
+                                                    </div>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <p>
+                        <input type="submit" value="Delete" class="save" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

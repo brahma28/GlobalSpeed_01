@@ -1,0 +1,1314 @@
+﻿@using MvcTEST.HtmlHelpers
+@model MvcTEST.Models.tblTemplate
+
+@{
+    ViewBag.Title = "terenspeedtrack";
+    Layout = null;
+    
+}
+<style>
+
+.polje_red
+{ 
+    color:red; 
+    width:50px; 
+    height:50px; 
+    background-color:red;
+
+} 
+.polje_white
+{ 
+    color:red; 
+    width:50px; 
+    height:50px; 
+    background-color:white;
+
+} 
+
+.polje_lgray
+{ 
+    color:red; 
+    width:30px; 
+    height:30px; 
+    background-color:lightslategray;
+
+} 
+.teren
+{ 
+    width: 100%; 
+    text-align: left; 
+    height:470px; 
+    vertical-align:top; 
+    border-spacing:0px; 
+    border:0px; 
+    PADDING:0; 
+    border-collapse:collapse;
+
+} 
+.polje_text
+{ 
+    height:23px;
+    width:23px; 
+    position:relative; 
+    border:1px;
+    top:0px;
+    vertical-align:top;
+    border-left-color:gray;
+    border-color:gray;
+    background-color:lightgray;
+} 
+.polje_text_razmak
+{ 
+    height:23px;
+    width:23px; 
+    position:relative; 
+    border:1px;
+    top:0px;
+    vertical-align:top;
+    border-left-color:gray;
+    border-color:gray;
+    background-color:lightgray;
+} 
+.polje_text_sivo
+{ 
+    height:23px;
+    width:23px; 
+    position:relative; 
+    border:1px;
+    top:0px;
+    vertical-align:top;
+    color:lightgray;
+} 
+.polje_text_malo
+{ 
+    width:12px; 
+    position:relative; 
+    border:0px;
+    
+
+} 
+</style>
+
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="/Scripts/fancybox/jquery.fancybox-1.3.4.js"></script>
+    <script type="text/javascript" src="/Scripts//fancybox/jquery.Easing-1.3.pack.js"></script>
+    <link id="size-stylesheet" href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/fancybox/jquery.fancybox-1.3.4.css")" type="text/css" media="screen" />
+    
+@using (Html.BeginForm())
+{ 
+<div style=" color:black; background-color:white; position:relative;">
+    @{ var brojac = 50; var br = 1;
+    <!-- 01 --> 
+        if (ViewBag.teren.F01Active == true && ViewBag.teren.F01PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        { 
+
+    <div id="divF01" style=" position:absolute; width:100px; height:@(ViewBag.teren.F01DimensionX.ToString())px;  color:white; background-color:white;   left:@(ViewBag.teren.F01PositionX.ToString())px; top:@(brojac.ToString())px; " > 
+            <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+
+    </div>
+    <!-- 01:02 -->
+        }
+        if (ViewBag.teren.F01Active == true && ViewBag.teren.F01PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {  
+    <div id="razmakF01" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F01PositionX.ToString())px; top:@((brojac + ViewBag.teren.F01DimensionX).ToString())px; " >     
+            @if (ViewBag.teren.F01PositionY > 0 && ViewBag.teren.F02PositionY == 0)
+            { 
+            <table style="vertical-align:central; ">
+                <tr>
+                    <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                    <td>
+                        <input id="F02"  value="@(ViewBag.teren.F02PositionY/100) m"  class="polje_text_razmak" />
+                    </td>
+                </tr>
+            </table>  
+            }
+            else
+            { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F02"  value="@(ViewBag.teren.F02PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table> 
+            }
+    </div>                     
+            brojac = brojac + 75; br++;
+        }
+    <!-- 02 --> 
+        if (ViewBag.teren.F02Active == true && ViewBag.teren.F02PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+
+    <div id="divF02" style=" position:absolute; width:100px; height:@(ViewBag.teren.F02DimensionX.ToString())px;  color:white; background-color:white;  left:@(ViewBag.teren.F02PositionX.ToString())px; top:@(brojac.ToString())px; " > 
+        <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+
+    </div>
+    <!-- 02:03 -->  
+        }
+        if (ViewBag.teren.F02Active == true && ViewBag.teren.F02PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {           
+    <div id="razmakF02" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F02PositionX.ToString())px; top:@((brojac + ViewBag.teren.F02DimensionX).ToString())px; " >     
+            @if (ViewBag.teren.F02PositionY > 0 && ViewBag.teren.F03PositionY == 0)
+            { 
+            <table style="vertical-align:central; ">
+                <tr>
+                    <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                    <td>
+                        <input id="F03"  value="@(ViewBag.teren.F03PositionY/100) m"  class="polje_text_razmak" />
+                    </td>
+                </tr>
+            </table>  
+            }
+            else
+            { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F03"  value="@(ViewBag.teren.F03PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table> 
+            }
+    </div>           
+            brojac = brojac + 75; br++;
+        }
+    <!-- 03 --> 
+        if (ViewBag.teren.F03Active == true && ViewBag.teren.F03PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+   
+    <div id="divF03" style=" position:absolute; width:100px; height:@(ViewBag.teren.F03DimensionX.ToString())px;  color:white; background-color:white;   left:@(ViewBag.teren.F03PositionX.ToString())px; top:@(brojac.ToString())px; " > 
+        <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+
+    </div>
+    <!-- 03:04 -->  
+        }
+        if (ViewBag.teren.F03Active == true && ViewBag.teren.F03PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {                 
+    <div id="razmakF03" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F03PositionX.ToString())px; top:@((brojac + ViewBag.teren.F03DimensionX).ToString())px; " >     
+            @if (ViewBag.teren.F03PositionY > 0 && ViewBag.teren.F04PositionY == 0)
+            { 
+            <table style="vertical-align:central; ">
+                <tr>
+                    <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                    <td>
+                        <input id="F04"  value="@(ViewBag.teren.F04PositionY/100) m"  class="polje_text_razmak" />
+                    </td>
+                </tr>
+            </table>  
+            }
+            else
+            { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F04"  value="@(ViewBag.teren.F04PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table> 
+            }
+    </div>          
+            brojac = brojac + 75; br++;
+        }
+
+        if (ViewBag.teren.F04Active == true && ViewBag.teren.F04PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+    <!-- 04 -->     
+    <div id="divF04" style=" position:absolute; width:100px; height:@(ViewBag.teren.F04DimensionX.ToString())px;  color:white; background-color:white;  left:@(ViewBag.teren.F04PositionX.ToString())px; top:@(brojac.ToString())px; " >    
+        <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+
+    </div>
+    <!-- 04:05 --> 
+        }
+        if (ViewBag.teren.F04Active == true && ViewBag.teren.F04PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {          
+    <div id="razmakF04" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F04PositionX.ToString())px; top:@((brojac + ViewBag.teren.F04DimensionX).ToString())px; " >     
+            @if (ViewBag.teren.F04PositionY > 0 && ViewBag.teren.F05PositionY == 0)
+            { 
+            <table style="vertical-align:central; ">
+                <tr>
+                    <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                    <td>
+                        <input id="F05"  value="@(ViewBag.teren.F05PositionY/100) m"  class="polje_text_razmak" />
+                    </td>
+                </tr>
+            </table>  
+            }
+            else
+            { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F05"  value="@(ViewBag.teren.F05PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table> 
+            }
+    </div>                  
+            brojac = brojac + 75; br++;
+        }
+    <!-- 05 -->
+        if (ViewBag.teren.F05Active == true && ViewBag.teren.F05PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+ 
+    <div id="divF05" style=" position:absolute; width:100px; height:@(ViewBag.teren.F05DimensionX.ToString())px;  color:white; background-color:white;   left:@(ViewBag.teren.F05PositionX.ToString())px; top:@(brojac.ToString())px; " >
+        <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+
+    </div>
+    <!-- 05:06 -->
+        }
+        if (ViewBag.teren.F05Active == true && ViewBag.teren.F05PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {             
+    <div id="razmakF05" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F05PositionX.ToString())px; top:@((brojac + ViewBag.teren.F05DimensionX).ToString())px; " >     
+            @if (ViewBag.teren.F05PositionY > 0 && ViewBag.teren.F06PositionY == 0)
+            { 
+            <table style="vertical-align:central; ">
+                <tr>
+                    <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                    <td>
+                        <input id="F06"  value="@(ViewBag.teren.F06PositionY/100) m"  class="polje_text_razmak" />
+                    </td>
+                </tr>
+            </table>  
+            }
+            else
+            { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F06"  value="@(ViewBag.teren.F06PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table> 
+            }
+    </div>                 
+            brojac = brojac + 75; br++;
+        }
+    <!-- 06 -->
+        if (ViewBag.teren.F06Active == true && ViewBag.teren.F06PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+           
+    <div id="divF06" style=" position:absolute; width:100px; height:@(ViewBag.teren.F06DimensionX.ToString())px;  color:white; background-color:white;  left:@(ViewBag.teren.F06PositionX.ToString())px; top:@(brojac.ToString())px; " > 
+        <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+
+    </div>
+    <!-- 06:07 --> 
+        }
+        if (ViewBag.teren.F06Active == true && ViewBag.teren.F06PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {            
+    <div id="razmakF06" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F06PositionX.ToString())px; top:@((brojac + ViewBag.teren.F06DimensionX).ToString())px; " >     
+            @if (ViewBag.teren.F06PositionY > 0 && ViewBag.teren.F07PositionY == 0)
+            { 
+            <table style="vertical-align:central; ">
+                <tr>
+                    <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                    <td>
+                        <input id="F07"  value="@(ViewBag.teren.F07PositionY/100) m"  class="polje_text_razmak" />
+                    </td>
+                </tr>
+            </table>  
+            }
+            else
+            { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F07"  value="@(ViewBag.teren.F07PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table> 
+            }
+    </div>                  
+            brojac = brojac + 75; br++;
+        }
+    <!-- 07 -->
+        if (ViewBag.teren.F07Active == true && ViewBag.teren.F07PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+
+    <div id="divF07" style=" position:absolute; width:100px; height:@(ViewBag.teren.F07DimensionX.ToString())px;  color:white; background-color:white;   left:@(ViewBag.teren.F07PositionX.ToString())px; top:@(brojac.ToString())px; " > 
+        <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+
+    </div>
+    <!-- 07:08 --> 
+        }
+        if (ViewBag.teren.F07Active == true && ViewBag.teren.F07PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {           
+    <div id="razmakF07" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F07PositionX.ToString())px; top:@((brojac + ViewBag.teren.F07DimensionX).ToString())px; " >     
+            @if (ViewBag.teren.F07PositionY > 0 && ViewBag.teren.F08PositionY == 0)
+            { 
+            <table style="vertical-align:central; ">
+                <tr>
+                    <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                    <td>
+                        <input id="F08"  value="@(ViewBag.teren.F08PositionY/100) m"  class="polje_text_razmak" />
+                    </td>
+                </tr>
+            </table>  
+            }
+            else
+            { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F08"  value="@(ViewBag.teren.F08PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table> 
+            }
+    </div>                
+            brojac = brojac + 75; br++;
+        }
+    <!-- 08 -->
+        if (ViewBag.teren.F08Active == true && ViewBag.teren.F08PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+   
+    <div id="divF08" style=" position:absolute; width:100px; height:@(ViewBag.teren.F08DimensionX.ToString())px;  color:white; background-color:white;  left:@(ViewBag.teren.F08PositionX.ToString())px; top:@(brojac.ToString())px; " >  
+        <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+    </div>
+    <!-- 08:09 --> 
+        }
+        if (ViewBag.teren.F08Active == true && ViewBag.teren.F08PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {            
+    <div id="razmakF08" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F08PositionX.ToString())px; top:@((brojac + ViewBag.teren.F08DimensionX).ToString())px; " >     
+            @if (ViewBag.teren.F08PositionY > 0 && ViewBag.teren.F09PositionY == 0)
+            { 
+            <table style="vertical-align:central; ">
+                <tr>
+                    <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                    <td>
+                        <input id="F09"  value="@(ViewBag.teren.F09PositionY/100) m"  class="polje_text_razmak" />
+                    </td>
+                </tr>
+            </table>      
+            }
+            else
+            { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F09"  value="@(ViewBag.teren.F09PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table> 
+            }
+    </div>                
+            brojac = brojac + 75; br++;
+        }
+    <!-- 09 -->
+        if (ViewBag.teren.F09Active == true && ViewBag.teren.F09PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+    <div id="divF09" style=" position:absolute; width:100px; height:@(ViewBag.teren.F09DimensionX.ToString())px;  color:white; background-color:white;   left:@(ViewBag.teren.F09PositionX.ToString())px; top:@(brojac.ToString())px; " > 
+        <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+    </div>
+    <!-- 09:10 -->   
+        }
+        if (ViewBag.teren.F09Active == true && ViewBag.teren.F09PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {             
+    <div id="razmakF09" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F09PositionX.ToString())px; top:@((brojac + ViewBag.teren.F09DimensionX).ToString())px; " >     
+            @if (ViewBag.teren.F09PositionY > 0 && ViewBag.teren.F10PositionY == 0)
+            { 
+            <table style="vertical-align:central; ">
+                <tr>
+                    <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                    <td>
+                        <input id="F10"  value="@(ViewBag.teren.F10PositionY/100) m"  class="polje_text_razmak" />
+                    </td>
+                </tr>
+            </table>      
+            }
+            else
+            { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F10"  value="@(ViewBag.teren.F10PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table> 
+            }
+    </div>             
+            brojac = brojac + 75; br++;
+        }
+    <!-- 10 -->
+        if (ViewBag.teren.F10Active == true && ViewBag.teren.F10PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+
+    <div id="divF10" style=" position:absolute; width:100px; height:@(ViewBag.teren.F10DimensionX.ToString())px;  color:white; background-color:white;  left:@(ViewBag.teren.F10PositionX.ToString())px; top:@(brojac.ToString())px; " > 
+        <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+
+    </div>
+           
+    <!-- 10:11 -->  
+        }
+        if (ViewBag.teren.F10Active == true && ViewBag.teren.F10PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {          
+    <div id="razmakF10" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F10PositionX.ToString())px; top:@((brojac + ViewBag.teren.F10DimensionX).ToString())px; " >     
+            @if (ViewBag.teren.F10PositionY > 0 && ViewBag.teren.F11PositionY == 0)
+            { 
+            <table style="vertical-align:central; ">
+                <tr>
+                    <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                    <td>
+                        <input id="F11"  value="@(ViewBag.teren.F11PositionY/100) m"  class="polje_text_razmak" />
+                    </td>
+                </tr>
+            </table>      
+            }
+            else
+            { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F11"  value="@(ViewBag.teren.F11PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table> 
+            }
+    </div>           
+            brojac = brojac + 75; br++;
+        } 
+        
+    <!-- 11 -->
+        if (ViewBag.teren.F11Active == true && ViewBag.teren.F11PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+  
+    <div id="divF11" style=" position:absolute; width:100px; height:@(ViewBag.teren.F11DimensionX.ToString())px;  color:white; background-color:white;   left:@(ViewBag.teren.F11PositionX.ToString())px; top:@(brojac.ToString())px; " >
+        <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+
+    </div>      
+    <!-- 11:12 --> 
+        }
+        if (ViewBag.teren.F11Active == true && ViewBag.teren.F11PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {           
+    <div id="razmakF11" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F11PositionX.ToString())px; top:@((brojac + ViewBag.teren.F11DimensionX).ToString())px; " >     
+            @if (ViewBag.teren.F11PositionY > 0 && ViewBag.teren.F12PositionY == 0)
+            { 
+            <table style="vertical-align:central; ">
+                <tr>
+                    <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                    <td>
+                        <input id="F12"  value="@(ViewBag.teren.F12PositionY/100) m"  class="polje_text_razmak" />
+                    </td>
+                </tr>
+            </table>      
+            }
+            else
+            { 
+            <table style="vertical-align:central; ">
+                <tr><td style="width:25px; "></td>
+                    <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                    <td>
+                        <input id="F12"  value="@(ViewBag.teren.F12PositionY/100) m"  class="polje_text_sivo" />
+                    </td>
+                </tr>
+            </table> 
+            }
+    </div>          
+            brojac = brojac + 75; br++;
+        } 
+        
+    <!-- 12 -->
+        if (ViewBag.teren.F12Active == true && ViewBag.teren.F12PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+
+        <div id="divF12" style=" position:absolute; width:100px; height:@(ViewBag.teren.F12DimensionX.ToString())px;  color:white; background-color:white;  left:@(ViewBag.teren.F12PositionX.ToString())px; top:@(brojac.ToString())px; " > 
+            <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+
+        </div>      
+    <!-- 12:13 -->
+        }
+        if (ViewBag.teren.F12Active == true && ViewBag.teren.F12PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {          
+        <div id="razmakF12" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F12PositionX.ToString())px; top:@((brojac + ViewBag.teren.F12DimensionX).ToString())px; " >     
+                @if (ViewBag.teren.F12PositionY > 0 && ViewBag.teren.F13PositionY == 0)
+                {                 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                        <td>
+                            <input id="F13"  value="@(ViewBag.teren.F13PositionY/100) m"  class="polje_text_razmak" />
+                        </td>
+                    </tr>
+                </table>      
+                }
+                else
+                { 
+                <table style="vertical-align:central; ">
+                    <tr><td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F13"  value="@(ViewBag.teren.F13PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table> 
+                }
+        </div>           
+            brojac = brojac + 75; br++;
+        }  
+     
+    <!-- 13 -->
+        if (ViewBag.teren.F13Active == true && ViewBag.teren.F13PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+        <div id="divF13" style="position:absolute; width:100px; height:@(ViewBag.teren.F13DimensionX.ToString())px;  color:white; background-color:white;   left:@(ViewBag.teren.F13PositionX.ToString())px; top:@(brojac.ToString())px; " > 
+            <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+
+        </div>
+    <!-- 13:14 -->   
+        }
+        if (ViewBag.teren.F13Active == true && ViewBag.teren.F13PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {          
+        <div id="razmakF13" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F13PositionX.ToString())px; top:@((brojac + ViewBag.teren.F13DimensionX).ToString())px; " >     
+                @if (ViewBag.teren.F13PositionY > 0 && ViewBag.teren.F14PositionY == 0)
+                { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td><img src="~/ImagesApp/plocarazmakplavvert.ico">
+                            <input id="F14"  value="@(ViewBag.teren.F14PositionY/100) m"  class="polje_text_razmak" />
+                        </td>
+                    </tr>
+                </table>      
+                }
+                else
+                { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F14"  value="@(ViewBag.teren.F14PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table>                 
+                }
+        </div> 
+            brojac = brojac + 75; br++;
+        }  
+     
+    <!-- 14 -->
+        if (ViewBag.teren.F14Active == true && ViewBag.teren.F14PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+        <div id="divF14" style=" position:absolute; width:100px; height:@(ViewBag.teren.F14DimensionX.ToString())px;  color:white; background-color:white;  left:@(ViewBag.teren.F14PositionX.ToString())px; top:@(brojac.ToString())px; " >
+            <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+
+        </div>
+    <!-- 14:15 -->
+        }
+        if (ViewBag.teren.F14Active == true && ViewBag.teren.F14PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {    
+        <div id="razmakF14" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@((ViewBag.teren.F14PositionX).ToString())px; top:@((brojac + ViewBag.teren.F14DimensionX).ToString())px; " >     
+                @if (ViewBag.teren.F14PositionY > 0 && ViewBag.teren.F15PositionY == 0)
+                { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td><img src="~/ImagesApp/plocarazmakplavvert.ico">14</td>
+                        <td>
+                            <input id="F15"  value="@(ViewBag.teren.F15PositionY/100) m"  class="polje_text_razmak" />
+                        </td>
+                    </tr>
+                </table>      
+                }
+                else
+                { 
+                <table style="vertical-align:central; ">
+                    <tr><td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F15"  value="@(ViewBag.teren.F15PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table>                     
+                }     
+        </div> 
+            brojac = brojac + 75; br++;
+        }  
+    <!-- 15 -->
+        if (ViewBag.teren.F15Active == true && ViewBag.teren.F15PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+        <div id="divF15" style=" position:absolute; width:100px; height:@(ViewBag.teren.F15DimensionX.ToString())px;  color:white; background-color:white;  left:@(ViewBag.teren.F15PositionX.ToString())px; top:@(brojac.ToString())px; " > 
+            <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+        </div>
+    <!-- 15:16 -->
+        }          
+        if (ViewBag.teren.F15Active == true && ViewBag.teren.F15PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {        
+        <div id="razmakF15" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F15PositionX.ToString())px; top:@((brojac + ViewBag.teren.F15DimensionX).ToString())px; " >     
+                @if (ViewBag.teren.F15PositionY > 0 && ViewBag.teren.F16PositionY == 0)
+                { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td><img src="~/ImagesApp/plocarazmakplavvert.ico">15</td>
+                        <td>
+                            <input id="F16"  value="@(ViewBag.teren.F16PositionY/100) m"  class="polje_text_razmak" />
+                        </td>
+                    </tr>
+                </table>      
+                }
+                else
+                { 
+                <table style="vertical-align:central; ">
+                    <tr><td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F16"  value="@(ViewBag.teren.F16PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table>                   
+            
+                }
+        </div>    
+            brojac = brojac + 75; br++;
+        }  
+    <!-- 16 -->
+        if (ViewBag.teren.F16Active == true && ViewBag.teren.F16PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+        <div id="divF16" style=" position:absolute; width:100px; height:@(ViewBag.teren.F16DimensionX.ToString())px;  color:white; background-color:white;  left:@(ViewBag.teren.F16PositionX.ToString())px; top:@(brojac.ToString())px; " > 
+            <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+        </div>
+    <!-- 16:17 -->
+        }
+        if (ViewBag.teren.F16Active == true && ViewBag.teren.F16PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {  
+        <div id="razmakF16" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F16PositionX.ToString())px; top:@((brojac + ViewBag.teren.F16DimensionX).ToString())px; " >     
+                @if (ViewBag.teren.F16PositionY > 0 && ViewBag.teren.F17PositionY == 0)
+                { 
+                <table style="vertical-align:central; ">
+                    <tr>
+                        <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                        <td>
+                            <input id="F17"  value="@(ViewBag.teren.F17PositionY/100) m"  class="polje_text_razmak" />
+                        </td>
+                    </tr>
+                </table>      
+                }
+                else
+                { 
+                <table style="vertical-align:central; ">
+                    <tr><td style="width:25px; "></td>
+                        <td><img src="~/ImagesApp/plocarazmaksivvert.png" /></td>
+                        <td>
+                            <input id="F17"  value="@(ViewBag.teren.F17PositionY/100) m"  class="polje_text_sivo" />
+                        </td>
+                    </tr>
+                </table>   
+                }
+        </div>   
+            brojac = brojac + 75; br++;
+        }  
+        
+    <!-- 17 -->
+        if (ViewBag.teren.F17Active == true && ViewBag.teren.F17PhotoCell == true && br <= ViewBag.teren.FieldsNo)
+        {
+ 
+    <div id="divF17" style=" position:absolute; width:125px; height:@(ViewBag.teren.F17DimensionX.ToString())px;  color:white; background-color:white;  left:@(ViewBag.teren.F17PositionX.ToString())px; top:@(brojac.ToString())px; " >
+        <img src="~/ImagesApp/photochellikonaCRVENA.png" />
+    </div>
+    <!-- 17:18 -->  
+        }
+        if (ViewBag.teren.F17Active == true && ViewBag.teren.F17PhotoCell == true && br < ViewBag.teren.FieldsNo)
+        {          
+    <div id="razmakF17" style=" position:absolute; width:100px; height:50px;  color:white; background-color:white;  left:@(ViewBag.teren.F17PositionX.ToString())px; top:@((brojac + ViewBag.teren.F17DimensionX).ToString())px; " >     
+            @if (ViewBag.teren.F17PositionY > 0 && ViewBag.teren.F18PositionY == 0)
+            { 
+             <table style="vertical-align:central; ">
+                <tr>
+                    <td><img src="~/ImagesApp/plocarazmakplavvert.ico"></td>
+                    <td>
+                        <input id="F18"  value="@(ViewBag.teren.F18PositionY/100) m"  class="polje_text_razmak" />
+                    </td>
+                </tr>
+            </table>      
+            }
+            else
+            { 
+            <img src="~/ImagesApp/plocarazmaksivvert.png" />
+            }
+    </div>  
+            brojac = brojac + 75; br++;
+        } 
+   } 
+
+</div>
+ } 
+        <script>
+            $(document).ready(function () {
+                $('#F01').focusout(function () {
+                    var dst01 = $('#F01').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F01', distanca: dst01 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    
+                });
+                $('#F02').focusout(function () {
+                    var dst02 = $('#F02').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F02', distanca: dst02 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    
+                });
+                $('#F03').focusout(function () {
+                    var dst03 = $('#F03').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F03', distanca: dst03 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    
+                });
+                $('#F04').focusout(function () {
+                    var dst04 = $('#F04').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F04', distanca: dst04 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    
+                });
+                $('#F05').focusout(function () {
+                    var dst05 = $('#F05').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F05', distanca: dst05 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    
+                });
+                $('#F06').focusout(function () {
+                    var dst06 = $('#F06').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F06', distanca: dst06 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    
+                });
+                $('#F07').focusout(function () {
+                    var dst07 = $('#F07').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F07', distanca: dst07 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    
+                });
+                $('#F08').focusout(function () {
+                    var dst08 = $('#F08').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F08', distanca: dst08 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    
+                });
+                $('#F09').focusout(function () {
+                    var dst09 = $('#F09').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F09', distanca: dst09 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    
+                });
+                $('#F10').focusout(function () {
+                    var dst10 = $('#F10').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F10', distanca: dst10 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    
+                });
+                $('#F11').focusout(function () {
+                    var dst11 = $('#F11').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F11', distanca: dst11 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    
+                });
+                $('#F12').focusout(function () {
+                    var dst12 = $('#F12').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F12', distanca: dst12 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    
+                });
+
+                $('#F13').focusout(function () {
+                    var dst12 = $('#F13').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F13', distanca: dst12 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+
+                $('#F13').keyup(function (ev) {
+                    if (e.keyCode == 13) {
+                        var dst13 = $('#F13').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F13', distanca: dst13 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                });
+
+                $('#F14').focusout(function () {
+                    var dst14 = $('#F14').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F14', distanca: dst14 },
+                         function (data) {
+                             $('#teren').html(data);
+                         });
+
+                });
+                $('#F14').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst14 = $('#F14').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F14', distanca: dst14 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                });
+                $('#F15').focusout(function () {
+                    var dst15 = $('#F15').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F15', distanca: dst15 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F16').focusout(function () {
+                    var dst16 = $('#F16').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F16', distanca: dst16 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F17').focusout(function () {
+                    var dst17 = $('#F17').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F17', distanca: dst17 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F18').focusout(function () {
+                    var dst18 = $('#F18').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F18', distanca: dst18 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F19').focusout(function () {
+                    var dst19 = $('#F19').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F19', distanca: dst19 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F20').focusout(function () {
+                    var dst20 = $('#F20').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F20', distanca: dst20 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F21').focusout(function () {
+                    var dst21 = $('#F21').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F21', distanca: dst21 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F22').focusout(function () {
+                    var dst22 = $('#F22').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F22', distanca: dst22 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F23').focusout(function () {
+                    var dst23 = $('#F23').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F23', distanca: dst23 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F24').focusout(function () {
+                    var dst24 = $('#F24').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F24', distanca: dst24 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F25').focusout(function () {
+                    var dst25 = $('#F25').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F25', distanca: dst25 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F26').focusout(function () {
+                    var dst26 = $('#F26').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F26', distanca: dst26 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F27').focusout(function () {
+                    var dst27 = $('#F27').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F27', distanca: dst27 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F28').focusout(function () {
+                    var dst28 = $('#F28').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F28', distanca: dst28 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F29').focusout(function () {
+                    var dst29 = $('#F29').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F29', distanca: dst29 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F30').focusout(function () {
+                    var dst30 = $('#F30').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F30', distanca: dst30 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F31').focusout(function () {
+                    var dst31 = $('#F31').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F31', distanca: dst31 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F32').focusout(function () {
+                    var dst32 = $('#F32').val();
+                    $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F32', distanca: dst32 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                });
+                $('#F01').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst01 = $('#F01').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F01', distanca: dst01 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F02').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst02 = $('#F02').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F02', distanca: dst02 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+
+                });
+                $('#F03').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst03 = $('#F03').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F03', distanca: dst03 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+
+                });
+                $('#F04').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst04 = $('#F04').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F04', distanca: dst04 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+
+                });
+                $('#F05').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst05 = $('#F05').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F05', distanca: dst05 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+
+                });
+                $('#F06').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst06 = $('#F06').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F06', distanca: dst06 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F07').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst07 = $('#F07').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F07', distanca: dst07 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F08').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst08 = $('#F08').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F08', distanca: dst08 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                });
+                $('#F09').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst09 = $('#F09').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F09', distanca: dst09 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F10').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst10 = $('#F10').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F10', distanca: dst10 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F11').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst11 = $('#F11').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F11', distanca: dst11 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F12').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst12 = $('#F12').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F12', distanca: dst12 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F15').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst15 = $('#F15').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F15', distanca: dst15 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F16').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst16 = $('#F16').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F16', distanca: dst16 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F17').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst17 = $('#F17').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F17', distanca: dst17 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F18').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst18 = $('#F18').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F18', distanca: dst18 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F19').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst19 = $('#F19').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F19', distanca: dst19 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F20').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst20 = $('#F20').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F20', distanca: dst20 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F21').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst21 = $('#F21').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F21', distanca: dst21 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F22').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst22 = $('#F22').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F22', distanca: dst22 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F23').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst23 = $('#F23').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F23', distanca: dst23 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F24').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst24 = $('#F24').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F24', distanca: dst24 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F25').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst25 = $('#F25').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F25', distanca: dst25 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F26').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst26 = $('#F26').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F26', distanca: dst26 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F27').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst27 = $('#F27').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F27', distanca: dst27 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F28').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst28 = $('#F28').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F28', distanca: dst28 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F29').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst29 = $('#F29').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F29', distanca: dst29 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F30').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst30 = $('#F30').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F30', distanca: dst30 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F31').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst31 = $('#F31').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F31', distanca: dst31 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+                $('#F32').keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        var dst32 = $('#F32').val();
+                        $.post('@Url.Action("AjaxSetFieldDistance", "Configurator")', { broj: 'F32', distanca: dst32 },
+                             function (data) {
+                                 $('#teren').html(data);
+                             });
+                    }
+                    
+                });
+            });
+
+
+            </script>

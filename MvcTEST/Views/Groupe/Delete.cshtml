@@ -1,0 +1,50 @@
+﻿@model MvcTEST.Models.tblUserGroup
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Delete";
+}
+@ViewBag.have_user
+
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Groupe")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+    <h2>@Html.Translate("Löschen")</h2>
+
+    <h3>@Html.Translate("Sind Sie sicher, dass Sie dies wirklich löschen?")</h3>
+    <fieldset>
+        <legend></legend>
+
+        <div class="display-label">
+            @Html.Translate("Name") @*@Html.DisplayNameFor(model => model.Name)*@
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Name)
+        </div>
+
+        @* <div class="display-label">
+         @Html.DisplayNameFor(model => model.NameHR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NameHR)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NameENG)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NameENG)
+    </div>*@
+    </fieldset>
+    @using (Html.BeginForm())
+    {
+        <p> 
+            <input type="submit" value="@Html.Translate("Löschen")" />
+            |
+        @Html.ActionLink(Html.Translate("Zurück zur Liste"), "Index")
+        </p>
+    }
+</div>

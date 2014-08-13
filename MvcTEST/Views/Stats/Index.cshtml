@@ -1,0 +1,395 @@
+﻿@model IEnumerable<MvcTEST.Models.tblSpeedEntry>
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+    <script>
+        $(document).ready(function () {
+            $("[class~='redak1']").hover(function () {
+                $(this).css("background-color", "#0360a3");
+                $(this).css("color", "white");
+                this.cells[0].children[0].style.color = "white";
+
+            }, function () {
+                $(this).css("background-color", "white");
+                $(this).css("color", "black");
+                this.cells[0].children[0].style.color = "#0360a3";
+
+
+            });
+
+            $("[class~='redak']").hover(function () {
+                this.cells[0].children[0].style.color = "white";
+                this.cells[0].children[0].style.border.bottom = "solid #c4c4c4 1px" ;
+                $(this).css("background-color", "#0360a3");
+                $(this).css("color", "white");
+
+            }, function () {
+                $(this).css("background-color", "white");
+                $(this).css("color", "black");
+                this.cells[0].children[0].style.color = "#000000";
+                this.cells[0].children[0].style.border.bottom = "solid #c4c4c4 1px" ;
+
+            });
+
+            $("[class~='redak3']").hover(function () {
+                $(this).css("background-color", "#0360a3");
+                $(this).css("color", "white");
+                this.cells[0].children[0].style.color = "white";
+
+            }, function () {
+                $(this).css("background-color", "white");
+                $(this).css("color", "black");
+                this.cells[0].children[0].style.color = "#0360a3";
+
+
+            });
+        });
+    </script>
+<style>
+
+.redak, .redak a  {
+    color: #000000 ;
+
+} 
+
+#blackfont, .blackfont {
+    color: #000000 !important;
+    font-weight:bold !important;
+
+} 
+.bluelink a {
+    color: #0360a3;
+    
+}
+
+
+</style>
+
+<div id="l1" style="padding: 10px; width: 900px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        @*<a href="@Url.Action("Index", "Home")" >  <img src="~/ImagesApp/close.png" border="0" /></a>*@
+                            @if (Html.User().Role == 50)
+                            {
+                                <!-- VLASNIK -->
+                                <a id="argon1" href="@Url.Action("Index", "AdminHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 40)
+                            {
+                                <!-- TRENER -->
+                                <a id="argon2" href="@Url.Action("Index", "Home")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if (Html.User().Role == 20 || Html.User().Role == 30)
+                            {
+                                <!-- IGRAC -->
+                                <a id="aron3" href="@Url.Action("Index", "UserHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 10)
+                            {
+                                <!-- QUICKGAME -->
+                                <a id="argon4" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else
+                            {
+                                <!-- ... -->
+                                <a id="argon5" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+    </div>
+     
+
+    <table style="width: 100%">
+        <!-- NAZIV EKRANA-->
+        <tr>
+            <td align="left">
+                @*.ToUpper()*@ 
+                <font size="5"><b>@Html.Translate("OCJENJIVANJE")</b></font>
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+                <br />
+            </td>
+        </tr>
+        <!-- SEARCH -->
+        <tr>
+            <td>
+                <table align="left">
+                    <tr>
+                        <td>
+                            <input id="txtSearch" type="text" value="" class="search"/>
+                        </td>
+                        <td style="padding:5px 0 0 10px">
+                            <a href="javascript:void(0);" onclick="onSearchClick()">
+                                <img src="~/ImagesApp/search.png" />
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+
+        </tr>
+        <script>
+            function onSearchClick()
+            {
+                $.post("results/AjaxSearch?search=" + escape($("#txtSearch").val()), {}, function (ret) {
+                    $("#content").html(ret);
+                }
+                    );
+            }
+
+            $('#txtSearch').keypress(function (e) {
+                if (e.which == 13) {
+                    onSearchClick();
+                }
+            });
+
+
+        </script>
+        <!--3 TABELE:  -->
+        <tr>
+            <td>
+                <div id="content">
+                <table style="width: 100%; text-align: left;">
+                    <tr>
+                        <!-- exec [getGameByUser] null -->
+                        <td>
+
+                            <div id="games" style="padding: 10px; width: 260px; height: 410px; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #FFF">
+                                @*<a href="@(Url.Content("~/Game/Index/"))" style="text-decoration:none;">*@
+                                    <text><b><font color="#0360a3" size="5">@Html.Translate("IGRICA")</font></b></text>
+                                @*</a> *@                   
+                                <br />
+                                <hr />
+                                <div style="position:relative;">
+                                    <div id="gamesin" style="width: 260px; height: 360px; position: inherit; background-color: #FFF; overflow-y: scroll; overflow-x: hidden;">
+                                        <table style="width: 220px; line-height: 13px; border: 0px; height: 360px; overflow-y: scroll; padding:0px; border-collapse:collapse; border-spacing:0px; border-color:sandybrown;">
+                                            @{ 
+                                                var imeigre = ' ';                                      
+                                                foreach (MvcTEST.Models.getGameByUser_Result item1 in @ViewBag.games)
+                                                {
+                                                    if (imeigre != item1.Name.ToUpper()[0])
+                                                    {
+                                                        imeigre  = item1.Name.ToUpper()[0];
+                                                    <tr  style="border-bottom:solid #c4c4c4 1px; line-height:30px;">
+                                                        <td>
+                                                            <a id="@item1.Name[0]" class="blackfont">
+                                                                @item1.Name.ToUpper()[0]  
+                                                            </a>
+                                                        </td>
+                                                    </tr>                                   
+
+                                                    }                                            
+                                                    <tr id = "@string.Format("red{0}",item1.ID)"  class="redak" style="border-bottom:solid #c4c4c4 1px; line-height:30px;">
+                                                        <td style="text-align: left;">
+                                                            <a href="@(Url.Content("~/StatsGame/StatsGameIndex/") + item1.ID.ToString())" style="text-decoration:none;">
+                                                                @item1.Name 
+                                                            </a>
+
+                                                        </td>
+                                                    </tr>
+
+                                                }
+                                            }   
+                                        </table>
+                                    </div>
+                                
+                                    <div style="position:absolute; top:0px;left:220px;">
+                                        <table style="text-align:center; width:10px;height: 360px; border:0px; padding:0px; border-collapse:collapse; border-spacing:0px; line-height:12px; color:red;" class="bluelink">
+                                            <tr><td><a href="#A"><b>A</b></a></td></tr>
+                                            <tr><td><a href="#B"><b>B</b></a></td></tr>
+                                            <tr><td><a href="#C"><b>C</b></a></td></tr>
+                                            <tr><td><a href="#D"><b>D</b></a></td></tr>
+                                            <tr><td><a href="#E"><b>E</b></a></td></tr>
+                                            <tr><td><a href="#F"><b>F</b></a></td></tr>
+                                            <tr><td><a href="#G"><b>G</b></a></td></tr>
+                                            <tr><td><a href="#H"><b>H</b></a></td></tr>
+                                            <tr><td><a href="#I"><b>I</b></a></td></tr>
+                                            <tr><td><a href="#J"><b>J</b></a></td></tr>
+                                            <tr><td><a href="#K"><b>K</b></a></td></tr>
+                                            <tr><td><a href="#L"><b>L</b></a></td></tr>
+                                            <tr><td><a href="#M"><b>M</b></a></td></tr>
+                                            <tr><td><a href="#N"><b>N</b></a></td></tr>
+                                            <tr><td><a href="#O"><b>O</b></a></td></tr>
+                                            <tr><td><a href="#P"><b>P</b></a></td></tr>
+                                            <tr><td><a href="#Q"><b>Q</b></a></td></tr>
+                                            <tr><td><a href="#R"><b>R</b></a></td></tr>
+                                            <tr><td><a href="#S"><b>S</b></a></td></tr>
+                                            <tr><td><a href="#T"><b>T</b></a></td></tr>
+                                            <tr><td><a href="#U"><b>U</b></a></td></tr>
+                                            <tr><td><a href="#V"><b>V</b></a></td></tr>
+                                            <tr><td><a href="#W"><b>W</b></a></td></tr>
+                                            <tr><td><a href="#X"><b>X</b></a></td></tr>
+                                            <tr><td><a href="#Y"><b>Y</b></a></td></tr>
+                                            <tr><td><a href="#Z"><b>Z</b></a></td></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                        </td>
+                        <!-- exec [getGroupByUser] null -->
+                        <td>
+                            <div id="groups" style="padding: 10px; width: 260px; height: 410px; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #FFF;">
+                                <a href="@(Url.Content("~/Groupe/Index/"))" style="text-decoration:none;">                               
+                                <text><b><font color="#0360a3" size="5">@Html.Translate("GRUPA")</font></b></text>
+                                </a>
+                                <br />
+                                <hr />
+                                <div style="position:relative;">
+                                <div id="groupsin" style="width: 260px; height: 360px; position: inherit; background-color: #FFF; overflow-y: scroll; overflow-x: hidden;">
+                                    <table style="width: 220px; line-height: 13px; border: 0px; height: 360px; overflow-y: scroll; padding:0px; border-collapse:collapse; border-spacing:0px;">
+                                        @{  var imegrupe = ' ';
+                                            foreach (MvcTEST.Models.getGroupByUser_Result item2 in @ViewBag.groups)
+                                            {
+                                                if (imegrupe != item2.Name.ToUpper()[0])
+                                                {
+                                                    imegrupe = item2.Name.ToUpper()[0];
+                                                <tr  style="border-bottom:solid #c4c4c4 1px; line-height:30px;">
+                                                    <td>
+                                                        <a id="@string.Concat("gr", item2.Name[0])" class="blackfont">
+                                                            @item2.Name.ToUpper()[0]  
+                                                        </a>
+                                                    </td>
+                                                </tr>                                   
+                                                }                                                    
+
+                                                <tr id = "@string.Format("red{0}",item2.ID)"  class="redak" style="border-bottom:solid #c4c4c4 1px; line-height:30px;">
+                                                   <td style="text-align: left;">
+                                                        <a href="@(Url.Content("~/StatsGroup/GroupeIndex?GroupeID=") + item2.ID.ToString())" style="text-decoration:none;">
+                                                            @item2.Name
+                                                        </a>
+                                                   </td>
+                                               </tr>
+                                            }
+                                            }
+                                    </table>
+                                </div>
+
+                                    <div style="position:absolute; top:0px;left:220px;">
+                                        <table style="text-align:center; width:10px;height: 360px; border:0px; padding:0px; border-collapse:collapse; border-spacing:0px; line-height:12px; color:red;" class="bluelink">
+                                            <tr><td><a href="#grA"><b>A</b></a></td></tr>
+                                            <tr><td><a href="#grB"><b>B</b></a></td></tr>
+                                            <tr><td><a href="#grC"><b>C</b></a></td></tr>
+                                            <tr><td><a href="#grD"><b>D</b></a></td></tr>
+                                            <tr><td><a href="#grE"><b>E</b></a></td></tr>
+                                            <tr><td><a href="#grF"><b>F</b></a></td></tr>
+                                            <tr><td><a href="#grG"><b>G</b></a></td></tr>
+                                            <tr><td><a href="#grH"><b>H</b></a></td></tr>
+                                            <tr><td><a href="#grI"><b>I</b></a></td></tr>
+                                            <tr><td><a href="#grJ"><b>J</b></a></td></tr>
+                                            <tr><td><a href="#grK"><b>K</b></a></td></tr>
+                                            <tr><td><a href="#grL"><b>L</b></a></td></tr>
+                                            <tr><td><a href="#grM"><b>M</b></a></td></tr>
+                                            <tr><td><a href="#grN"><b>N</b></a></td></tr>
+                                            <tr><td><a href="#grO"><b>O</b></a></td></tr>
+                                            <tr><td><a href="#grP"><b>P</b></a></td></tr>
+                                            <tr><td><a href="#grQ"><b>Q</b></a></td></tr>
+                                            <tr><td><a href="#grR"><b>R</b></a></td></tr>
+                                            <tr><td><a href="#grS"><b>S</b></a></td></tr>
+                                            <tr><td><a href="#grT"><b>T</b></a></td></tr>
+                                            <tr><td><a href="#grU"><b>U</b></a></td></tr>
+                                            <tr><td><a href="#grV"><b>V</b></a></td></tr>
+                                            <tr><td><a href="#grW"><b>W</b></a></td></tr>
+                                            <tr><td><a href="#grX"><b>X</b></a></td></tr>
+                                            <tr><td><a href="#grY"><b>Y</b></a></td></tr>
+                                            <tr><td><a href="#grZ"><b>Z</b></a></td></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- exec [getPlayerByUser] null -->
+                        <td>
+                            <div id="players" style="padding: 10px; width: 260px; height: 410px; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #FFF;">
+                                <a href="@(Url.Content("~/User/Index/"))" style="text-decoration:none;">                                
+                                <text><b><font color="#0360a3" size="5">@Html.Translate("IGRAČ")</font></b></text>
+                                </a>
+                                <br />
+                                <hr />
+                                <div style="position:relative;">
+                                <div id="playersin" style="width: 260px; height: 360px; position: inherit; background-color: #FFF; overflow-y: scroll; overflow-x: hidden;">
+                                    <table style="width: 220px; line-height: 13px; border: 0px; height: 360px; overflow-y: scroll; padding:0px; border-collapse:collapse; border-spacing:0px;">
+                                        @{ 
+                                            
+                                            var imeigrac = ' ';
+                                            foreach (MvcTEST.Models.getPlayerByUser_Result item3 in @ViewBag.players)
+                                            {
+                                                if (imeigrac != item3.Name.ToUpper()[0])
+                                                {
+                                                    imeigrac = item3.Name.ToUpper()[0];
+                                                <tr style="border-bottom:solid #c4c4c4 1px; line-height:30px;">
+                                                    <td>
+                                                        <a id="@string.Concat("ig", item3.Name[0])" class="blackfont">
+                                                            @item3.Name.ToUpper()[0]  
+                                                        </a>
+                                                    </td>
+                                                </tr>                                   
+                                                }                                                                                           
+                                                <tr id = "@string.Format("red{0}",item3.ID)"  class="redak" style="border-bottom:solid #c4c4c4 1px; line-height:30px;">
+                                                   <td style="text-align: left;">
+                                                           <a href="@(Url.Content("~/StatsUser/UserIndex?UserID=") + item3.ID.ToString())" style="text-decoration:none;">
+                                                                @item3.Name  
+                                                           </a>
+                                                   </td>
+                                                </tr>     
+                                            }
+                                           }
+                                    </table>
+                                </div>
+
+                                <div style="position:absolute; top:0px;left:220px;">
+                                    <table style="text-align:center; width:10px;height: 360px; border:0px; padding:0px; border-collapse:collapse; border-spacing:0px; line-height:12px; color:red;"  class="bluelink">
+                                        <tr><td><a href="/Results/Index/#igA"><b>A</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igB"><b>B</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igC"><b>C</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igD"><b>D</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igE"><b>E</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igF"><b>F</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igG"><b>G</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igH"><b>H</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igI"><b>I</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igJ"><b>J</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igK"><b>K</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igL"><b>L</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igM"><b>M</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igN"><b>N</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igO"><b>O</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igP"><b>P</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igQ"><b>Q</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igR"><b>R</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igS"><b>S</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igT"><b>T</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igU"><b>U</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igV"><b>V</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igW"><b>W</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igX"><b>X</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igY"><b>Y</b></a></td></tr>
+                                        <tr><td><a href="/Results/Index/#igZ"><b>Z</b></a></td></tr>
+                                    </table>
+                                </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

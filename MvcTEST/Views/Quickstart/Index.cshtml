@@ -1,0 +1,447 @@
+﻿@model IEnumerable<MvcTEST.Models.tblGame>
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+
+#ui-state-active, .ui-state-active  {
+    background: #0360a3 !important;
+    /*font-weight:bold !important;*/
+    background-image:none;
+    color: #FFFFFF !important;
+}
+
+#ui-datepicker-header, .ui-datepicker-header,#ui-widget-header, .ui-widget-header {
+    background: #FFFFFF !important;
+    background-image:none;
+    border:0px  !important;
+}
+
+#highlight, .highlight a {
+    color: #0360a3 !important;
+    font-weight:bold !important;
+}
+
+#whitehighlight, .whitehighlight a {
+    color: #ffffff !important;
+    font-weight:bold !important;
+}
+
+h1{
+    font-size:1.5em;
+    text-align:center;
+    margin-bottom:1em;
+}
+p{
+    margin:1em 0;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, "Lucida Grande", Verdana, Arial, sans-serif, Helvetica;
+}
+
+.checkbox {
+    margin:0 auto;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    position:relative;
+    display: block;
+    width:94px;
+}    
+
+.checkbox input[type=checkbox] {
+    display: none;
+}
+
+.checkbox input[type=checkbox] + label {
+    display: block;
+    cursor:pointer;
+    width: 94px;
+    overflow: hidden;
+    background:#fff;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+    background:-webkit-linear-gradient(left, #2d5ba8 50%, #999 50%) no-repeat -20px 0;
+    background:-moz-linear-gradient(left, #2d5ba8 50%, #999 50%) no-repeat -20px 0;
+    -webkit-transition: background-position 0.3s ease-in-out;
+    -moz-transition: background-position 0.3s ease-in-out;
+}
+
+.checkbox input[type=checkbox] + label span,
+.checkbox input[type=checkbox] + label span:before,
+.checkbox input[type=checkbox] + label span:after{
+    text-align:center;
+    display:block;
+    width:54px;
+    height:27px;
+    line-height:27px;
+    position:absolute;
+    top:-1px;
+    font-weight:bold;
+    text-indent: 0;
+    -webkit-box-shadow:inset 1px 2px 2px 0 rgba(0,0,0,.2);
+    -moz-box-shadow:inset 1px 2px 2px 0 rgba(0,0,0,.2);
+    box-shadow:inset 1px 2px 2px 0 rgba(0,0,0,.2);
+}
+.checkbox input[type=checkbox] + label span{
+    text-indent: -9999px;
+    top:0;
+    position:relative;
+    left:0;
+    width:37px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+    background:-webkit-linear-gradient(#efefef 1px, #cecece 1px, #fbfbfb);
+    background:-moz-linear-gradient(#efefef 1px, #cecece 1px, #fbfbfb);
+    -webkit-transition: left 0.3s ease-in-out;
+    -moz-transition: left 0.3s ease-in-out;
+    border:solid 1px;
+    border-color: #919191 #9f9f9f #999999 #90aacf;
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    box-shadow:none;
+}
+.checkbox input[type=checkbox] + label span:before{
+    color:#eee;
+    text-shadow:0 1px rgba(255,255,255,.1), 0 -1px rgba(0,0,0,.3);
+    content:"ON";
+    background:-webkit-linear-gradient(#0360a3, #7cadf2);
+    background:-moz-linear-gradient(#0360a3, #7cadf2);
+    border-top:solid 1px #133676;
+    border-bottom:solid 1px #6587b7;
+    border-radius:1px 0 0 1px;
+    left:-55px;
+}
+.checkbox input[type=checkbox] + label span:after{
+    color:#888;
+    content:"OFF";
+    left:auto;
+    right:-55px;
+    background:-webkit-linear-gradient(#ddd, #eee);
+    background:-moz-linear-gradient(#ddd, #eee);
+    border-top:solid 1px #7d7d7d;
+    border-bottom:solid 1px #c0c0c0;
+}
+.checkbox input[type=checkbox] + label:active span{
+    left:5px;
+}
+.checkbox input[type=checkbox]:checked + label:active span{
+    left:50px;
+}
+.checkbox input[type=checkbox]:checked + label span{
+    left:55px;
+}
+.checkbox input[type=checkbox]:checked + label{
+    background-position:20px;
+}
+
+.checkbox:before,
+.checkbox:after{
+    content: " ";
+    display:block;
+    position:absolute;
+    top:0;
+    left:93px;
+    width:1px;
+    height:27px;
+    border:solid #fff;
+    border-width:1px 0;
+    z-index:20;
+    background:#999;
+}
+.checkbox:before{
+    left:0;
+}
+
+</style>
+@*<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.24/themes/base/jquery-ui.css">*@
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        @*<a href="@Url.Action("Index", "Action")" > <img src="~/ImagesApp/close.png" border="0" /></a>*@
+                            @if (Html.User().Role == 50)
+                            {
+                                <!-- VLASNIK -->
+                                <a id="aron" href="@Url.Action("Index", "AdminHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 40)
+                            {
+                                <!-- TRENER -->
+                                <a id="aron" href="@Url.Action("Index", "Action")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if (Html.User().Role == 20 || Html.User().Role == 30)
+                            {
+                                <!-- IGRAC -->
+                                <a id="aron" href="@Url.Action("Index", "UserHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 10)
+                            {
+                                <!-- QUICKGAME -->
+                                <a id="aron" href="@Url.Action("Index", "UserHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else
+                            {
+                                <!-- ... -->
+                                <a id="aron" href="@Url.Action("Index", "UserHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+    </div>
+
+    <div id="QUICKGAMEs" style="padding: 10px; width: 530px; height: 410px; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #FFF;">
+        <text><b><font color="#0360a3" size="5">@Html.Translate("SCHNELLES SPIEL POOL")</font></b></text>
+        <br />
+        <hr />
+        <div id="QUICKGAMEsin" style="width: 530px; height: 360px; position: inherit; background-color: #FFF; overflow-y: scroll; overflow-x: hidden;">
+
+
+
+            <table>
+@*                <tr>
+                    <th>
+                        <text align="left" style="width: 385px; height: 67px; border-radius: 7px;">GAME NAME</text>
+                    </th>
+                            <th>
+                            @Html.DisplayNameFor(model => model.NameHR)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NameENG)
+                        </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.QuickGamePool)
+                    </th>
+
+                    <th></th>
+                </tr>*@
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                        <div class="checkbox">
+                          <input id="@( item.ID.ToString())" name="quickgame"  type="checkbox" value="quickgame"  @( item.QuickGamePool.Value == true ? "checked" : string.Empty )/>
+
+                          <label for="@( item.ID.ToString())"><span>Check-me</span></label>
+
+                        </div>
+                        </td>
+
+
+                        @*        <td>
+                            @Html.DisplayFor(modelItem => item.NameHR)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameENG)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QuickGamePool)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tblCategory.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink(@Html.Translate("Bearbeiten"), "Edit", new { id = item.ID })
+                        </td>*@
+                    </tr>
+                    <tr>
+                        <td colspan="4">   
+                             <hr />
+                        </td>
+                    </tr>                                             
+                }
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+
+        $('#quickgame').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '0' },
+                    function (data) {
+                    });
+        });
+        $('#1').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '1' },function (data) {});
+        });
+        $('#2').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '2' },function (data) {});
+        });
+        $('#3').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '3' },function (data) {});
+        });
+        $('#4').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '4' },function (data) {});
+        });
+        $('#5').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '5' },function (data) {});
+        });
+        $('#6').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '6' },function (data) {});
+        });
+        $('#7').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '7' },function (data) {});
+        });
+        $('#8').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '8' },function (data) {});
+        });
+        $('#9').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '9' },function (data) {});
+        });
+        $('#10').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '10' },function (data) {});
+        });
+        $('#11').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '11' }, function (data) { });
+        });
+        $('#12').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '12' }, function (data) { });
+        });
+        $('#13').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '13' }, function (data) { });
+        });
+        $('#14').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '14' }, function (data) { });
+        });
+        $('#15').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '15' }, function (data) { });
+        });
+        $('#16').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '16' }, function (data) { });
+        });
+        $('#17').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '17' }, function (data) { });
+        });
+        $('#18').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '18' }, function (data) { });
+        });
+        $('#19').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '19' }, function (data) { });
+        });
+        $('#20').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '20' }, function (data) { });
+        });
+        $('#21').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '21' }, function (data) { });
+        });
+        $('#22').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '22' }, function (data) { });
+        });
+        $('#23').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '23' }, function (data) { });
+        });
+        $('#24').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '24' }, function (data) { });
+        });
+        $('#25').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '25' }, function (data) { });
+        });
+        $('#26').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '26' }, function (data) { });
+        });
+        $('#27').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '27' }, function (data) { });
+        });
+        $('#28').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '28' }, function (data) { });
+        });
+        $('#29').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '29' }, function (data) { });
+        });
+        $('#30').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '30' }, function (data) { });
+        });
+        $('#31').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '31' }, function (data) { });
+        });
+        $('#32').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '32' }, function (data) { });
+        });
+        $('#33').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '33' }, function (data) { });
+        });
+        $('#34').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '34' }, function (data) { });
+        });
+        $('#35').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '35' }, function (data) { });
+        });
+        $('#36').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '36' }, function (data) { });
+        });
+        $('#37').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '37' }, function (data) { });
+        });
+        $('#38').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '38' }, function (data) { });
+        });
+        $('#39').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '39' }, function (data) { });
+        });
+        $('#40').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '40' }, function (data) { });
+        });
+        $('#41').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '41' }, function (data) { });
+        });
+        $('#42').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '42' }, function (data) { });
+        });
+        $('#43').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '43' }, function (data) { });
+        });
+        $('#44').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '44' }, function (data) { });
+        });
+        $('#45').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '45' }, function (data) { });
+        });
+        $('#46').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '46' }, function (data) { });
+        });
+        $('#47').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '47' }, function (data) { });
+        });
+        $('#48').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '48' }, function (data) { });
+        });
+        $('#49').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '49' }, function (data) { });
+        });
+        $('#50').click(function () {
+            $.post('@Url.Action("QuickGame", "Quickstart")', { id: '50' }, function (data) { });
+        });
+
+    });
+
+    var checkbox = $('input[type="checkbox"]').change(function(){
+        $("#status").text(this.checked ? "" : "not");
+    });
+
+    $("#toggle").click(function(e){
+        e.preventDefault();
+        checkbox.each(function(){this.checked=!this.checked;}).change();
+    });
+
+</script>

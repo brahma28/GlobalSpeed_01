@@ -1,0 +1,177 @@
+﻿@using MvcTEST.HtmlHelpers
+@*@model MvcTEST.Models.tblTemplate*@
+
+@{
+    ViewBag.Title = "terenpasivni";
+    Layout = null;
+
+}
+<style>
+    .polje_red {
+        color: red;
+        width: 50px;
+        height: 50px;
+        background-color: red;
+    }
+
+    .polje_white {
+        color: red;
+        width: 50px;
+        height: 50px;
+        background-color: white;
+    }
+
+    .polje_lgray {
+        color: red;
+        width: 30px;
+        height: 30px;
+        background-color: lightslategray;
+    }
+
+    .teren {
+        width: 100%;
+        text-align: left;
+        height: 470px;
+        vertical-align: top;
+        border-spacing: 0px;
+        border: 0px;
+        PADDING: 0;
+        border-collapse: collapse;
+    }
+</style>
+<link id="size-stylesheet" href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+@*<script src="~/Scripts/teren.js"></script>*@
+
+
+<div id="vanjski" name="vanjski" style="width:396px; height:396px; color:black; background-color:white; position:relative;">
+    <!-- 01 -->
+    <div class="square" id="F01" style="position:absolute; width:50px; height:50px;  color:red; background-color:red;  left:12px; top:12px; ">
+        @if (ViewBag.teren.F01ID == 0)
+        {
+
+                <img src="~/ImagesApp/plocanoga.png" />
+
+        }
+    </div>
+
+<!-- 02 -->
+    <div class="square" id="F02" style="position:absolute; width:50px; height:50px;  color:red; background-color:red;  left:162px; top:12px; ">
+        @if (ViewBag.teren.F01ID != 0 && ViewBag.teren.F02ID == 0)
+        {
+
+                <img src="~/ImagesApp/plocanoga.png" />
+
+        }
+    </div>
+
+<!-- 03 -->
+
+    <div class="square" id="F03" style="position:absolute; width:50px; height:50px;  color:red;  background-color:red;   left:312px; top:12px; ">
+        @if (ViewBag.teren.F02ID != 0 && ViewBag.teren.F03ID == 0)
+        {
+
+                <img src="~/ImagesApp/plocanoga.png" />
+
+        }
+    </div>
+
+<!-- 04 -->
+
+    <div class="square" id="F04" style="position:absolute; width:50px; height:50px;  color:red; background-color:red;  left:312px; top:162px; ">
+        @if (ViewBag.teren.F03ID != 0 && ViewBag.teren.F04ID == 0)
+        {
+
+                <img src="~/ImagesApp/plocanoga.png" />
+
+        }
+    </div>
+
+<!-- 05 -->
+
+    <div class="square" id="F05" style="position:absolute; width:50px; height:50px;  color:red;  background-color:red;   left:312px; top:312px; ">
+        @if (ViewBag.teren.F04ID != 0 && ViewBag.teren.F05ID == 0)
+        {
+
+                <img src="~/ImagesApp/plocanoga.png" />
+        }
+    </div>
+
+<!-- 06 -->
+
+    <div id="F06" style="position:absolute; width:50px; height:50px;  color:red; background-color:red;  left:162px; top:312px; ">
+        @if (ViewBag.teren.F05ID != 0 && ViewBag.teren.F06ID == 0)
+        {
+
+                <img src="~/ImagesApp/plocanoga.png" />
+        }
+    </div>
+
+<!-- 07 -->
+
+    <div id="F07" style="position:absolute; width:50px; height:50px;  color:red;  background-color:red;   left:12px; top:312px; ">
+        @if (ViewBag.teren.F06ID != 0 && ViewBag.teren.F07ID == 0)
+        {
+
+                <img src="~/ImagesApp/plocanoga.png" />
+
+
+        }
+    </div>
+
+<!-- 08 -->
+
+    <div id="F08" style="position:absolute; width:50px; height:50px;  color:red; background-color:red;  left:12px; top:162px; ">
+        @if (ViewBag.teren.F07ID != 0 && ViewBag.teren.F08ID == 0)
+        {
+
+                <img src="~/ImagesApp/plocanoga.png" />
+
+
+        }
+    </div>
+
+<!-- 09 -->
+
+    <div id="F09" style="position:absolute; width:25px; height:25px;  color:red;  background-color:red;   left:162px; top:162px; ">
+        @if (ViewBag.teren.F08ID != 0 && ViewBag.teren.F09ID == 0){<img src="~/ImagesApp/plocanoga_mali.png" />}
+    </div>
+
+<!-- 10 -->
+
+    <div id="F10" style="position:absolute; width:25px; height:25px; color:red; background-color:red;  left:162px; top:191px;  ">
+        @if (ViewBag.teren.F09ID != 0 && ViewBag.teren.F10ID == 0)
+        {
+
+                <img src="~/ImagesApp/plocanoga_mali.png" />
+
+        }
+    </div>
+
+<!-- 11 -->
+
+    <div id="F11" style="position:absolute; width:25px; height:25px; color:red;  background-color:red;   left:191px; top:191px; ">
+        @if (ViewBag.teren.F10ID != 0 && ViewBag.teren.F11ID == 0)
+        {
+
+                <img src="~/ImagesApp/plocanoga_mali.png" />
+
+        }
+    </div>
+
+<!-- 12 -->
+
+    <div id="F12" style="position:absolute; width:25px; height:25px; color:red; background-color:red;  left:191px; top:162px;">
+        @if (ViewBag.teren.F11ID != 0 && ViewBag.teren.F12ID == 0)
+        {
+
+                <img src="~/ImagesApp/plocanoga_mali.png" />
+
+        }
+    </div>
+    
+<div id="log"></div>
+
+</div>

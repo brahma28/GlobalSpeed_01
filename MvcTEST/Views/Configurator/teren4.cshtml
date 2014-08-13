@@ -1,0 +1,1581 @@
+﻿@using MvcTEST.HtmlHelpers
+@*@model MvcTEST.Models.tblTemplate*@
+
+@{
+    ViewBag.Title = "teren";
+    Layout = null;
+    
+}
+<style>
+
+.polje_red
+{ 
+    color:red; 
+    width:50px; 
+    height:50px; 
+    background-color:red;
+
+} 
+.polje_white
+{ 
+    color:red; 
+    width:50px; 
+    height:50px; 
+    background-color:white;
+
+} 
+
+.polje_lgray
+{ 
+    color:red; 
+    width:30px; 
+    height:30px; 
+    background-color:lightslategray;
+
+} 
+.teren
+{ 
+    width: 100%; 
+    text-align: left; 
+    height:470px; 
+    vertical-align:top; 
+    border-spacing:0px; 
+    border:0px; 
+    PADDING:0; 
+    border-collapse:collapse;
+
+} 
+</style>
+
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="/Scripts/fancybox/jquery.fancybox-1.3.4.js"></script>
+    <script type="text/javascript" src="/Scripts//fancybox/jquery.Easing-1.3.pack.js"></script>
+    <link id="size-stylesheet" href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/fancybox/jquery.fancybox-1.3.4.css")" type="text/css" media="screen" />
+
+<script type="text/javascript">
+
+    
+
+    var wsUri = "ws://localhost:8080/test";
+    
+
+    var action = {
+        pressed: function (field) {   
+            $.post('@Url.Action("AjaxSetCourtID", "Configurator")', { field: field },
+                 function (data) {
+                     window.location.href = window.location.href;
+                 });
+        }
+    };
+
+    function init()
+    {       
+       
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = function (evt) { onOpen(evt) };
+        websocket.onclose = function (evt) { onClose(evt) };
+        websocket.onmessage = function (evt) { onMessage(evt) };
+        websocket.onerror = function (evt) { onError(evt) };
+                
+    }
+   
+
+    function onOpen(evt) {
+        websocket.send("CALIBRATE!!0");
+    }
+
+    function onClose(evt)
+    {
+    
+    }
+
+    function onMessage(evt)
+    {        
+        var data = evt.data.split("!!");
+        action[data[0]](data[1]);
+    }
+
+    function onError(evt)
+    {
+        //alert("ERROR:" + evt.data);
+        alert("Cannot connect to server...");
+    }
+
+    function doSend(message)
+    {
+        //writeToScreen("SENT: " + message); 
+        websocket.send(message);
+    }
+    
+
+    window.addEventListener("load", init, false);
+       
+    
+  
+    </script>
+
+
+
+
+<div style="width:@(ViewBag.teren.Width.ToString())px; height:@(ViewBag.teren.Height.ToString())px; color:black; background-color:white; position:relative;">
+    @if (ViewBag.teren.F01Active == true && ViewBag.teren.F01PhotoCell != true)
+    { 
+    <div id="F01" style=" position:absolute; width:@(ViewBag.teren.F01DimensionX.ToString())px; height:@(ViewBag.teren.F01DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F01PositionX.ToString())px; top:@(ViewBag.teren.F01PositionY.ToString())px; " > @if (ViewBag.teren.F01ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />}  </div>
+    }     
+    @if (ViewBag.teren.F02Active == true && ViewBag.teren.F02PhotoCell != true)
+    { 
+    <div id="F02" style=" position:absolute; width:@(ViewBag.teren.F02DimensionX.ToString())px; height:@(ViewBag.teren.F02DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F02PositionX.ToString())px; top:@(ViewBag.teren.F02PositionY.ToString())px; " > @if (ViewBag.teren.F01ID != 0 && ViewBag.teren.F02ID == 0)
+                                                                                                                                                                                                                                                                                            {<img src="~/ImagesApp/plocanoga.png" />}  </div>
+    }     
+    @if (ViewBag.teren.F03Active == true && ViewBag.teren.F03PhotoCell != true)
+    {     
+    <div id="F03" style=" position:absolute; width:@(ViewBag.teren.F03DimensionX.ToString())px; height:@(ViewBag.teren.F03DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F03PositionX.ToString())px; top:@(ViewBag.teren.F03PositionY.ToString())px; " > @if (ViewBag.teren.F02ID != 0 && ViewBag.teren.F03ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />}  </div>
+    }     
+    @if (ViewBag.teren.F04Active == true && ViewBag.teren.F01PhotoCell != true)
+    {      
+    <div id="F04" style=" position:absolute; width:@(ViewBag.teren.F04DimensionX.ToString())px; height:@(ViewBag.teren.F04DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F04PositionX.ToString())px; top:@(ViewBag.teren.F04PositionY.ToString())px; " >  @if (ViewBag.teren.F03ID != 0 && ViewBag.teren.F04ID == 0)
+                                                                                                                                                                                                                                                                                             {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F05Active == true && ViewBag.teren.F05PhotoCell != true)
+    {     
+    <div id="F05" style=" position:absolute; width:@(ViewBag.teren.F05DimensionX.ToString())px; height:@(ViewBag.teren.F05DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F05PositionX.ToString())px; top:@(ViewBag.teren.F05PositionY.ToString())px; " > @if (ViewBag.teren.F04ID != 0 && ViewBag.teren.F05ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F06Active == true && ViewBag.teren.F06PhotoCell != true)
+    {        
+    <div id="F06" style=" position:absolute; width:@(ViewBag.teren.F06DimensionX.ToString())px; height:@(ViewBag.teren.F06DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F06PositionX.ToString())px; top:@(ViewBag.teren.F06PositionY.ToString())px; " > @if (ViewBag.teren.F05ID != 0 && ViewBag.teren.F06ID == 0)
+                                                                                                                                                                                                                                                                                            {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F07Active == true && ViewBag.teren.F07PhotoCell != true)
+    {    
+    <div id="F07" style=" position:absolute; width:@(ViewBag.teren.F07DimensionX.ToString())px; height:@(ViewBag.teren.F07DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F07PositionX.ToString())px; top:@(ViewBag.teren.F07PositionY.ToString())px; " > @if (ViewBag.teren.F06ID != 0 && ViewBag.teren.F07ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F08Active == true && ViewBag.teren.F08PhotoCell != true)
+    {     
+    <div id="F08" style=" position:absolute; width:@(ViewBag.teren.F08DimensionX.ToString())px; height:@(ViewBag.teren.F08DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F08PositionX.ToString())px; top:@(ViewBag.teren.F08PositionY.ToString())px; " > @if (ViewBag.teren.F07ID != 0 && ViewBag.teren.F08ID == 0)
+                                                                                                                                                                                                                                                                                            {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F09Active == true && ViewBag.teren.F09PhotoCell != true)
+    {      
+    <div id="F09" style=" position:absolute; width:@(ViewBag.teren.F09DimensionX.ToString())px; height:@(ViewBag.teren.F09DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F09PositionX.ToString())px; top:@(ViewBag.teren.F09PositionY.ToString())px; " > @if (ViewBag.teren.F08ID != 0 && ViewBag.teren.F09ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }   
+    <!-- 10 -->        
+    @if (ViewBag.teren.F10Active == true && ViewBag.teren.F10PhotoCell != true)
+    {      
+    <div id="F10" style=" position:absolute; width:@(ViewBag.teren.F10DimensionX.ToString())px; height:@(ViewBag.teren.F10DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F10PositionX.ToString())px; top:@(ViewBag.teren.F10PositionY.ToString())px; " > @if (ViewBag.teren.F09ID != 0 && ViewBag.teren.F10ID == 0)
+                                                                                                                                                                                                                                                                                            {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F11Active == true && ViewBag.teren.F11PhotoCell != true)
+    {      
+    <div id="F11" style=" position:absolute; width:@(ViewBag.teren.F11DimensionX.ToString())px; height:@(ViewBag.teren.F11DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F11PositionX.ToString())px; top:@(ViewBag.teren.F11PositionY.ToString())px; " > @if (ViewBag.teren.F10ID != 0 && ViewBag.teren.F11ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />}</div>
+    }     
+    @if (ViewBag.teren.F12Active == true && ViewBag.teren.F12PhotoCell != true)
+    {     
+    <div id="F12" style=" position:absolute; width:@(ViewBag.teren.F12DimensionX.ToString())px; height:@(ViewBag.teren.F12DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F12PositionX.ToString())px; top:@(ViewBag.teren.F12PositionY.ToString())px; " > @if (ViewBag.teren.F11ID != 0 && ViewBag.teren.F12ID == 0)
+                                                                                                                                                                                                                                                                                            {<img src="~/ImagesApp/plocanoga.png" />}</div>
+    }   
+       
+    @if (ViewBag.teren.F13Active == true && ViewBag.teren.F13PhotoCell != true)
+    {     
+    <div id="F13" style=" position:absolute; width:@(ViewBag.teren.F13DimensionX.ToString())px; height:@(ViewBag.teren.F13DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F13PositionX.ToString())px; top:@(ViewBag.teren.F13PositionY.ToString())px; " > @if (ViewBag.teren.F12ID != 0 && ViewBag.teren.F13ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />}  </div>
+    }     
+    @if (ViewBag.teren.F14Active == true && ViewBag.teren.F14PhotoCell != true)
+    {      
+    <div id="F14" style=" position:absolute; width:@(ViewBag.teren.F14DimensionX.ToString())px; height:@(ViewBag.teren.F14DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F14PositionX.ToString())px; top:@(ViewBag.teren.F14PositionY.ToString())px; " >  @if (ViewBag.teren.F13ID != 0 && ViewBag.teren.F14ID == 0)
+                                                                                                                                                                                                                                                                                             {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F15Active == true && ViewBag.teren.F15PhotoCell != true)
+    {     
+    <div id="F15" style=" position:absolute; width:@(ViewBag.teren.F15DimensionX.ToString())px; height:@(ViewBag.teren.F15DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F15PositionX.ToString())px; top:@(ViewBag.teren.F15PositionY.ToString())px; " > @if (ViewBag.teren.F14ID != 0 && ViewBag.teren.F15ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F16Active == true && ViewBag.teren.F16PhotoCell != true)
+    {        
+    <div id="F16" style=" position:absolute; width:@(ViewBag.teren.F16DimensionX.ToString())px; height:@(ViewBag.teren.F16DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F16PositionX.ToString())px; top:@(ViewBag.teren.F16PositionY.ToString())px; " > @if (ViewBag.teren.F15ID != 0 && ViewBag.teren.F16ID == 0)
+                                                                                                                                                                                                                                                                                            {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F17Active == true && ViewBag.teren.F17PhotoCell != true)
+    {    
+    <div id="F17" style=" position:absolute; width:@(ViewBag.teren.F17DimensionX.ToString())px; height:@(ViewBag.teren.F17DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F17PositionX.ToString())px; top:@(ViewBag.teren.F17PositionY.ToString())px; " > @if (ViewBag.teren.F16ID != 0 && ViewBag.teren.F17ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F18Active == true && ViewBag.teren.F18PhotoCell != true)
+    {     
+    <div id="F18" style=" position:absolute; width:@(ViewBag.teren.F18DimensionX.ToString())px; height:@(ViewBag.teren.F18DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F18PositionX.ToString())px; top:@(ViewBag.teren.F18PositionY.ToString())px; " > @if (ViewBag.teren.F17ID != 0 && ViewBag.teren.F18ID == 0)
+                                                                                                                                                                                                                                                                                            {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F19Active == true && ViewBag.teren.F19PhotoCell != true)
+    {      
+    <div id="F19" style=" position:absolute; width:@(ViewBag.teren.F19DimensionX.ToString())px; height:@(ViewBag.teren.F19DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F19PositionX.ToString())px; top:@(ViewBag.teren.F19PositionY.ToString())px; " > @if (ViewBag.teren.F18ID != 0 && ViewBag.teren.F19ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    <!-- 20 -->  
+    @if (ViewBag.teren.F20Active == true && ViewBag.teren.F20PhotoCell != true)
+    {      
+    <div id="F20" style=" position:absolute; width:@(ViewBag.teren.F20DimensionX.ToString())px; height:@(ViewBag.teren.F20DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F20PositionX.ToString())px; top:@(ViewBag.teren.F20PositionY.ToString())px; " > @if (ViewBag.teren.F19ID != 0 && ViewBag.teren.F20ID == 0)
+                                                                                                                                                                                                                                                                                            {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }          
+    @if (ViewBag.teren.F21Active == true && ViewBag.teren.F21PhotoCell != true)
+    {      
+    <div id="F21" style=" position:absolute; width:@(ViewBag.teren.F21DimensionX.ToString())px; height:@(ViewBag.teren.F21DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F21PositionX.ToString())px; top:@(ViewBag.teren.F21PositionY.ToString())px; " > @if (ViewBag.teren.F20ID != 0 && ViewBag.teren.F21ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />}</div>
+    }     
+    @if (ViewBag.teren.F22Active == true && ViewBag.teren.F22PhotoCell != true)
+    {     
+    <div id="F22" style=" position:absolute; width:@(ViewBag.teren.F22DimensionX.ToString())px; height:@(ViewBag.teren.F22DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F22PositionX.ToString())px; top:@(ViewBag.teren.F22PositionY.ToString())px; " > @if (ViewBag.teren.F21ID != 0 && ViewBag.teren.F22ID == 0)
+                                                                                                                                                                                                                                                                                           {<img src="~/ImagesApp/plocanoga.png" />}</div>
+    }   
+    @if (ViewBag.teren.F23Active == true && ViewBag.teren.F23PhotoCell != true)
+    {     
+    <div id="F23" style=" position:absolute; width:@(ViewBag.teren.F23DimensionX.ToString())px; height:@(ViewBag.teren.F23DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F23PositionX.ToString())px; top:@(ViewBag.teren.F23PositionY.ToString())px; " > @if (ViewBag.teren.F22ID != 0 && ViewBag.teren.F23ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />}  </div>
+    }     
+    @if (ViewBag.teren.F24Active == true && ViewBag.teren.F24PhotoCell != true)
+    {      
+    <div id="F24" style=" position:absolute; width:@(ViewBag.teren.F24DimensionX.ToString())px; height:@(ViewBag.teren.F24DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F24PositionX.ToString())px; top:@(ViewBag.teren.F24PositionY.ToString())px; " >  @if (ViewBag.teren.F23ID != 0 && ViewBag.teren.F24ID == 0)
+                                                                                                                                                                                                                                                                                             {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F25Active == true && ViewBag.teren.F25PhotoCell != true)
+    {     
+    <div id="F25" style=" position:absolute; width:@(ViewBag.teren.F25DimensionX.ToString())px; height:@(ViewBag.teren.F25DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F25PositionX.ToString())px; top:@(ViewBag.teren.F25PositionY.ToString())px; " > @if (ViewBag.teren.F24ID != 0 && ViewBag.teren.F25ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F26Active == true && ViewBag.teren.F26PhotoCell != true)
+    {        
+    <div id="F26" style=" position:absolute; width:@(ViewBag.teren.F26DimensionX.ToString())px; height:@(ViewBag.teren.F26DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F26PositionX.ToString())px; top:@(ViewBag.teren.F26PositionY.ToString())px; " > @if (ViewBag.teren.F25ID != 0 && ViewBag.teren.F26ID == 0)
+                                                                                                                                                                                                                                                                                            {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F27Active == true && ViewBag.teren.F27PhotoCell != true)
+    {    
+    <div id="F27" style=" position:absolute; width:@(ViewBag.teren.F27DimensionX.ToString())px; height:@(ViewBag.teren.F27DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F27PositionX.ToString())px; top:@(ViewBag.teren.F27PositionY.ToString())px; " > @if (ViewBag.teren.F26ID != 0 && ViewBag.teren.F27ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F28Active == true && ViewBag.teren.F28PhotoCell != true)
+    {     
+    <div id="F28" style=" position:absolute; width:@(ViewBag.teren.F28DimensionX.ToString())px; height:@(ViewBag.teren.F28DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F28PositionX.ToString())px; top:@(ViewBag.teren.F28PositionY.ToString())px; " > @if (ViewBag.teren.F27ID != 0 && ViewBag.teren.F28ID == 0)
+                                                                                                                                                                                                                                                                                            {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F29Active == true && ViewBag.teren.F29PhotoCell != true)
+    {      
+    <div id="F29" style=" position:absolute; width:@(ViewBag.teren.F29DimensionX.ToString())px; height:@(ViewBag.teren.F29DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F29PositionX.ToString())px; top:@(ViewBag.teren.F29PositionY.ToString())px; " > @if (ViewBag.teren.F28ID != 0 && ViewBag.teren.F29ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }  
+    <!-- 30 -->   
+    @if (ViewBag.teren.F30Active == true && ViewBag.teren.F30PhotoCell != true)
+    {      
+    <div id="F30" style=" position:absolute; width:@(ViewBag.teren.F30DimensionX.ToString())px; height:@(ViewBag.teren.F30DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F30PositionX.ToString())px; top:@(ViewBag.teren.F30PositionY.ToString())px; " > @if (ViewBag.teren.F29ID != 0 && ViewBag.teren.F30ID == 0)
+                                                                                                                                                                                                                                                                                            {<img src="~/ImagesApp/plocanoga.png" />} </div>
+    }     
+    @if (ViewBag.teren.F31Active == true && ViewBag.teren.F31PhotoCell != true)
+    {      
+    <div id="F31" style=" position:absolute; width:@(ViewBag.teren.F31DimensionX.ToString())px; height:@(ViewBag.teren.F31DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F31PositionX.ToString())px; top:@(ViewBag.teren.F31PositionY.ToString())px; " > @if (ViewBag.teren.F30ID != 0 && ViewBag.teren.F31ID == 0)
+                                                                                                                                                                                                                                                                                              {<img src="~/ImagesApp/plocanoga.png" />}</div>
+    }     
+    @if (ViewBag.teren.F32Active == true && ViewBag.teren.F32PhotoCell != true)
+    {     
+    <div id="F32" style=" position:absolute; width:@(ViewBag.teren.F32DimensionX.ToString())px; height:@(ViewBag.teren.F32DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F32PositionX.ToString())px; top:@(ViewBag.teren.F32PositionY.ToString())px; " > @if (ViewBag.teren.F31ID != 0 && ViewBag.teren.F32ID == 0)
+                                                                                                                                                                                                                                                                                           {<img src="~/ImagesApp/plocanoga.png" />}</div>
+    }          
+    <div id="log"></div>
+
+</div>
+@if (ViewBag.teren.Name != "SpeedCourt"){
+    @ViewBag.teren.Name
+}
+<script type="text/javascript">
+
+    var drag = { x: 0, y: 0, state: false };
+    var delta = { x: 0, y: 0 };
+
+    var F01 = $('#F01');
+    var F02 = $('#F02');
+    var F03 = $('#F03');
+    var F04 = $('#F04');
+    var F05 = $('#F05');
+    var F06 = $('#F06');
+    var F07 = $('#F07');
+    var F08 = $('#F08');
+    var F09 = $('#F09');
+    var F10 = $('#F10');
+    var F11 = $('#F11');
+    var F12 = $('#F12');
+    var F13 = $('#F13');
+    var F14 = $('#F14');
+    var F15 = $('#F15');
+    var F16 = $('#F16');
+    var F17 = $('#F17');
+    var F18 = $('#F18');
+    var F19 = $('#F19');
+    var F20 = $('#F20');
+    var F21 = $('#F21');
+    var F22 = $('#F22');
+    var F23 = $('#F23');
+    var F24 = $('#F24');
+    var F25 = $('#F25');
+    var F26 = $('#F26');
+    var F27 = $('#F27');
+    var F28 = $('#F28');
+    var F29 = $('#F29');
+    var F30 = $('#F30');
+    var F31 = $('#F31');
+    var F32 = $('#F32');
+
+    F01.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F02.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F03.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F04.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F05.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F06.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F07.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F08.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F09.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F10.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F11.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F12.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F13.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F14.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F15.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F16.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F17.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F18.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F19.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F20.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F21.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F22.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F23.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F24.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F25.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F26.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F27.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F28.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F29.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F30.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F31.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+    F32.mousedown(function (e) {
+        if (!drag.state) {
+            this.style.backgroundColor = '#ffaa00';
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+            drag.state = true;
+        }
+        return false;
+    });
+
+    F01.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F02.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F03.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F04.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F05.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F06.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F07.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F08.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F09.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F10.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F11.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F12.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F13.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F14.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F15.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F16.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F17.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F18.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F19.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F20.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F21.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F22.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F23.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F24.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F25.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F26.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F27.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F28.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F29.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F30.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F31.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+    F32.mousemove(function (e) {
+        if (drag.state) {
+            this.style.backgroundColor = '#ff0000';
+
+            delta.x = e.pageX - drag.x;
+            delta.y = e.pageY - drag.y;
+
+            $('#log').text(e.pageX + ' ' + e.pageY + ' ' +
+                            delta.x + ' ' + delta.y);
+
+            var cur_offset = $(this).offset();
+
+            $(this).offset({
+                left: (cur_offset.left + delta.x),
+                top: (cur_offset.top + delta.y)
+            });
+
+            drag.x = e.pageX;
+            drag.y = e.pageY;
+        }
+    });
+
+    F01.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F02.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F03.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F04.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F05.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F06.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F07.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F08.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F09.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F10.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F11.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F12.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F13.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F14.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F15.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F16.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F17.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F18.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F19.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F20.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F21.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F22.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F23.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F24.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F25.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F26.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F27.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F28.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F29.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F30.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F31.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+    F32.mouseup(function () {
+        this.style.backgroundColor = '#ff1111';
+        drag.state = false;
+    });
+
+    F01.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F01', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F02.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F02', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F03.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F03', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F04.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F04', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F05.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F05', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F06.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F06', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F07.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F07', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F08.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F08', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F09.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F09', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F10.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F10', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F11.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F11', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F12.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F12', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F13.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F13', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F14.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F14', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F15.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F15', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F16.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F16', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F17.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F17', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F18.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F18', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F19.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F19', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F20.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F20', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F21.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F21', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F22.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F22', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F23.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F23', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F24.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F24', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F25.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F25', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F26.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F26', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F27.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F27', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F28.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F28', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F29.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F29', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F30.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F30', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F31.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F31', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+    F32.mouseout(function () {
+        $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F32', x: drag.x, y: drag.y },
+                         function (data) { });
+        box.mouseup();
+    });
+</script>

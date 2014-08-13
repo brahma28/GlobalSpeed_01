@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="419a7e65679b4435a6a0bcceba38c236" Name="Diagram1" ZoomLevel="76">
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblCategory" Width="1.5" PointX="3.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblDictionary" Width="1.5" PointX="1" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblDocument" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblGame" Width="1.875" PointX="5.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblGameDisplayObject" Width="1.5" PointX="8.25" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblGameEvent" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblGameSensor" Width="1.5" PointX="8.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblLanguage" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblNews" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblResult" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblSchedule" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblSensorType" Width="1.5" PointX="8.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblSpeedEntry" Width="1.5" PointX="10.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblSport" Width="1.5" PointX="3.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblTemplate" Width="1.5" PointX="10.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblTemplateSensor" Width="1.5" PointX="13" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblTerm" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblTrainer" Width="1.5" PointX="8.25" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblUser" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblUserGroup" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwDocument" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwGame" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwGameFull" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwResult" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwResult_Part1" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwResult_Part2" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwResultGameHighscores" Width="1.5" PointX="14.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwTemplate" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwTerm" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwUser" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblGame_tblCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_GameDisplayObject_Game" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_GameSensor_Game" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblResult_tblGame" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblResult_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblSchedule_tblResult" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblSpeedEntry_tblResult" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblSchedule_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblSchedule_tblUserGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblSpeedEntry_tblSensorType" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblUser_tblSport" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_TemplateSensor_Template" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblTerm_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblTrainer_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblTrainer_tblUser1" ManuallyRouted="false" />
+        <AssociationConnector Association="SpeedCourtConfigDbModel.FK_tblUser_tbl_UserGroup" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblStatsParameter" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblTemplate2" Width="1.5" PointX="0.82948739865305243" PointY="24.09274464477447" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwResult_Part01" Width="2.75" PointX="6" PointY="45" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwResult_Part02" Width="1.5" PointX="9.9819714268585535" PointY="9.3102683170280738" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwResultFull" Width="1.5" PointX="3.3859123398484252" PointY="4.0933398921477329" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwUserGroup" Width="1.5" PointX="2.6867429328554975" PointY="4.5151215812727443" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.vwGroupMember" Width="1.5" PointX="1.875" PointY="17.875" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblReactionSignal" Width="1.5" PointX="8.3847303019765445" PointY="5.4966043408478633" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblReactionType" Width="1.5" PointX="11.61690213699681" PointY="29.126393480750917" />
+        <EntityTypeShape EntityType="SpeedCourtConfigDbModel.tblMemoryType" Width="1.5" PointX="8.6033947545119531" PointY="15.082411191930255" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,240 @@
+﻿@model IEnumerable<MvcTEST.Models.tblUser>
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@*<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">*@
+<div align="right" style="border: 0px solid;">
+    @*        <a href="@Url.Action("Index", "Home")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>*@
+</div>
+
+<table style="text-align: left;">
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <!-- DIE LETZEN 5 SPIELE -->
+                    <td style="vertical-align: top;">
+                        <table>
+                            <tr>
+                                <!--  -->
+                                <td>
+                                    <div id="last5games" style="padding: 10px; width: 410px; height: 300px; position: relative; z-index: 1; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #FFF">
+                                        <text><b><font color="#0360a3" size="5">@Html.Translate("POSLJEDNJIH  5 IGARA")</font></b></text>
+                                        <br />
+                                        <hr />
+                                        <div id="last5gamesin" style="width: 390px; height: 260px; position: inherit; background-color: #FFF; overflow-y: scroll; overflow-x: hidden;">
+                                            <table style="line-height: 13px; width: 390px">
+                                                @foreach (MvcTEST.Models.getLast5Games_Result item5 in @ViewBag.podaci_last5)
+                                                {                                                     
+                                                    <tr>
+                                                        <td style="text-align: left;" width="40">
+                                                            <img width="25px" height="20px" src="~/ImagesApp/shuttlerun.jpg" />
+                                                        </td>
+                                                        <td align="left">
+                                                            <font color="#000000" size="2"><b>@item5.Date </b></font>
+                                                            <td />
+                                                        <td align="left">
+                                                            <font color="#000000" size="2">@item5.GameName </font>
+                                                        </td>
+                                                        <td align="left">
+                                                            <font color="#000000" size="2"><text> Zeit: @item5.L_Time  s </text></font>
+                                                        </td>
+                                                        <td style="text-align: left;" width="40">
+                                                            <a href="@(Url.Content("~/ResultsGame/GameIndex2/") + item5.ID.ToString())" style="text-decoration:none;">
+                                                                <img width="25px" height="20px" src="~/ImagesApp/right.jpg" />
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                    
+                                                    <tr>
+                                                        <td colspan="6" align="left">
+                                                            <hr />
+                                                        </td>
+                                                    </tr>                                 
+                                                }
+                                            </table>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="vertical-align: top;">
+                        <table>
+                            <tr>
+                                <!-- NEWS -->
+                                <td>
+                                    <div id="news" style="padding: 10px; width: 355px; height: 230px; position: relative; z-index: 1; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #FFF">
+                                        <a href="@(Url.Content("~/News/Index/"))" style="text-decoration:none;">
+                                            <text><b><font color="#0360a3" size="5">@Html.Translate("NOVOSTI")</font></b></text>
+                                        </a>
+                                        <br />
+                                        <hr />
+                                        <div id="newsin" style="width: 355px; height: 155px; position: inherit; background-color: #FFF; overflow-y: scroll; overflow-x: hidden;">
+                                            <table style="line-height: 13px; width: 315px">
+                                                @foreach (MvcTEST.Models.getNews_Result item in @ViewBag.podaci_news)
+                                                {
+                                                                                                        
+                                                    <tr>
+                                                        <td align="left">
+                                                            <font color="#000000" size="2"><b>@item.Title </b></font>
+                                                            <td />
+                                                    </tr>
+                                        
+                                                    <tr>
+                                                        <td align="left">
+                                                            <font color="#000000" size="2">@item.Content </font>
+                                                        </td>
+                                                    </tr>
+                                    
+                                                    <tr>
+                                                        <td align="left">
+                                                            <hr />
+                                                        </td>
+                                                    </tr>                                 
+                                                }
+                                            </table>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @* <br />*@
+                                </td>
+
+                            </tr>
+
+                            <tr>
+                                <!-- QUICK GAME -->
+                                <td>
+                                    <div id="quickgame" style="width: 210px; height: 80px;">
+                                        <div id="quickgamein" style="width: 190px; height: 67px; border-radius: 7px;">
+                                            <a href="@Url.Action("QUICKGAME", "Action")">
+                                                <img src="~/ImagesApp/quickgame.jpg" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <!-- DIE LETZE 10 ERGEBNISE-->
+                    <td>
+                        @* <div id="lastscores">*@
+                        <div style="background-color: white; padding: 10px; width: 800px; position: inherit; z-index: 1; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #fff;">
+                            @*                <h2>People user: @ViewBag.korisnik.Name</h2>*@
+                            <text style="text-align: left;"><font color="#0360a3" size="5">@Html.Translate("POSLJEDNJIH  10 REZULTATA") </font></text>
+                            <br />
+                            <hr />
+
+                            <table border="0">
+                                <tr>
+                                    <td style="width: 50%">
+
+                                        <table style="line-height: 13px; width: 392px" border="0">
+                                            @{ var brojac = 0;
+                                               foreach (MvcTEST.Models.getResult_Part1_Result item1 in @ViewBag.podaci)
+                                               {
+                                                   brojac++;
+                                 
+                                                <tr>
+                                                    <td style="text-align: left;" width="50">
+                                                        <text><font  size="2"> @item1.Date </font></text>
+                                                    </td>
+                                                    <td style="text-align: left;" width="120">
+                                                        <text><font  size="2"> @item1.GameName </font></text>
+                                                    </td>
+                                                    <td style="text-align: left;" width="165">
+                                                        <text><font  size="2"> Zeit: @item1.L_Time  s</font></text>
+                                                    </td>
+                                                    <td style="text-align: left;" width="40">
+                                                        <img width="20px" height="20px" src="~/ImagesApp/facebook.jpg" />
+                                                    </td>
+                                                    <td style="text-align: left;" width="40">
+                                                        <a href="javascript:void(0);" onclick="onMail()">
+                                                        <img width="25px" height="20px" src="~/ImagesApp/mail.jpg" />
+                                                        </a>
+                                                    </td>
+                                                </tr>  
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <hr />
+                                                    </td>
+                                                </tr>                                           
+                           
+                                               }
+                                            }
+                                            @*                                    <p>
+                                        <input type="submit" value="Orders" />
+                                    </p>*@
+
+                                        </table>
+
+
+                                    </td>
+                                    <td style="width: 50%">
+
+                                        <table style="line-height: 13px; width: 392px" border="0">
+                                            @{ var brojac2 = 5;
+                                               foreach (MvcTEST.Models.getResult_Part2_Result item2 in @ViewBag.podaci2)
+                                               {
+                                                   brojac2++;
+                                                <tr>
+                                                    <td style="text-align: left;" width="50">
+                                                        <text><font  size="2">@item2.Date </font></text>
+                                                    </td>
+                                                    <td style="text-align: left;" width="120">
+                                                        <text><font  size="2">@item2.GameName </font></text>
+                                                    </td>
+                                                    <td style="text-align: left;" width="165">
+                                                        <text><font  size="2"> Zeit: @item2.L_Time  s</text>
+                                                    </td>
+                                                    <td style="text-align: left;" width="40">
+                                                        <img width="20px" height="20px" src="~/ImagesApp/facebook.jpg" />
+                                                    </td>
+                                                    <td style="text-align: left;" width="40">
+                                                        <a href="javascript:void(0);" onclick="onMail()">
+                                                        <img width="25px" height="20px" src="~/ImagesApp/mail.jpg" />
+                                                        </a>
+                                                    </td>
+                                                </tr>  
+                                                <tr>
+                                                    <td colspan="6">
+                                                        <hr />
+                                                    </td>
+                                                </tr>   
+                          
+                                               }
+                                            }
+                                            @*                                    <p>
+                                        <input type="submit" value="Orders" />
+                                    </p>*@
+
+                                        </table>
+
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        @*</div>*@
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+@*    </div>*@

@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalSpeed.MVC", "MvcTEST\GlobalSpeed.MVC.csproj", "{92CCACEE-5B9D-48D0-A6FC-F1DD35491E5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalSpeed.WinService", "GlobalSpeed.WinService\GlobalSpeed.WinService.csproj", "{BC31BAC4-5E33-4012-9B46-A1D0EBACDA69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalSpeed.Server.Lib", "GlobalSpeed.Server.Lib\GlobalSpeed.Server.Lib.csproj", "{6A940E70-E21B-49B4-AF8C-56CB40F1C3D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalSpeed.Server.WinApp", "GlobalSpeed.Server.WinApp\GlobalSpeed.Server.WinApp.csproj", "{C60A5630-6950-488C-A0A2-B43A4FB74F6C}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://medved.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = GlobalSpeed.Server.Lib\\GlobalSpeed.Server.Lib.csproj
+		SccProjectName1 = GlobalSpeed.Server.Lib
+		SccLocalPath1 = GlobalSpeed.Server.Lib
+		SccProjectUniqueName2 = GlobalSpeed.Server.WinApp\\GlobalSpeed.Server.WinApp.csproj
+		SccProjectName2 = GlobalSpeed.Server.WinApp
+		SccLocalPath2 = GlobalSpeed.Server.WinApp
+		SccProjectUniqueName3 = GlobalSpeed.WinService\\GlobalSpeed.WinService.csproj
+		SccProjectName3 = GlobalSpeed.WinService
+		SccLocalPath3 = GlobalSpeed.WinService
+		SccProjectUniqueName4 = MvcTEST\\GlobalSpeed.MVC.csproj
+		SccProjectName4 = MvcTEST
+		SccLocalPath4 = MvcTEST
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92CCACEE-5B9D-48D0-A6FC-F1DD35491E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92CCACEE-5B9D-48D0-A6FC-F1DD35491E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92CCACEE-5B9D-48D0-A6FC-F1DD35491E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92CCACEE-5B9D-48D0-A6FC-F1DD35491E5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC31BAC4-5E33-4012-9B46-A1D0EBACDA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC31BAC4-5E33-4012-9B46-A1D0EBACDA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC31BAC4-5E33-4012-9B46-A1D0EBACDA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC31BAC4-5E33-4012-9B46-A1D0EBACDA69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A940E70-E21B-49B4-AF8C-56CB40F1C3D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A940E70-E21B-49B4-AF8C-56CB40F1C3D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A940E70-E21B-49B4-AF8C-56CB40F1C3D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A940E70-E21B-49B4-AF8C-56CB40F1C3D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C60A5630-6950-488C-A0A2-B43A4FB74F6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C60A5630-6950-488C-A0A2-B43A4FB74F6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C60A5630-6950-488C-A0A2-B43A4FB74F6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C60A5630-6950-488C-A0A2-B43A4FB74F6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

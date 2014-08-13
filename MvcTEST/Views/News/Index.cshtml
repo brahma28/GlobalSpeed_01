@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MvcTEST.Models.tblNew>
+
+@{
+    ViewBag.Title = "NEWS";
+}
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "News")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+
+    <div style="height:600px; overflow-y: scroll; overflow-x: hidden; background-color:white; ">
+    <table>
+        <tr>
+            <th>
+                <text><b><font color="#0360a3" size="4">@Html.DisplayNameFor(model => model.Title)</font></b></text>
+            </th>
+            <th>
+                <text><b><font color="#0360a3" size="4">@Html.DisplayNameFor(model => model.Content)</font></b></text>
+            </th>
+            <th>
+                <text><b><font color="#0360a3" size="4">Datum</font></b></text>
+            </th>
+            <th></th>
+        </tr>
+        <tr>           
+            <td colspan="4" align="left">
+                <hr />
+            </td>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TSCR)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("...", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("X", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+             <tr>           
+            <td colspan="3" align="left">
+                <hr />
+            </td>
+            </tr>
+        }
+
+    </table>
+    </div>
+</div>

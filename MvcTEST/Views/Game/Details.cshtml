@@ -1,0 +1,239 @@
+﻿@model MvcTEST.Models.tblGame
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Games", "Configurator")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+    <table align="left">
+    <!-- NAME -->
+    <tr>
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    </td>
+    <td colspan="5">
+    <div class="display-field" style="width:700px;">
+        <font color="blue"><b>@Html.DisplayFor(model => model.Name)</b></font>
+    </div>
+
+    <div class="display-label" style="visibility:hidden">
+         @Html.DisplayNameFor(model => model.NameHR)
+    </div>
+
+    <div class="display-field" style="visibility:hidden">
+        @Html.DisplayFor(model => model.NameHR)
+    </div>
+
+    </td>
+
+    <td>
+    <div class="display-label" style="visibility:hidden">
+         @Html.DisplayNameFor(model => model.NameENG)
+    </div>
+    </td>
+    <td>
+    <div class="display-field" style="visibility:hidden">
+        @Html.DisplayFor(model => model.NameENG)
+    </div>
+    </td>
+    </tr>
+    <!-- RANDOM -->
+    <tr>
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.IsRandom)
+    </div>
+    </td>
+    <td>
+    <div class="display-field" style="width:25px;">
+        @Html.DisplayFor(model => model.IsRandom)
+    </div>
+    </td>
+
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.RandomValue)
+    </div>
+    </td>
+    <td>
+    <div class="display-field" style="width:270px;">
+        @Html.DisplayFor(model => model.RandomValue)
+    </div>
+    </td>
+    </tr>
+    <!-- RANDOM 2-->
+    <tr>
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.RandomType)
+    </div>
+    </td>
+    <td>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RandomType)
+    </div>
+    </td>
+    </tr>
+    <!-- TIME -->
+    <tr>
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.IsTimeLimit)
+    </div>
+    </td>
+    <td>
+    <div class="display-field" style="width:160px;">
+        @Html.DisplayFor(model => model.IsTimeLimit)
+    </div>
+    </td>
+
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.TimeLimit)
+    </div>
+    </td>
+    <td>
+    <div class="display-field" style="width:270px;">
+        @Html.DisplayFor(model => model.TimeLimit)
+    </div>
+    </td>
+    <td></td>
+    <td></td>
+    </tr>
+    <!-- DESCRIPTION -->
+    <tr>
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    </td>
+    <td colspan="5">
+    <div class="display-field"  style="width:700px; height:100px;">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+
+    <div class="display-label" style="visibility:hidden">
+         @Html.DisplayNameFor(model => model.DescriptionHR)
+    </div>
+
+
+    <div class="display-field" style="visibility:hidden">
+        @Html.DisplayFor(model => model.DescriptionHR)
+    </div>
+
+
+    </td>
+    </tr>
+    <!-- OBJECTIVES -->
+    <tr>
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.Objectives)
+    </div>
+    </td>
+    <td colspan="5">
+    <div class="display-field" style="width:700px;">
+        @Html.DisplayFor(model => model.Objectives)
+    </div>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    </tr>
+    <!-- DEFINITION -->
+    <tr>
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.Definition)
+    </div>
+    </td>
+    <td colspan="5">
+    <div class="display-field" style="width:700px;">
+        @Html.DisplayFor(model => model.Definition)
+    </div>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    </tr>
+    <!-- -->
+    <tr>
+
+    </tr>
+    <!-- -->
+    <tr>
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.NumShownFields)
+    </div>
+    </td>
+    <td>
+    <div class="display-field" style="width:50px;">
+        @Html.DisplayFor(model => model.NumShownFields)
+    </div>
+    </td>
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.NumRepetition)
+    </div>
+    </td>
+    <td>
+    <div class="display-field"  style="width:50px;">
+        @Html.DisplayFor(model => model.NumRepetition)
+    </div>
+    </td>
+    <td></td>
+    <td></td>
+    </tr>
+    <!-- -->
+    <tr>
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.RandomFields)
+    </div>
+    </td>
+    <td>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RandomFields)
+    </div>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    </tr>
+    <!-- -->
+    <tr>
+    <td>
+    <div class="display-label" style="width:110px;">
+         @Html.DisplayNameFor(model => model.QuickGamePool)
+    </div>
+    </td>
+    <td>
+    <div class="display-field" style="width:150px;">
+        @Html.DisplayFor(model => model.QuickGamePool)
+    </div>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    </tr>
+
+    </tr>
+    </table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+    </div>

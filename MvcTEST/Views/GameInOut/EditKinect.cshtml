@@ -1,0 +1,718 @@
+﻿@model MvcTEST.Models.tblGame
+@using MvcTEST.HtmlHelpers
+@{
+    
+    ViewBag.Title = "In Out Kinect";
+    
+}
+
+<style>
+    #newXXXVal {
+        z-index: 10000;
+        position: relative;
+        padding: 25px;
+        width: 580px;
+        height: 100px;
+        text-align: left;
+        overflow: hidden;
+        margin: 0px;
+        font: bold 11px Verdana, Sans-serif;
+        color: #fff;
+        font-size: 16px;
+        color: black;
+        -moz-box-shadow: 3px 3px 5px 6px #000;
+        -webkit-box-shadow: 3px 3px 5px 6px #000;
+        box-shadow: 0px 0px 20px 0px gray;
+        border: 0px solid;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+    }
+
+    .medvedButton {
+        border: 4px solid;
+        border-radius: 10px;
+        text-shadow: #575757 1px 1px 0;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        font-family: 'Open Sans', sans-serif;
+        color: #ffffff;
+        text-align: center;
+        vertical-align: central;
+        line-height: 50px;
+        display: -moz-inline-stack;
+        display: inline-block;
+        width: 280px;
+        height: 68px;
+        background-color: #d4d4d4;
+        background-image: -moz-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: -webkit-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: -o-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: -ms-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: linear-gradient(top, #d4d4d4, #525252 75px);
+    }
+
+    .myButton {
+        -moz-box-shadow: inset 0px 0px 14px -3px #6e6e6e;
+        -webkit-box-shadow: inset 0px 0px 14px -3px #6e6e6e;
+        box-shadow: inset 0px 0px 14px -3px #6e6e6e;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #adadad));
+        background: -moz-linear-gradient(top, #cccccc 10%, #adadad 100%);
+        background: -webkit-linear-gradient(top, #cccccc 10%, #adadad 100%);
+        background: -o-linear-gradient(top, #cccccc 10%, #adadad 100%);
+        background: -ms-linear-gradient(top, #cccccc 10%, #adadad 100%);
+        background: linear-gradient(to bottom, #cccccc 10%, #adadad 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#adadad',GradientType=0);
+        background-color: #adadad;
+        -moz-border-radius: 12px;
+        -webkit-border-radius: 12px;
+        border-radius: 12px;
+        border: 1px solid #ffffff;
+        display: inline-block;
+        color: #fafafa;
+        font-size: 16px;
+        padding: 6px 24px;
+        text-decoration: none;
+        font-style: normal;
+        font-weight: bold;
+        font-family: 'Open Sans', sans-serif;
+        font: 16px GlobalSpeedBold;
+        color: #ffffff;
+        text-align: center;
+        vertical-align: central;
+        text-shadow: 0px 1px 0px #949494;
+        width: 100px;
+        height: 35px;
+    }
+
+        .myButton:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #adadad), color-stop(1, #cccccc));
+            background: -moz-linear-gradient(top, #adadad 10%, #cccccc 100%);
+            background: -webkit-linear-gradient(top, #adadad 10%, #cccccc 100%);
+            background: -o-linear-gradient(top, #adadad 10%, #cccccc 100%);
+            background: -ms-linear-gradient(top, #adadad 10%, #cccccc 100%);
+            background: linear-gradient(to bottom, #adadad 10%, #cccccc 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#adadad', endColorstr='#cccccc',GradientType=0);
+            background-color: #cccccc;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+.checkbox {
+    margin:0 auto;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    position:relative;
+    display: block;
+    width:94px;
+}    
+
+.checkbox input[type=checkbox] {
+    display: none;
+}
+
+.checkbox input[type=checkbox] + label {
+    display: block;
+    cursor:pointer;
+    width: 94px;
+    overflow: hidden;
+    background:#fff;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+    background:-webkit-linear-gradient(left, #2d5ba8 50%, #999 50%) no-repeat -20px 0;
+    background:-moz-linear-gradient(left, #2d5ba8 50%, #999 50%) no-repeat -20px 0;
+    -webkit-transition: background-position 0.3s ease-in-out;
+    -moz-transition: background-position 0.3s ease-in-out;
+}
+
+.checkbox input[type=checkbox] + label span,
+.checkbox input[type=checkbox] + label span:before,
+.checkbox input[type=checkbox] + label span:after{
+    text-align:center;
+    display:block;
+    width:54px;
+    height:27px;
+    line-height:27px;
+    position:absolute;
+    top:-1px;
+    font-weight:bold;
+    text-indent: 0;
+    -webkit-box-shadow:inset 1px 2px 2px 0 rgba(0,0,0,.2);
+    -moz-box-shadow:inset 1px 2px 2px 0 rgba(0,0,0,.2);
+    box-shadow:inset 1px 2px 2px 0 rgba(0,0,0,.2);
+}
+.checkbox input[type=checkbox] + label span{
+    text-indent: -9999px;
+    top:0;
+    position:relative;
+    left:0;
+    width:37px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+    background:-webkit-linear-gradient(#efefef 1px, #cecece 1px, #fbfbfb);
+    background:-moz-linear-gradient(#efefef 1px, #cecece 1px, #fbfbfb);
+    -webkit-transition: left 0.3s ease-in-out;
+    -moz-transition: left 0.3s ease-in-out;
+    border:solid 1px;
+    border-color: #919191 #9f9f9f #999999 #90aacf;
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    box-shadow:none;
+}
+.checkbox input[type=checkbox] + label span:before{
+    color:#eee;
+    text-shadow:0 1px rgba(255,255,255,.1), 0 -1px rgba(0,0,0,.3);
+    content:"ON";
+    background:-webkit-linear-gradient(#0360a3, #7cadf2);
+    background:-moz-linear-gradient(#0360a3, #7cadf2);
+    border-top:solid 1px #133676;
+    border-bottom:solid 1px #6587b7;
+    border-radius:1px 0 0 1px;
+    left:-55px;
+}
+.checkbox input[type=checkbox] + label span:after{
+    color:#888;
+    content:"OFF";
+    left:auto;
+    right:-55px;
+    background:-webkit-linear-gradient(#ddd, #eee);
+    background:-moz-linear-gradient(#ddd, #eee);
+    border-top:solid 1px #7d7d7d;
+    border-bottom:solid 1px #c0c0c0;
+}
+.checkbox input[type=checkbox] + label:active span{
+    left:5px;
+}
+.checkbox input[type=checkbox]:checked + label:active span{
+    left:50px;
+}
+.checkbox input[type=checkbox]:checked + label span{
+    left:55px;
+}
+.checkbox input[type=checkbox]:checked + label{
+    background-position:20px;
+}
+
+.checkbox:before,
+.checkbox:after{
+    content: " ";
+    display:block;
+    position:absolute;
+    top:0;
+    left:93px;
+    width:1px;
+    height:27px;
+    border:solid #fff;
+    border-width:1px 0;
+    z-index:20;
+    background:#999;
+}
+.checkbox:before{
+    left:0;
+}
+
+[required] {
+    border-color: #88a;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 255, .5);
+}
+
+:invalid {
+    border-color: #e88;
+    -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+}
+
+</style>
+
+<div id="l1" style="padding: 30px; width: 890px; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7; ">
+    <div style="border: 0px solid;">
+        <div align="right">
+            <a href="@Url.Action("Games", "Configurator")">
+                <img src="~/ImagesApp/close.png" border="0" />
+            </a>
+        </div>
+        <title>@ViewBag.Title</title>
+        <link id="size-stylesheet" href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" />
+        <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+        <script type="text/javascript" src="/Scripts/fancybox/jquery.fancybox-1.3.4.js"></script>
+        <script type="text/javascript" src="/Scripts//fancybox/jquery.Easing-1.3.pack.js"></script>
+        <link rel="stylesheet" href="@Url.Content("~/Scripts/fancybox/jquery.fancybox-1.3.4.css")" type="text/css" media="screen" />
+
+        @using (Html.BeginForm("EditKinetic", "GameInOut", FormMethod.Post, new { enctype = "multipart/form-data", id = "gameinoutkinetic" }))      
+        {
+    <div style="width: 860px; height: 30px;">
+        <!-- TABOVI ZA CLASSIC, KINETICS, EXTREME -->
+        <table>
+            <tr>
+                <td>
+                    @{
+            if (Model.ID > 0)
+            {
+                    <a id="class" href="@Url.Action("Edit", "GameInOut", new { id = Model.ID})">
+                        <div style="padding-left:5px; width: 100px; height: 30px; color: #0360a3; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; " id="classic">CLASSIC</div>
+                    </a>
+            }
+            else
+            {
+                    <a id="class" href="@Url.Action("Edit", "GameInOut")">
+                        <div style="padding-left:5px; width: 100px; height: 30px; color: #0360a3; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; " id="classic">CLASSIC</div>
+                    </a>
+            }
+                        }
+                    </td>
+                    <td style="width:5px;"></td>
+                    <td>
+                        @{
+            if (Model.ID > 0)
+            {
+                    <a id="class" href="@Url.Action("EditKinetic", "GameInOut", new { id = Model.ID})">
+                        <div style="padding-left: 5px; width: 100px; height: 30px; color: #0360a3; background-color: white; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; " id="kinetics">KINETICS</div>
+                    </a>
+            }
+            else
+            {
+                    <a id="class" href="@Url.Action("EditKinetic", "GameInOut")">
+                        <div style="padding-left: 5px; width: 100px; height: 30px; color: #0360a3; background-color: white; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; " id="kinetics">KINETICS</div>
+                    </a>
+            }
+                            }
+                        </td>
+                        <td style="width:5px;"></td>
+                        <td>
+                            @{
+            if (Model.ID > 0)
+            {
+                    <a id="class" href="@Url.Action("EditExtreme", "GameInOut", new { id = Model.ID})">
+                        <div style="padding-left: 5px; width: 100px; height: 30px; color: #0360a3; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; " id="extreme">EXTREME</div>
+                    </a>
+            }
+            else
+            {
+                    <a id="class" href="@Url.Action("EditExtreme", "GameInOut")">
+                        <div style="padding-left: 5px; width: 100px; height: 30px; color: #0360a3; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; " id="extreme">EXTREME</div>
+                    </a>
+            }
+                                }
+                            </td>
+                        </tr>
+                    </table>
+
+    </div>        
+    <div style="vertical-align: central; background-color: white; width: 860px; height: 620px; -moz-box-shadow: 0px 0px 0px 0px #000; -webkit-box-shadow: 0px 0px 0px 0px #000; box-shadow: 0px 0px 0px 0px gray; -moz-border-radius: 10px; border-radius: 10px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+               <div style="padding:10px 15px 10px 15px">
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:350px">
+                                <table style="width:350px;">
+                                    <tr>
+                                        <td style="width:80px">
+                                            <img src="~/ImagesApp/inout1.png" />
+                                        </td>
+                                        <td style="vertical-align:bottom">
+                                            <font size="5" style="color: #0360a3; font-family: 'Open Sans', sans-serif;">
+                                                <b> @ViewBag.game.CategoryName</b>
+
+                                            </font>
+                                            <div id="errorsi" style="float: left; margin-right: 40px; color: red;"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width:350px">
+                                <table style="width:80px">
+                                    <tr>
+                                        <td style="text-align: left;padding-left:5px">
+                                            <div class="editor-label" style="text-align: center; width: 80px; ">
+                                                @Html.LabelFor(model => model.Name, @Html.Translate("Game name"), new { style = "text-align:right;" })
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="editor-field" style="width: 300px;">
+                                                @Html.TextBoxFor(model => model.Name, new { style = "width: 300px;" })
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr />
+                   <!-- JEDAN REDAK TABELA -->
+                    <table style="width:350px; text-align:left; ">
+                        <tr>
+                            <td style="width:300px;">
+                                Create an "Out&In - kinetic" test2
+                            </td>
+                            <td style="width:50px;">
+                                <div style="width:100px; height:30px; color: blue; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                    @Html.EditorFor(model => model.Kinetic, new { style = "width: 90px;" })
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                   <br />
+                   <!-- ADDITIONAL PARAMETER -->
+                   <table style="width:100%; ">
+                       <tr>
+                           <td style="width:250px;">
+                               <a><b><u>additional parameter</u></b></a>
+                           </td>
+                           <td></td>
+                       </tr>
+                   </table>
+                   <br />
+                   <table style="width:100%;">
+                       <!--EVENT 1: -->
+                       <tr>
+                           <!-- ADD COLOR -->
+                           <td style="width:20px;"></td>
+                           <td style="width:100px;">
+                               add colour
+                           </td>
+                           <!-- COLOR PICKER -->
+                           <td>
+                               <input type="color" id="EventColor1" name="EventColor1" value="@Model.EventColor1" placeholder="#bbbbbb" style="width:25px; height:25px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; " />
+                           </td>
+                           <!-- DROPDOWN LISTA DOGAĐAJA -->
+                           <td style="width:150px; text-align:right; padding-right:20px;"> event </td>
+                           <td>
+                               <div style="width:350px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                   @{
+                                        if (Model.EventID1.HasValue)
+                                        {
+                                            Html.DropDownListFor(model => model.EventID1,
+                                                new SelectList(ViewBag.events, "EventID", "Name"),
+                                                                "-- Bitte select --",
+                                                                new { style = "width: 350px;" }
+                                            );
+                                        }
+                                        else
+                                        {
+                                            Html.DropDownList("EventID1",
+                                                new SelectList(ViewBag.events, "EventID", "Name"),
+                                                                "-- Bitte select --",
+                                                                new { style = "width: 350px;" }
+                                            );
+                                        }
+                                                               }
+                              </div>
+                          </td>
+                       </tr>
+                       <tr><td colspan="4"><br /></td></tr>
+                       <!--EVENT 2: -->
+                       <tr>
+                           <!-- ADD COLOR -->
+                           <td style="width:20px;"></td>
+                           <td style="width:100px;">
+                               add colour
+                           </td>
+                           <!-- COLOR PICKER -->
+                           <td>
+                               <input type="color" id="EventColor2" name="EventColor2" value="@Model.EventColor2" placeholder="e.g. #bbbbbb" style="width:25px; height:25px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; " />
+                           </td>
+                           <!-- DROPDOWN LISTA DOGAĐAJA -->
+                           <td style="width:150px; text-align:right; padding-right:20px;"> event </td>
+                           <td>
+                               <div style="width:350px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                   @Html.DropDownListFor(model => model.EventID2,
+                                          new SelectList(ViewBag.events, "EventID", "Name"),
+                                                        "-- Bitte select --",
+                                                        new { style = "width: 350px;" }
+                                                         )
+                              </div>   
+                           </td>
+                       </tr>
+                       <tr><td colspan="4"><br /></td></tr>
+                       <!--EVENT 3: -->
+                       <tr>
+                           <!-- ADD COLOR -->
+                           <td style="width:20px;"></td>
+                           <td style="width:100px;">
+                               add colour
+                           </td>
+                           <!-- COLOR PICKER -->
+                           <td>
+                               <input type="color" id="EventColor3" name="EventColor3" value="@Model.EventColor3" placeholder="e.g. #bbbbbb" style="width:25px; height:25px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; " />
+                           </td>
+                           <!-- DROPDOWN LISTA DOGAĐAJA -->
+                           <td style="width:150px; text-align:right; padding-right:20px;"> event </td>
+                           <td>
+                               <div style="width:350px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                   @Html.DropDownListFor(model => model.EventID3,
+                                          new SelectList(ViewBag.events, "EventID", "Name"),
+                                                        "-- Bitte select --",
+                                                        new { style = "width: 350px;" }
+                                                         )
+                               </div>                      
+                           </td>
+                       </tr>
+                       <tr>
+                           <td colspan="4"><br /></td>
+                       </tr>
+                       <!--EVENT 4: -->
+                       <tr>
+                           <!-- ADD COLOR -->
+                           <td style="width:20px;"></td>
+                           <td style="width:100px;">
+                               add colour
+                           </td>
+                           <!-- COLOR PICKER -->
+                           <td>
+                               <input type="color" id="EventColor4" name="EventColor4" value="@Model.EventColor4" placeholder="e.g. #bbbbbb" style="width:25px; height:25px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; " />
+                           </td>
+                           <!-- DROPDOWN LISTA DOGAĐAJA -->
+                           <td style="width:150px; text-align:right; padding-right:20px;"> event </td>
+                           <td>
+                               <div style="width:350px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                   @Html.DropDownListFor(model => model.EventID4,
+                                          new SelectList(ViewBag.events, "EventID", "Name"),
+                                                        "-- Bitte select --",
+                                                        new { style = "width: 350px;" }
+                                                         )
+                              </div>                               
+                           </td>
+                       </tr>
+                       <tr>
+                           <td colspan="4"><br /></td>
+                       </tr>
+                       <!--EVENT 5: -->
+                       <tr>
+                           <!-- ADD COLOR -->
+                           <td style="width:20px;"></td>
+                           <td style="width:100px;">
+                               add colour
+                           </td>
+                           <!-- COLOR PICKER -->
+                           <td>
+                               <input type="color" id="EventColor5" name="EventColor5" value="@Model.EventColor5" placeholder="e.g. #bbbbbb" style="width:25px; height:25px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; " />
+                           </td>
+                           <!-- DROPDOWN LISTA DOGAĐAJA -->
+                           <td style="width:150px; text-align:right; padding-right:20px;"> event </td>
+                           <td>
+                               <div style="width:350px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                   @Html.DropDownListFor(model => model.EventID5,
+                                          new SelectList(ViewBag.events, "EventID", "Name"),
+                                                        "-- Bitte select --",
+                                                        new { style = "width: 350px;" }
+                                                         )
+                              </div>                                  
+                           </td>
+                       </tr>
+                       <tr>
+                           <td colspan="4"><br /></td>
+                       </tr>
+                   </table>
+                   <!-- TABELA SA GUMBIMA -->
+                    <table style="width: 100%; ">
+                        <tr>
+                            <td>
+                                @*<div id="delete" class="medvedButton">@Html.Translate("Delete")</div>*@
+                                <input id="delete" type="button"  value="@Html.Translate("Abbrechen").ToUpper()" class="gray-button" />
+                            </td>
+                            <td style="text-align:right">
+                                <p>
+                                    <input id="Save" type="submit" class="create" value="@Html.Translate("save").ToUpper()" />
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>    
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#MinStayTime").width(50);
+                    $("#MaxStayTime").width(50);
+                    $("#MinFlyTime").width(50);
+                    $("#MaxFlyTime").width(50);
+                    $("#TimeLimit").width(135);
+                    $("#Countdown").width(135);
+                    $("#NumRepetition").width(135);
+                    $("#Quantity").width(135);
+                    $("#DescriptionDuration").width(135);
+                    $("#Kinetic").width(100);
+
+                    $("[name='quickgame']").click(function () {
+                            $.post('@Url.Action("GameTapping", "Quickgame")', { id: $(this).attr('id') },
+                        function (data) {
+                        });
+                    });
+                    $('#inlineNewXXX').fancybox({
+                        'titlePosition': 'inside',
+                        'transitionIn': 'fade',
+                        'transitionOut': 'fade',
+                        'autoDimensions': 'false',
+                        'overlayOpacity': 0.5
+                    });
+                    $('#delete').click(function () {
+                        if (confirm("Sind Sie sicher?")) {
+                            $.post('@Url.Action("Delete", "GameInOut", new { Model.ID })', function (data) {
+                                window.location.href = '@Url.Action("Games","Configurator")';
+                            });
+                        }
+                        return false;
+                    });
+
+
+                    $('#SaveAs').click(function () {
+                        // alert("Jeste li sigurni da zelite to snimiti kao novu igricu!?");
+                        $.post('@Url.Action("SaveAs2", "GameInOut")', {
+                            Name: $('#txtGameName').val(), IsRandom: true, RandomValue: $('#RandomValue').val(),
+                            RandomType: 1, IsTimeLimit: false, TimeLimit: $('#TimeLimit').val(),
+                            Description: $('#Description').val(), Objectives: $('#Objectives').val(), Definition: $('#Definition').val(),
+                            NumShownFields: $('#NumShownFields').val(), NumRepetition: $('#NumRepetition').val(), RandomFields: $('#RandomFields').val(),
+                            QuickGamePool: true, CategoryID: $('#CategoryID').val(), MinStayTime: $('#MinStayTime').val(),
+                            MaxStayTime: $('#MaxStayTime').val(), MinFlyTime: $('#MinFlyTime').val(), MaxFlyTime: $('#MaxFlyTime').val(),
+                            StartField: $('#StartField').val(), Countdown: $('#Countdown').val(), LegLeft: true, LegRight: true, Quantity: $('#Quantity').val(), Distance: 0
+                        },
+                         function (data) {
+                             $('#ID').val(data);
+                             $('#inoutName').html($('#txtGameName').val());
+                             $.fancybox.close();
+                             debugger;
+                             window.location.href = '@Url.Action("Games", "Configurator")';
+                         });
+                    });
+
+                    //debugger;
+                    // 'autoSize': true,
+                    $('#RandomFields').click(function () {
+                        $('#RandomFields').blur();
+
+                        $.fancybox({
+                            'type': 'iframe',
+                            'width': 280,
+                            'height': 280,
+                            'transitionIn': 'none',
+                            'transitionOut': 'none',
+                            'href': '@Url.Action("RandomFields", "GameInOut", new { Model.ID })',
+                            'onClosed': function () {
+                                //debugger;
+                                $.post('@Url.Action("RandomFieldsAll", "GameInOut", new { Model.ID })', function (data) {
+                                    //debugger;
+                                    $('#RandomFields').val(data);
+                                    $('#RandomFields').html(data);
+
+                                });
+                                //window.location.href = window.location.href;
+                            }
+                        });
+                    });
+                    // postavljanje vrijednosti početnog (start) polja igre
+                    $('#StartField').click(function () {
+                        $('#StartField').blur();
+                        $.fancybox({
+                            'type': 'iframe',
+                            'width': 280,
+                            'height': 280,
+                            'transitionIn': 'none',
+                            'transitionOut': 'none',
+                            'href': '@Url.Action("StartField", "GameInOut", new { Model.ID })',
+                            'onClosed': function () {
+                                $.post('@Url.Action("StartFieldAll", "GameInOut", new { Model.ID })', function (data) {
+                                    $('#StartField').val(data);
+                                    $('#StartField').html(data);
+
+                                });
+                            }
+                        });
+                    });
+                });
+
+                function functionRefreshaRandomFields() {
+                    alert("osvijezi polja random fields!");
+                }
+                function fancyConfirm(dataObject) {
+                    var makeSureText = ich['areYouSure'](dataObject);
+                    $.fancybox({
+                        modal: true,
+                        content: makeSureText,
+                        onComplete: function () {
+                            $("#okConfirm").click(function (event, dataObject) {
+                                event.preventDefault();
+                                dataObject.confirmed();
+                                $.fancybox.close();
+                            })
+                            $("#cancelConfirm").click(function (event) {
+                                event.preventDefault();
+                                $.fancybox.close();
+                            })
+                        },
+                        onClosed: function () {
+                            return false;
+                        }
+                    });
+                    return false;
+                }
+                var checkbox = $('input[type="checkbox"]').change(function () {
+                    $("[name='QuickGamePool']").val(this.checked ? "true" : "false");
+                    //alert($("[name='QuickGamePool']").val());
+
+                });
+
+                $("#toggle").click(function (e) {
+                    e.preventDefault();
+                    checkbox.each(function () { this.checked = !this.checked; }).change();
+                });
+            </script>
+            @Html.HiddenFor(model => model.ID)            
+            @Html.HiddenFor(model => model.CategoryID, "Category")
+            @Html.HiddenFor(model => model.DescriptionDurationSecMin )                
+            @Html.HiddenFor(model => model.DescriptionDuration )      
+            @Html.HiddenFor(model => model.Description)
+            @Html.HiddenFor(model => model.NameHR)
+            @Html.HiddenFor(model => model.NameENG)
+            @Html.HiddenFor(model => model.NumRepetition)
+            @Html.HiddenFor(model => model.Definition)
+            @Html.HiddenFor(model => model.NumShownFields)
+            @Html.HiddenFor(model => model.DescriptionHR)
+            @Html.HiddenFor(model => model.Objectives)
+            @Html.HiddenFor(model => model.QuickGamePool)
+            @Html.HiddenFor(model => model.IsTimeLimit)            
+            @Html.HiddenFor(model => model.StartFieldID)    
+            @Html.HiddenFor(model => model.StartField)                       
+            @Html.HiddenFor(model => model.RandomFieldsID)    
+            @Html.HiddenFor(model => model.RandomFields)
+            @Html.HiddenFor(model => model.IsRandom)
+            @Html.HiddenFor(model => model.RandomValue)  
+            @Html.HiddenFor(model => model.RandomType)                     
+            @Html.HiddenFor(model => model.Countdown)  
+            @Html.HiddenFor(model => model.Distance)   
+            @Html.HiddenFor(model => model.Extreme )     
+            @Html.HiddenFor(model => model.IsTimeLimit)  
+            @Html.HiddenFor(model => model.TimeLimit)                                            
+            @Html.HiddenFor(model => model.MaxFlyTime )       
+            @Html.HiddenFor(model => model.MaxStayTime )                 
+            @Html.HiddenFor(model => model.MinFlyTime )       
+            @Html.HiddenFor(model => model.MinStayTime )               
+            @Html.HiddenFor(model => model.EventImage1)            
+            @Html.HiddenFor(model => model.EventImage2)                     
+            @Html.HiddenFor(model => model.EventImage3)            
+            @Html.HiddenFor(model => model.EventImage4)  
+            @Html.HiddenFor(model => model.EventImage5)   
+            @*@Html.HiddenFor(model => model.EventColor1)            
+            @Html.HiddenFor(model => model.EventColor2)                     
+            @Html.HiddenFor(model => model.EventColor3)            
+            @Html.HiddenFor(model => model.EventColor4)  
+            @Html.HiddenFor(model => model.EventColor5)*@                            
+            @Html.HiddenFor(model => model.Extreme )    
+                           
+            @*@Html.ValidationSummary(true)*@         
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<MvcTEST.Models.getTerminInDay_Result>
+@{
+    ViewBag.Title = "Termini";
+    Layout = null;
+}
+
+<style>
+    /* HOVER STYLES */
+    div#pop-up {
+        display: none;
+        position: absolute;
+        width: 280px;
+        padding: 10px;
+        background: #eeeeee;
+        color: #000000;
+        border: 1px solid #1a1a1a;
+        font-size: 90%;
+    }
+    table.cal-terms tr td{ padding:2px 0 2px 0; font-size:14px; cursor:default }
+</style>
+<div id="l1">
+
+    <table style="line-height: 13px; width: 185px" class="cal-terms">
+        @foreach (var item in Model)
+        {
+                                                                                                        
+            <tr>
+                <td align="left">
+                    <font color="#0360a3">@item.Start </font>
+                    <td />
+            </tr>
+            <tr>
+                <td align="left" id="trigger_@item.ID" class="@item.ID">
+                    <font color="#0360a3"><b>@item.TitleShort </b></font>
+                
+                <div id="pop-up" class="@item.ID" style="background-color:white; padding: 10px; z-index: 1; 
+-moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; 
+border: 0px solid; border-radius: 7px; -moz-border-radius: 7px;">
+                    <font color="#0360a3">@item.Start <br /> @item.Title <br /></font>
+                    @item.Note
+                </div></td>
+            </tr>
+            <tr>
+                <td align="left">
+                    @item.NoteShort
+                    @*<button width="20px" height="20px" id="opener">...</button>*@
+                </td>
+            </tr>
+                                    
+            <tr>
+                <td align="left">
+                    <hr />
+                </td>
+            </tr>                                 
+        }
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        var moveLeft = -20;
+        var moveDown = 10;
+        var idx;
+
+        $("[id^='trigger']").hover(function (e) {
+            //idx = $(this).index(this);
+            //alert(idx);
+            $('div#pop-up', this).show()
+            //.css('top', e.pageY + moveDown)
+            //.css('left', e.pageX + moveLeft)
+            //.appendTo('body');
+        }, function () {
+           //idx = $(this).index(this);
+            $('div#pop-up', this).hide();
+            $("div[id~='pop-up']").hide();
+        });
+
+        //$('#trigger').mousemove(function (e) {
+        //    idx = $('#trigger').index(this);
+        //    $('div#pop-up', this).css('top', e.pageY + moveDown).css('left', e.pageX + moveLeft);
+        //});
+
+    });
+</script>

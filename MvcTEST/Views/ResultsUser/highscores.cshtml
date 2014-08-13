@@ -1,0 +1,76 @@
+﻿
+
+@{
+    ViewBag.Title = "highscores";
+    Layout = null;
+}
+    <script>
+        $(document).ready(function () {
+            $("[class~='redak']").hover(function () {
+                $(this).css("background-color", "#0360a3");
+                $(this).css("color", "white");
+                this.cells[0].children[0].style.color="white";
+
+            }, function () {
+                $(this).css("background-color", "white");
+                $(this).css("color", "black");
+                this.cells[0].children[0].style.color = "#0360a3";
+
+            });
+        });
+    </script>
+<style>
+
+#blackfont, .blackfont {
+    color: #000000 !important;
+    font-weight:bold !important;
+
+} 
+.bluelink a {
+    color: #0360a3;
+    
+}
+
+
+</style>
+            <div id="highscores_zaglavlje">
+                <text><b><font color="#0360a3" size="5">@ViewBag.datumtermina.ToString("dd.MM.yyyy")  </font></b></text>
+                <hr />
+            </div>
+
+            <div id="highscoresin"  style="text-align:left; width:550px; height:450px ; overflow-y: scroll; overflow-x: hidden;" >
+                <table style="text-align:left;border-collapse:collapse;border:0px;" >
+                @{ var brojac = 0; 
+                foreach (MvcTEST.Models.getHighscoresAll_Result item in @ViewBag.highscores)
+                {
+                    brojac++;
+                    <tr id = "@string.Format("red{0}",item.ID)"  class="redak" style="border-bottom:solid black 1px; line-height:40px; ">
+                        <!-- redni broj -->
+
+                        <td>
+                            <a href="@(Url.Content("~/ResultsGame/GameUserIndex?groupid=") + item.ID.ToString() + "&gameid=" + item.GameID.ToString() + "&userid=" + item.UserID.ToString() + "&datumtermina=" +  ViewBag.datumtermina.ToString("yyyy-MM-dd")  )" style="text-decoration:none;" class="bluelink">
+                                @item.GameName
+                            </a>
+                        </td>
+
+                        <!-- NAZIV -->
+                        <td>
+
+                            @Html.DisplayFor(modelItem => item.Sur_Name)   
+
+                        </td>
+                        <!-- GRUPA -->
+                        <td>
+                             @Html.DisplayFor(modelItem => item.Grupa)                           
+                        </td>
+                        <!-- REZULTAT -->
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rezultat)
+                        </td>
+                    </tr>                   
+
+                }
+                }
+                </table>        
+            </div>
+

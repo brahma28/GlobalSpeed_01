@@ -1,0 +1,365 @@
+﻿@model MvcTEST.Models.tblBreak
+
+@{
+    ViewBag.Title = "Break Details";
+}
+
+<style>
+    #newXXXVal {
+        z-index: 10000;
+        position: relative;
+        padding: 25px;
+        width: 580px;
+        height: 100px;
+        text-align: left;
+        overflow: hidden;
+        margin: 0px;
+        font: bold 11px Verdana, Sans-serif;
+        color: #fff;
+        font-size: 16px;
+        color: black;
+        -moz-box-shadow: 3px 3px 5px 6px #000;
+        -webkit-box-shadow: 3px 3px 5px 6px #000;
+        box-shadow: 0px 0px 20px 0px gray;
+        border: 0px solid;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+    }
+
+    .medvedButton {
+        border: 4px solid;
+        border-radius: 10px;
+        text-shadow: #575757 1px 1px 0;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        font-family: 'Open Sans', sans-serif;
+        color: #ffffff;
+        text-align: center;
+        vertical-align: central;
+        line-height: 50px;
+        display: -moz-inline-stack;
+        display: inline-block;
+        width: 280px;
+        height: 68px;
+        background-color: #d4d4d4;
+        background-image: -moz-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: -webkit-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: -o-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: -ms-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: linear-gradient(top, #d4d4d4, #525252 75px);
+    }
+
+    .myButton {
+        -moz-box-shadow: inset 0px 0px 14px -3px #6e6e6e;
+        -webkit-box-shadow: inset 0px 0px 14px -3px #6e6e6e;
+        box-shadow: inset 0px 0px 14px -3px #6e6e6e;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #adadad));
+        background: -moz-linear-gradient(top, #cccccc 10%, #adadad 100%);
+        background: -webkit-linear-gradient(top, #cccccc 10%, #adadad 100%);
+        background: -o-linear-gradient(top, #cccccc 10%, #adadad 100%);
+        background: -ms-linear-gradient(top, #cccccc 10%, #adadad 100%);
+        background: linear-gradient(to bottom, #cccccc 10%, #adadad 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#adadad',GradientType=0);
+        background-color: #adadad;
+        -moz-border-radius: 12px;
+        -webkit-border-radius: 12px;
+        border-radius: 12px;
+        border: 1px solid #ffffff;
+        display: inline-block;
+        color: #fafafa;
+        font-size: 16px;
+        padding: 6px 24px;
+        text-decoration: none;
+        font-style: normal;
+        font-weight: bold;
+        font-family: 'Open Sans', sans-serif;
+        font: 16px GlobalSpeedBold;
+        color: #ffffff;
+        text-align: center;
+        vertical-align: central;
+        text-shadow: 0px 1px 0px #949494;
+        width: 100px;
+        height: 35px;
+    }
+
+        .myButton:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #adadad), color-stop(1, #cccccc));
+            background: -moz-linear-gradient(top, #adadad 10%, #cccccc 100%);
+            background: -webkit-linear-gradient(top, #adadad 10%, #cccccc 100%);
+            background: -o-linear-gradient(top, #adadad 10%, #cccccc 100%);
+            background: -ms-linear-gradient(top, #adadad 10%, #cccccc 100%);
+            background: linear-gradient(to bottom, #adadad 10%, #cccccc 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#adadad', endColorstr='#cccccc',GradientType=0);
+            background-color: #cccccc;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+    .checkbox {
+        margin: 0 auto;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        position: relative;
+        display: block;
+        width: 94px;
+    }
+
+        .checkbox input[type=checkbox] {
+            display: none;
+        }
+
+            .checkbox input[type=checkbox] + label {
+                display: block;
+                cursor: pointer;
+                width: 94px;
+                overflow: hidden;
+                background: #fff;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                background: -webkit-linear-gradient(left, #2d5ba8 50%, #999 50%) no-repeat -20px 0;
+                background: -moz-linear-gradient(left, #2d5ba8 50%, #999 50%) no-repeat -20px 0;
+                -webkit-transition: background-position 0.3s ease-in-out;
+                -moz-transition: background-position 0.3s ease-in-out;
+            }
+
+                .checkbox input[type=checkbox] + label span,
+                .checkbox input[type=checkbox] + label span:before,
+                .checkbox input[type=checkbox] + label span:after {
+                    text-align: center;
+                    display: block;
+                    width: 54px;
+                    height: 27px;
+                    line-height: 27px;
+                    position: absolute;
+                    top: -1px;
+                    font-weight: bold;
+                    text-indent: 0;
+                    -webkit-box-shadow: inset 1px 2px 2px 0 rgba(0,0,0,.2);
+                    -moz-box-shadow: inset 1px 2px 2px 0 rgba(0,0,0,.2);
+                    box-shadow: inset 1px 2px 2px 0 rgba(0,0,0,.2);
+                }
+
+                .checkbox input[type=checkbox] + label span {
+                    text-indent: -9999px;
+                    top: 0;
+                    position: relative;
+                    left: 0;
+                    width: 37px;
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;
+                    background: -webkit-linear-gradient(#efefef 1px, #cecece 1px, #fbfbfb);
+                    background: -moz-linear-gradient(#efefef 1px, #cecece 1px, #fbfbfb);
+                    -webkit-transition: left 0.3s ease-in-out;
+                    -moz-transition: left 0.3s ease-in-out;
+                    border: solid 1px;
+                    border-color: #919191 #9f9f9f #999999 #90aacf;
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                }
+
+                    .checkbox input[type=checkbox] + label span:before {
+                        color: #eee;
+                        text-shadow: 0 1px rgba(255,255,255,.1), 0 -1px rgba(0,0,0,.3);
+                        content: "ON";
+                        background: -webkit-linear-gradient(#0360a3, #7cadf2);
+                        background: -moz-linear-gradient(#0360a3, #7cadf2);
+                        border-top: solid 1px #133676;
+                        border-bottom: solid 1px #6587b7;
+                        border-radius: 1px 0 0 1px;
+                        left: -55px;
+                    }
+
+                    .checkbox input[type=checkbox] + label span:after {
+                        color: #888;
+                        content: "OFF";
+                        left: auto;
+                        right: -55px;
+                        background: -webkit-linear-gradient(#ddd, #eee);
+                        background: -moz-linear-gradient(#ddd, #eee);
+                        border-top: solid 1px #7d7d7d;
+                        border-bottom: solid 1px #c0c0c0;
+                    }
+
+                .checkbox input[type=checkbox] + label:active span {
+                    left: 5px;
+                }
+
+            .checkbox input[type=checkbox]:checked + label:active span {
+                left: 50px;
+            }
+
+            .checkbox input[type=checkbox]:checked + label span {
+                left: 55px;
+            }
+
+            .checkbox input[type=checkbox]:checked + label {
+                background-position: 20px;
+            }
+
+        .checkbox:before,
+        .checkbox:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 93px;
+            width: 1px;
+            height: 27px;
+            border: solid #fff;
+            border-width: 1px 0;
+            z-index: 20;
+            background: #999;
+        }
+
+        .checkbox:before {
+            left: 0;
+        }
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.microsoft.com/ajax/jQuery.Validate/1.7/jQuery.Validate.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<script type="text/javascript" src="/Scripts/fancybox/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript" src="/Scripts//fancybox/jquery.Easing-1.3.pack.js"></script>
+
+<link id="size-stylesheet" href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Scripts/fancybox/jquery.fancybox-1.3.4.css")" type="text/css" media="screen" />
+
+<div id="l1" style="padding: 10px;padding-left:30px; width: 890px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Games", "Configurator")">
+            <img src="~/ImagesApp/close.png" border="0" />
+        </a>
+    </div>
+    <div style="vertical-align: central; background-color: white; width: 860px; height: 650px;  border: 2px; border-radius: 10px; -moz-border-radius: 10px; border-style: solid; border-color: #aaaaaa; ">
+        <div style="padding-left:15px; padding-top:10px; ">
+            <div>
+                <table style="width:100%">
+                    <tr>
+                        <td style="width:350px;">
+                            <table>
+                                <tr>
+                                    <td style="width:40px">
+                                        <img src="~/ImagesApp/break_icon.png" width="60" />
+                                    </td>
+                                    <td style="vertical-align:bottom">
+                                        <font size="5" style="color: #0360a3; font-family: 'Open Sans', sans-serif;">
+                                            BREAK
+
+                                        </font>
+                                        <div id="errorsi" style="float: left; margin-right: 40px; color: red;"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width: 350px;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="display-label">
+                                            @Html.DisplayNameFor(model => model.BreakName)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="display-field">
+                                            @Html.DisplayFor(model => model.BreakName)
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <hr />
+            <table>
+
+                <tr>
+                    <td style="width:200px; ">
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.DownOnTime)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.DownOnTime)
+                        </div>
+
+                    </td><td style="font-size:12px; ">[Sek.]</td>
+                </tr>
+                <tr><td colspan="3"><br /></td></tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.DownOnCount)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.DownOnCount)
+                        </div>
+                    </td>
+                </tr>
+                <tr><td colspan="3"><br /></td></tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.Signal1Time)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.Signal1Time)
+                        </div>
+                    </td><td style="font-size:12px; ">[Sek.]</td>
+                </tr>
+                <tr><td colspan="3"><br /></td></tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.Signal2Time)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.Signal2Time)
+                        </div>
+                    </td><td style="font-size:12px; ">[Sek.]</td>
+                </tr>
+                <tr><td colspan="3"><br /></td></tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                            @Html.DisplayNameFor(model => model.Active)
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.Active)
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            @Html.HiddenFor(model => model.BreakID)
+        </div>
+    </div>
+</div>
+        <p>
+            <a href="@(Url.Content("~/Break/Edit/") + Model.BreakID.ToString())" >
+                <img src="~/ImagesApp/edit.png" />
+            </a>
+            @*@Html.ActionLink("Edit", "Edit", new { id=Model.BreakID })*@
+             |
+            @Html.ActionLink("Back to List", "Index")
+        </p>

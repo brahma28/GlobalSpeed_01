@@ -1,0 +1,111 @@
+﻿@model MvcTEST.Models.tblTemplate
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+<link id="size-stylesheet" href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" />
+<style>
+    #speed-teren
+    { 
+        width:202px; 
+        height:427px; 
+        background-color:white; 
+        border-color:darkgrey; 
+        border:solid; 
+        border-bottom-color:darkgrey; 
+        border-left-color:darkgrey; 
+        border-right-color:darkgrey; 
+        border-top-color:darkgrey;
+    } 
+</style>
+
+
+
+<div id="l1" style="padding: 10px; width: inherit; height: 660px; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Home")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+    <table style="width: 100%">
+        <!-- 2. -->
+        <tr>
+            <td align="left" colspan="2">
+                <font size="5"><b>KONFIGURATOR</b></font>
+            </td>
+            <td align="right"  rowspan="2">
+                <img src="~/ImagesApp/speedtrackikona.png" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left ; vertical-align:bottom; " colspan="2" >
+                <font size="4"><b>7.</b> Bitte wahlen Sie ihre Ziel-Messstellen.</font>
+            </td>
+
+        </tr>
+        <tr>
+            <td align="left" colspan="3">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td  colspan="3" style="text-align:left ;">
+                <font size="2">Mehrfachnennungen sind moglich.</font>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width:290px;"></td>
+
+            <td colspan="2" style="text-align:center;">
+                <div id="teren" style=" width:202px; height:427px; background-color:white;  border-color:darkgrey; border:solid; border-bottom-color:darkgrey; border-left-color:darkgrey; border-right-color:darkgrey; border-top-color:darkgrey;">
+                      @Html.Partial("teren27speedtrack")
+                </div>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="3">
+                <div id="gumbi">
+                    <!-- tabela sa gumbima -->
+                    <table style="width:100%; " >
+                        <tr>
+                            <!-- NATRAG -->
+                            <td align="left"  >
+                                <a href="/Configurator/Start26">
+                                    <img src="~/ImagesApp/gumb_natrag.png" />
+                                </a>
+                            </td>
+                            <!-- OK -->
+                            <td style="text-align:right;">
+                                <a href="/Configurator/Start28">
+                                    <img src="~/ImagesApp/gumb_ok.png" />
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        <script>
+            function onRadio1Click()
+            {
+                $.post("configurator/AjaxSetTerens?radiobutton=3", {}, function (ret) {});
+            }
+
+        </script>
+
+
+
+        </tr>
+    </table>
+
+</div>
+
+
+
+
+
+
+

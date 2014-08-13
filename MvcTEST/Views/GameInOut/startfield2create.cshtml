@@ -1,0 +1,276 @@
+﻿@using MvcTEST.HtmlHelpers
+@*@model MvcTEST.Models.tblTemplate*@
+
+@{
+    ViewBag.Title = "START FIELD 2";
+    Layout = null;
+    
+}
+
+<style>
+    .fldSmall {
+        width: 24px;
+        height: 24px;
+        margin-left: 1px;
+        margin-top: 1px;
+        font-size: 12px;
+        font-family: Verdana;
+        font-weight: bold;
+        text-align: center;
+        /*line-height: 24px;*/
+        vertical-align: middle;
+        background-color: red;
+        color: white;
+    }
+    .fldBig {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        font-size: 22px;
+        font-family: Verdana;
+        font-weight: bold;
+        text-align: center;
+        line-height: 50px;
+        vertical-align: middle;
+        background-color: red;
+        color: white;
+    }
+    .fldSmallOff {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 12px;
+        font-family: Verdana;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+        background-image: none;
+        background-color: white;
+        border: dashed 2px #bbb;
+        color: #bbb;
+    }
+    .fldSmallOffred {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        font-size: 12px;
+        font-family: Verdana;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+        background-image: none;
+        background-color: white;
+        border: dashed 2px #b00;
+        color: #b00;
+    }
+    .fldBigOff {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        font-size: 22px;
+        line-height: 50px;
+        font-family: Verdana;
+        font-weight: bold;
+        text-align: center;
+        background-image: none;
+        background-color: white;
+        border: dashed 2px #bbb;
+        color: #bbb;
+    }
+
+    .fldBigOffRed {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        font-size: 22px;
+        font-family: Verdana;
+        font-weight: bold;
+        text-align: center;
+        line-height: 50px;
+        vertical-align: middle;
+        background-image: none;
+        background-color: #faaaaa;
+        border: dashed 2px #bbb;
+        color: #bbb;
+    }
+
+    .hollow {
+        border: 2px solid #bbb;
+        background-color: white;
+    }
+
+    #fldC {
+        width: 85px;
+        height: 85px;
+        margin: 2px 2px 2px 2px;
+        vertical-align: top;
+    }
+    .polje_red
+    { 
+        color:red; 
+        width:50px; 
+        height:50px; 
+        background-color:red;
+
+    } 
+    .polje_white
+    { 
+        color:red; 
+        width:50px; 
+        height:50px; 
+        background-color:white;
+
+    } 
+
+    .polje_lgray
+    { 
+        color:red; 
+        width:30px; 
+        height:30px; 
+        background-color:lightslategray;
+    } 
+    .teren
+    { 
+        width: 100%; 
+        text-align: left; 
+        height:470px; 
+        vertical-align:top; 
+        border-spacing:0px; 
+        border:0px; 
+        PADDING:0px; 
+        border-collapse:collapse;
+    } 
+    .polje_text
+    { 
+        width:20px; 
+        position:relative; 
+        border:0px;
+        /*top:13px;*/
+
+    } 
+    .polje_text_malo
+    { 
+        width:12px; 
+        position:relative; 
+        border:0px;
+    } 
+    .square
+    { 
+       text-align:center;
+       /*align:center;*/
+       line-height:50px;
+       text-align: center;
+    } 
+</style>
+
+
+<link id="size-stylesheet" href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+@*<script src="~/Scripts/teren.js"></script>*@
+
+<div id="vanjski" name="vanjski" style="width:200px; height:200px; color:black; background-color:white; position:relative;">
+    Start field 2 (create)
+    <table border="0" style="width:100px; height:100px; border-color:yellow; vertical-align:top; ">
+        <tr>
+            <td style="width:40px; " valign="baseline"><div id="dF@(ViewBag.teren.F01ID.ToString())" title="@(ViewBag.teren.F01Name)" class="@(ViewBag.game.RF01 > 0?"fldBig":"fldBigOff")">@ViewBag.teren.F01Name</div></td>
+            <td style="width:40px; " valign="baseline"><div id="dF@(ViewBag.teren.F02ID.ToString())" title="@(ViewBag.teren.F02Name)" class="@(ViewBag.game.RF02 > 0 ? "fldBig" : "fldBigOff")">@ViewBag.teren.F02Name</div></td>
+            <td style="width:40px; " valign="baseline"><div id="dF@(ViewBag.teren.F03ID.ToString())" title="@(ViewBag.teren.F03Name)" class="@(ViewBag.game.RF03 > 0 ? "fldBig" : "fldBigOff")">@ViewBag.teren.F03Name</div></td>
+
+        </tr>
+        <tr>
+            <td style="width:40px; " valign="baseline"><div id="dF@(ViewBag.teren.F08ID.ToString())" title="@(ViewBag.teren.F08Name)" class="@(ViewBag.game.RF08 > 0 ? "fldBig" : "fldBigOff")">@ViewBag.teren.F08Name</div></td>
+            <td valign="top">
+                <div id="fldC">
+                    <table border="0" valign="top">
+                        <tr valign="top">
+                            <td style="width:20px; " valign="baseline"><div id="dF@(ViewBag.teren.F09ID.ToString())" title="@(ViewBag.teren.F09Name)" class="@(ViewBag.game.RF09 > 0 ? "fldSmall" : "fldSmallOff")">@ViewBag.teren.F09Name</div></td>
+                            <td style="width:20px; " valign="baseline"><div id="dF@(ViewBag.teren.F10ID.ToString())" title="@(ViewBag.teren.F10Name)" class="@(ViewBag.game.RF10 > 0 ? "fldSmall" : "fldSmallOff")">@ViewBag.teren.F10Name</div></td>
+                        </tr>
+                        <tr>
+                            <td style="width:20px; " valign="baseline"><div id="dF@(ViewBag.teren.F12ID.ToString())" title="@(ViewBag.teren.F12Name)" class="@(ViewBag.game.RF12 > 0?"fldSmall":"fldSmallOff")">@ViewBag.teren.F12Name</div></td>
+                            <td style="width:20px; " valign="baseline"><div id="dF@(ViewBag.teren.F11ID.ToString())" title="@(ViewBag.teren.F11Name)" class="@(ViewBag.game.RF11 > 0 ? "fldSmall" : "fldSmallOff")">@ViewBag.teren.F11Name</div></td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td style="width:40px; " valign="baseline"><div id="dF@(ViewBag.teren.F04ID.ToString())" title="@(ViewBag.teren.F04Name)" class="@(ViewBag.game.RF04 > 0?"fldBig":"fldBigOff")">@ViewBag.teren.F04Name</div></td>
+        </tr>
+        <tr>
+            <td style="width:40px; " valign="baseline"><div id="dF@(ViewBag.teren.F07ID.ToString())" title="@(ViewBag.teren.F07Name)" class="@(ViewBag.game.RF07 > 0 ? "fldBig" : "fldBigOff")">@ViewBag.teren.F07Name</div></td>
+            <td style="width:40px; " valign="baseline"><div id="dF@(ViewBag.teren.F06ID.ToString())" title="@(ViewBag.teren.F06Name)" class="@(ViewBag.game.RF06 > 0 ? "fldBig" : "fldBigOff")">@ViewBag.teren.F06Name</div></td>
+            <td style="width:40px; " valign="baseline"><div id="dF@(ViewBag.teren.F05ID.ToString())" title="@(ViewBag.teren.F05Name)" class="@(ViewBag.game.RF05 > 0 ? "fldBig" : "fldBigOff")">@ViewBag.teren.F05Name</div></td>
+        </tr>
+    </table>
+
+        
+    <div id="log"></div>
+    <div id="logID"></div>
+</div>
+
+
+
+<script type="text/javascript">
+
+    //$(document).ready(function () {
+    var ss, ssID, sss;
+    var pocpolje = $('#StartField2', window.parent.document).val();
+    var pocpoljeID = $('#StartFieldID2', window.parent.document).val();
+    var trainindIdArray = pocpolje.split(',');
+    if (pocpolje != '') {
+        $('.square').css('background-color', 'rgb(128, 128, 128)');
+    }
+    $.each(trainindIdArray, function (index, value) {
+        //alert(index + ': ' + value);   // alerts 0:[1 ,  and  1:2]
+        if (value != '') {
+            //debugger;
+            //alert("div[title|='" + value + "']");
+            if (value < 10) {
+                $("div[title|='" + value + "']").css('background-color', 'rgb(255, 0, 0)');
+            }
+            else {
+                $("div[title|='" + value + "']").css('background-color', 'rgb(255, 0, 0)');
+            }
+        }
+    });
+
+    $("[id^='dF']").click(function () {
+        //alert($(this).css('background-color'));
+        if ($(this).css('background-color') == 'rgb(255, 0, 0)') {
+            $(this).css('background-color', 'rgb(128, 128, 128)');
+            }
+            else {
+            $(this).css('background-color', 'rgb(255, 0, 0)');
+        }
+        ss='';
+        ssID='';
+        $("[id^='dF']").each(function (index) {
+            sss = $(this).attr('id');
+            if ($(this).css('background-color') == 'rgb(255, 0, 0)') {
+                if (ss.length == 0) {
+                    ss = ($(this).attr('title'));
+                    ssID = (sss.replace('dF', ''));
+                } else {
+                    ss = ss + ',' + ($(this).attr('title'));
+                    ssID = ssID + ',' + (sss.replace('dF', ''));
+                }
+
+                
+                //alert(ss);
+            }
+        });
+
+        //alert(ss);
+        $('#log').attr('name', ss);
+        $('#logID').attr('name', ssID);
+
+        });
+
+
+
+
+    //});
+
+</script>
+

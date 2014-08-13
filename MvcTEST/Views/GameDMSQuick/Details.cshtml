@@ -1,0 +1,630 @@
+﻿@model MvcTEST.Models.tblGame
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>tblGame</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NameHR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NameHR)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NameENG)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NameENG)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsRandom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsRandom)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RandomValue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RandomValue)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RandomType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RandomType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsTimeLimit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsTimeLimit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TimeLimit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TimeLimit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Objectives)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Objectives)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Definition)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Definition)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DescriptionHR)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DescriptionHR)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumShownFields)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumShownFields)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumRepetition)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumRepetition)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RandomFields)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RandomFields)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.QuickGamePool)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.QuickGamePool)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tblCategory.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tblCategory.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MinStayTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MinStayTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MaxStayTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MaxStayTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MinFlyTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MinFlyTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MaxFlyTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MaxFlyTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StartField)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartField)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Countdown)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Countdown)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LegLeft)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LegLeft)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LegRight)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LegRight)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Quantity)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Quantity)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Distance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Distance)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DescriptionDuration)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DescriptionDuration)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Reaction)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Reaction)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReactionTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReactionTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReactionFootDef)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReactionFootDef)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReactionSignalID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReactionSignalID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReactionTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReactionTypeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MemoryTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MemoryTypeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ChaseSymbolID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ChaseSymbolID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ChaseFieldsTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ChaseFieldsTypeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsActiv)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsActiv)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SeriesLength)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SeriesLength)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RandomFieldsID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RandomFieldsID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TimeLimitSecMin)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TimeLimitSecMin)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DescriptionDurationSecMin)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DescriptionDurationSecMin)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StartFieldID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartFieldID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Kinetic)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Kinetic)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Extreme)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Extreme)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventID1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventID1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventColor1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventColor1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventID2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventID2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventColor2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventColor2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventID3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventID3)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventColor3)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventColor3)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventID4)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventID4)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventColor4)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventColor4)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventID5)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventID5)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EventColor5)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EventColor5)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StartFieldID2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartFieldID2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StartField2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartField2)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+<style>
+    #newXXXVal {
+        z-index: 10000;
+        position: relative;
+        padding: 25px;
+        width: 580px;
+        height: 100px;
+        text-align: left;
+        overflow: hidden;
+        margin: 0px;
+        font: bold 11px Verdana, Sans-serif;
+        color: #fff;
+        font-size: 16px;
+        color: black;
+        -moz-box-shadow: 3px 3px 5px 6px #000;
+        -webkit-box-shadow: 3px 3px 5px 6px #000;
+        box-shadow: 0px 0px 20px 0px gray;
+        border: 0px solid;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+    }
+
+    .medvedButton {
+        border: 4px solid;
+        border-radius: 10px;
+        text-shadow: #575757 1px 1px 0;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        font-family: 'Open Sans', sans-serif;
+        color: #ffffff;
+        text-align: center;
+        vertical-align: central;
+        line-height: 50px;
+        display: -moz-inline-stack;
+        display: inline-block;
+        width: 280px;
+        height: 68px;
+        background-color: #d4d4d4;
+        background-image: -moz-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: -webkit-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: -o-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: -ms-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: linear-gradient(top, #d4d4d4, #525252 75px);
+    }
+
+    .myButton {
+        -moz-box-shadow: inset 0px 0px 14px -3px #6e6e6e;
+        -webkit-box-shadow: inset 0px 0px 14px -3px #6e6e6e;
+        box-shadow: inset 0px 0px 14px -3px #6e6e6e;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #adadad));
+        background: -moz-linear-gradient(top, #cccccc 10%, #adadad 100%);
+        background: -webkit-linear-gradient(top, #cccccc 10%, #adadad 100%);
+        background: -o-linear-gradient(top, #cccccc 10%, #adadad 100%);
+        background: -ms-linear-gradient(top, #cccccc 10%, #adadad 100%);
+        background: linear-gradient(to bottom, #cccccc 10%, #adadad 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#adadad',GradientType=0);
+        background-color: #adadad;
+        -moz-border-radius: 12px;
+        -webkit-border-radius: 12px;
+        border-radius: 12px;
+        border: 1px solid #ffffff;
+        display: inline-block;
+        color: #fafafa;
+        font-size: 16px;
+        padding: 6px 24px;
+        text-decoration: none;
+        font-style: normal;
+        font-weight: bold;
+        font-family: 'Open Sans', sans-serif;
+        font: 16px GlobalSpeedBold;
+        color: #ffffff;
+        text-align: center;
+        vertical-align: central;
+        text-shadow: 0px 1px 0px #949494;
+        width: 100px;
+        height: 35px;
+    }
+
+        .myButton:hover {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #adadad), color-stop(1, #cccccc));
+            background: -moz-linear-gradient(top, #adadad 10%, #cccccc 100%);
+            background: -webkit-linear-gradient(top, #adadad 10%, #cccccc 100%);
+            background: -o-linear-gradient(top, #adadad 10%, #cccccc 100%);
+            background: -ms-linear-gradient(top, #adadad 10%, #cccccc 100%);
+            background: linear-gradient(to bottom, #adadad 10%, #cccccc 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#adadad', endColorstr='#cccccc',GradientType=0);
+            background-color: #cccccc;
+        }
+
+        .myButton:active {
+            position: relative;
+            top: 1px;
+        }
+
+    .checkbox {
+        margin: 0 auto;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        position: relative;
+        display: block;
+        width: 94px;
+    }
+
+        .checkbox input[type=checkbox] {
+            display: none;
+        }
+
+            .checkbox input[type=checkbox] + label {
+                display: block;
+                cursor: pointer;
+                width: 94px;
+                overflow: hidden;
+                background: #fff;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                background: -webkit-linear-gradient(left, #2d5ba8 50%, #999 50%) no-repeat -20px 0;
+                background: -moz-linear-gradient(left, #2d5ba8 50%, #999 50%) no-repeat -20px 0;
+                -webkit-transition: background-position 0.3s ease-in-out;
+                -moz-transition: background-position 0.3s ease-in-out;
+            }
+
+                .checkbox input[type=checkbox] + label span,
+                .checkbox input[type=checkbox] + label span:before,
+                .checkbox input[type=checkbox] + label span:after {
+                    text-align: center;
+                    display: block;
+                    width: 54px;
+                    height: 27px;
+                    line-height: 27px;
+                    position: absolute;
+                    top: -1px;
+                    font-weight: bold;
+                    text-indent: 0;
+                    -webkit-box-shadow: inset 1px 2px 2px 0 rgba(0,0,0,.2);
+                    -moz-box-shadow: inset 1px 2px 2px 0 rgba(0,0,0,.2);
+                    box-shadow: inset 1px 2px 2px 0 rgba(0,0,0,.2);
+                }
+
+                .checkbox input[type=checkbox] + label span {
+                    text-indent: -9999px;
+                    top: 0;
+                    position: relative;
+                    left: 0;
+                    width: 37px;
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;
+                    background: -webkit-linear-gradient(#efefef 1px, #cecece 1px, #fbfbfb);
+                    background: -moz-linear-gradient(#efefef 1px, #cecece 1px, #fbfbfb);
+                    -webkit-transition: left 0.3s ease-in-out;
+                    -moz-transition: left 0.3s ease-in-out;
+                    border: solid 1px;
+                    border-color: #919191 #9f9f9f #999999 #90aacf;
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                }
+
+                    .checkbox input[type=checkbox] + label span:before {
+                        color: #eee;
+                        text-shadow: 0 1px rgba(255,255,255,.1), 0 -1px rgba(0,0,0,.3);
+                        content: "ON";
+                        background: -webkit-linear-gradient(#0360a3, #7cadf2);
+                        background: -moz-linear-gradient(#0360a3, #7cadf2);
+                        border-top: solid 1px #133676;
+                        border-bottom: solid 1px #6587b7;
+                        border-radius: 1px 0 0 1px;
+                        left: -55px;
+                    }
+
+                    .checkbox input[type=checkbox] + label span:after {
+                        color: #888;
+                        content: "OFF";
+                        left: auto;
+                        right: -55px;
+                        background: -webkit-linear-gradient(#ddd, #eee);
+                        background: -moz-linear-gradient(#ddd, #eee);
+                        border-top: solid 1px #7d7d7d;
+                        border-bottom: solid 1px #c0c0c0;
+                    }
+
+                .checkbox input[type=checkbox] + label:active span {
+                    left: 5px;
+                }
+
+            .checkbox input[type=checkbox]:checked + label:active span {
+                left: 50px;
+            }
+
+            .checkbox input[type=checkbox]:checked + label span {
+                left: 55px;
+            }
+
+            .checkbox input[type=checkbox]:checked + label {
+                background-position: 20px;
+            }
+
+        .checkbox:before,
+        .checkbox:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 93px;
+            width: 1px;
+            height: 27px;
+            border: solid #fff;
+            border-width: 1px 0;
+            z-index: 20;
+            background: #999;
+        }
+
+        .checkbox:before {
+            left: 0;
+        }
+</style>

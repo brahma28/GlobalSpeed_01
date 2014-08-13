@@ -1,0 +1,555 @@
+﻿@model MvcTEST.Models.tblGame
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Tapping";
+}
+<style>
+    #newXXXVal {
+        z-index: 10000;
+        position: relative;
+        padding: 25px;
+        width: 580px;
+        height: 100px;
+        text-align: left;
+        overflow: hidden;
+        margin: 0px;
+        font: bold 11px Verdana, Sans-serif;
+        color: #fff;
+        font-size: 16px;
+        color: black;
+        -moz-box-shadow: 3px 3px 5px 6px #000;
+        -webkit-box-shadow: 3px 3px 5px 6px #000;
+        box-shadow: 0px 0px 20px 0px gray;
+        border: 0px solid;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+    }
+
+    .medvedButton {
+        border: 4px solid;
+        border-radius: 10px;
+        text-shadow: #575757 1px 1px 0;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        font-family: 'Open Sans', sans-serif;
+        color: #ffffff;
+        text-align: center;
+        vertical-align: central;
+        line-height: 50px;
+        display: -moz-inline-stack;
+        display: inline-block;
+        width: 280px;
+        height: 68px;
+        background-color: #d4d4d4;
+        background-image: -moz-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: -webkit-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: -o-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: -ms-linear-gradient(top, #d4d4d4, #525252 75px);
+        background-image: linear-gradient(top, #d4d4d4, #525252 75px);
+    }
+</style>
+
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<script type="text/javascript" src="/Scripts/fancybox/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript" src="/Scripts//fancybox/jquery.Easing-1.3.pack.js"></script>
+<link id="size-stylesheet" href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Scripts/fancybox/jquery.fancybox-1.3.4.css")" type="text/css" media="screen" />
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Games", "Configurator")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+    @using (Html.BeginForm("Edit", "GameTapping", FormMethod.Post, new { enctype = "multipart/form-data", id = "gtedit" }))
+    {
+        <div>
+            <table style="width: 800px">
+                <tr>
+                    <td>
+                        <table style="width: 500px; text-align: left">
+                            <tr>
+                                <td>
+                                    <img src="~/ImagesApp/TAPPING12.png" />
+                                </td>
+                                <td>
+                                    <div id="errorsi" style="float: left; margin-right: 40px; color: red;"></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <table style="width: 300px; text-align: right">
+                            <tr>
+                                <td colspan="2">
+                                    <font size="6" style="color: #0360a3; font-family: 'Open Sans', sans-serif;">
+                                        <b> @ViewBag.game.CategoryName.ToUpper()  </b></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;">
+                                    <div class="editor-label" style="text-align: right; /*width: 160px; */">
+                                        @* @Html.LabelFor(model => model.Name, @Html.Translate("Naziv igre"), new { style = "text-align:right;" })*@
+                                        @Html.LabelFor(model => model.Name, @Html.Translate("Game name"), new { style = "text-align:right;" })
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="editor-field" style="width: 200px;">
+
+                                        @Html.TextBoxFor(model => model.Name, new { style = "width: 200px;" })
+                                      @*  @Html.ValidationMessageFor(model => model.Name)*@
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </table>
+                </tr>
+            </table>
+        </div>       
+        <hr /> 
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+           
+        
+        @Html.HiddenFor(model => model.NameHR)
+
+        
+        @Html.HiddenFor(model => model.NameENG)     
+        
+       
+
+        @Html.HiddenFor(model => model.IsRandom)
+        @Html.HiddenFor(model => model.RandomValue)
+        @Html.HiddenFor(model => model.RandomType)    
+        
+        <table style="/*width: 750px; */ text-align: left;">
+
+
+
+            <tr>
+                <td style="text-align: right; width: 120px;">
+                    <div class="editor-label" style="text-align: right;">
+                        @Html.LabelFor(model => model.TimeLimit, @Html.Translate("Spieldauer"), new { style = "text-align:right;" })
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field" style="width: 100px;">
+                        @*@Html.EditorFor(model => model.TimeLimit)*@
+                        @Html.TextBoxFor(model => model.TimeLimit, new { style = "width: 80px;" })
+                      @*  @Html.ValidationMessageFor(model => model.TimeLimit)*@
+                    </div>
+                </td>
+                <td>(Sec.)</td>
+                <td>
+                    @*                    <div class="editor-label">
+                        @Html.LabelFor(model => model.IsTimeLimit, @Html.Translate("Ist Frist"))
+                    </div>*@
+                </td>
+                <td>
+                    @*                    <div class="editor-field" style="width: 160px;">
+                        @Html.EditorFor(model => model.IsTimeLimit)
+                        @Html.ValidationMessageFor(model => model.IsTimeLimit)
+                    </div>*@
+                </td>
+                <td></td>
+
+            </tr>
+
+            @*@Html.HiddenFor(model => model.Description)*@
+            @*    @Html.HiddenFor(model => model.Definition)*@
+
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Description, @Html.Translate("Description"))
+                    </div>
+                </td>
+                <td colspan="5">
+                    <div class="editor-field" style="width: 700px;">
+                        @Html.EditorFor(model => model.Description)
+                      @*  @Html.ValidationMessageFor(model => model.Description)*@
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.DescriptionDuration, @Html.Translate("Description duration"))
+                    </div>
+                </td>
+                <td colspan="5">
+                    <div class="editor-field" style="width: 700px;">
+                        @Html.EditorFor(model => model.DescriptionDuration)
+                     @*   @Html.ValidationMessageFor(model => model.DescriptionDuration)*@
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="editor-label">
+                        @*@Html.LabelFor(model => model.NumRepetition,"Repete")*@
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.NumRepetition, @Html.Translate("Repete No."))
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field" style="width: 73px;">
+                        @*@Html.EditorFor(model => model.NumRepetition)*@
+                        @Html.TextBoxFor(model => model.NumRepetition, new { style = "width: 43px;" })
+                       @* @Html.ValidationMessageFor(model => model.NumRepetition)*@
+                    </div>
+                </td>
+
+                <td></td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.QuickGamePool, @Html.Translate("Schnelles Spiel"))
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field" style="width: 150px;">
+                        @Html.EditorFor(model => model.QuickGamePool)
+                     @*   @Html.ValidationMessageFor(model => model.QuickGamePool)*@
+                    </div>
+                </td>
+
+            </tr>
+
+        </table>
+        
+        @Html.HiddenFor(model => model.RandomFields)
+@*  @Html.HiddenFor(model => model.NumShownFields)   *@
+        @Html.HiddenFor(model => model.CategoryID)
+
+        <table style="text-align: left">
+            <tr>
+                <td>
+                    <b>@Html.Translate("Bodenkontaktzeit") </b>
+                </td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MinStayTime, "(min.)")
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field" style="width: 200px;">
+                        @Html.EditorFor(model => model.MinStayTime)
+                   @*     @Html.ValidationMessageFor(model => model.MinStayTime)*@
+                    </div>
+                </td>
+                <td>[ms]</td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MaxStayTime, "(max.)")
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field" style="width: 200px;">
+                        @Html.EditorFor(model => model.MaxStayTime)
+                      @*  @Html.ValidationMessageFor(model => model.MaxStayTime)*@
+                    </div>
+                </td>
+                <td>[ms]</td>
+            </tr>
+            <tr>
+                <td><b>@Html.Translate("Fly time") </b></td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MinFlyTime, "(min.)")
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field" style="width: 200px;">
+                        @Html.EditorFor(model => model.MinFlyTime)
+                       @* @Html.ValidationMessageFor(model => model.MinFlyTime)*@
+                    </div>
+                </td>
+                <td>[ms]</td>
+                <td>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MaxFlyTime, "(max.)")
+                    </div>
+                </td>
+                <td>
+                    <div class="editor-field" style="width: 200px;">
+                        @Html.EditorFor(model => model.MaxFlyTime)
+                      @*  @Html.ValidationMessageFor(model => model.MaxFlyTime)*@
+                    </div>
+                </td>
+                <td>[ms]</td>
+            </tr>
+        </table>
+
+        @Html.HiddenFor(model => model.StartField)
+@* @Html.HiddenFor(model => model.Countdown)  *@
+
+        @Html.HiddenFor(model => model.DescriptionHR)
+        @Html.HiddenFor(model => model.Objectives)
+
+        <table style="width: 850px; text-align: left;">
+            <tr>
+                <td><b>@Html.Translate("Mittlere Platten") </b>
+
+                </td>
+                <!-- 1 -->
+                @*                <td>
+                    <div id="NumShownFields1" style="width: 150px; height: 50px;">
+                        
+                            <img style="width: 150px; height: 50px;" src="~/ImagesApp/NumShownFields1.png" />
+                    
+                    </div>
+                </td>
+                <td style="width: 150px">
+
+                    @Html.RadioButtonFor(m => m.NumShownFields, 1)
+                             1
+                </td>*@
+                <!-- 2 -->
+                <td style="text-align: center;">
+                    <div id="NumShownFields2">
+
+                        <img style="width: 150px; height: 50px;" src="~/ImagesApp/NumShownFields2.png" />
+
+                    </div>
+                    @Html.RadioButtonFor(m => m.NumShownFields, 2)
+                </td>
+
+                <!-- 4 -->
+                <td style="text-align: center;">
+                    <div id="NumShownFields4">
+
+                        <img style="width: 150px; height: 50px;" src="~/ImagesApp/NumShownFields4.png" />
+
+                    </div>@Html.RadioButtonFor(m => m.NumShownFields, 4)
+                </td>
+
+
+            </tr>
+        </table>
+
+        <table style="width: 850px; text-align: left;">
+            <tr>
+                <td style="width: 100px;">
+                    <font size="3" style="color: black; font-family: 'Open Sans', sans-serif; text-align: left;"><b>@Html.Translate("Contact No.")</b></font>
+                </td>
+                <!-- broj kontakta (količina) -->
+                <td style="text-align: left;">
+                    <div class="editor-field" style="width: 60px;">
+                        @Html.TextBoxFor(model => model.Quantity, new { style = "width: 60px;" })
+                      @*  @Html.ValidationMessageFor(model => model.Quantity)*@
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+
+        <table style="width: 850px; text-align: left;">
+            <tr>
+                <td style="width: 100px;">
+                    <font size="3" style="color: black; font-family: 'Open Sans', sans-serif; text-align: left;"><b>@Html.Translate("Countdown")</b></font>
+                </td>
+                <!-- broj kontakta (količina) -->
+                <td style="text-align: left;">
+                    <div class="editor-field" style="width: 60px;">
+                        @Html.TextBoxFor(model => model.Countdown, new { style = "width: 60px;" })
+                       @* @Html.ValidationMessageFor(model => model.Countdown)*@
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+        
+        <table style="width: 580px; height: 68px; text-align: right; margin-top: 50px;">
+            <tr>
+                <!-- SAVE -->
+
+                <td>
+                    <p>
+                        <input type="submit" value="@Html.Translate("Spremi")"  class="medvedButton"/>
+                    </p>
+                </td>
+
+                <td>
+
+                    <div id="delete" class="medvedButton">@Html.Translate("Delete")        </div>
+                    
+
+                </td>
+                <!-- SAVE AS -->
+                <td>
+                    <a id="inlineNewXXX" href='#newXXXVal' class="medvedButton">
+                        @Html.Translate("Speichern unter")
+                        <div style="display: none; width: 600px;">
+                            <div id="newXXXVal">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <font style="color: gray;">Save </font>
+                                        </td>
+                                        <td>
+                                            <font style="color: gray;"> as: </font>
+                                        </td>
+                                        <td>
+                                            <input  style="width:460px; color: #0360a3;" id="txtGameName" type="text" value=@ViewBag.game.Name />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <input type="button" OnClick="javascript: $.fancybox.close();" value="@Html.Translate("Abbrechen")" class="medvedButton" />
+                                        </td>
+                                        <td>
+                                            <input id="SaveAs" type="button" value="@Html.Translate("Speichern")" class="medvedButton" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </a>
+                </td>
+
+            </tr>
+        </table>
+    }
+
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#gtedit").submit(function () {
+            
+           var grr = "";
+           //alert($("#DescriptionDuration").val().trim().length);
+
+            if ($("#Name").val().trim().length == 0) {
+                grr = grr + "@Html.Translate("Potrebno je unijeti ime!")" + " <br />";
+            }
+
+            if (!$.isNumeric($("#TimeLimit").val().trim()) && $("#TimeLimit").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Please enter the numbers for time limit")" + "! <br />";
+                    }
+//alert("aaaa");
+            if (!$.isNumeric($("#DescriptionDuration").val().trim())) {
+                grr = grr + "@Html.Translate("Please enter the numbers for description duration")" + "! <br />";
+                    }
+
+            if (!$.isNumeric($("#NumRepetition").val()) && $("#NumRepetition").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Please enter the numbers for number repetition")" + "! <br />";
+                    }
+
+@*            if (!$.isNumeric($("#MinStayTime")) && $("#MinStayTime").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Please enter the numbers for min. stay time")" + "! <br />";
+                    }
+            if (!$.isNumeric($("#MinFlyTime")) && $("#MinFlyTime").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Please enter the numbers for min. fly time")" + "! <br />";
+                    }
+            if (!$.isNumeric($("#MaxStayTime")) && $("#MaxStayTime").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Please enter the numbers for max. stay time")" + "! <br />";
+                    }
+            if (!$.isNumeric($("#MaxFlyTime")) && $("#MaxFlyTime").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Please enter the numbers for max. fly time")" + "! <br />";
+                    }*@
+            if (!$.isNumeric($("#Quantity")) && $("#Quantity").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Please enter the numbers for Contact No.")" + "! <br />";
+                    }
+
+            if (!$.isNumeric($("#Countdown").val().trim())) {
+                grr = grr + "@Html.Translate("Please enter the numbers for Countdown")" + "! <br />";
+                    }
+
+
+            $("#errorsi").html(grr).show();
+
+            if (grr.length == 0) {
+                $("#errorsi").html(grr).hide();
+                return true;
+            } else { return false; }
+        });
+
+
+        $('#inlineNewXXX').fancybox({
+
+            'titlePosition': 'inside',
+            'transitionIn': 'fade',
+            'transitionOut': 'fade',
+            'autoDimensions': 'false',
+            'overlayOpacity': 0.5
+        });
+
+        $('#delete').click(function () {
+            //if (confirm("Are you sure?")) {
+            if (confirm("Sind Sie sicher?")) {
+                $.post('@Url.Action("Delete", "GameTapping", new { Model.ID })', function (data) {
+                                window.location.href = '@Url.Action("Games","Configurator")';
+                        });
+                    }
+                        return false;
+
+                    });
+
+
+        $('#SaveAs').click(function () {
+            $.post('@Url.Action("SaveAs2", "GameTapping")', {
+                Name: $('#txtGameName').val(), IsRandom: true, RandomValue: $('#RandomValue').val(),
+                RandomType: 1, IsTimeLimit: false, TimeLimit: $('#TimeLimit').val(),
+                Description: $('#Description').val(), Objectives: $('#Objectives').val(), Definition: $('#Definition').val(),
+                NumShownFields: $('#NumShownFields').val(), NumRepetition: $('#NumRepetition').val(), RandomFields: $('#RandomFields').val(),
+                QuickGamePool: true, CategoryID: $('#CategoryID').val(), MinStayTime: $('#MinStayTime').val(),
+                MaxStayTime: $('#MaxStayTime').val(), MinFlyTime: $('#MinFlyTime').val(), MaxFlyTime: $('#MaxFlyTime').val(),
+                StartField: $('#StartField').val(), Countdown: $('#Countdown').val(), LegLeft: true, LegRight: true, Quantity: $('#Quantity').val(), Distance: 0
+            },
+                         function (data) {
+                             $('#ID').val(data);
+                             //$('#tappingName').html($('#txtGameName').val());
+                             $.fancybox.close();
+                             debugger;
+                             window.location.href = '@Url.Action("Games", "Configurator")';
+                         });
+
+        });
+
+
+
+
+
+    });
+
+
+                 function fancyConfirm(dataObject) {
+                     var makeSureText = ich['areYouSure'](dataObject);
+                     $.fancybox({
+                         modal: true,
+                         content: makeSureText,
+                         onComplete: function () {
+                             $("#okConfirm").click(function (event, dataObject) {
+                                 event.preventDefault();
+                                 dataObject.confirmed();
+                                 $.fancybox.close();
+                             })
+                             $("#cancelConfirm").click(function (event) {
+                                 event.preventDefault();
+                                 $.fancybox.close();
+                             })
+                         },
+                         onClosed: function () {
+                             return false;
+                         }
+                     });
+                     return false;
+                 }
+</script>
+
+

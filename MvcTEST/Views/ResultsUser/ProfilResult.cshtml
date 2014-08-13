@@ -1,0 +1,215 @@
+﻿@{
+    ViewBag.Title = "Profil";
+}
+@using MvcTEST.HtmlHelpers
+
+<div id="l1" style="padding: 10px; padding-left: 30px; height: 620px; width: 890px; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Results")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+    <div id="l1" style="padding: 10px; padding-left: 20px; width: 840px; height: 550px; position: relative; z-index: 1; -moz-box-shadow: 0px 0px 0px 0x #000; -webkit-box-shadow: 0px 0px 0px 0px #000; box-shadow: 0px 0px 0px 0px gray; background-color: white; border: 2px; border-radius: 10px; -moz-border-radius: 10px; border-style: solid; border-color: #aaaaaa; ">
+        
+        <table style="width: 850px; vertical-align: top;">
+            <!-- NAZIV EKRANA-->
+            <tr>
+                <td align="left">
+                    @*.ToUpper()*@ 
+                    <font color="#0360a3" size="5"><b>SPIELDETAILS</b></font>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr><td colspan="2"><hr /></td></tr>
+            <tr><td colspan="2"><br /></td></tr>
+            <tr>
+                <!-- LIJEVA TABELA  -->
+                <td style="width: 400px; vertical-align: top;" >
+                    <table style="width: 400px; vertical-align: top;">
+                        <!-- NAME SURENAME-->
+                        <tr>
+                            <td colspan="2" align="left"><font color="#0360a3" size="3">
+                                <b>@ViewBag.userprofil.Name</b>
+                                <b>@ViewBag.userprofil.Surname</b></font>
+                            </td>
+                        </tr>
+                        <tr><td colspan="2"><hr /></td></tr>
+                        <!-- VEREIN - organization -->
+                        <tr>
+                            <td align="left">
+                                @Html.Translate("Organizacija")
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.GroupName</b>
+                            </td>
+                        </tr>
+                        <tr><td colspan="2"><hr /></td></tr>
+                        <!-- ALTER - old -->
+                        <tr>
+                            <td align="left">
+                                @Html.Translate("Godina života")
+                            </td>
+                            <td align="left">
+                                <!--razlika godina izmedju danas - rodjendan =>  -->
+                                <b>@(DateTime.Now.Subtract(ViewBag.user.Birthday).Days /365)</b>
+                            </td>
+                        </tr>
+                        <tr><td colspan="2"><hr /></td></tr>
+                        <!-- MITGLIED SEIT - member since -->
+                        <tr>
+                            <td align="left">
+                                @Html.Translate("Član od")
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.user.CreationDate</b>
+                            </td>
+                        </tr>
+                        <tr><td colspan="2"><hr /></td></tr>
+                        <!-- SPORTART - sport -->
+                        <tr>
+                            <td align="left">
+                                @Html.Translate("Vrsta Sporta")
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.SportName</b>
+                            </td>
+                        </tr>
+                        <tr><td colspan="2"><hr /></td></tr>
+                        <!--*************************************-->
+                        <!-- GAME NAME -->
+                        <tr>
+                            <td colspan="2" align="left">
+                                <font color="#0360a3" size="3"><b>@ViewBag.rezultat.GameName</b></font>
+
+                            </td>
+                        </tr>
+                        <tr><td colspan="2"><hr /></td></tr>
+                        <!-- Kontakte -->
+                        <tr>
+                            <td align="left">
+                                @Html.Translate("Kontakata")
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.rezultat.Rezultat</b>
+                            </td>
+                        </tr>
+                        <tr><td colspan="2"><hr /></td></tr>
+                        <!-- Links : ContactsLeft -->
+                        <tr>
+                            <td align="left">
+                                @Html.Translate("Lijeva")
+                            </td>
+                            <td align="left">
+                                @*<b>@ViewBag.rezultat.ContactsLeft</b>*@
+                                <b>@ViewBag.rezultat.Rezultat</b>
+                            </td>
+                        </tr>
+                        <tr><td colspan="2"><hr /></td></tr>
+                        <!-- Recht : ContactsRight -->
+                        <tr>
+                            <td align="left">
+                                @Html.Translate("Desna")
+                            </td>
+                            <td align="left">
+                                @*<b>@ViewBag.rezultat.ContactsRight</b>*@
+                                <b>@ViewBag.rezultat.Rezultat</b>
+                            </td>
+                        </tr>
+                        <tr><td colspan="2"><hr /></td></tr>
+                        <!-- Kontaktzeit durchsch. -->
+                        <tr>
+                            <td align="left">
+                                @Html.Translate("Vrijeme trajanja kontakta")
+                            </td>
+                            <td align="left">
+
+                                <b>@ViewBag.rezultat.LapTime.ToString("mm:ss")</b>
+
+                            </td>
+                        </tr>
+                        <tr><td colspan="2"><hr /></td></tr>
+                    </table>
+                </td>
+                <!--  DESNA TABELA -->
+                <td style="width:400px; vertical-align: top;">
+                    <table style=" width:400px; vertical-align:top;">
+                    <!-- NAME SURENAME-->
+                        <tr>
+                            <td colspan="4" align="left">
+                                <font color="#0360a3" size="3">
+                                    <b>Reasult details</b>
+                                </font>
+                            </td>
+                        </tr>
+                        <tr><td colspan="4"><hr /></td></tr>
+                        <tr style="color: #0360a3;">
+                            <td> Mat.</td>
+                            <td> Entry Time</td>
+                            <td> Interval</td>
+                            <td> Down</td>
+                       </tr>
+                    @{ var brojac = 0;
+                       foreach (MvcTEST.Models.tblSpeedEntry item1 in @ViewBag.speedentry)
+                        {
+                        <tr style="font-size:12px; ">
+                            <td style="font-weight:bold; "> @item1.MatID</td>
+                            <td> @item1.EntryTime</td>       
+                            <td> @item1.Interval [ms]</td>
+                            <td> @item1.Down [ms]</td>                                                 
+                        </tr>
+
+                        }
+                    }
+                    </table>
+                </td>
+
+
+            </tr>
+        </table>
+        @*<table style="text-align:left; width:100%; margin-top:10px" >
+            <tr>
+                <!-- cancel -->
+                <td>
+                    <input type="button" value='@Html.Translate("Odustani").ToUpper()' onclick="javascript:history.back()" class="cancel" />
+                </td>
+                <!-- e-mail -->
+                <td>
+                    <input type="button" value='@Html.Translate("E-Mail").ToUpper()' onclick="onMail()" class="e-mail" />
+                </td>
+                <!-- print -->
+                <td>
+                    <input type="button" value='@Html.Translate("Print").ToUpper()' onclick="print()" class="print" />
+                </td>
+                <!-- excel export -->
+                <td>
+                    <input type="button" value='@Html.Translate("Excel").ToUpper()' onclick="onSearchClick()" class="excel" />
+                </td>
+                <!-- PDF download -->
+                <td>
+                    <input type="button" value='@Html.Translate("Pdf").ToUpper()' onclick="onSearchClick()" class="pdf" />
+                </td>
+            </tr>
+        </table>*@
+        <script>
+            function onSearchClick() {
+                $.post("results/AjaxSearch?search=" + escape($("#txtSearch").val()), {}, function (ret) {
+                    $("#content").html(ret);
+                }
+                    );
+            }
+            function onMail() {
+
+                var picker = $("#datepicker").datepicker('getDate');
+                var month = picker.getMonth() + 1;
+                var url = "/resultsgroupe/SendMail?ID=" + @ViewBag.user.ID + "&datum=" + picker.getFullYear() + "-" + month + "-" + picker.getDate();
+
+                $.post(url, {}, function (ret) {
+                    alert(ret);
+                }
+                    );
+            }
+        </script>       
+         
+    </div>
+</div>

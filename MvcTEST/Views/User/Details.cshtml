@@ -1,0 +1,354 @@
+﻿@model MvcTEST.Models.tblUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div id="l1" style="border: 0px solid; padding: 8px; padding-bottom: 25px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Home")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+    <div id="okvir-bijeli" style="padding: 10px; width: 95%; height: 90%; border-radius: 10px; -moz-border-radius: 10px; background-color: #fff">
+
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 712px">
+                    <h2 align="left"><font size="5" color="#0360a3">BENUTZER ANLEGEN</font></h2>
+                    <hr />
+                    <br />
+
+
+                    <table>
+
+                        <tr>
+                            <td>
+
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Username)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.Username)
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.City)
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.City)
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Password)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.Password)
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.ZIP)
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.ZIP)
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.PIN)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.PIN)
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Phone)
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.Phone)
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.Name)
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Mobile)
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.Mobile)
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Surname)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.Surname)
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.tblUserGroup.Name)
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.tblUserGroup.Name)
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Birthday)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.Birthday)
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.tblSport.Name)
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.tblSport.Name)
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Weight)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.Weight)
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.HasPicture)
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.HasPicture)
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Height)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.Height)
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Notes)
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.Notes)
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.RFID)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.RFID)
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.IsActiv)
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.IsActiv)
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.LastLogin)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.LastLogin)
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.CreationDate)
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.CreationDate)
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Address)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.Address)
+                                </div>
+
+                            </td>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.LanguageID)
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.LanguageID)
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="display-label">
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="display-field">
+                                    @Html.DisplayFor(model => model.Email)
+                                </div>
+
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+
+
+
+                    <p>@Html.ActionLink("Delete", "Delete", new { id = Model.ID }) |
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+                    @Html.ActionLink("Back to List", "Index")
+                    </p>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

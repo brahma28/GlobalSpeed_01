@@ -1,0 +1,232 @@
+﻿@{
+    ViewBag.Title = "QUICKGAME";
+}
+
+
+<style type="text/css">
+
+#fld1{
+	border:2px solid #bbb;
+	width:31px;
+	height: 31px;
+	line-height: 31px;
+	font-size: 17px;
+	text-align: center;
+}
+#fld2{
+	border:2px solid #bbb;
+	width:31px;
+	height: 31px;
+	line-height: 31px;
+	font-size: 17px;
+	text-align: center;
+}
+#fld3{
+	border:2px solid #bbb;
+	width:31px;
+	height: 31px;
+	line-height: 31px;
+	font-size: 17px;
+	text-align: center;
+}
+#fld4{
+	border:2px solid #bbb;
+	width:31px;
+	height: 31px;
+	line-height: 31px;
+	font-size: 17px;
+	text-align: center;
+}
+
+
+#fldC{
+	width:65px;
+	height: 65px;
+	margin:20px 16px 0px 17px;
+}
+#fld5{
+	width:65px;
+	height: 65px;
+	margin:25px;
+	font-size: 35px;
+	text-align: center;
+	line-height: 65px;
+}
+#fld6{
+	width:65px;
+	height: 65px;
+	line-height: 65px;
+	margin:25px;
+	font-size: 35px;
+	text-align: center;
+}
+#fld7{
+	width:65px;
+	height: 65px;
+	margin:25px;
+	font-size: 35px;
+	text-align: center;
+	line-height: 65px;
+}
+#fld8{
+	width:65px;
+	height: 65px;
+	margin:25px;
+	font-size: 35px;
+	text-align: center;
+	line-height: 65px;
+}
+#fld9{
+	width:65px;
+	height: 65px;
+	margin:25px;
+	font-size: 35px;
+	text-align: center;
+	line-height: 65px;
+}
+#fld10{
+	width:65px;
+	height: 65px;
+	line-height: 65px;
+	margin:25px;
+	font-size: 35px;
+	text-align: center;
+}
+#fld11{
+	width:65px;
+	height: 65px;
+	margin:25px;
+	font-size: 35px;
+	text-align: center;
+	line-height: 65px;
+}
+#fld12{
+	width:65px;
+	height: 65px;
+	margin:25px;
+	font-size: 35px;
+	text-align: center;
+	line-height: 65px;
+}
+
+
+
+#fld1, #fld2, #fld3, #fld4, #fld5, #fld6, #fld7, #fld8, #fld9, #fld10, #fld11, #fld12
+{
+/*background-image: linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+background-image: -o-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+background-image: -moz-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+background-image: -webkit-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+background-image: -ms-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);*/
+	border: 2px solid #bbb;
+	cursor: default;
+	background-color: white;
+}
+
+</style>
+
+<script src="jquery.min.js"></script>
+
+
+<script type="text/javascript">
+
+    
+
+    var wsUri = "ws://localhost:8080/test";
+    
+
+    var action = {
+        turnon: function (field) {            
+            $('#'+field).css('background-color', 'yellow');
+        },
+        turnoff: function (field) {
+            $('#'+field).css('background-color', 'white');
+        }
+    };
+
+  function init()
+    {      
+      websocket = new WebSocket(wsUri);
+      websocket.onopen = function (evt) { onOpen(evt) };
+      websocket.onclose = function (evt) { onClose(evt) };
+      websocket.onmessage = function (evt) { onMessage(evt) };
+      websocket.onerror = function (evt) { onError(evt) };
+  }
+   
+
+  function onOpen(evt)
+  {
+    
+  }
+
+  function onClose(evt)
+  {
+    
+  }
+
+  function onMessage(evt)
+  {
+    var data = evt.data.split("!!");
+    action[data[1]](data[0]);
+  }
+
+  function onError(evt)
+  {
+      alert("ERROR:" + evt.data);
+  }
+
+  function doSend(message)
+  {
+    //writeToScreen("SENT: " + message); 
+    websocket.send(message);
+  }
+    
+
+  window.addEventListener("load", init, false);
+
+  
+  
+    </script>
+</head>
+<body>
+    
+
+    <table border="0">
+	    <tr>
+		    <td valign="baseline"><div id="fld5">5</div></td>
+		    <td valign="baseline"><div id="fld6">6</div></td>
+		    <td valign="baseline"><div id="fld7">7</div></td>
+	    </tr>
+	    <tr>
+		    <td valign="baseline"><div id="fld8">8</div></td>
+		    <td valign="top">
+			    <div id="fldC">
+				    <table border="0">
+					    <tr>
+						    <td>
+							    <div id="fld3">3</div>
+						    </td>
+						    <td>
+							    <div id="fld4">4</div>
+						    </td>
+					    </tr>			
+					    <tr>
+						    <td>
+							    <div id="fld1">1</div>
+						    </td>
+						    <td>
+							    <div id="fld2">2</div>
+						    </td>
+					    </tr>
+				    </table>
+			    </div>
+		    </td>
+		    <td valign="baseline"><div id="fld9">9</div></td>
+	    </tr>
+	    <tr>
+		    <td valign="baseline"><div id="fld10">10</div></td>
+		    <td valign="baseline"><div id="fld11">11</div></td>
+		    <td valign="baseline"><div id="fld12">12</div></td>
+	    </tr>
+    </table>
+

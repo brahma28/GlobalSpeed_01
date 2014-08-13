@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MvcTEST.Models.vwUserGroup>
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Home")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+
+
+    <div id="groups" style="padding: 10px; height: 450px; margin-top:10px; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #FFF; padding-bottom:30px; ">
+        <text><b><font color="#0360a3" size="5">@Html.Translate("GRUPPE") @Html.DisplayNameFor(model => model.Name)</font></b></text>
+        <br />
+        <hr />
+        <div id="groupsin" style="height: 420px; position: inherit; background-color: #FFF; overflow-y: scroll; overflow-x: hidden;">
+            <table style="width:100%;">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td style='color:@(item.Active!=true?"red":"black") '><b>
+
+                            @Html.DisplayFor(modelItem => item.Name) (@Html.DisplayFor(modelItem => item.MemberCount) )
+
+                            </b>
+                        </td>
+                        <td style="text-align:right; padding-right:10px">
+                         <a href="@(Url.Content("~/Groupe/Edit/") + item.ID.ToString())" title="@Html.Translate("Bearbeiten")">
+                             <img src="~/ImagesApp/edit.png" />
+                         </a>  
+
+                         <a href="@(Url.Content("~/Groupe/Details/") + item.ID.ToString())" title="@Html.Translate("Einzelheiten")">
+                             <img src="~/ImagesApp/details.png" />
+                         </a>  
+                                         @{  if (item.MemberCount==0)
+                                             {                                  
+                         <a href="@(Url.Content("~/Groupe/Delete/") + item.ID.ToString())" title="@Html.Translate("Löschen")">
+                             <img src="~/ImagesApp/delete.png" />
+                         </a>  
+                                         } }
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><hr /></td></tr>  
+                }
+
+            </table>
+
+        </div>
+    </div>
+    <br />
+    <p>
+        <input type="button" class="edit-group" onclick="location.href='@Url.Action("Create", "Groupe")'" value="@Html.Translate("Gruppen anlegen").ToUpper()"/>
+    </p>
+</div>

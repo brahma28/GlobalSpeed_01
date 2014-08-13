@@ -1,0 +1,242 @@
+﻿@model MvcTEST.Models.GameData
+@{
+    ViewBag.Title = "Play Game";
+    Layout = null;
+} 
+
+
+<style type="text/css">
+
+    .fldSmall {
+        border:2px solid #bbb;
+	    width:61px;
+	    height: 61px;
+	    line-height: 61px;
+	    font-size: 17px;
+	    text-align: center;
+        vertical-align:middle; 
+    }
+
+    .fldBig {
+	    width:125px;
+	    height: 125px;
+	    margin:50px;
+	    font-size: 35px;
+	    text-align: center;
+	    line-height: 125px;
+        vertical-align:middle;
+    }
+
+    #fldC {
+        width: 85px;
+        height: 85px;
+        margin: 45px 43px 2px 45px;
+    }
+
+
+
+
+#fld1, #fld2, #fld3, #fld4, #fld5, #fld6, #fld7, #fld8, #fld9, #fld10, #fld11, #fld12
+{
+background-image: linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+background-image: -o-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+background-image: -moz-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+background-image: -webkit-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+background-image: -ms-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+	border: 2px solid #bbb;
+	cursor: default;
+	background-color: white;
+}
+
+</style>
+
+
+<script src="/Scripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery-css-transform.js"></script>
+<script type="text/javascript" src="/Scripts/rotate3Di.js"></script>
+
+
+<script type="text/javascript">
+
+    
+
+    var wsUri = "ws://localhost:8080/test";
+    
+
+    var action = {
+        turnon: function (field) {
+            $('#' + field).css('background-image', 'none');
+            $('#' + field).css('background-color', 'yellow');
+        },
+        turnoff: function (field) {
+            //$('#'+field).css('background-color', 'white');
+            $('#' + field).css('background-image', 'linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%)');
+            $('#' + field).css('background-image', '-o-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%)');
+            $('#' + field).css('background-image', '-moz-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%)');
+            $('#' + field).css('background-image', '-webkit-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%)');
+            $('#' + field).css('background-image', '-ms-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%)');
+            $('#' + field).rotate3Di(360, 500);
+        },
+        turnoffnoeffects: function (field) {
+            //$('#'+field).css('background-color', 'white');
+            $('#' + field).css('background-image', 'linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%)');
+            $('#' + field).css('background-image', '-o-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%)');
+            $('#' + field).css('background-image', '-moz-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%)');
+            $('#' + field).css('background-image', '-webkit-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%)');
+            $('#' + field).css('background-image', '-ms-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%)');
+        },
+        countdown: function (secs) {
+            count = parseInt(secs) + 1;
+            counter = setInterval(timer, 1000);
+            $("#bigtext").hide();
+            $("#bigtext span").css("font-size", "400px");
+            $("#bigtext span").html("");
+            $("#bigtext").css("line-height", "700px");
+        },
+        message: function (msg) {
+            if (msg == "hide")
+                $("#bigtext").hide();
+            else {
+                $("#bigtext").css("line-height", "80px");
+                $("#bigtext span").html(msg);
+                $("#bigtext span").css("font-size", "50px");
+                $("#bigtext").fadeIn(400);
+            }
+        },
+        gameover: function (msg) {
+            
+            $("#gamemenu").show();
+            $("#bigtext").css("line-height", "80px");
+            $("#bigtext span").html(msg);
+            $("#bigtext span").css("font-size", "50px");
+            $("#bigtext").fadeIn(400);
+        }    
+    };
+
+  function init()
+    {      
+      websocket = new WebSocket(wsUri);
+      websocket.onopen = function (evt) { onOpen(evt) };
+      websocket.onclose = function (evt) { onClose(evt) };
+      websocket.onmessage = function (evt) { onMessage(evt) };
+      websocket.onerror = function (evt) { onError(evt) };
+  }
+   
+
+  function onOpen(evt)
+  {
+      websocket.send("ID!!@Model.userid;@Model.gameid");
+  }
+
+  function onClose(evt)
+  {
+    
+  }
+
+  function onMessage(evt)
+  {
+      var data = evt.data.split("!!");      
+      action[data[0]](data[1]);
+  }
+
+  function onError(evt)
+  {
+      //alert("ERROR:" + evt.data);
+      alert("Cannot connect to server...");
+  }
+
+  function doSend(message)
+  {
+    //writeToScreen("SENT: " + message); 
+    websocket.send(message);
+  }
+    
+  //debugger;
+  window.addEventListener("load", init, false);
+  //debugger;
+  var count = 6;
+  var counter = null;// 
+  function timer() {
+      count = count - 1;
+
+      if (count <= 0) {
+          $("#bigtext span").text("GO");
+          $("#bigtext span").css("font-size", "400px");
+          $("#bigtext").fadeIn(400);
+          $("#bigtext").fadeOut(400);
+          clearInterval(counter);
+
+          websocket.send("COUNTDOWN!!DONE");
+          return;
+      }
+      else {
+          $("#bigtext span").text(count.toString());
+          $("#bigtext").fadeIn(400);
+          $("#bigtext").fadeOut(400);
+      }
+
+      //Do code for showing the number of seconds here
+  }
+
+  //action.countdown("5");
+
+  function onButton() {
+      $('#fld5').rotate3Di(360, 500);
+      action.turnon('fld5');
+  }
+  
+  
+    </script>
+
+<body style="margin:0px">
+    <a id="gamemenu" href="@Url.Action("StartGame")" style="display:none;">
+        <img src="~/ImagesApp/gamemenu.png" style="margin-left:30px;border:0px;" />
+    </a>
+    <div style="width:700px; margin-top:60px;margin-left:auto; margin-right:auto;position:relative;">
+        <div>
+            <table border="0">
+	        <tr>
+		        <td valign="baseline"><div id="fld5" class="fldBig">5</div></td>
+		        <td valign="baseline"><div id="fld6" class="fldBig">6</div></td>
+		        <td valign="baseline"><div id="fld7" class="fldBig">7</div></td>
+	        </tr>
+	        <tr>
+		        <td valign="baseline"><div id="fld8" class="fldBig">8</div></td>
+		        <td valign="top">
+			        <div id="fldC">
+				        <table border="0">
+					        <tr>
+						        <td>
+							        <div id="fld3" class="fldSmall">3</div>
+						        </td>
+						        <td>
+							        <div id="fld4" class="fldSmall">4</div>
+						        </td>
+					        </tr>			
+					        <tr>
+						        <td>
+							        <div id="fld1" class="fldSmall">1</div>
+						        </td>
+						        <td>
+							        <div id="fld2" class="fldSmall">2</div>
+						        </td>
+					        </tr>
+				        </table>
+			        </div>
+		        </td>
+		        <td valign="baseline"><div id="fld9" class="fldBig">9</div></td>
+	        </tr>
+	        <tr>
+		        <td valign="baseline"><div id="fld10" class="fldBig">10</div></td>
+		        <td valign="baseline"><div id="fld11" class="fldBig">11</div></td>
+		        <td valign="baseline"><div id="fld12" class="fldBig">12</div></td>
+	        </tr>
+        </table>
+        </div>
+        <div id="bigtext" style="position:absolute;top:0px;left:0px;width:700px;height:700px;background-color:rgba(100, 100, 100, 0.5); text-align:center; vertical-align:middle; line-height:700px;display:none;">
+            <span  style="font-size:600px;color:yellow; font-family:'Arial Black'">5</span>
+        </div>
+    </div>
+    
+
+</body>

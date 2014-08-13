@@ -1,0 +1,82 @@
+﻿@model MvcTEST.Models.tblUserGroup
+@using MvcTEST.HtmlHelpers
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+       @* <a href="@Url.Action("Index", "Groupe")" >  <img src="~/ImagesApp/close.png" border="0" /></a>*@
+                            @if (Html.User().Role == 50)
+                            {
+                                <!-- VLASNIK -->
+                                <a id="aron" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 40)
+                            {
+                                <!-- TRENER -->
+                                <a id="aron" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if (Html.User().Role == 20 || Html.User().Role == 30)
+                            {
+                                <!-- IGRAC -->
+                                <a id="aron" href="@Url.Action("Index", "UserHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 10)
+                            {
+                                <!-- QUICKGAME -->
+                                <a id="aron" href="@Url.Action("Index", "UserHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else
+                            {
+                                <!-- ... -->
+                                <a id="aron" href="@Url.Action("Index", "UserHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+    </div>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <h2>@Html.Translate("Schaffen gruppe")</h2>
+
+    <table class="edit">
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.Translate("GRUPA")
+                </div>
+            </td>
+            <td style="padding-left:10px">
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding-top:20px">
+            </td>
+            <td style="padding-left:20px;padding-top:20px">                
+                <input type="submit" value="@Html.Translate("Spremi").ToUpper()" class="save" />
+                <input type="button" value='@Html.Translate("Odustani").ToUpper()' onclick="javascript:history.back()" class="cancel" style="margin-left:5px">
+            </td>
+        </tr>
+    </table>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+</div>

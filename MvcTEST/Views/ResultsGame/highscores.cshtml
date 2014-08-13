@@ -1,0 +1,93 @@
+﻿@using MvcTEST.HtmlHelpers
+
+@{
+    ViewBag.Title = "highscores";
+    Layout = null;
+}
+
+    <script>
+        $(document).ready(function () {
+            $("[class~='redak']").hover(function () {
+                var nesto = "#" + this.id + " > #href27";
+                //alert(this.cells[1].children[0].id);
+                //debugger;
+                $(this).css("background-color", "#0360a3");
+                $(this).css("color", "white");
+                this.cells[1].children[0].style.color="white";
+                //$("#" + this.id + " > #href27").css("color", "white");
+            }, function () {
+                $(this).css("background-color", "white");
+                $(this).css("color", "black");
+                this.cells[1].children[0].style.color = "#0360a3";
+
+
+            });
+
+
+
+        });
+
+
+
+    </script>
+<style>
+
+#blackfont, .blackfont {
+    color: #000000 !important;
+    font-weight:bold !important;
+
+} 
+.bluelink a {
+    color: #0360a3;
+    
+}
+
+
+</style>
+
+            <div id="highscores_zaglavlje">
+                    <text><b><font color="#0360a3" size="5">@Html.Translate("NAJBOLJI REZULTATI") (@ViewBag.datumtermina.ToString("dd.MM.yyyy"))</font></b></text>
+                        <hr />
+            </div>
+
+            <div id="highscoresin"  style="text-align:left; width:550px; height:450px ; overflow-y: scroll; overflow-x: hidden;" >
+                <table style="text-align:left; width:500px; border:0px; padding:0px; border-collapse:collapse; border-spacing:0px;"  >
+                @{ var brojac = 0; 
+                foreach (MvcTEST.Models.getHighscores_Result item in @ViewBag.highscores)
+                {
+                  brojac++;   
+                    
+                    <tr id = "@string.Format("red{0}",item.ID)"  class="redak" style="border-bottom:solid 1px; line-height:40px; ">
+                        <div>
+                        <!-- redni broj -->
+                        <td><b>
+                            @brojac
+                            .
+                        </b></td>
+                        <!-- NAZIV -->
+                        <td>
+                            <a id="@string.Format("href{0}",item.ID)" href="@(Url.Content("~/ResultsUser/Profil?UserID=") + item.UserID.ToString()  + "&resultid=" + item.ID.ToString() + "&datumtermina=" + ViewBag.datumtermina.ToString("dd.MM.yyyy"))" style="text-decoration:none;">
+                                @item.Sur_Name 
+                            </a>
+                        </td>
+                        <!-- GRUPA -->
+                        <td>
+                             @Html.DisplayFor(modelItem => item.Grupa)                           
+                        </td>
+                        <!-- REZULTAT -->
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rezultat)
+                        </td>
+                        </div>
+                    </tr>                   
+                    <tr>
+                        <td colspan="4">
+                       
+                        </td>
+                    </tr>   
+                     
+                }
+                }
+                </table>        
+            </div>
+

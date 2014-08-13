@@ -1,0 +1,175 @@
+﻿@model  MvcTEST.Models.tblUser
+
+@*@model MvcTEST.Models.vwUser*@
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Language";
+}
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "AdminHome")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+    <div style="text-align:left; padding: 10px; width: 800px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #ffffff;">
+    <table style="text-align: left">
+    <tr>
+        <td>
+            <font size="5" style="color: black"; font-family: 'Open Sans', sans-serif;>
+            Bitte Wählen Sie eine Sprache</font> 
+            <font size="5" style="color:#0360a3 ; font-family: 'Open Sans', sans-serif;">
+                @ViewBag.korisnik.Name</font>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table style="width: 100%; text-align: center;">
+                                
+                        <tr>
+                            <td>
+                                <div id="divgerman" style="width: 150px; text-align:center;">
+                                    <img  style="width: 50px; "src="~/ImagesApp/flag_deu.jpg" />
+                                </div>
+                            </td>
+                            <td>
+                                <div id="divcroatian" style="width: 150px; text-align:center; ">
+                                    <img style="width: 50px; " src="~/ImagesApp/flag_cro.jpg" />
+                                </div>
+                            </td>   
+                            <td>
+                                <div id="divenglish" style="width: 150px; text-align:center; ">
+                                    <img  style="width: 50px; "src="~/ImagesApp/flag_uk.png" />
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr>
+
+                            <td style="width: 150px; ">
+                                <a href="javascript:void(0);" onclick="onGermanClick()">
+                                @Html.RadioButton("rb", Model.LanguageID, Model.LanguageID == 1 ? true : false, new { id = "german" })
+                                </a>
+                            </td>
+                            <!-- LanguageID==2 (HR) -->   
+                            <td style="width: 150px">
+                                <a href="javascript:void(0);" onclick="onCroatianClick()">
+                                @Html.RadioButton("rb", Model.LanguageID, Model.LanguageID == 2 ? true : false, new { id = "croatian" })
+                                </a>
+                            </td>
+                            <!-- LanguageID==3 (ENG) --> 
+                            <td style="width: 150px">
+                                <a href="javascript:void(0);" onclick="onEnglishClick()">
+                                @Html.RadioButton("rb", Model.LanguageID, Model.LanguageID == 3 ? true : false, new { id = "english" })
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 150px" onclick="onRadioGermanClick()">
+                                <font size="5" style="color: #0360a3"; font-family: 'Open Sans', sans-serif;><b>
+                                Deutsch
+                                </b></font>
+                            </td>    
+                            <td style="width: 150px" onclick="onRadioCroatianClick()">
+                                <font size="5" style="color: #0360a3"; font-family: 'Open Sans', sans-serif;><b>
+                                Kroatisch
+                                </b></font>
+                            </td>
+                            <td style="width: 150px" onclick="onRadioEnglishClick()">
+                                <font size="5" style="color: #0360a3"; font-family: 'Open Sans', sans-serif;><b>
+                                Englisch
+                                </b></font>
+                            </td>
+
+                        </tr>
+
+                </table>
+
+        <script>
+            $(document).ready(function () {
+
+
+
+
+                $('#german').click(function () {
+                    //
+                    $.post('@Url.Action("AjaxSetLanguage", "AdminHome")', { radiobutton: '1' },
+                         function (data) {
+                             //alert("1");
+                         });
+
+                });
+                $('#croatian').click(function () {
+                    //
+                    $.post('@Url.Action("AjaxSetLanguage", "AdminHome")', { radiobutton: '2' },
+                         function (data) {
+                             //alert("1");
+                         });
+
+                });
+                $('#english').click(function () {
+                    //
+                    $.post('@Url.Action("AjaxSetLanguage", "AdminHome")', { radiobutton: '3' },
+                         function (data) {
+                             //alert("1");
+                         });
+
+                });
+                $('#divgerman').click(function () {
+                    $('#german').prop('checked', true);
+                    $.post('@Url.Action("AjaxSetLanguage", "AdminHome")', { radiobutton: '1' },
+                         function (data) {
+                         });
+                    //window.location.href = window.location.href;
+                });
+                $('#divcroatian').click(function () {
+                    $('#croatian').prop('checked', true);
+                    $.post('@Url.Action("AjaxSetLanguage", "AdminHome")', { radiobutton: '2' },
+                         function (data) {
+                         });
+                    //window.location.href = window.location.href;
+                });
+                $('#divenglish').click(function () {
+                    $('#english').prop('checked', true);
+                    $.post('@Url.Action("AjaxSetLanguage", "AdminHome")', { radiobutton: '3' },
+                         function (data) {
+                         });
+                    //window.location.href = window.location.href;
+                });
+
+
+            });
+
+            function onGermanClick() {
+                $.post('@Url.Action("AjaxSetLanguage", "AdminHome")', { radiobutton: '1' },
+                     function (data) {
+                     });
+                //window.location.href = window.location.href;
+            }
+            function onCroatianClick() {
+                $.post('@Url.Action("AjaxSetLanguage", "AdminHome")', { radiobutton: '2' },
+                     function (data) {
+                     });
+                //window.location.href = window.location.href;
+            }
+            function onEnglishClick() {
+                $.post('@Url.Action("AjaxSetLanguage", "AdminHome")', { radiobutton: '3' },
+                     function (data) {
+                     });
+                //window.location.href = window.location.href;
+            }
+
+
+            </script>
+        </td>
+        <td style="text-align:right; width:250px; ">
+            <a href="/AdminHome/Index" >
+                <img src="~/ImagesApp/gumb_ok.png" />
+            </a>
+                
+        </td>
+    </tr>
+    </table>
+    </div>     
+
+
+    </div>

@@ -1,0 +1,387 @@
+﻿@model IEnumerable<MvcTEST.Models.tblUser>
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+
+@*U S E R \ I N D E X . . . *@
+@*<script type="text/javascript" src="~/Scripts/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="~/Scripts/js/iphone-scroller.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/css/style.css">*@
+
+<div id="l1" style="padding:20px; width: inherit; height: inherit; position: relative; z-index: 1; 
+-moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; 
+border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+
+    <div align="right" style="border: 0px solid;">
+        @*<a href="@Url.Action("Index", "Home")" > <img src="~/ImagesApp/close.png" border="0" /></a>*@
+
+                            @if (Html.User().Role == 50)
+                            {
+                                <!-- VLASNIK -->
+                                <a id="aron" href="@Url.Action("Index", "AdminHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 40)
+                            {
+                                <!-- TRENER -->
+                                <a id="aron" href="@Url.Action("Index", "Home")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if (Html.User().Role == 20 || Html.User().Role == 30)
+                            {
+                                <!-- IGRAC -->
+                                <a href="@(Url.Action("BenutzerProfil", "ResultsUser")+"?UserID="+Html.User().ID)">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 10)
+                            {
+                                <!-- QUICKGAME -->
+                                <a id="aron" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else
+                            {
+                                <!-- ... -->
+                                <a id="aron" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+    </div>
+
+    <table style="width:100%">
+        <tr>
+            <td>
+                <div id="acontent">
+                    <table style="width:100%">
+                    <tr>
+                        <td>
+                            <div id="benutzer_info">
+                                <table>
+                                    <tr>
+                                        <td colspan="2" style="height:170px;vertical-align:top;font:25px GlobalSpeedBold">
+                                            @Html.Translate("BENUTZER").ToUpper()
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input tabindex="1" id="Text1" type="text" value="@Html.Translate("Traži")" class="search" onfocus="if(this.value=='@Html.Translate("Traži")')this.value='';" onblur="if(this.value=='')this.value='@Html.Translate("Traži")'" onkeypress="if((event.which ? event.which : event.keyCode) == 13) onSearchClick()" />
+                                        </td>
+                                        <td style="padding:2px 0 0 10px">
+                                            <div id="home4" style="width: 54px; height: 51px; border-radius: 7px;">
+                                                @*<a href="@Url.Action("Index", "Stats")" onclick="onSearchClick()">*@
+                                                <a href="javascript:void(0);" onclick="onSearchClick()">
+                                                    <img src="~/ImagesApp/buttons/search.png" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                        <!-- 3 gumba -->
+                        <td style="vertical-align:top">
+                            <div id="benutzer_gumbi" style="height: 150px; width: 340px;">
+                                <!-- 1. gumb: BENUTZER ANLEGEN -->
+                                <table style="width: 340px; height: 150px;">
+                                    <tr>
+                                        <td style="padding:5px 0 5px 0">
+                                            <div id="home1" style="width: 190px; height: 67px; border-radius: 7px;">
+                                                <input type="button" class="edit-user" onclick="location.href='@Url.Action("Edit", "User")'" value="@Html.Translate("Benutzer anlegen").ToUpper()" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- 2. gumb: GRUPPEN ANLEGEN -->
+                                    <tr>
+                                        <td style="padding:5px 0 5px 0">
+                                            <div id="home2" style="width: 190px; height: 67px; border-radius: 7px;">
+                                                <input type="button" class="edit-group" onclick="location.href='@Url.Action("Create", "Groupe")'" value="@Html.Translate("Gruppen anlegen").ToUpper()" />                                                
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- 3. gumb: DOKUMENTE VERWALTEN -->
+                                    <tr>
+                                        <td style="padding:5px 0 5px 0">
+                                            <div id="home3" style="width: 190px; height: 67px; border-radius: 7px;">
+                                                <input type="button" class="edit-documents" onclick="location.href='#'" value="@Html.Translate("Dokumente verwalten").ToUpper()" />                                                 
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <!-- 2 TABELE:  BENUTZER & GRUPPEN -->
+        <tr>
+            <td style="padding-top:20px">
+                <div id="bcontent">
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:420px">
+                                <!-- part 1: GRUPPEN -->
+                                <!-- exec [getGroupByUser] null -->
+                                <div id="groups" style="padding:10px;position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #FFF;">
+                                    <text><b><font color="#0360a3" size="5">@Html.Translate("GRUPPE").ToUpper()</font></b></text>
+                                    <br />
+                                    <hr />
+                                    <div id="groupsin" style="height: 310px; position: inherit; background-color: #FFF; overflow-y: scroll; overflow-x: hidden; padding-right:10px">
+                                        <table style="width:100%; line-height: 13px; border: 0; height: 360px;">
+
+                                            @{ foreach (MvcTEST.Models.getGroupByUser_Result item2 in @ViewBag.groups)
+                                               {  <tr>
+
+                                                   <td style="text-align: left;">
+                                                       <a href="@(Url.Content("~/Groupe/Details/") + item2.ID.ToString())" style="text-decoration:none;">
+                                                           <font color="black">
+
+                                            @item2.Name 
+
+                                              </font>
+
+                                                       </a>
+                                                   </td>
+                                               </tr>
+                                                <tr>
+                                                    <td align="left">
+                                                        <hr />
+                                                    </td>
+                                                </tr>   
+                                               }}
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- part 2: BENUTZER -->
+                            <!-- exec [getPlayerByUser] null -->
+                            <td style="width:420px;padding-left:20px">
+                                <div id="players" style="text-align:left;padding:10px;position: relative; z-index: 1; -moz-box-shadow: 1px #000; -webkit-box-shadow: 1px #000; box-shadow: 0px 0px 10px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #FFF;">
+                                    <text><b><font color="#0360a3" size="5">@Html.Translate("SPIELER")</font></b></text>
+                                    <br />
+                                    <hr />
+                                    <div id="playersin" style="height: 310px; position: inherit; background-color: #FFF; overflow-y: scroll; overflow-x: hidden;padding-right:10px">
+                                        <table style="text-align: left; width: 100%; line-height: 13px; border: 0; height: 360px;">
+                                            @{ foreach (MvcTEST.Models.getPlayerByUser_Result item3 in @ViewBag.players)
+                                               {  <tr>
+                                                   <td style="text-align: left;">
+
+                                                       <a href="@(Url.Content("~/User/Edit/") + item3.ID.ToString())" style="text-decoration:none;">
+
+                                                       <text><font color="black">@item3.Name </font></text>
+
+                                                   </td>
+                                               </tr>
+                                                <tr>
+                                                    <td align="left">
+                                                        <hr />
+                                                    </td>
+                                                </tr>       
+                                               }}
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+        <script>
+            function onSearchClick() {
+                // 1. click brise defaultni tekst: Search
+                this.value = "\'\'";
+                // 
+                $.post("user/AjaxSearch?search=" + escape($("#txtSearch").val()), {}, function (ret) {
+                    $("#bcontent").html(ret);
+                });
+
+
+            }
+
+            $(document).ready(function () {
+                searchWord = $("#txtSearch").val();
+
+                $("#txtSearch").focusin(function () {
+                
+                if ($("#txtSearch").val() == 'Schnellsuche') $("#txtSearch").val('');
+                });
+
+
+                //$("#txtSearch").blur(function () {
+                //    if ($("#txtSearch").val() == '') $(this).val('Search Content');
+                //}
+
+                
+            });
+
+        </script>
+
+@*                <table>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Surname)
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Surname)
+                        </td>
+                        <td style="width:200px;">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </td>
+                    </tr>
+                }
+                </table>*@
+
+<!-- GRUPPEN -->
+
+
+@*<table style="width: 50%; ">
+                    <tr><td>
+                        <div style="position:relative;">
+                        <div id="iphone-scrollcontainer">
+	
+	                        <ul id="iphone-scroll">
+		                        <li>
+                                <div id="nav-indicator-fixed"></div>
+                                <a name="A"></a>
+		                        <div class="nav-indicator" id="nav-a">A</div>
+			                        <ul>
+				                        <li><a href="http://en.wikipedia.org/wiki/Amsterdam" title="Amsterdam"><strong>Amsterdam</strong>747,290</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Arnhem" title="Arnhem"><strong>Arnhem</strong>144,101</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Assen" title="Assen"><strong>Assen</strong>64,320</a></li>
+                                        <li><a href="http://en.wikipedia.org/wiki/Apeldoorn" title="Apeldoorn"><strong>Apeldoorn</strong>136,208</a></li>
+                                        <li><a href="http://en.wikipedia.org/wiki/Alkmaar" title="Alkmaar"><strong>Alkmaar</strong>94,216</a></li>
+                                        <li><a href="http://en.wikipedia.org/wiki/Almelo" title="Almelo"><strong>Almelo</strong>72,103</a></li>
+			                        </ul>
+		                        </li>
+		                        <li>
+                                <a name="B"></a>
+		                        <div class="nav-indicator" id="nav-b">B</div>
+			                        <ul>
+				                        <li><a href="http://en.wikipedia.org/wiki/Bolsward" title="Bolsward"><strong>Bolsward</strong>9,607</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Buren" title="Buren"><strong>Buren</strong>25,644</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Bergen_op_Zoom" title="Bergen op Zoom"><strong>Bergen op Zoom</strong>65,454</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Breda" title="Breda"><strong>Breda</strong>170,491</a></li>
+			                        </ul>	
+		                        </li>
+		                        <li>
+                                <a name="C"></a>
+		                        <div class="nav-indicator" id="nav-c">C</div>
+			                        <ul>
+				                        <li><a href="http://en.wikipedia.org/wiki/Culemborg" title="Culemborg"><strong>Culemborg</strong>27,177</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Coevorden" title="Coevorden"><strong>Coevorden</strong>36,043</a></li>
+			                        </ul>
+		                        </li>
+		                        <li>
+                                <a name="D"></a>
+		                        <div class="nav-indicator" id="nav-d">D</div>
+			                        <ul>
+				                        <li><a href="http://en.wikipedia.org/wiki/Dordrecht" title="Dordrecht"><strong>Dordrecht</strong>118,613</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Delfzijl" title="Delfzijl"><strong>Delfzijl</strong>27,674</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Doetinchem" title="Doetinchem"><strong>Doetinchem</strong>56,225</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Drachten" title="Drachten"><strong>Drachten</strong>44,537</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Dronten" title="Dronten"><strong>Dronten</strong>38,081</a></li>
+			                        </ul>	
+		                        </li>
+		                        <li>
+                                <a name="E"></a>
+		                        <div class="nav-indicator" id="nav-e">E</div>
+			                        <ul>
+				                        <li><a href="http://en.wikipedia.org/wiki/Emmen_(Netherlands)" title="Emmen"><strong>Emmen</strong>108,863</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Ede,_Netherlands" title="Ede"><strong>Ede</strong>107,476</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Eindhoven" title="Eindhoven"><strong>Eindhoven</strong>210,300</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Enschede" title="Enschede"><strong>Enschede</strong>154,888</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Edam,_Netherlands" title="Edam"><strong>Edam</strong>28,492</a></li>
+			                        </ul>	
+		                        </li>
+                                <li>
+                                <a name="F"></a>
+		                        <div class="nav-indicator" id="nav-f">F</div>
+			                        <ul>
+				                        <li><a href="http://en.wikipedia.org/wiki/Flushing,_Netherlands" title="Flushing"><strong>Flushing</strong>45,015</a></li>
+			                        </ul>
+		                        </li>
+		                        <li>
+                                <a name="G"></a>
+		                        <div class="nav-indicator" id="nav-g">G</div>
+			                        <ul>
+				                        <li><a href="http://en.wikipedia.org/wiki/Groenlo" title="Groenlo"><strong>Groenlo</strong>10,062</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Groningen_(city)" title="Groningen"><strong>Groningen</strong>181,819</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Sittard-Geleen" title="Geleen"><strong>Geleen</strong>96,275</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Geertruidenberg" title="Geertruidenberg"><strong>Geertruidenberg</strong>20,731</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/Grave,_Netherlands" title="Grave"><strong>Grave</strong>12,765</a></li>
+                                        <li><a href="http://en.wikipedia.org/wiki/Gouda" title="Gouda"><strong>Gouda</strong>71,873</a></li>
+			                        </ul>	
+		                        </li>
+                                <li>
+                                <a name="I"></a>
+		                        <div class="nav-indicator" id="nav-i">Info</div>
+			                        <ul>
+				                        <li><a href="http://www.marcofolio.net/" title="Marcofolio.net"><strong>Marcofolio.net</strong>Creator</a></li>
+				                        <li><a href="http://www.teehanlax.com/blog/?p=447" title="iPhone GUI"><strong>Tehan+Lax</strong>iPhone GUI</a></li>
+				                        <li><a href="http://validator.w3.org/check?uri=referer" title="XHTML Valid"><strong>XHTML</strong>Valid</a></li>
+				                        <li><a href="http://jigsaw.w3.org/css-validator/check/referer" title="CSS Valid"><strong>CSS</strong>Valid</a></li>
+                                        <li><a href="http://jquery.com/" title="jQuery"><strong>jQuery</strong>JS Library</a></li>
+                                        <li><a href="http://www.apple.com/iphone/" title="iPhone"><strong>Apple</strong>iPhone</a></li>
+				                        <li><a href="http://en.wikipedia.org/wiki/List_of_cities_in_the_Netherlands" title="List of cities in the Netherlands"><strong>Wikipedia</strong>Cities</a></li>
+			                        </ul>	
+		                        </li>
+	                        </ul>
+                        </div>
+                        
+                            <ul id="iphone-search">
+    	                        <li><a href="#A" title="A">A</a></li>
+                                <li><a href="#B" title="B">B</a></li>
+                                <li><a href="#C" title="C">C</a></li>
+                                <li><a href="#D" title="D">D</a></li>
+                                <li><a href="#E" title="E">E</a></li>
+                                <li><a href="#F" title="F">F</a></li>
+                                <li><a href="#G" title="G">G</a></li>
+                                <li><a href="#H" title="H">H</a></li>
+                                <li><a href="#I" title="I">I</a></li>
+                                <li><a href="#J" title="J">J</a></li>
+                                <li><a href="#K" title="K">K</a></li>
+                                <li><a href="#L" title="L">L</a></li>
+                                <li><a href="#M" title="M">M</a></li>
+                                <li><a href="#N" title="N">N</a></li>
+                                <li><a href="#O" title="O">O</a></li>
+                                <li><a href="#P" title="P">P</a></li>
+                                <li><a href="#Q" title="Q">Q</a></li>
+                                <li><a href="#R" title="R">R</a></li>
+                                <li><a href="#S" title="S">S</a></li>
+                                <li><a href="#T" title="T">T</a></li>
+                                <li><a href="#U" title="U">U</a></li>
+                                <li><a href="#V" title="V">V</a></li>
+                                <li><a href="#W" title="W">W</a></li>
+                                <li><a href="#X" title="X">X</a></li>
+                                <li><a href="#Y" title="Y">Y</a></li>
+                                <li><a href="#Z" title="Z">Z</a></li>
+                            </ul>
+                        </div>
+                    <tr><td>
+                </table>*@
+

@@ -1,0 +1,158 @@
+﻿
+
+@{
+    ViewBag.Title = "highscores";
+    Layout = null;
+    DateTime d = ViewBag.datumtermina;
+    var datumStr = d.Day + "-" + d.Month + "-" + d.Year;
+}
+    <script>
+        $(document).ready(function () {
+            $("[class~='redak1']").hover(function () {
+                $(this).css("background-color", "#0360a3");
+                $(this).css("color", "white");
+                this.cells[0].children[0].style.color="white";
+
+            }, function () {
+                $(this).css("background-color", "white");
+                $(this).css("color", "black");
+                this.cells[0].children[0].style.color = "#0360a3";
+
+            });
+
+            $("[class~='redak2']").hover(function () {
+                $(this).css("background-color", "#0360a3");
+                $(this).css("color", "white");
+                this.cells[0].children[0].style.color="white";
+
+            }, function () {
+                $(this).css("background-color", "white");
+                $(this).css("color", "black");
+                this.cells[0].children[0].style.color = "#0360a3";
+
+
+            });
+
+
+
+        });
+    </script>
+
+<style>
+#blackfont, .blackfont {
+    color: #000000 !important;
+    font-weight:bold !important;
+
+} 
+.bluelink a {
+    color: #0360a3 !important;
+    font-weight:bold !important;
+    text-decoration:none;
+
+}
+</style>
+
+            <div id="highscores_zaglavlje">
+                    <text><b><font color="#0360a3" size="5">@ViewBag.datumtermina.ToString("dd.MM.yyyy")</font></b></text>
+                        <hr />
+            </div>
+
+            <div id="highscoresin"  style="text-align:left; width:580px; height:450px ; overflow-y: scroll; overflow-x: hidden;" >
+                <table style="text-align:left; " >  
+                     <tr>
+                         <td style="vertical-align: top;">                         
+                            <table style="text-align:left; width:290px; border:0px; padding:0px; border-collapse:collapse; border-spacing:0px;" >
+                            @{ var brojac = 0; 
+                               var imeigre = "";                           
+                            foreach (MvcTEST.Models.getHighscoresTop5P1_Result item1 in @ViewBag.highscores1)
+                            {
+                              brojac++;   
+                                if ( imeigre != item1.GameName )
+                                {
+                                     imeigre = item1.GameName;
+                                     brojac = 1; 
+                                 <tr id = "@string.Format("red{0}",item1.ID)"  class="redak1" style="border-bottom:solid #a4a4a4 1px; line-height:40px; " class="bluelink">
+                                    <td colspan="4">
+                                        <a href="@(Url.Content("~/ResultsGame/GameGroupIndex?groupid=") + item1.ID.ToString() + "&gameid=" + item1.GameID.ToString() + "&userid=" + item1.UserID.ToString() + "&datumtermina=" + ViewBag.datumtermina.ToString("yyyy-MM-dd") )" class="bluelink">
+                                            @item1.GameName
+                                        </a>
+                                    </td>
+                                </tr>                                   
+                               
+                                }
+                                <tr>
+                                    <!-- redni broj -->
+                                    <td><b>
+                                        @brojac
+                                        .
+                                    </b></td>
+                                    <!-- NAZIV IGRE -->
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item1.Sur_Name)   
+                                    </td>
+
+                                    <!-- REZULTAT -->
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item1.Rezultat)
+                                    </td>
+                                </tr>                   
+                                <tr>
+                                    <td colspan="4">
+                                        <hr />
+                                    </td>
+                                </tr>    
+                            }
+                            }
+                            </table>      
+                         </td> 
+                         <td style="vertical-align: top;">                          
+                            <table style="text-align:left;  width:290px; border:0px; padding:0px; border-collapse:collapse; border-spacing:0px;">
+                            @{ var brojac2 = 0;
+                               var imeigre2 = "";      
+                            foreach (MvcTEST.Models.getHighscoresTop5P2_Result item2 in @ViewBag.highscores2)
+                            {
+                             
+                                brojac2++;   
+                                if ( imeigre2 != item2.GameName )
+                                {
+                                     imeigre2 = item2.GameName;
+                                     brojac2 = 1; 
+                                 <tr id = "@string.Format("red{0}",item2.ID)"  class="redak2" style="border-bottom:solid #a4a4a4 1px ; line-height:40px; " >
+                                    <td colspan="4">
+                                        <!-- -->
+                                        <a href="@(Url.Content("~/ResultsGame/GameGroupIndex?groupid=") + item2.ID.ToString() + "&gameid=" + item2.GameID.ToString() + "&userid=" + item2.UserID.ToString() + "&datumtermina=" + ViewBag.datumtermina.ToString("yyyy-MM-dd") )" style="text-decoration:none;" class="bluelink">
+                                            @item2.GameName
+                                        </a>
+                                    </td>
+                                </tr>                                   
+                               
+                                }
+                                <tr>
+                                    <!-- redni broj -->
+                                    <td><b>
+                                        @brojac2
+                                        .
+                                    </b></td>
+                                    <!-- NAZIV IGRE -->
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item2.Sur_Name)   
+                                    </td>
+
+                                    <!-- REZULTAT -->
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item2.Rezultat)
+                                    </td>
+                                </tr>                   
+                                <tr>
+                                    <td colspan="4">
+                                         <hr />
+                                    </td>
+                                </tr>    
+                            }
+                            }
+                            </table>      
+                         </td>                                                          
+                     </tr>
+                 </table>   
+            </div>
+

@@ -1,0 +1,129 @@
+﻿@model MvcTEST.Models.vwTemplate
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Home")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+
+    <table style="width: 100%">
+        <!-- NAZIV EKRANA-->
+        <tr>
+            <td align="left" colspan="3">
+
+                <font size="6"><b>TEREN CONFIGURATION</b></font>
+            </td>
+        </tr>
+        <!-- TABELA:  -->
+        <tr>
+
+            <td>
+
+                <div id="tereni">
+                    <table style="width: 100%; text-align: left;">
+                        <tr>
+                            <td>
+                                <div id="terenin" style="padding: 10px; width: 300px; height: 500px; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #FFF">
+                                    <table style="width: 100%; text-align: left;">
+                                        @*@using (Html.BeginForm())*@
+                                        @{ 
+                                            //foreach (var item2 in Model)
+                                            {                                      
+                                            <tr>
+                                                <td>
+                                                    <div id="3x3" style="width: 150px; height: 120px; border-radius: 7px;">
+                                                        <a href="@Url.Action("Index", "Tapping")">
+                                                            <img src="~/ImagesApp/3x3plv.png">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 150px" onclick="onRadio3Click()">
+                                                    @*<input name="radio" id="Radio3x3" type="radio" >*@
+                                                    @Html.RadioButton("rb", Model.Radio3, Model.Radio3==1?true:false) 3 x 3
+                                                
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div id="5x5" style="width: 150px; height: 120px; border-radius: 7px;">
+                                                        <a href="@Url.Action("Index", "Jumping")">
+                                                            <img src="~/ImagesApp/5x5nar.png">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 150px" onclick="onRadio5Click()">
+                                                    @*<input  name="radio" id="Radio5x5" type="radio" />*@
+                                                    @Html.RadioButton("rb", Model.Radio5, Model.Radio5==1?true:false) 5 x 5
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div id="7x7" style="width: 150px; height: 120px; border-radius: 7px;">
+                                                        <a href="@Url.Action("Index", "InOut")">
+                                                            <img src="~/ImagesApp/7x7zel.png">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 150px" onclick="onRadio7Click()">
+                                                    @*<input  name="radio" id="Radio7x7" type="radio" />*@
+                                                    @Html.RadioButton("rb", Model.Radio7, Model.Radio7==1?true:false) 7 x 7
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div id="9x9" style="width: 150px; height: 120px; border-radius: 7px;">
+                                                        <a href="@Url.Action("Index", "InOut")">
+                                                            <img src="~/ImagesApp/9x9nar.png">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 150px" onclick="onRadio9Click()">
+                                                    @*<input  name="radio" id="Radio9x9" type="radio" />*@
+                                                    @Html.RadioButton("rb", Model.Radio9, Model.Radio9==1?true:false) 9 x 9
+                                                </td>
+                                            </tr>
+                                            }}
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        <script>
+            function onRadio3Click()
+            {
+                $.post("configurator/AjaxSetTerens?radiobutton=3", {}, function (ret) {});
+            }
+            function onRadio5Click()
+            {
+                $.post("configurator/AjaxSetTerens?radiobutton=5", {}, function (ret) {});
+            }
+            function onRadio7Click()
+            {
+                $.post("configurator/AjaxSetTerens?radiobutton=7", {}, function (ret) {});
+            }
+            function onRadio9Click()
+            {
+                $.post("configurator/AjaxSetTerens?radiobutton=9", {}, function (ret) {});
+            }
+        </script>
+
+
+
+        </tr>
+    </table>
+
+</div>
+
+
+
+
+
+
+

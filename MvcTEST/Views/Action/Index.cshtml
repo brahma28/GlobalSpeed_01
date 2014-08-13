@@ -1,0 +1,97 @@
+﻿@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div id="l1" style="padding: 20px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        @*<a href="@Url.Action("Index", "Home")" >  <img src="~/ImagesApp/close.png" border="0" /></a>*@
+                            @if (Html.User().Role == 50)
+                            {
+                                <!-- VLASNIK -->
+                                <a id="aron" href="@Url.Action("Index", "AdminHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 40)
+                            {
+                                <!-- TRENER -->
+                                <a id="aron" href="@Url.Action("Index", "Home")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if (Html.User().Role == 20 || Html.User().Role == 30)
+                            {
+                                <!-- IGRAC -->
+                                <a id="aron" href="@Url.Action("Index", "UserHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 10)
+                            {
+                                <!-- QUICKGAME -->
+                                <a id="aron" href="@Url.Action("Index", "UserHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else
+                            {
+                                <!-- ... -->
+                                <a id="aron" href="@Url.Action("Index", "UserHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+    </div>
+<table>
+<tr>
+    <td>
+            <!-- QUICKGAME -->
+            <div id="quickgame" style="width: 190px; height: 67px; border-radius: 7px; margin-bottom:10px">
+                <input type="button" class="game-creator" onclick="location.href='@Url.Action("Index", "Quickstart")'" value="@Html.Translate("Igra na brzinu").ToUpper()"/>
+            </div>
+    </td>
+</tr>
+@*@Html.ActionLink("Start Game", "StartGame")<br />*@
+<tr>
+    <td>
+                                <div id="quickgame" style="width: 190px; height: 67px; border-radius: 7px;margin-bottom:10px">
+                                    <a href="@Url.Action("StartGame", "Action")">
+                                        <img src="~/ImagesApp/start.png" />
+                                    </a>
+                                </div>
+    </td>
+</tr>
+@*@Html.ActionLink("Choose Game", "ChooseGame")<br />*@
+<tr>
+    <td>
+            <div id="gamecreator" style="width: 385px; height: 67px; border-radius: 7px;margin-bottom:10px">
+                <a href="@Url.Action("Games", "Configurator")">
+                    <img src="~/ImagesApp/gamecONFIGURATION.jpg" />
+                </a>
+            </div>
+    </td>
+</tr>
+@*@Html.ActionLink("Choose Game", "ChooseGame")<br />*@
+@*<tr>
+    <td>
+            <div id="gamecreator" style="width: 385px; height: 67px; border-radius: 7px;">
+                <a href="@Url.Action("Games", "Configurator")" class="medvedButton">
+                    @Html.Translate("Neues Spiel")
+                </a>
+            </div>
+    </td>
+</tr>*@
+@*@Html.ActionLink("Documents", "Documents")*@
+<tr>
+    <td>
+            <div id="documents" style="width: 385px; height: 67px; border-radius: 7px;">
+                <input type="button" class="edit-documents" onclick="location.href='#'" value="@Html.Translate("Dokumente verwalten").ToUpper()" />                                                 
+            </div>
+    </td>
+</tr>
+</table>
+
+</div>
+
+

@@ -1,0 +1,243 @@
+﻿@model MvcTEST.Models.tblGame
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tblGame</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NameHR)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NameHR)
+            @Html.ValidationMessageFor(model => model.NameHR)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NameENG)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NameENG)
+            @Html.ValidationMessageFor(model => model.NameENG)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsRandom)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsRandom)
+            @Html.ValidationMessageFor(model => model.IsRandom)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RandomValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RandomValue)
+            @Html.ValidationMessageFor(model => model.RandomValue)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RandomType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RandomType)
+            @Html.ValidationMessageFor(model => model.RandomType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsTimeLimit)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsTimeLimit)
+            @Html.ValidationMessageFor(model => model.IsTimeLimit)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TimeLimit)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TimeLimit)
+            @Html.ValidationMessageFor(model => model.TimeLimit)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Objectives)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Objectives)
+            @Html.ValidationMessageFor(model => model.Objectives)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Definition)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Definition)
+            @Html.ValidationMessageFor(model => model.Definition)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DescriptionHR)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DescriptionHR)
+            @Html.ValidationMessageFor(model => model.DescriptionHR)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumShownFields)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumShownFields)
+            @Html.ValidationMessageFor(model => model.NumShownFields)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumRepetition)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumRepetition)
+            @Html.ValidationMessageFor(model => model.NumRepetition)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RandomFields)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RandomFields)
+            @Html.ValidationMessageFor(model => model.RandomFields)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QuickGamePool)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.QuickGamePool)
+            @Html.ValidationMessageFor(model => model.QuickGamePool)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryID, "tblCategory")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CategoryID", String.Empty)
+            @Html.ValidationMessageFor(model => model.CategoryID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MinStayTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MinStayTime)
+            @Html.ValidationMessageFor(model => model.MinStayTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MaxStayTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MaxStayTime)
+            @Html.ValidationMessageFor(model => model.MaxStayTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MinFlyTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MinFlyTime)
+            @Html.ValidationMessageFor(model => model.MinFlyTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MaxFlyTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MaxFlyTime)
+            @Html.ValidationMessageFor(model => model.MaxFlyTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartField)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartField)
+            @Html.ValidationMessageFor(model => model.StartField)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Countdown)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Countdown)
+            @Html.ValidationMessageFor(model => model.Countdown)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LegLeft)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LegLeft)
+            @Html.ValidationMessageFor(model => model.LegLeft)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LegRight)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LegRight)
+            @Html.ValidationMessageFor(model => model.LegRight)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Quantity)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Quantity)
+            @Html.ValidationMessageFor(model => model.Quantity)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Distance)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Distance)
+            @Html.ValidationMessageFor(model => model.Distance)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

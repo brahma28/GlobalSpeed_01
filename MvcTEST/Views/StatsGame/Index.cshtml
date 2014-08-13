@@ -1,0 +1,486 @@
+﻿@model IEnumerable<MvcTEST.Models.tblResult>
+@using MvcTEST.Models 
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+    var db = new MvcTEST.Models.SpeedCourtConfigDbEntities();
+    //var asd = db.getNameFromDictionary("Bitte wahlen", ((tblUser)Session["User"]).ID).FirstOrDefault().Name;
+    
+    
+}
+<style>
+
+#ui-state-active, .ui-state-active  {
+    background: #0360a3 !important;
+    /*font-weight:bold !important;*/
+    background-image:none;
+    color: #FFFFFF !important;
+}
+
+#ui-datepicker-header, .ui-datepicker-header,#ui-widget-header, .ui-widget-header {
+    background: #FFFFFF !important;
+    background-image:none;
+    border:0px  !important;
+}
+
+#highlight, .highlight a {
+    color: #0360a3 !important;
+    font-weight:bold !important;
+}
+
+#whitehighlight, .whitehighlight a {
+    color: #ffffff !important;
+    font-weight:bold !important;
+}
+
+h1{
+    font-size:1.5em;
+    text-align:center;
+    margin-bottom:1em;
+}
+p{
+    margin:1em 0;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, "Lucida Grande", Verdana, Arial, sans-serif, Helvetica;
+}
+
+.checkbox {
+    margin:0 auto;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    position:relative;
+    display: block;
+    width:94px;
+}    
+
+.checkbox input[type=checkbox] {
+    display: none;
+}
+
+.checkbox input[type=checkbox] + label {
+    display: block;
+    cursor:pointer;
+    width: 94px;
+    overflow: hidden;
+    background:#fff;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+    background:-webkit-linear-gradient(left, #2d5ba8 50%, #999 50%) no-repeat -20px 0;
+    background:-moz-linear-gradient(left, #2d5ba8 50%, #999 50%) no-repeat -20px 0;
+    -webkit-transition: background-position 0.3s ease-in-out;
+    -moz-transition: background-position 0.3s ease-in-out;
+}
+
+.checkbox input[type=checkbox] + label span,
+.checkbox input[type=checkbox] + label span:before,
+.checkbox input[type=checkbox] + label span:after{
+    text-align:center;
+    display:block;
+    width:54px;
+    height:27px;
+    line-height:27px;
+    position:absolute;
+    top:-1px;
+    font-weight:bold;
+    text-indent: 0;
+    -webkit-box-shadow:inset 1px 2px 2px 0 rgba(0,0,0,.2);
+    -moz-box-shadow:inset 1px 2px 2px 0 rgba(0,0,0,.2);
+    box-shadow:inset 1px 2px 2px 0 rgba(0,0,0,.2);
+}
+.checkbox input[type=checkbox] + label span{
+    text-indent: -9999px;
+    top:0;
+    position:relative;
+    left:0;
+    width:37px;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+    background:-webkit-linear-gradient(#efefef 1px, #cecece 1px, #fbfbfb);
+    background:-moz-linear-gradient(#efefef 1px, #cecece 1px, #fbfbfb);
+    -webkit-transition: left 0.3s ease-in-out;
+    -moz-transition: left 0.3s ease-in-out;
+    border:solid 1px;
+    border-color: #919191 #9f9f9f #999999 #90aacf;
+    -webkit-box-shadow:none;
+    -moz-box-shadow:none;
+    box-shadow:none;
+}
+.checkbox input[type=checkbox] + label span:before{
+    color:#eee;
+    text-shadow:0 1px rgba(255,255,255,.1), 0 -1px rgba(0,0,0,.3);
+    content:"ON";
+    background:-webkit-linear-gradient(#0360a3, #7cadf2);
+    background:-moz-linear-gradient(#0360a3, #7cadf2);
+    border-top:solid 1px #133676;
+    border-bottom:solid 1px #6587b7;
+    border-radius:1px 0 0 1px;
+    left:-55px;
+}
+.checkbox input[type=checkbox] + label span:after{
+    color:#888;
+    content:"OFF";
+    left:auto;
+    right:-55px;
+    background:-webkit-linear-gradient(#ddd, #eee);
+    background:-moz-linear-gradient(#ddd, #eee);
+    border-top:solid 1px #7d7d7d;
+    border-bottom:solid 1px #c0c0c0;
+}
+.checkbox input[type=checkbox] + label:active span{
+    left:5px;
+}
+.checkbox input[type=checkbox]:checked + label:active span{
+    left:50px;
+}
+.checkbox input[type=checkbox]:checked + label span{
+    left:55px;
+}
+.checkbox input[type=checkbox]:checked + label{
+    background-position:20px;
+}
+
+.checkbox:before,
+.checkbox:after{
+    content: " ";
+    display:block;
+    position:absolute;
+    top:0;
+    left:93px;
+    width:1px;
+    height:27px;
+    border:solid #fff;
+    border-width:1px 0;
+    z-index:20;
+    background:#999;
+}
+.checkbox:before{
+    left:0;
+}
+
+</style>
+@*<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.24/themes/base/jquery-ui.css">*@
+<!--  width: 950px; -->
+<div id="l1" style="padding: 10px; width: 950px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Home")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+<div id="l1" style="padding: 10px; width: 850px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color:white;">
+
+
+
+<table style="text-align:left; width:100%" >
+    <tr>
+        <td align="left" style="width:100%">
+            <div id="zaglavlje">
+            <text><b><font color="#0360a3" size="5">@ViewBag.game.Name.ToUpper()  @ViewBag.grupa   </font></b></text>
+
+            <hr />
+            </div>
+        </td>
+    </tr>
+</table>
+
+<table style="text-align:left; width:100% " >
+    <tr>
+
+        <td style="vertical-align:top; width:250px;">
+            <div id="kalendar"  style="text-align:left; width:250px" >
+                <table style="text-align:left " >
+                <!-- PERIOD -->
+                <tr>
+                    <td colspan="2" style=" width:250px;"><text><b><font color="#0360a3" size="5">ZEITRAUM</font></b></text></td>
+                </tr><tr>
+                    <td colspan="2"><hr /></td>
+                </tr>
+                <tr>
+                        <td >
+                            <!-- kalendar -->
+                            <div id="datepicker"></div>
+                            <script>
+                                                                
+                                var dates = [@ViewBag.selecteddates];
+                                // rumpelstiltskin
+                                //tips are optional but good to have
+                                var tips = ['some description', 'some other description'];
+                                
+                                function highlightDays(date) {
+                                    
+                                    for (var i = 0; i < dates.length; i++) {
+                                        if (dates[i]!='')                                         
+                                            if (dates[i].getDate() == date.getDate()) {
+                                                //debugger;
+                                                if (selectedDate != null && (formatDateHomeMade(date) == selectedDate))
+                                                    return [true, 'whitehighlight'];
+                                                else
+                                                    return [true, 'highlight'];
+
+                                            }
+                                    }
+                                    return [true, ''];
+                                }
+
+                                var formatDateHomeMade = function (date) {
+                                    return "0" + (date.getMonth() + 1).toString() + '/' + date.getDate() + '/' + date.getFullYear();
+                                }
+                                                               
+
+                                var Event = function(text, className) {
+                                    this.text = text;
+                                    this.className = className;
+                                };
+
+
+                                $("#datepicker").datepicker(
+                                    {
+
+                                        //$.datepicker.regional['de']
+                                        beforeShowDay: highlightDays,
+                                        onSelect: function (date, inst) {
+                                            selectedDate = date;
+                                            $.post("/statsgame/getHighscores?ID=" + @ViewBag.game.ID + "&datum=" + date, {}, function (ret) {
+                                                $("#highscores1").html(ret);
+                                            }
+                                                );
+                                        },
+
+                                        onChangeMonthYear: function (year,month,inst) {
+                                            //alert("mijenjanje mjeseca!");
+                                            //highlightDays($('#date'));
+                                            
+                                            var date = $("#datepicker").datepicker('getDate');
+                                            var strDate = month + "/" + date.getDate() + "/" + year;
+                                            $.post("/statsgame/getHighscoreDates?ID=" + @ViewBag.game.ID + "&datum=" + strDate, {}, function (ret) {                                                                                                
+                                                eval("dates = [" + ret + "];");
+                                                $("#datepicker").datepicker('refresh');
+
+                                                var queryDate = new Date(year, month - 1, date.getDate()); // Dashes won't work
+                                                $('#datepicker').datepicker('setDate', queryDate);                                
+                                                $(".ui-datepicker-current-day").trigger("click");
+
+                                            });
+                                        },
+
+
+                                    });
+                                //debugger;
+                                var selectedDate = null;
+                                var queryDate = new Date(@ViewBag.datumtermina.Year, @ViewBag.datumtermina.Month-1, @ViewBag.datumtermina.Day); // Dashes won't work
+                                $('#datepicker').datepicker('setDate', queryDate);
+                                
+                                $(".ui-datepicker-current-day").trigger("click");
+
+                            </script>
+                        </td>
+                    </tr>    
+                    <tr >
+                        <td>
+                            <p>
+                                Bitte wahlen Sie ein Datum aus damit die Auswerungen<br /> angezeigt werden.                                
+                                <!--TODO-->
+                                @Html.Translate("Bitte wahlen")
+                            </p>
+                        </td>
+                    </tr>  
+                </table>   
+            </div>
+        </td>
+        <td style="text-align:left;">
+            <!--EXEC getStatsParameter(UserID) -->
+            <table>
+                <!-- PRESENTATION -->
+                <tr>
+                    <td colspan="2" style=" width:250px;"><text><b><font color="#0360a3" size="5">DARSTELLUNG</font></b></text></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><hr /></td>
+                </tr><tr>
+                    <td>Spider</td><td>
+                        @*<input id="lines" name="presentation" type="checkbox" value="true" />*@
+                        <div class="checkbox">
+                          <input id="spider"  name="presentation"  type="checkbox" value="spider" @( ViewBag.parametri.PresentationSpider ? "checked" : string.Empty ) />
+                          <label for="spider"><span>Check-me</span></label>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><hr /></td>
+                </tr><tr>
+                    <td>Linien</td><td>
+                        @*<input id="lines" name="presentation" type="checkbox" value="true" />*@
+                        <div class="checkbox">
+                          <input id="lines"  name="presentation"  type="checkbox" value="lines" @( ViewBag.parametri.PresentationLines ? "checked" : string.Empty )/>
+                          <label for="lines"><span>Check-me</span></label>
+                        </div>
+                    </td>
+                </tr><tr>
+                    <td colspan="2"><hr /></td>
+                </tr><tr>
+                    <td>Tabelle</td><td>
+                        @*<input id="table" name="presentation" type="checkbox" value="true" />*@
+                        <div class="checkbox">
+                          <input id="table"  name="presentation"  type="checkbox" value="table" @( ViewBag.parametri.PresentationTable ? "checked" : string.Empty )/>
+                          <label for="table"><span>Check-me</span></label>
+                        </div>
+                    </td>
+                </tr><tr>
+                    <td colspan="2"><hr /></td>
+                </tr><tr>
+                    <td>Balken</td><td>
+                        @*<input id="beam" name="presentation" type="checkbox" value="true" />*@
+                        <div class="checkbox">
+                          <input id="beam"  name="presentation"  type="checkbox" value="beam" @( ViewBag.parametri.PresentationBeam ? "checked" : string.Empty )/>
+                          <label for="beam"><span>Check-me</span></label>
+                        </div>
+                    </td>
+                </tr><tr>
+                    <td colspan="2"><hr /></td>
+                </tr><tr>
+                    <td colspan="2"><br /></td>
+                </tr>
+                <!-- parameters -->
+                <tr>
+                    <td colspan="2"><text><b><font color="#0360a3" size="5">PARAMETER</font></b></text></td>
+                </tr><tr>
+                    <td colspan="2"><hr /></td>
+                </tr><tr>
+                    <td>Wendezeit</td><td>
+                        @*<input id="turntime" name="turntime" type="checkbox" value="true" />*@
+                        <div class="checkbox">
+                          <input id="turntime"  name="parameters"  type="checkbox" value="turntime"  @( ViewBag.parametri.ParameterTurntime ? "checked" : string.Empty )/>
+                          <label for="turntime"><span>Check-me</span></label>
+                        </div>
+                    </td>
+                </tr><tr>
+                    <td colspan="2"><hr /></td>
+                </tr><tr>
+                    <td>Flugzeit</td><td>
+                        @*<input id="flighttime" name="flighttime" type="checkbox" value="true" />*@
+                        <div class="checkbox">
+                          <input id="flighttime"  name="parameters"  type="checkbox" value="flighttime" @( ViewBag.parametri.ParameterFlighttime ? "checked" : string.Empty )/>
+                          <label for="flighttime"><span>Check-me</span></label>
+                        </div>
+                    </td>
+                </tr><tr>
+                    <td colspan="2"><hr /></td>
+                </tr><tr>
+                    <td>Bodenkontaktzeit</td><td>
+                        @*<input id="groundcontacttime" name="groundcontacttime" type="checkbox" value="true" />*@
+                        <div class="checkbox">
+                          <input id="groundcontacttime"  name="parameters"  type="checkbox" value="1" @( ViewBag.parametri.ParameterGroundcontacttime ? "checked" : string.Empty )/>
+                          <label for="groundcontacttime"><span>Check-me</span></label>
+                        </div>
+                    </td>
+                </tr><tr>
+                    <td colspan="2"><hr /></td>
+                </tr><tr>
+                    <td>Etikett</td><td>
+                        @*<input id="label" name="label" type="checkbox" value="true" />*@
+                        <div class="checkbox">
+                          <input id="label"  name="parameters"  type="checkbox" value="1" @( ViewBag.parametri.ParameterLabel ? "checked" : string.Empty )/>
+                          <label for="label"><span>Check-me</span></label>
+                        </div>
+                    </td>
+                </tr><tr>
+                    <td colspan="2"><hr /></td>
+                </tr><tr>
+                    <td colspan="2"><br /></td>
+                </tr>
+            </table>
+        </td>
+        <td style="text-align:left; vertical-align:top; ">
+            <table>
+                <!-- highscores1 -->
+                <tr>
+                    <td colspan="2" style=" width:250px;">
+                        <div id="highscores1"  style="text-align:left; width:250px; height:500px" >
+                            @Html.Partial("highscores1")
+                        </div>
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<!-- tabela sa gumbima -->
+<table style="text-align:left; width:100%" >
+    <tr>
+        <!-- cancel -->
+        <td align="left">
+            <input type="button" value='@Html.Translate("Odustani").ToUpper()' onclick="javascript:history.back()" class="cancel">
+        </td>
+        <!-- ANALYSE (evaluate) -->
+        <td align="right">
+            <input type="button" value='@Html.Translate("Auswerten").ToUpper()' onclick="location.href='@(Url.Content("~/Stats/ReportGame/") + ViewBag.game.ID.ToString())'" class="edit" />
+        </td>
+    </tr>
+</table>
+<script>
+    $(document).ready(function () {
+
+        $('#spider').click(function () {
+            $.post('@Url.Action("AjaxSetStatsParameter", "StatsGame")', { radiobutton: 'spider' },
+                    function (data) {
+                    });
+        });
+        $('#lines').click(function () {
+            $.post('@Url.Action("AjaxSetStatsParameter", "StatsGame")', { radiobutton: 'lines' },
+                    function (data) {
+                    });
+        });
+        $('#table').click(function () {
+            $.post('@Url.Action("AjaxSetStatsParameter", "StatsGame")', { radiobutton: 'table' },
+                    function (data) {
+                    });
+        });
+        $('#beam').click(function () {
+            $.post('@Url.Action("AjaxSetStatsParameter", "StatsGame")', { radiobutton: 'beam' },
+                    function (data) {
+                    });
+        });
+        $('#turntime').click(function () {
+            $.post('@Url.Action("AjaxSetStatsParameter", "StatsGame")', { radiobutton: 'turntime' },
+                    function (data) {
+                    });
+        });
+        $('#flighttime').click(function () {
+            $.post('@Url.Action("AjaxSetStatsParameter", "StatsGame")', { radiobutton: 'flighttime' },
+                    function (data) {
+                    });
+        });
+        $('#groundcontacttime').click(function () {
+            $.post('@Url.Action("AjaxSetStatsParameter", "StatsGame")', { radiobutton: 'groundcontacttime' },
+                    function (data) {
+                    });
+        });
+        $('#label').click(function () {
+            $.post('@Url.Action("AjaxSetStatsParameter", "StatsGame")', { radiobutton: 'label' },
+                    function (data) {
+                    });
+        });
+
+    });
+
+    var checkbox = $('input[type="checkbox"]').change(function(){
+        $("#status").text(this.checked ? "" : "not");
+    });
+
+    $("#toggle").click(function(e){
+        e.preventDefault();
+        checkbox.each(function(){this.checked=!this.checked;}).change();
+    });
+
+</script>
+</div>
+
+</div>

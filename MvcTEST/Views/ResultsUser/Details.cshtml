@@ -1,0 +1,57 @@
+﻿@model MvcTEST.Models.tblResult
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>tblResult</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tblUser.Username)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tblUser.Username)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tblGame.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tblGame.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LapTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LapTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Distance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Distance)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ContactNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContactNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ResultDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ResultDate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,376 @@
+﻿@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Games";
+}
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        @*<a href="@Url.Action("Index", "Action")" >  <img src="~/ImagesApp/close.png" border="0" /></a>*@
+
+        @if (Html.User().Role == 50)
+        {
+            <!-- VLASNIK -->
+            <a id="aron" href="@Url.Action("Index", "AdminHome")">
+                <img src="~/ImagesApp/close.png" />
+            </a>
+        }
+        else if (Html.User().Role == 40)
+        {
+            <!-- TRENER -->
+            <a id="aron" href="@Url.Action("Index", "Action")">
+                <img src="~/ImagesApp/close.png" />
+            </a>
+        }
+        else if (Html.User().Role == 20 || Html.User().Role == 30)
+        {
+            <!-- IGRAC -->
+            <a id="aron" href="@Url.Action("Index", "UserHome")">
+                <img src="~/ImagesApp/close.png" />
+            </a>
+        }
+        else if (Html.User().Role == 10)
+        {
+            <!-- QUICKGAME -->
+            <a id="aron" href="@Url.Action("Index", "UserHome")">
+                <img src="~/ImagesApp/close.png" />
+            </a>
+        }
+        else
+        {
+            <!-- ... -->
+            <a id="aron" href="@Url.Action("Index", "UserHome")">
+                <img src="~/ImagesApp/close.png" />
+            </a>
+        }
+    </div>
+    <table style="width: 100%">
+        <!-- NAZIV EKRANA-->
+        <tr>
+            <td colspan="3" style="padding-bottom: 20px">
+                <font size="6"><b>@Html.Translate("KONFIGURATION DER SPIELE")</b></font>
+            </td>
+        </tr>
+        <!-- TABELA:  -->
+        <tr>
+            <td style="width: 300px">
+                <div id="buttons">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>
+                                <div id="buttonsin" style="padding: 10px;width: 300px; height: 500px; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #eeeeee">
+                                    <table style="width: 100%; text-align: left;">
+                                        <tr>
+                                            <td>
+                                                <div id="kategorije" style="height: 13px; border-radius: 7px;">
+                                                    <font size="5" color="#0360a3"><b>@Html.Translate("KATEGORIE")</b></font>
+                                                </div>
+                                                <br />
+                                                <hr />
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <div id="tapping" style="width: 200px; height: 67px; border-radius: 7px;">
+                                                    <!-- tapping:  GameID = 31 -->
+                                                    <a href="@Url.Action("Create", "GameTapping")">
+                                                        <img src="~/ImagesApp/TAPPING.png">
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div id="jumping" style="width: 200px; height: 67px; border-radius: 7px;">
+                                                    <!-- jumping:  GameID = 30 -->
+                                                    <a href="@Url.Action("Create", "GameJumping")">
+                                                        <img src="~/ImagesApp/jumping.png">
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div id="inout" style="width: 200px; height: 67px; border-radius: 7px;">
+                                                    <!-- in out:  GameID = 26 -->
+                                                    <a href="@Url.Action("Create", "GameInOut")">
+                                                        <img src="~/ImagesApp/inout.png">
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div id="inout" style="width: 200px; height: 67px; border-radius: 7px;">
+                                                    <!-- in out:  GameID = 26 -->
+                                                    <a href="@Url.Action("Create", "GameSpeedMemory")">
+                                                        <img src="~/ImagesApp/speedmemory.png" />
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div id="inout" style="width: 200px; height: 67px; border-radius: 7px;">
+                                                    <!-- in out:  GameID = 26 -->
+                                                    <a href="@Url.Action("Create", "GameSpeedChase")">
+                                                        <img src="~/ImagesApp/speedchase.png" />
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div id="inout" style="width: 200px; height: 67px; border-radius: 7px;">
+                                                    <!-- in out:  GameID = 26 -->
+                                                    <a href="@Url.Action("Create", "GameReaction")">
+                                                        <img src="~/ImagesApp/REACTIONTEST.png" />
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+            </td>
+            <td style="width: 500px; padding-left: 20px">
+                <div id="content">
+                    <table style="width: 100%; text-align: left;">
+                        <tr>
+                            <!-- exec [getGameByUser] null -->
+                            <td>
+
+                                <div id="games" style="padding: 10px; width:500px; height: 500px; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #FFF">
+                                    <table style="width: 100%; line-height: 13px; border: 0;">
+                                        <tr>
+                                            <td style="text-align:left;">
+                                                <text><b><font color="#0360a3" size="5">@Html.Translate("SPIEL")</font></b></text>
+                                            </td>
+                                            <!-- Play No. -->
+                                            <td style="text-align:right;">
+                                                <text><font color="gray" size="4">Spiele No.</font></text>
+                                            </td>
+                                            <!-- Last play -->
+                                            <td style="text-align:right;">
+                                                <text><font color="gray" size="4">Letzt gespielte</font></text>
+                                            </td>
+                                            <td style="text-align:right;">
+                                                <text><font color="gray" size="4">@Html.Translate("Kategorie")</font></text>
+                                            </td>
+                                            <td style="width:25px;">                                        
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    
+                                    <br />
+                                    <hr />
+                                    <div id="gamesin" style="height: 430px; position: inherit; background-color: #FFF; overflow-y: scroll; overflow-x: hidden;">
+                                        <table style="width: 100%; line-height: 13px; border: 0; height: 330px; overflow-y: scroll;">
+
+                                            @* foreach (MvcTEST.Models.getGameByUser_Result item1 in @ViewBag.games)*@
+                                            @{ foreach (MvcTEST.Models.vwGame item1 in @ViewBag.games)
+                                               {
+                                                   if (item1.CategoryName.Contains("In Out") || item1.CategoryName.Contains("InOut"))
+                                                   {                                                      
+                                                <tr>
+                                                    <td style="text-align: left;">
+                                                        <a href="@(Url.Content("~/GameInOut/Edit/") + item1.ID.ToString())" style="text-decoration:none;">
+                                                            <font color="black"><b>@item1.Name</b></font>
+                                                        </a>
+
+                                                    </td>
+                                                    <td style="text-align: left;">@item1.NoOfPlays</td>
+                                                    <td style="text-align: center;">@item1.LastPlayed</td>
+                                                    <td style="text-align: right; ">
+                                                        <font color="gray">(InOut)</font>
+@*                                                        <a href="" title="@Html.Translate("Löschen")">
+                                                            <img src="~/ImagesApp/delete.png" />
+                                                        </a>*@
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink(" ", "Deletegame", new { id = item1.ID }, new { onclick = "return confirm('Wollen Sie wirklich löschen " + item1.Name + "?');", style="background-image: url('/ImagesApp/delete.png');display: block; width: 18px;  height: 18px;   text-indent: -9999px;" })
+                                                    </td>
+                                                </tr>
+                                             
+                                                
+                                                
+                                                
+                                                   }
+                                                   else if (item1.CategoryName.Contains("Speed") && !(item1.CategoryName.Contains("Chase")) && !(item1.CategoryName.Contains("Memory")))
+                                                   {                                                      
+                                                <tr>
+                                                    <td style="text-align: left;">
+                                                        <a href="@(Url.Content("~/GameInOut/Edit/") + item1.ID.ToString())" style="text-decoration:none;">
+                                                            <font color="black"><b>@item1.Name</b></font>
+                                                        </a>
+                                                    </td>
+                                                    <td style="text-align: left;">@item1.NoOfPlays</td>
+                                                    <td style="text-align: center;">@item1.LastPlayed</td>
+                                                    <td style="text-align: right;">
+                                                        <font color="gray">(Speed)</font>
+@*                                                        <a href="@(Url.Content("~/Configurator/Deletegame/") + item1.ID.ToString())" title="@Html.Translate("Löschen")">
+                                                            <img src="~/ImagesApp/delete.png" />
+                                                        </a>*@
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink(" ", "Deletegame", new { id = item1.ID }, new { onclick = "return confirm('Wollen Sie wirklich löschen " + item1.Name + "?');", style="background-image: url('/ImagesApp/delete.png');display: block; width: 18px;  height: 18px;   text-indent: -9999px;" })
+                                                    </td>
+                                                </tr>
+                                                   }
+                                                   else if (item1.CategoryName.Contains("Tapping"))
+                                                   {                                                      
+                                                <tr>
+                                                    <td style="text-align: left;">
+                                                        <a href="@(Url.Content("~/GameTapping/Edit/") + item1.ID.ToString())" style="text-decoration:none;">
+                                                            <font color="black"><b>@item1.Name</b></font>
+                                                        </a>
+                                                    </td>
+                                                    <td style="text-align: left;">@item1.NoOfPlays</td>
+                                                    <td style="text-align: center;">@item1.LastPlayed</td>
+                                                    <td style="text-align: right;">
+                                                        <font color="gray">(Tapping)</font>
+@*                                                        <a href="@(Url.Content("~/Configurator/Deletegame/") + item1.ID.ToString())" title="@Html.Translate("Löschen")">
+                                                            <img src="~/ImagesApp/delete.png" />
+                                                        </a>*@
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink(" ", "Deletegame", new { id = item1.ID }, new { onclick = "return confirm('Wollen Sie wirklich löschen " + item1.Name + "?');", style="background-image: url('/ImagesApp/delete.png');display: block; width: 18px;  height: 18px;   text-indent: -9999px;" })
+                                                    </td>
+                                                </tr>
+                                                   }
+                                                   else if (item1.CategoryName.Contains("Jump") || item1.CategoryName.Contains("Sprung"))
+                                                   {                                                      
+                                                <tr>
+                                                    <td style="text-align: left;">
+                                                        <a href="@(Url.Content("~/GameJumping/Edit/") + item1.ID.ToString())" style="text-decoration:none;">
+                                                            <font color="black"><b>@item1.Name</b></font>
+                                                        </a>
+
+                                                    </td>
+                                                    <td style="text-align: left;">@item1.NoOfPlays</td>
+                                                    <td style="text-align: center;">@item1.LastPlayed</td>
+                                                    <td style="text-align: right;">
+                                                        <font color="gray">(Sprung)</font>
+@*                                                        <a href="@(Url.Content("~/Configurator/Deletegame/") + item1.ID.ToString())" title="@Html.Translate("Löschen")">
+                                                            <img src="~/ImagesApp/delete.png" />
+                                                        </a>*@
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink(" ", "Deletegame", new { id = item1.ID }, new { onclick = "return confirm('Wollen Sie wirklich löschen " + item1.Name + "?');", style="background-image: url('/ImagesApp/delete.png');display: block; width: 18px;  height: 18px;   text-indent: -9999px;" })
+                                                    </td>
+                                                </tr>
+                                                   }
+                                                   else if (item1.CategoryName.Contains("Memory") || item1.CategoryName.Contains("Speicher") || item1.CategoryID == 9)
+                                                   {                                                      
+                                                <tr>
+                                                    <td style="text-align: left;">
+                                                        <a href="@(Url.Content("~/GameSpeedMemory/Edit/") + item1.ID.ToString())" style="text-decoration:none;">
+                                                            <font color="black"><b>@item1.Name</b></font>
+                                                        </a>
+                                                    </td>
+                                                    <td style="text-align: left;">@item1.NoOfPlays</td>
+                                                    <td style="text-align: center;">@item1.LastPlayed</td>
+                                                    <td style="text-align: right;">
+                                                        <font color="gray">(Memory)</font>
+@*                                                        <a href="@(Url.Content("~/Configurator/Deletegame/") + item1.ID.ToString())" title="@Html.Translate("Löschen")">
+                                                            <img src="~/ImagesApp/delete.png" />
+                                                        </a>*@
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink(" ", "Deletegame", new { id = item1.ID }, new { onclick = "return confirm('Wollen Sie wirklich löschen " + item1.Name + "?');", style="background-image: url('/ImagesApp/delete.png');display: block; width: 18px;  height: 18px;   text-indent: -9999px;" })
+                                                    </td>
+                                                </tr>
+                                                   }
+                                                   else if (item1.CategoryName.Contains("Chase") || item1.CategoryName.Contains("Verfolgungsjagd"))
+                                                   {                                                      
+                                                <tr>
+                                                    <td style="text-align: left;">
+                                                        <a href="@(Url.Content("~/GameSpeedChase/Edit/") + item1.ID.ToString())" style="text-decoration:none;">
+                                                            <font color="black"><b>@item1.Name</b></font>
+                                                        </a>
+                                                    </td>
+                                                    <td style="text-align: left;">@item1.NoOfPlays</td>
+                                                    <td style="text-align: center;">@item1.LastPlayed</td>
+                                                    <td style="text-align: right;">
+                                                        <font color="gray">(Chase)</font>
+@*                                                        <a href="@(Url.Content("~/Configurator/Deletegame/") + item1.ID.ToString())" title="@Html.Translate("Löschen")">
+                                                            <img src="~/ImagesApp/delete.png" />
+                                                        </a>*@
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink(" ", "Deletegame", new { id = item1.ID }, new { onclick = "return confirm('Wollen Sie wirklich löschen " + item1.Name + "?');", style="background-image: url('/ImagesApp/delete.png');display: block; width: 18px;  height: 18px;   text-indent: -9999px;" })
+                                                    </td>
+                                                </tr>
+                                                   }
+                                                   else if (item1.CategoryName.Contains("Reaction") || item1.CategoryName.Contains("Reaktion") || item1.CategoryID == 8)
+                                                   {                                                      
+                                                <tr>
+                                                    <td style="text-align: left;">
+                                                        <a href="@(Url.Content("~/GameReaction/Edit/") + item1.ID.ToString())" style="text-decoration:none;">
+                                                            <font color="black"><b>@item1.Name</b></font>
+                                                        </a>
+                                                    </td>
+                                                    <td style="text-align: left;">@item1.NoOfPlays</td>
+                                                    <td style="text-align: center;">@item1.LastPlayed</td>
+                                                    <td style="text-align: right;">
+                                                        <font color="gray">(Reaction)</font>
+@*                                                        <a href="@(Url.Content("~/Configurator/Deletegame/") + item1.ID.ToString())" title="@Html.Translate("Löschen")">
+                                                            <img src="~/ImagesApp/delete.png" />
+                                                        </a>*@
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink(" ", "Deletegame", new { id = item1.ID }, new { onclick = "return confirm('Wollen Sie wirklich löschen " + item1.Name + "?');", style="background-image: url('/ImagesApp/delete.png');display: block; width: 18px;  height: 18px;   text-indent: -9999px;" })
+                                                    </td>
+                                                </tr>
+                                                   }
+
+
+                                                   else
+                                                   {  
+                                                    
+                                                <tr>
+                                                    <td style="text-align: left;">
+                                                        <a href="@(Url.Content("~/Game/Details/") + item1.ID.ToString())" style="text-decoration:none;">
+                                                            <font color="black"><b>@item1.Name</b></font>
+                                                        </a>
+                                                    </td>
+                                                    <td style="text-align: left;">@item1.NoOfPlays</td>
+                                                    <td style="text-align: center;">@item1.LastPlayed</td>
+                                                    <td style="text-align: right;">
+                                                        <font color="gray">...</font>
+@*                                                        <a href="@(Url.Content("~/Configurator/Deletegame/") + item1.ID.ToString())" title="@Html.Translate("Löschen")">
+                                                            <img src="~/ImagesApp/delete.png" />
+                                                        </a>*@
+                                                    </td>
+                                                    <td>
+                                                        @Html.ActionLink(" ", "Deletegame", new { id = item1.ID }, new { onclick = "return confirm('Wollen Sie wirklich löschen " + item1.Name + "?');", style="background-image: url('/ImagesApp/delete.png');display: block; width: 18px;  height: 18px;   text-indent: -9999px;" })
+                                                    </td>
+                                                </tr>
+                                                   }                                                
+                                                    
+                                                <tr>
+                                                    <td align="left" colspan="5">
+                                                        <hr />
+                                                    </td>
+                                                </tr>   
+                                               }}
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+            </td>
+
+        </tr>
+    </table>
+
+</div>
+
+
+
+
+
+
+

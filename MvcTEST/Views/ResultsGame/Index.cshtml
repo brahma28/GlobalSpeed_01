@@ -1,0 +1,210 @@
+﻿@model IEnumerable<MvcTEST.Models.tblResult>
+@using MvcTEST.Models 
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+    var db = new MvcTEST.Models.SpeedCourtConfigDbEntities();
+    //var asd = db.getNameFromDictionary("Bitte wahlen", ((tblUser)Session["User"]).ID).FirstOrDefault().Name;
+    
+    
+}
+<style>
+
+#ui-state-active, .ui-state-active  {
+    background: #0360a3 !important;
+    /*font-weight:bold !important;*/
+    background-image:none;
+    color: #FFFFFF !important;
+}
+
+#ui-datepicker-header, .ui-datepicker-header,#ui-widget-header, .ui-widget-header {
+    background: #FFFFFF !important;
+    background-image:none;
+    border:0px  !important;
+}
+
+#highlight, .highlight a {
+    color: #0360a3 !important;
+    font-weight:bold !important;
+}
+
+#whitehighlight, .whitehighlight a {
+    color: #ffffff !important;
+    font-weight:bold !important;
+}
+
+</style>
+@*<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.24/themes/base/jquery-ui.css">*@
+<!--  width: 950px; -->
+<div id="l1" style="padding: 10px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Results")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+<div id="l1" style="padding:10px;height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color:white;">
+
+
+
+<table style="text-align:left; width:100%" >
+    <tr>
+        <td align="left" style="width:100%">
+            <div id="zaglavlje">
+            <text><b><font color="#0360a3" size="5">@ViewBag.game.Name.ToUpper()  @ViewBag.grupa   </font></b></text>
+
+            <hr />
+            </div>
+        </td>
+    </tr>
+</table>
+
+<table style="text-align:left; width:100% " >
+    <tr>
+        <td style="vertical-align:top ">
+            <div id="kalendar"  style="text-align:left; width:250px" >
+                <table style="text-align:left " >
+                    <tr >
+                        <td >
+                            <!-- kalendar -->
+                            <div id="datepicker" style="font-size: 12px"></div>
+                            <script>
+                                                                
+                                var dates = [@ViewBag.selecteddates];
+                                // rumpelstiltskin
+                                //tips are optional but good to have
+                                var tips = ['some description', 'some other description'];
+                                
+                                function highlightDays(date) {
+                                    
+                                    for (var i = 0; i < dates.length; i++) {
+                                        if (dates[i]!='')                                         
+                                            if (dates[i].getDate() == date.getDate()) {
+                                                //debugger;
+                                                if (selectedDate != null && (formatDateHomeMade(date) == selectedDate))
+                                                    return [true, 'whitehighlight'];
+                                                else
+                                                    return [true, 'highlight'];
+
+                                            }
+                                    }
+                                    return [true, ''];
+                                }
+
+                                var formatDateHomeMade = function (date) {
+                                    return "0" + (date.getMonth() + 1).toString() + '/' + date.getDate() + '/' + date.getFullYear();
+                                }
+                                                               
+
+                                var Event = function(text, className) {
+                                    this.text = text;
+                                    this.className = className;
+                                };
+
+
+                                $("#datepicker").datepicker(
+                                    {
+                                        inline: true,
+                                        showOtherMonths: true,
+                                        dayNamesMin: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                                        //$.datepicker.regional['de']
+                                        beforeShowDay: highlightDays,
+                                        onSelect: function (date, inst) {
+                                            selectedDate = date;
+                                            $.post("/resultsgame/getHighscores?ID=" + @ViewBag.game.ID + "&datum=" + date, {}, function (ret) {
+                                                $("#highscores").html(ret);
+                                            }
+                                                );
+                                        },
+
+                                        onChangeMonthYear: function (year,month,inst) {
+                                            //alert("mijenjanje mjeseca!");
+                                            //highlightDays($('#date'));
+                                            
+                                            var date = $("#datepicker").datepicker('getDate');
+                                            var strDate = month + "/" + date.getDate() + "/" + year;
+                                            $.post("/resultsgame/getHighscoreDates?ID=" + @ViewBag.game.ID + "&datum=" + strDate, {}, function (ret) {                                                                                                
+                                                eval("dates = [" + ret + "];");
+                                                $("#datepicker").datepicker('refresh');
+
+                                                var queryDate = new Date(year, month - 1, date.getDate()); // Dashes won't work
+                                                $('#datepicker').datepicker('setDate', queryDate);                                
+                                                $(".ui-datepicker-current-day").trigger("click");
+
+                                            });
+                                        },
+
+
+                                    });
+                                //debugger;
+                                var selectedDate = null;
+                                var queryDate = new Date(@ViewBag.datumtermina.Year, @ViewBag.datumtermina.Month-1, @ViewBag.datumtermina.Day); // Dashes won't work
+                                $('#datepicker').datepicker('setDate', queryDate);
+                                
+                                $(".ui-datepicker-current-day").trigger("click");
+
+                            </script>
+                        </td>
+                    </tr>    
+                    <tr >
+                        <td>
+                            <!-- poruka ispod kalendara -->
+                            <!-- Bitte wahlen Sie ein Datum aus damit die Ergebnisse angezeigt werden. -->
+                            <text><font size="3">@Html.Translate("Molimo odaberite datum za koji želite vidjeti rezultate.")</font></text>
+                        </td>
+                    </tr>   
+                </table>   
+            </div>
+        </td>
+        <td>
+            <div id="highscores"  style="text-align:left; width:550px; height:500px" >
+                @Html.Partial("highscores")
+            </div>
+        </td>
+    </tr>
+</table>
+<!-- tabela sa gumbima -->
+<table style="text-align:left; width:100%; margin-top:10px" >
+    <tr>
+        <!-- cancel -->
+        <td>
+            <input type="button" value='@Html.Translate("Odustani").ToUpper()' onclick="javascript:history.back()" class="cancel" />
+        </td>
+        <!-- e-mail -->
+        <td>
+            <input type="button" value='@Html.Translate("E-Mail").ToUpper()' onclick="onMail()" class="e-mail" />
+        </td>
+        <!-- print -->
+        <td>
+            <input type="button" value='@Html.Translate("Print").ToUpper()' onclick="print()" class="print" />
+        </td>
+        <!-- excel export -->
+        <td>
+            <input type="button" value='@Html.Translate("Excel").ToUpper()' onclick="onSearchClick()" class="excel" />
+        </td>
+        <!-- PDF download -->
+        <td>
+            <input type="button" value='@Html.Translate("Pdf").ToUpper()' onclick="onSearchClick()" class="pdf" />
+        </td>
+    </tr>
+</table>
+<script>
+    function onSearchClick() {
+        $.post("results/AjaxSearch?search=" + escape($("#txtSearch").val()), {}, function (ret) {
+            $("#content").html(ret);
+        }
+            );
+    }
+    function onMail() {
+
+        var picker = $("#datepicker").datepicker('getDate');
+        var month = picker.getMonth() + 1;
+        var url = "/resultsgame/SendMail?ID=" + @ViewBag.game.ID + "&datum=" + picker.getFullYear() + "-" + month + "-" + picker.getDate(); 
+
+        $.post(url, {}, function (ret) {
+            alert(ret);
+        }
+            );
+    }
+</script>
+</div>
+
+</div>

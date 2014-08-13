@@ -1,0 +1,536 @@
+﻿@using MvcTEST.Models;
+@using MvcTEST.HtmlHelpers
+@model MvcTEST.Models.tblChaseSymbol
+@{
+    Layout = null;
+    string fieldId, chaseSymbolID = String.Empty;
+    tblChaseSymbol chaseSymbol;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SpeedChase Words</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <style type="text/css">
+        body
+        {
+            background: #80a8bd url(/ImagesApp/playground-bg.png) repeat-x;
+            margin: 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        input[type=file]
+        {
+            display: none;
+        }
+        table.playground
+        {
+            width: 100%;
+            height: 90%;
+            border-collapse: collapse;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 40px;
+            left: 0;
+        }
+        table.playground tr td
+        {
+            padding: 0;
+        }
+        table.playground tr td div.field
+        {
+            width: 130px;
+            height: 130px;
+            background-color: #fff;
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+            color: #fff;
+            font: bold 80px arial;
+            line-height: 130px;
+            margin: 0 50px 0 50px;
+            position: relative;
+        }
+        table.playground tr td.right div.field
+        {
+            float: right;
+        }
+        table.playground tr td.center > table.center-fields
+        {
+            width: 260px;
+            margin: 0px auto;
+        }
+        table.playground tr td.center > table.center-fields tr td > div.field
+        {
+            margin: 5px;
+        }
+        table.playground tr td.center > div
+        {
+            margin: 0px auto;
+        }
+        div.field a.question
+        {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: url(/ImagesApp/question.png) no-repeat 0% 0%;
+        }        
+        div.field a.img
+        {
+            position:absolute;
+            top: 2px;
+            right: 2px;
+            width: 20px;
+            height: 20px;
+            background: url(/imagesapp/ChaseField2_20.png) no-repeat 0% 0%;
+        }
+        input[type=submit]
+        {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: url(/imagesapp/buttons/bg/orange130.png) no-repeat 0% 0%;
+            width: 130px;
+            height: 51px;
+            border: none;
+            color: #fff;
+            font: bold 16px GlobalSpeed;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        function InitUpload(fieldId, chaseSymbolId) {
+            document.getElementById("fldId").value = fieldId;
+            document.getElementById("csId").value = chaseSymbolId;
+            var fileInput = document.getElementById("file");
+            fileInput.onchange = function () {
+                if (IsUploadImage()) {
+                    document.forms[0].submit();
+                }
+                else {
+                    this.value = "";
+                    alert("Selected file type is not valid.\nUpload allows only image files: .jpg, .png, .gif, .bmp");
+                }
+            };
+            fileInput.click();
+        }
+        function IsUploadImage() {
+            var filePath = document.getElementById("file").value;
+            var startIndex = filePath.lastIndexOf(".");
+            if (startIndex == -1) {
+                return false;
+            }
+            else {
+                var ext = filePath.substring(startIndex);
+                switch (ext) {
+                    case ".jpg":
+                    case ".png":
+                    case ".gif":
+                    case ".bmp":
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        }
+        function SetQuestion(sender, fieldIndex) {
+            var hdn = document.getElementById("question_" + fieldIndex);
+            var txt = prompt("Fragetext für richtige Antwort auf dem Gebiet?", hdn.value);
+            if (txt != null) {
+                hdn.value = txt;
+                sender.title = "Fragetext: " + hdn.value;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form method="post" action="/GameSpeedChase/ChaseSymbolFieldsImage" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" />
+        <input type="hidden" id="fldId" name="fldId" />
+        <input type="hidden" id="csId" name="csId" />
+        @{if (@ViewBag.GameId != null){
+        <input type="hidden" name="gameId" value="@ViewBag.GameId.ToString()" />
+        }
+    }
+    </form>
+    <form method="post" action="/GameSpeedChase/ChaseSymbolFieldsImageQuestions">
+    <table class="playground">
+        <tr>
+            <td>
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F01ID"];
+                        string question1 = String.Empty;
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question1 = Server.HtmlEncode(chaseSymbol.Question);
+                            <input type="hidden" name="csID_1" value="@chaseSymbolID" />
+                            if (chaseSymbol.Img != null)
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = ViewBag.GameId, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                        else if( Request.QueryString["temp"] != null) {                            
+                            if (Request.QueryString["temp"].Split(',').ToList().Contains(fieldId))
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = 0, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                    }
+                    <a href="javascript:" title="Fragetext: @question1" onclick="SetQuestion(this, '1')" class="question"></a>
+                    <input type="hidden" id="question_1" name="question_1" value="@question1" />
+                    <input type="hidden" id="fldID_1" name="fldID_1" value="@fieldId" />
+                    <a class="img" href="javascript:InitUpload('@fieldId', '@chaseSymbolID')"></a>
+                </div>
+            </td>
+            <td class="center">
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F02ID"];
+                        string question2 = String.Empty;
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question2 = Server.HtmlEncode(chaseSymbol.Question); 
+                            <input type="hidden" name="csID_2" value="@chaseSymbolID" />
+                            if (chaseSymbol.Img != null)
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = ViewBag.GameId, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                        else if( Request.QueryString["temp"] != null) {                            
+                            if (Request.QueryString["temp"].Split(',').ToList().Contains(fieldId))
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = 0, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                    }
+                    <a href="javascript:;" title="Fragetext: @question2" onclick="SetQuestion(this, '2')" class="question"></a>
+                    <input type="hidden" id="question_2" name="question_2" value="@question2" />
+                    <input type="hidden" id="fldID_2" name="fldID_2" value="@fieldId" />
+                    <a class="img" href="javascript:InitUpload('@fieldId', '@chaseSymbolID')"></a>
+                </div>
+            </td>
+            <td class="right">
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F03ID"];
+                        string question3 = String.Empty;
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question3 = Server.HtmlEncode(chaseSymbol.Question); 
+                            <input type="hidden" name="csID_3" value="@chaseSymbolID" />
+                            if (chaseSymbol.Img != null)
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = ViewBag.GameId, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                        else if( Request.QueryString["temp"] != null) {                            
+                            if (Request.QueryString["temp"].Split(',').ToList().Contains(fieldId))
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = 0, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                    }
+                    <a href="javascript:;" title="Fragetext: @question3" onclick="SetQuestion(this, '3')" class="question"></a>
+                    <input type="hidden" id="question_3" name="question_3" value="@question3" />
+                    <input type="hidden" id="fldID_3" name="fldID_3" value="@fieldId" />
+                    <a class="img" href="javascript:InitUpload('@fieldId', '@chaseSymbolID')"></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F08ID"];
+                        string question8 = String.Empty;
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question8 = Server.HtmlEncode(chaseSymbol.Question); 
+                            <input type="hidden" name="csID_8" value="@chaseSymbolID" />
+                            if (chaseSymbol.Img != null)
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = ViewBag.GameId, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                        else if( Request.QueryString["temp"] != null) {                            
+                            if (Request.QueryString["temp"].Split(',').ToList().Contains(fieldId))
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = 0, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                    }
+                    <a href="javascript:;" onclick="SetQuestion(this, '8')" class="question"></a>
+                    <input type="hidden" id="question_8" name="question_8" value="@question8" />
+                    <input type="hidden" id="fldID_8" name="fldID_8" value="@fieldId" />
+                    <a class="img" href="javascript:InitUpload('@fieldId', '@chaseSymbolID')"></a>
+                </div>
+            </td>
+            <td class="center">
+                <table class="center-fields">
+                    <tr>
+                        <td>
+                            <div class="field">
+                                @{
+                                    fieldId = ViewBag.teren["F09ID"];
+                                    string question9 = String.Empty;
+                                    if (ViewBag.ListChaseSymbols != null)
+                                    {
+                                        chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                                        chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                                        question9 = Server.HtmlEncode(chaseSymbol.Question); 
+                                        <input type="hidden" name="csID_9" value="@chaseSymbolID" />
+                                        if (chaseSymbol.Img != null)
+                                        {
+                                            <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = ViewBag.GameId, fieldid = fieldId })' width="130" height="130" />
+                                        }
+                                    }
+                                    else if( Request.QueryString["temp"] != null) {                            
+                                        if (Request.QueryString["temp"].Split(',').ToList().Contains(fieldId))
+                                        {
+                                            <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = 0, fieldid = fieldId })' width="130" height="130" />
+                                        }
+                                    }
+                                }
+                                <a href="javascript:;" onclick="SetQuestion(this, '9')" class="question"></a>
+                                <input type="hidden" id="question_9" name="question_9" value="@question9" />
+                                <input type="hidden" id="fldID_9" name="fldID_9" value="@fieldId" />
+                                <a class="img" href="javascript:InitUpload('@fieldId', '@chaseSymbolID')"></a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="field">
+                                @{
+                                    fieldId = ViewBag.teren["F12ID"];
+                                    string question12 = String.Empty;
+                                    if (ViewBag.ListChaseSymbols != null)
+                                    {
+                                        chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                                        chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                                        question12 = Server.HtmlEncode(chaseSymbol.Question); 
+                                        <input type="hidden" name="csID_12" value="@chaseSymbolID" />
+                                        if (chaseSymbol.Img != null)
+                                        {
+                                            <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = ViewBag.GameId, fieldid = fieldId })' width="130" height="130" />
+                                        }
+                                    }
+                                    else if( Request.QueryString["temp"] != null) {                            
+                                        if (Request.QueryString["temp"].Split(',').ToList().Contains(fieldId))
+                                        {
+                                            <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = 0, fieldid = fieldId })' width="130" height="130" />
+                                        }
+                                    }
+                                }
+                                <a href="javascript:;" onclick="SetQuestion(this, '12')" class="question"></a>
+                                <input type="hidden" id="question_12" name="question_12" value="@question12" />
+                                <input type="hidden" id="fldID_12" name="fldID_12" value="@fieldId" />
+                                <a class="img" href="javascript:InitUpload('@fieldId', '@chaseSymbolID')"></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="field">
+                                @{
+                                    fieldId = ViewBag.teren["F10ID"];
+                                    string question10 = String.Empty;
+                                    if (ViewBag.ListChaseSymbols != null)
+                                    {
+                                        chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                                        chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                                        question10 = Server.HtmlEncode(chaseSymbol.Question); 
+                                        <input type="hidden" name="csID_10" value="@chaseSymbolID" />
+                                        if (chaseSymbol.Img != null)
+                                        {
+                                            <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = ViewBag.GameId, fieldid = fieldId })' width="130" height="130" />
+                                        }
+                                    }
+                                    else if( Request.QueryString["temp"] != null) {                            
+                                        if (Request.QueryString["temp"].Split(',').ToList().Contains(fieldId))
+                                        {
+                                            <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = 0, fieldid = fieldId })' width="130" height="130" />
+                                        }
+                                    }
+                                }
+                                <a href="javascript:;" onclick="SetQuestion(this, '10')" class="question"></a>
+                                <input type="hidden" id="question_10" name="question_10" value="@question10" />
+                                <input type="hidden" id="fldID_10" name="fldID_10" value="@fieldId" />
+                                <a class="img" href="javascript:InitUpload('@fieldId', '@chaseSymbolID')"></a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="field">
+                                @{
+                                    fieldId = ViewBag.teren["F11ID"];
+                                    string question11 = String.Empty;
+                                    if (ViewBag.ListChaseSymbols != null)
+                                    {
+                                        chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);                                        
+                                        chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                                        question11 = Server.HtmlEncode(chaseSymbol.Question); 
+                                        <input type="hidden" name="csID_11" value="@chaseSymbolID" />
+                                        if (chaseSymbol.Img != null)
+                                        {
+                                            <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = ViewBag.GameId, fieldid = fieldId })' width="130" height="130" />
+                                        }
+                                    }
+                                    else if( Request.QueryString["temp"] != null) {                            
+                                        if (Request.QueryString["temp"].Split(',').ToList().Contains(fieldId))
+                                        {
+                                            <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = 0, fieldid = fieldId })' width="130" height="130" />
+                                        }
+                                    }
+                                }
+                                <a href="javascript:;" onclick="SetQuestion(this, '11')" class="question"></a>
+                                <input type="hidden" id="question_11" name="question_11" value="@question11" />
+                                <input type="hidden" id="fldID_11" name="fldID_11" value="@fieldId" />
+                                <a class="img" href="javascript:InitUpload('@fieldId', '@chaseSymbolID')"></a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="right">
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F04ID"];
+                        string question4 = String.Empty;
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question4 = Server.HtmlEncode(chaseSymbol.Question); 
+                            <input type="hidden" name="csID_4" value="@chaseSymbolID" />
+                            if (chaseSymbol.Img != null)
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = ViewBag.GameId, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                        else if( Request.QueryString["temp"] != null) {                            
+                            if (Request.QueryString["temp"].Split(',').ToList().Contains(fieldId))
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = 0, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                    }
+                    <a href="javascript:;" onclick="SetQuestion(this, '4')" class="question"></a>
+                    <input type="hidden" id="question_4" name="question_4" value="@question4" />
+                    <input type="hidden" id="fldID_4" name="fldID_4" value="@fieldId" />
+                    <a class="img" href="javascript:InitUpload('@fieldId', '@chaseSymbolID')"></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F07ID"];
+                        string question7 = String.Empty;
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question7 = Server.HtmlEncode(chaseSymbol.Question); 
+                            <input type="hidden" name="csID_7" value="@chaseSymbolID" />
+                            if (chaseSymbol.Img != null)
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = ViewBag.GameId, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                        else if( Request.QueryString["temp"] != null) {                            
+                            if (Request.QueryString["temp"].Split(',').ToList().Contains(fieldId))
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = 0, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                    }
+                    <a href="javascript:;" onclick="SetQuestion(this, '7')" class="question"></a>
+                    <input type="hidden" id="question_7" name="question_7" value="@question7" />
+                    <input type="hidden" id="fldID_7" name="fldID_7" value="@fieldId" />
+                    <a class="img" href="javascript:InitUpload('@fieldId', '@chaseSymbolID')"></a>
+                </div>
+            </td>
+            <td class="center">
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F06ID"];
+                        string question6 = String.Empty;
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question6 = Server.HtmlEncode(chaseSymbol.Question); 
+                            <input type="hidden" name="csID_6" value="@chaseSymbolID" />
+                            if (chaseSymbol.Img != null)
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = ViewBag.GameId, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                        else if( Request.QueryString["temp"] != null) {                            
+                            if (Request.QueryString["temp"].Split(',').ToList().Contains(fieldId))
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = 0, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                    }
+                    <a href="javascript:;" onclick="SetQuestion(this, '6')" class="question"></a>
+                    <input type="hidden" id="question_6" name="question_6" value="@question6" />
+                    <input type="hidden" id="fldID_6" name="fldID_6" value="@fieldId" />
+                    <a class="img" href="javascript:InitUpload('@fieldId', '@chaseSymbolID')"></a>
+                </div>
+            </td>
+            <td class="right">
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F05ID"];
+                        string question5 = String.Empty;
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question5 = Server.HtmlEncode(chaseSymbol.Question); 
+                            <input type="hidden" name="csID_5" value="@chaseSymbolID" />
+                            if (chaseSymbol.Img != null)
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = ViewBag.GameId, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                        else if( Request.QueryString["temp"] != null) {                            
+                            if (Request.QueryString["temp"].Split(',').ToList().Contains(fieldId))
+                            {
+                                <img src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = 0, fieldid = fieldId })' width="130" height="130" />
+                            }
+                        }
+                    }
+                    <a href="javascript:;" onclick="SetQuestion(this, '5')" class="question"></a>
+                    <input type="hidden" id="question_5" name="question_5" value="@question5" />
+                    <input type="hidden" id="fldID_5" name="fldID_5" value="@fieldId" />
+                    <a class="img" href="javascript:InitUpload('@fieldId', '@chaseSymbolID')"></a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    @{        
+        if (@ViewBag.GameId != null)
+            {
+                <input type="hidden" name="gameId2" value="@ViewBag.GameId.ToString()" />
+        }
+    }
+    <input type="submit" value='@Html.Translate("save").ToUpper()' />
+    </form>
+</body>
+</html>

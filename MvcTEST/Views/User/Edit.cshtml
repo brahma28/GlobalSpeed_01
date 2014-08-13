@@ -1,0 +1,474 @@
+﻿<head>
+    <style type="text/css">
+        .auto-style1 {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+
+@model MvcTEST.Models.tblUser
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Edit";
+}
+
+<script type="text/javascript">
+
+
+    var wsUri = "ws://localhost:8080/test";
+
+
+    var action = {
+        rfid: function (nr) {
+            $("#RFID").val(nr);
+        }
+    };
+
+    function init() {
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = function (evt) { onOpen(evt) };
+        websocket.onmessage = function (evt) { onMessage(evt) };
+        websocket.onerror = function (evt) { onError(evt) };
+    }
+
+    function onOpen(evt) {
+        websocket.send("DEFRFID!!0");
+    }
+
+    function onMessage(evt) {
+        var data = evt.data.split("!!");
+        action[data[0]](data[1]);
+    }
+
+    function onError(evt) {
+        //alert("ERROR:" + evt.data);
+        alert("Cannot connect to server...");
+    }
+
+
+    window.addEventListener("load", init, false);
+
+</script>
+
+<div id="l1" style="border: 0px solid; padding: 8px; padding-bottom: 25px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        @*<a href="@Url.Action("Index", "Home")" > <img src="~/ImagesApp/close.png" border="0" /></a>*@
+
+        @if (Html.User().Role == 50)
+        {
+            <!-- VLASNIK -->
+            <a id="aron" href="@Url.Action("Index", "User")">
+                <img src="~/ImagesApp/close.png" />
+            </a>
+        }
+        else if (Html.User().Role == 40)
+        {
+            <!-- TRENER -->
+            <a id="aron" href="@Url.Action("Index", "User")">
+                <img src="~/ImagesApp/close.png" />
+            </a>
+        }
+        else if (Html.User().Role == 20 || Html.User().Role == 30)
+        {
+            <!-- IGRAC -->
+            <a id="aron" href="@Url.Action("Index", "UserHome")">
+                <img src="~/ImagesApp/close.png" />
+            </a>
+        }
+        else if (Html.User().Role == 10)
+        {
+            <!-- QUICKGAME -->
+            <a id="aron" href="@Url.Action("Index", "UserHome")">
+                <img src="~/ImagesApp/close.png" />
+            </a>
+        }
+        else
+        {
+            <!-- ... -->
+            <a id="aron" href="@Url.Action("Index", "UserHome")">
+                <img src="~/ImagesApp/close.png" />
+            </a>
+        }
+    </div>
+
+    <div id="okvir-bijeli" style="padding: 10px; height: 90%; border-radius: 10px; -moz-border-radius: 10px; background-color: #fff">
+
+        <h2 align="left"><font size="5" color="#0360a3">@Html.Translate("BENUTZER")</font></h2>
+        <hr />
+
+
+        @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data", id = "fvujq-form1" }))
+        {
+            <div id="errorsi" style="float: left; margin-right: 40px; margin-bottom:10px; color: red;"> </div>
+                        
+            <div style="float: right; margin-right: 40px;">
+                <a href="javascript:void(0);" onclick="onShowUpload()">
+                    <img style="height:120px" src="@Url.Action("DisplayImage", "User", new { id = Model.ID })" alt="myimage" />
+                </a>
+            </div>
+            <div id="uploaddiv" style="float: right; margin-right: 10px; display: none" class="show_hide">
+                <p>
+                    <input type="file" name="fileUpload" />
+                </p>
+            </div>
+                        
+            @Html.ValidationSummary(true)
+
+
+            @Html.HiddenFor(model => model.ID)
+            @Html.HiddenFor(model => model.Role)
+
+            <div style="clear:both"></div>
+            
+            <table style="width: 100%; margin-top:20px" class="edit">
+                <tr>
+                    <td class="auto-style1">
+
+
+
+                        <div class="editor-label">
+                            @Html.Translate("Ime")
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Name)
+                            @*@Html.ValidationMessageFor(model => model.Name)*@
+                        </div>
+
+                    </td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("Gewicht")
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Weight)
+                            @Html.ValidationMessageFor(model => model.Weight)
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("Prezime")
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Surname)
+                            @*@Html.ValidationMessageFor(model => model.Surname)*@
+                        </div>
+
+                    </td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("Höhe")
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Height)
+                            @Html.ValidationMessageFor(model => model.Height)
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("Geburtstag")
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Birthday,"{0:dd.mm.yy}", new { id = "Birthday" })
+                            @Html.ValidationMessageFor(model => model.Birthday)
+                        </div>
+
+                    </td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("Sport") @*@Html.LabelFor(model => model.SportID, "tblSport")*@
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.DropDownList("SportID", String.Empty)
+                            @Html.ValidationMessageFor(model => model.SportID)
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("Anschrift") @*@Html.LabelFor(model => model.Address) *@
+                        </div>
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Address)
+                            @Html.ValidationMessageFor(model => model.Address)
+                        </div>
+
+                    </td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("Gruppe") @*@Html.LabelFor(model => model.UserGroupID, "tblUserGroup")*@
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.DropDownList("UserGroupID", String.Empty)
+                            @Html.ValidationMessageFor(model => model.UserGroupID)
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("ZIP") @*@Html.LabelFor(model => model.ZIP)*@
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.ZIP)
+                            @Html.ValidationMessageFor(model => model.ZIP)
+                        </div>
+
+                    </td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("Notizen") @*@Html.LabelFor(model => model.Notes)*@
+                        </div>
+
+                    </td>
+                    <td rowspan="3">
+                        <div class="editor-field-notes">
+                            @Html.TextAreaFor(model => model.Notes, new { cols = 0, @rows = 5 })
+                            @Html.ValidationMessageFor(model => model.Notes)
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("Stadt") @*@Html.LabelFor(model => model.City)*@
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.City)
+                            @Html.ValidationMessageFor(model => model.City)
+                        </div>
+
+                    </td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("E-mail") @*@Html.LabelFor(model => model.Email)*@
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Email)
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+
+                    </td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("Telefon") @*@Html.LabelFor(model => model.Phone)*@
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Phone)
+                            @Html.ValidationMessageFor(model => model.Phone)
+                        </div>
+
+                    </td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("Mobil") @*@Html.LabelFor(model => model.Mobile)*@
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.Mobile)
+                            @Html.ValidationMessageFor(model => model.Mobile)
+                        </div>
+
+                    </td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("Aktivan") @*@Html.LabelFor(model => model.IsActiv)*@
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.IsActiv)
+                            @Html.ValidationMessageFor(model => model.IsActiv)
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            @Html.Translate("PIN") @*@Html.LabelFor(model => model.PIN)*@
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.PIN, new {  @readonly = "readonly" } )
+                            @Html.ValidationMessageFor(model => model.PIN)
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style1">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="auto-style1">
+
+                        <div class="editor-label">
+                            RFID @*@Html.LabelFor(model => model.PIN)*@
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="editor-field">
+                            @Html.EditorFor(model => model.RFID)
+
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="padding-top:40px">
+                        <table style="width: 100%">
+                            <tr>
+                                <td>
+                                    <input type="button" value='@Html.Translate("Odustani").ToUpper()' onclick="javascript:history.back()" class="cancel">
+                                </td>
+                                <td style="text-align:right;padding-right:40px">
+                                    <input type="button" value='@Html.Translate("Aktivacija chipa").ToUpper()' class="chip" />
+                                    <input type="submit" value='@Html.Translate("Spremi").ToUpper()' class="save" />
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+            </table>
+
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    function onShowUpload() {
+        $(".show_hide").show();
+    }
+
+</script>
+<script>
+    $(document).ready(function () {
+
+        $("#fvujq-form1").submit(function () {
+            var grr = "";
+
+            if ($("#Name").val().trim().length == 0 ) {
+                grr = grr + "@Html.Translate("Potrebno je unijeti ime!")" + " <br />";
+            }
+
+            if ($("#Surname").val().trim().length == 0) {
+                grr = grr + "@Html.Translate("Potrebno je unijeti prezime!")" + " <br />";
+            }
+
+            $("#errorsi").html(grr).show();
+            
+            if (grr.length == 0) {
+                $("#errorsi").html(grr).hide();
+                return true;
+            } else { return false; }
+        });
+
+    });
+
+</script>

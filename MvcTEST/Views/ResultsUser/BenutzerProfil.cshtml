@@ -1,0 +1,294 @@
+﻿@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Profil";
+}
+
+
+<div id="l1" style="padding: 10px; width: 950px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        @*<a href="@Url.Action("Index", "Home")" > <img src="~/ImagesApp/close.png" border="0" /></a>*@
+                            @if (Html.User().Role == 50)
+                            {
+                                <!-- VLASNIK -->
+                                <a id="aron" href="@Url.Action("Index", "AdminHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 40)
+                            {
+                                <!-- TRENER -->
+                                <a id="aron" href="@Url.Action("Index", "Home")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if (Html.User().Role == 20 || Html.User().Role == 30)
+                            {
+                                <!-- IGRAC -->
+                                <a href="@Url.Action("Index", "UserHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 10)
+                            {
+                                <!-- QUICKGAME -->
+                                <a id="aron" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else
+                            {
+                                <!-- ... -->
+                                <a id="aron" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+    </div>
+    <div id="l1" style="padding: 10px; width: 850px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color:white;">
+        <table style="width:850px">
+            <!-- NAZIV EKRANA-->
+            <tr>
+                <td align="left">
+                    @*.ToUpper()*@ 
+                    <font color="#0360a3" size="5"><b>BENUTZERPROFIL</b></font>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr><td colspan="2"><hr /></td></tr>
+            <tr><td colspan="2"><br /></td></tr>
+            <tr>
+                <td>
+                    <table style="width:400px">
+                        <!-- NAME -->
+                        <tr>
+                            <td align="left">
+                                Name
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.Name</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- SURNAME -->
+                        <tr>
+                            <td align="left">
+                                Vorname
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.Surname</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- BIRTHDAY -->
+                        <tr>
+                            <td align="left">
+                                Geburtsdatum
+                            </td>
+                            <td align="left">
+                                <b>@String.Format("{0:dd/MM/yyyy}", ViewBag.userprofil.Birthday != null ? ViewBag.userprofil.Birthday : "")</b>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- ADRESS -->
+                        <tr>
+                            <td align="left">
+                                Strase
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.Address</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- POST CODE -->
+                        <tr>
+                            <td align="left">
+                                Postleitzahl
+                            </td>
+                            <td align="left">
+                                @*<b>@ViewBag.userprofil.ZIP</b>*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- GRAD -->
+                        <tr>
+                            <td align="left">
+                                Ort
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.City</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- E-MAIL -->
+                        <tr>
+                            <td align="left">
+                                E-mail
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.Email</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- TELEFON -->
+                        <tr>
+                            <td align="left">
+                                Telefonnummer
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.Phone</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- MOBITEL -->
+                        <tr>
+                            <td align="left">
+                                Mobitelefon
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.Mobile</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+                <td>
+                    <table style="width:400px">
+                        <!-- WEIGHT -->
+                        <tr>
+                            <td align="left">
+                                Gewicht [kg]
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.Weight</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- HEIGHT -->
+                        <tr>
+                            <td align="left">
+                                Grose [cm]
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.Height</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- SPORT -->
+                        <tr>
+                            <td align="left">
+                                Sportart
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.SportName</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- GROUP -->
+                        <tr>
+                            <td align="left">
+                                Gruppen
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.GroupName</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- NOTE -->
+                        <tr>
+                            <td align="left">
+                                Notizen
+                            </td>
+                            <td align="left">
+                                <b>@ViewBag.userprofil.Notes</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <hr />
+                            </td>
+                        </tr>
+                        <!-- picture  -->
+                        <tr rowspan="4">
+
+                            <td  colspan="2" style="text-align:right; ">
+                                @*@ViewBag.userprofil.Picture*@
+                                <img style=" height:160px; margin-top:20px;" src="@Url.Action("DisplayImage", "User", new { id=ViewBag.userprofil.ID })" alt="myimage" />
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <!-- ABBRECHEN & BEARBEITEN -->
+        <table style="width: 100%; margin-top:80px; ">
+            <tr> 
+        <!-- cancel -->
+                <td align="left" id="cancel">
+                    <a href="/Results/index">
+                        <img src="~/ImagesApp/gumb_abbrechen.png" />
+                    </a>
+                </td>
+                <td id="bearbeiten" align="right"  >  
+                    <a href="/Results/index" >
+                        <img src="~/ImagesApp/gumb_bearbeiten.png" style=" margin-right:20px;"/>
+                    </a>                                
+                </td>
+            </tr>                          
+        </table>           
+    </div>
+</div>

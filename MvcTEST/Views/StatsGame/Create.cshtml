@@ -1,0 +1,91 @@
+﻿@model MvcTEST.Models.tblResult
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tblResult</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserID, "tblUser")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("UserID", String.Empty)
+            @Html.ValidationMessageFor(model => model.UserID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GameID, "tblGame")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("GameID", String.Empty)
+            @Html.ValidationMessageFor(model => model.GameID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LapTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LapTime)
+            @Html.ValidationMessageFor(model => model.LapTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Distance)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Distance)
+            @Html.ValidationMessageFor(model => model.Distance)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContactNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactNo)
+            @Html.ValidationMessageFor(model => model.ContactNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ResultDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ResultDate)
+            @Html.ValidationMessageFor(model => model.ResultDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContactsLeft)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactsLeft)
+            @Html.ValidationMessageFor(model => model.ContactsLeft)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ContactsRight)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContactsRight)
+            @Html.ValidationMessageFor(model => model.ContactsRight)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

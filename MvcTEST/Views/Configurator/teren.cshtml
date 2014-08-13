@@ -1,0 +1,495 @@
+﻿@using MvcTEST.HtmlHelpers
+@*@model MvcTEST.Models.tblTemplate*@
+
+@{
+    ViewBag.Title = "teren";
+    Layout = null;
+    
+}
+<style>
+
+.polje_red
+{ 
+    color:red; 
+    width:50px; 
+    height:50px; 
+    background-color:red;
+
+} 
+.polje_white
+{ 
+    color:red; 
+    width:50px; 
+    height:50px; 
+    background-color:white;
+
+} 
+
+.polje_lgray
+{ 
+    color:red; 
+    width:30px; 
+    height:30px; 
+    background-color:lightslategray;
+
+} 
+.teren
+{ 
+    width: 100%; 
+    text-align: left; 
+    height:470px; 
+    vertical-align:top; 
+    border-spacing:0px; 
+    border:0px; 
+    PADDING:0; 
+    border-collapse:collapse;
+
+} 
+
+
+</style>
+    <link id="size-stylesheet" href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+  @*<script src="~/Scripts/teren.js"></script>*@
+
+
+<div id="vanjski" name="vanjski" style="width:@(ViewBag.teren.Width.ToString())px; height:@(ViewBag.teren.Height.ToString())px; color:black; background-color:white; position:relative;">
+    <!-- 01 -->     
+    @if (ViewBag.teren.F01Active == true && ViewBag.teren.F01PhotoCell != true)
+    { 
+    <div class="square" id="F01" style=" position:absolute; width:@(ViewBag.teren.F01DimensionX.ToString())px; height:@(ViewBag.teren.F01DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F01PositionX.ToString())px; top:@(ViewBag.teren.F01PositionY.ToString())px; " > @if (ViewBag.teren.F01ID == 0)
+                                                                                                                                                                                                                                                                                              {   }  </div>
+    }  
+    <!-- 02 -->        
+    @if (ViewBag.teren.F02Active == true && ViewBag.teren.F02PhotoCell != true)
+    { 
+    <div class="square" id="F02" style=" position:absolute; width:@(ViewBag.teren.F02DimensionX.ToString())px; height:@(ViewBag.teren.F02DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F02PositionX.ToString())px; top:@(ViewBag.teren.F02PositionY.ToString())px; " > @if (ViewBag.teren.F01ID != 0 && ViewBag.teren.F02ID == 0)
+                                                                                                                                                                                                                                                                                            {   }  </div>
+    } 
+    <!-- 03 -->         
+    @if (ViewBag.teren.F03Active == true && ViewBag.teren.F03PhotoCell != true)
+    {     
+    <div class="square" id="F03" style=" position:absolute; width:@(ViewBag.teren.F03DimensionX.ToString())px; height:@(ViewBag.teren.F03DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F03PositionX.ToString())px; top:@(ViewBag.teren.F03PositionY.ToString())px; " > @if (ViewBag.teren.F02ID != 0 && ViewBag.teren.F03ID == 0)
+                                                                                                                                                                                                                                                                                              {  }  </div>
+    } 
+    <!-- 04 -->         
+    @if (ViewBag.teren.F04Active == true && ViewBag.teren.F01PhotoCell != true)
+    {      
+    <div class="square" id="F04" style=" position:absolute; width:@(ViewBag.teren.F04DimensionX.ToString())px; height:@(ViewBag.teren.F04DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F04PositionX.ToString())px; top:@(ViewBag.teren.F04PositionY.ToString())px; " >  @if (ViewBag.teren.F03ID != 0 && ViewBag.teren.F04ID == 0)
+                                                                                                                                                                                                                                                                                             {  } </div>
+    }    
+    <!-- 05 -->       
+    @if (ViewBag.teren.F05Active == true && ViewBag.teren.F05PhotoCell != true)
+    {     
+    <div class="square" id="F05" style=" position:absolute; width:@(ViewBag.teren.F05DimensionX.ToString())px; height:@(ViewBag.teren.F05DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F05PositionX.ToString())px; top:@(ViewBag.teren.F05PositionY.ToString())px; " > @if (ViewBag.teren.F04ID != 0 && ViewBag.teren.F05ID == 0)
+                                                                                                                                                                                                                                                                                              {  } </div>
+    }  
+    <!-- 06 -->        
+    @if (ViewBag.teren.F06Active == true && ViewBag.teren.F06PhotoCell != true)
+    {        
+    <div id="F06" style=" position:absolute; width:@(ViewBag.teren.F06DimensionX.ToString())px; height:@(ViewBag.teren.F06DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F06PositionX.ToString())px; top:@(ViewBag.teren.F06PositionY.ToString())px; " > @if (ViewBag.teren.F05ID != 0 && ViewBag.teren.F06ID == 0)
+                                                                                                                                                                                                                                                                                            {  } </div>
+    }  
+    <!-- 07 -->       
+    @if (ViewBag.teren.F07Active == true && ViewBag.teren.F07PhotoCell != true)
+    {    
+    <div id="F07" style=" position:absolute; width:@(ViewBag.teren.F07DimensionX.ToString())px; height:@(ViewBag.teren.F07DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F07PositionX.ToString())px; top:@(ViewBag.teren.F07PositionY.ToString())px; " > @if (ViewBag.teren.F06ID != 0 && ViewBag.teren.F07ID == 0)
+                                                                                                                                                                                                                                                                                              {  } </div>
+    } 
+    <!-- 08 -->         
+    @if (ViewBag.teren.F08Active == true && ViewBag.teren.F08PhotoCell != true)
+    {     
+    <div id="F08" style=" position:absolute; width:@(ViewBag.teren.F08DimensionX.ToString())px; height:@(ViewBag.teren.F08DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F08PositionX.ToString())px; top:@(ViewBag.teren.F08PositionY.ToString())px; " > @if (ViewBag.teren.F07ID != 0 && ViewBag.teren.F08ID == 0)
+                                                                                                                                                                                                                                                                                            {  } </div>
+    }    
+    <!-- 09 -->     
+    @if (ViewBag.teren.F09Active == true && ViewBag.teren.F09PhotoCell != true)
+    {      
+    <div id="F09" style=" position:absolute; width:@(ViewBag.teren.F09DimensionX.ToString())px; height:@(ViewBag.teren.F09DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F09PositionX.ToString())px; top:@(ViewBag.teren.F09PositionY.ToString())px; " > @if (ViewBag.teren.F08ID != 0 && ViewBag.teren.F09ID == 0)
+                                                                                                                                                                                                                                                                                              {  } </div>
+    }   
+    <!-- 10 -->        
+    @if (ViewBag.teren.F10Active == true && ViewBag.teren.F10PhotoCell != true)
+    {      
+    <div id="F10" style=" position:absolute; width:@(ViewBag.teren.F10DimensionX.ToString())px; height:@(ViewBag.teren.F10DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F10PositionX.ToString())px; top:@(ViewBag.teren.F10PositionY.ToString())px; " > @if (ViewBag.teren.F09ID != 0 && ViewBag.teren.F10ID == 0)
+                                                                                                                                                                                                                                                                                            {  } </div>
+    } 
+    <!-- 11 -->          
+    @if (ViewBag.teren.F11Active == true && ViewBag.teren.F11PhotoCell != true)
+    {      
+    <div id="F11" style=" position:absolute; width:@(ViewBag.teren.F11DimensionX.ToString())px; height:@(ViewBag.teren.F11DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F11PositionX.ToString())px; top:@(ViewBag.teren.F11PositionY.ToString())px; " > @if (ViewBag.teren.F10ID != 0 && ViewBag.teren.F11ID == 0)
+                                                                                                                                                                                                                                                                                              {  }</div>
+    } 
+    <!-- 12 -->          
+    @if (ViewBag.teren.F12Active == true && ViewBag.teren.F12PhotoCell != true)
+    {     
+    <div id="F12" style=" position:absolute; width:@(ViewBag.teren.F12DimensionX.ToString())px; height:@(ViewBag.teren.F12DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F12PositionX.ToString())px; top:@(ViewBag.teren.F12PositionY.ToString())px; " > @if (ViewBag.teren.F11ID != 0 && ViewBag.teren.F12ID == 0)
+                                                                                                                                                                                                                                                                                            {  }</div>
+    }   
+    <!-- 13 -->         
+    @if (ViewBag.teren.F13Active == true && ViewBag.teren.F13PhotoCell != true)
+    {     
+    <div id="F13" style=" position:absolute; width:@(ViewBag.teren.F13DimensionX.ToString())px; height:@(ViewBag.teren.F13DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F13PositionX.ToString())px; top:@(ViewBag.teren.F13PositionY.ToString())px; " > @if (ViewBag.teren.F12ID != 0 && ViewBag.teren.F13ID == 0)
+                                                                                                                                                                                                                                                                                              {  }  </div>
+    } 
+    <!-- 14 -->         
+    @if (ViewBag.teren.F14Active == true && ViewBag.teren.F14PhotoCell != true)
+    {      
+    <div id="F14" style=" position:absolute; width:@(ViewBag.teren.F14DimensionX.ToString())px; height:@(ViewBag.teren.F14DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F14PositionX.ToString())px; top:@(ViewBag.teren.F14PositionY.ToString())px; " >  @if (ViewBag.teren.F13ID != 0 && ViewBag.teren.F14ID == 0)
+                                                                                                                                                                                                                                                                                             {  } </div>
+    } 
+    <!-- 15 -->          
+    @if (ViewBag.teren.F15Active == true && ViewBag.teren.F15PhotoCell != true)
+    {     
+    <div id="F15" style=" position:absolute; width:@(ViewBag.teren.F15DimensionX.ToString())px; height:@(ViewBag.teren.F15DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F15PositionX.ToString())px; top:@(ViewBag.teren.F15PositionY.ToString())px; " > @if (ViewBag.teren.F14ID != 0 && ViewBag.teren.F15ID == 0)
+                                                                                                                                                                                                                                                                                              {  } </div>
+    }  
+    <!-- 16 -->          
+    @if (ViewBag.teren.F16Active == true && ViewBag.teren.F16PhotoCell != true)
+    {        
+    <div id="F16" style=" position:absolute; width:@(ViewBag.teren.F16DimensionX.ToString())px; height:@(ViewBag.teren.F16DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F16PositionX.ToString())px; top:@(ViewBag.teren.F16PositionY.ToString())px; " > @if (ViewBag.teren.F15ID != 0 && ViewBag.teren.F16ID == 0)
+                                                                                                                                                                                                                                                                                            {  } </div>
+    } 
+    <!-- 17 -->        
+    @if (ViewBag.teren.F17Active == true && ViewBag.teren.F17PhotoCell != true)
+    {    
+    <div id="F17" style=" position:absolute; width:@(ViewBag.teren.F17DimensionX.ToString())px; height:@(ViewBag.teren.F17DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F17PositionX.ToString())px; top:@(ViewBag.teren.F17PositionY.ToString())px; " > @if (ViewBag.teren.F16ID != 0 && ViewBag.teren.F17ID == 0)
+                                                                                                                                                                                                                                                                                              {  } </div>
+    } 
+    <!-- 18 -->        
+    @if (ViewBag.teren.F18Active == true && ViewBag.teren.F18PhotoCell != true)
+    {     
+    <div id="F18" style=" position:absolute; width:@(ViewBag.teren.F18DimensionX.ToString())px; height:@(ViewBag.teren.F18DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F18PositionX.ToString())px; top:@(ViewBag.teren.F18PositionY.ToString())px; " > @if (ViewBag.teren.F17ID != 0 && ViewBag.teren.F18ID == 0)
+                                                                                                                                                                                                                                                                                            {  } </div>
+    }   
+    <!-- 19 -->       
+    @if (ViewBag.teren.F19Active == true && ViewBag.teren.F19PhotoCell != true)
+    {      
+    <div id="F19" style=" position:absolute; width:@(ViewBag.teren.F19DimensionX.ToString())px; height:@(ViewBag.teren.F19DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F19PositionX.ToString())px; top:@(ViewBag.teren.F19PositionY.ToString())px; " > @if (ViewBag.teren.F18ID != 0 && ViewBag.teren.F19ID == 0)
+                                                                                                                                                                                                                                                                                              { } </div>
+    }     
+    <!-- 20 -->  
+    @if (ViewBag.teren.F20Active == true && ViewBag.teren.F20PhotoCell != true)
+    {      
+    <div id="F20" style=" position:absolute; width:@(ViewBag.teren.F20DimensionX.ToString())px; height:@(ViewBag.teren.F20DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F20PositionX.ToString())px; top:@(ViewBag.teren.F20PositionY.ToString())px; " > @if (ViewBag.teren.F19ID != 0 && ViewBag.teren.F20ID == 0)
+                                                                                                                                                                                                                                                                                            { } </div>
+    }  
+    <!-- 21 -->              
+    @if (ViewBag.teren.F21Active == true && ViewBag.teren.F21PhotoCell != true)
+    {      
+    <div id="F21" style=" position:absolute; width:@(ViewBag.teren.F21DimensionX.ToString())px; height:@(ViewBag.teren.F21DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F21PositionX.ToString())px; top:@(ViewBag.teren.F21PositionY.ToString())px; " > @if (ViewBag.teren.F20ID != 0 && ViewBag.teren.F21ID == 0)
+                                                                                                                                                                                                                                                                                              { }</div>
+    }  
+    <!-- 22 -->        
+    @if (ViewBag.teren.F22Active == true && ViewBag.teren.F22PhotoCell != true)
+    {     
+    <div id="F22" style=" position:absolute; width:@(ViewBag.teren.F22DimensionX.ToString())px; height:@(ViewBag.teren.F22DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F22PositionX.ToString())px; top:@(ViewBag.teren.F22PositionY.ToString())px; " > @if (ViewBag.teren.F21ID != 0 && ViewBag.teren.F22ID == 0)
+                                                                                                                                                                                                                                                                                            { }</div>
+    } 
+    <!-- 23 -->      
+    @if (ViewBag.teren.F23Active == true && ViewBag.teren.F23PhotoCell != true)
+    {     
+    <div id="F23" style=" position:absolute; width:@(ViewBag.teren.F23DimensionX.ToString())px; height:@(ViewBag.teren.F23DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F23PositionX.ToString())px; top:@(ViewBag.teren.F23PositionY.ToString())px; " > @if (ViewBag.teren.F22ID != 0 && ViewBag.teren.F23ID == 0)
+                                                                                                                                                                                                                                                                                              { }  </div>
+    }  
+    <!-- 24 -->         
+    @if (ViewBag.teren.F24Active == true && ViewBag.teren.F24PhotoCell != true)
+    {      
+    <div id="F24" style=" position:absolute; width:@(ViewBag.teren.F24DimensionX.ToString())px; height:@(ViewBag.teren.F24DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F24PositionX.ToString())px; top:@(ViewBag.teren.F24PositionY.ToString())px; " >  @if (ViewBag.teren.F23ID != 0 && ViewBag.teren.F24ID == 0)
+                                                                                                                                                                                                                                                                                             { } </div>
+    }     
+    <!-- 25 -->  
+    @if (ViewBag.teren.F25Active == true && ViewBag.teren.F25PhotoCell != true)
+    {     
+    <div id="F25" style=" position:absolute; width:@(ViewBag.teren.F25DimensionX.ToString())px; height:@(ViewBag.teren.F25DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F25PositionX.ToString())px; top:@(ViewBag.teren.F25PositionY.ToString())px; " > @if (ViewBag.teren.F24ID != 0 && ViewBag.teren.F25ID == 0)
+                                                                                                                                                                                                                                                                                              { } </div>
+    }  
+    <!-- 26 -->         
+    @if (ViewBag.teren.F26Active == true && ViewBag.teren.F26PhotoCell != true)
+    {        
+    <div id="F26" style=" position:absolute; width:@(ViewBag.teren.F26DimensionX.ToString())px; height:@(ViewBag.teren.F26DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F26PositionX.ToString())px; top:@(ViewBag.teren.F26PositionY.ToString())px; " > @if (ViewBag.teren.F25ID != 0 && ViewBag.teren.F26ID == 0)
+                                                                                                                                                                                                                                                                                            { } </div>
+    } 
+    <!-- 27 -->          
+    @if (ViewBag.teren.F27Active == true && ViewBag.teren.F27PhotoCell != true)
+    {    
+    <div id="F27" style=" position:absolute; width:@(ViewBag.teren.F27DimensionX.ToString())px; height:@(ViewBag.teren.F27DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F27PositionX.ToString())px; top:@(ViewBag.teren.F27PositionY.ToString())px; " > @if (ViewBag.teren.F26ID != 0 && ViewBag.teren.F27ID == 0)
+                                                                                                                                                                                                                                                                                              { } </div>
+    }  
+    <!-- 28 -->         
+    @if (ViewBag.teren.F28Active == true && ViewBag.teren.F28PhotoCell != true)
+    {     
+    <div id="F28" style=" position:absolute; width:@(ViewBag.teren.F28DimensionX.ToString())px; height:@(ViewBag.teren.F28DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F28PositionX.ToString())px; top:@(ViewBag.teren.F28PositionY.ToString())px; " > @if (ViewBag.teren.F27ID != 0 && ViewBag.teren.F28ID == 0)
+                                                                                                                                                                                                                                                                                            { } </div>
+    }  
+    <!-- 29 -->         
+    @if (ViewBag.teren.F29Active == true && ViewBag.teren.F29PhotoCell != true)
+    {      
+    <div id="F29" style=" position:absolute; width:@(ViewBag.teren.F29DimensionX.ToString())px; height:@(ViewBag.teren.F29DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F29PositionX.ToString())px; top:@(ViewBag.teren.F29PositionY.ToString())px; " > @if (ViewBag.teren.F28ID != 0 && ViewBag.teren.F29ID == 0)
+                                                                                                                                                                                                                                                                                              { } </div>
+    }  
+    <!-- 30 -->   
+    @if (ViewBag.teren.F30Active == true && ViewBag.teren.F30PhotoCell != true)
+    {      
+    <div id="F30" style=" position:absolute; width:@(ViewBag.teren.F30DimensionX.ToString())px; height:@(ViewBag.teren.F30DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F30PositionX.ToString())px; top:@(ViewBag.teren.F30PositionY.ToString())px; " > @if (ViewBag.teren.F29ID != 0 && ViewBag.teren.F30ID == 0)
+                                                                                                                                                                                                                                                                                            { } </div>
+    } 
+    <!-- 31 -->           
+    @if (ViewBag.teren.F31Active == true && ViewBag.teren.F31PhotoCell != true)
+    {      
+    <div id="F31" style=" position:absolute; width:@(ViewBag.teren.F31DimensionX.ToString())px; height:@(ViewBag.teren.F31DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F31PositionX.ToString())px; top:@(ViewBag.teren.F31PositionY.ToString())px; " > @if (ViewBag.teren.F30ID != 0 && ViewBag.teren.F31ID == 0)
+                                                                                                                                                                                                                                                                                              { }</div>
+    } 
+    <!-- 32 -->        
+    @if (ViewBag.teren.F32Active == true && ViewBag.teren.F32PhotoCell != true)
+    {     
+    <div id="F32" style=" position:absolute; width:@(ViewBag.teren.F32DimensionX.ToString())px; height:@(ViewBag.teren.F32DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F32PositionX.ToString())px; top:@(ViewBag.teren.F32PositionY.ToString())px; " > @if (ViewBag.teren.F31ID != 0 && ViewBag.teren.F32ID == 0)
+                                                                                                                                                                                                                                                                                            { }</div>
+    }          
+    <div id="log"></div>
+
+</div>
+@if (ViewBag.teren.Name != "SpeedCourt")
+{
+    @ViewBag.teren.Name
+}
+
+<script>
+
+
+    $(function () {
+        $('.square').draggable();
+        $('#F01').draggable({ stop: function (event, ui) {
+            var pozx = ui.position.left;
+            var pozy = ui.position.top;
+            $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F01', x: pozx, y: pozy });
+            }
+        });
+
+        $('#F02').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F02', x: pozx, y: pozy });
+        }
+        });
+        $('#F03').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F03', x: pozx, y: pozy });
+        }
+        });
+        $('#F04').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F04', x: pozx, y: pozy });
+        }
+        });
+        $('#F05').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F05', x: pozx, y: pozy });
+        }
+        });
+        $('#F06').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F06', x: pozx, y: pozy });
+        }
+        });
+        $('#F07').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F07', x: pozx, y: pozy });
+        }
+        });
+        $('#F08').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F08', x: pozx, y: pozy });
+        }
+        });
+        $('#F09').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F09', x: pozx, y: pozy });
+        }
+        });
+        $('#F10').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F10', x: pozx, y: pozy });
+        }
+        });
+        $('#F11').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F11', x: pozx, y: pozy });
+        }
+        });
+        $('#F12').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F12', x: pozx, y: pozy });
+        }
+        });
+        $('#F13').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F13', x: pozx, y: pozy });
+        }
+        });
+        $('#F14').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F14', x: pozx, y: pozy });
+        }
+        });
+        $('#F15').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F15', x: pozx, y: pozy });
+        }
+        });
+        $('#F16').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F16', x: pozx, y: pozy });
+        }
+        });
+        $('#F17').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F17', x: pozx, y: pozy });
+        }
+        });
+        $('#F18').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F18', x: pozx, y: pozy });
+        }
+        });
+        $('#F19').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F19', x: pozx, y: pozy });
+        }
+        });
+        $('#F20').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F20', x: pozx, y: pozy });
+        }
+        });
+        $('#F21').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F21', x: pozx, y: pozy });
+        }
+        });
+        $('#F22').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F22', x: pozx, y: pozy });
+        }
+        });
+        $('#F23').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F23', x: pozx, y: pozy });
+        }
+        });
+        $('#F24').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F24', x: pozx, y: pozy });
+        }
+        });
+        $('#F25').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F25', x: pozx, y: pozy });
+        }
+        });
+        $('#F26').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F26', x: pozx, y: pozy });
+        }
+        });
+        $('#F27').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F27', x: pozx, y: pozy });
+        }
+        });
+        $('#F28').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F28', x: pozx, y: pozy });
+        }
+        });
+        $('#F29').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F29', x: pozx, y: pozy });
+        }
+        });
+        $('#F30').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F30', x: pozx, y: pozy });
+        }
+        });
+        $('#F31').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F31', x: pozx, y: pozy });
+        }
+        });
+        $('#F32').draggable({
+            stop: function (event, ui) {
+                var pozx = ui.position.left;
+                var pozy = ui.position.top;
+                $.post('@Url.Action("AjaxSetPositionXY", "Configurator")', { txtID: 'F32', x: pozx, y: pozy });
+        }
+        });
+
+        $("#vanjski").draggable({ containment: "parent" });
+
+    });
+
+</script>
+
+

@@ -1,0 +1,97 @@
+﻿@model Nullable<System.DateTime>
+
+@*<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.24/themes/base/jquery-ui.css">*@
+<link href="~/Content/datepicker.css" rel="stylesheet" />
+
+@if (Model.HasValue)
+{
+@*  @Html.TextBox("", String.Format("{0:dd.mm.yy}", Model.Value), new { @class = "textbox", @style = "width:150px;" }) *@
+    @Html.TextBox("", Model.Value, "{0:dd.mm.yy}", new { @class = "textbox", @style = "width:150px;" })
+}
+else
+{
+@*  @Html.TextBox("", String.Format("{0:dd.mm.yy}", @*DateTime.Now ""), new { @class = "textbox", @style = "width:150px;" })   *@
+    @Html.TextBox("", "", "{0:dd.mm.yyyy}", new { @class = "textbox", @style = "width:150px;" })
+}
+
+@{
+    string name = ViewData.TemplateInfo.HtmlFieldPrefix;
+    string id = name.Replace(".", "_");
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#1@id").datepicker(
+{
+    inline: true,
+    dateFormat: "dd.mm.yy",
+    altFormat: "yy-mm-dd",
+    showStatus: true,
+    showWeeks: true,
+    highlightWeek: true,
+    numberOfMonths: 1,
+    showAnim: "scale",
+    showOtherMonths: true,
+    dayNamesMin: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+    //$.datepicker.regional['de']
+    //beforeShowDay: highlightDays,
+    showOptions: { origin: ["top", "left"] }
+});
+
+        @*                        $("#@id").datepicker (
+                    {
+                        dateFormat: 'yy-MM-dd',
+                        showStatus: true,
+                        showWeeks: true,
+                        highlightWeek: true,
+                        numberOfMonths: 1,
+                        showAnim: "scale",
+                        //firstDay: 0,
+                        //buttonImageOnly: true,
+                        //autoSize: true,
+                        //altFormat: 'dd.mm.yy',
+                       showOptions: {     origin: ["top", "left"]  }
+                    } );*@
+
+        var dateFormat = "dd.mm.yy"; // en-gb date format, substitute your own
+
+        $("#@id").datepicker({
+            "dateFormat": dateFormat,
+            inline: true,
+            altFormat: "yy-mm-dd",
+            showStatus: true,
+            showWeeks: true,
+            highlightWeek: true,
+            numberOfMonths: 1,
+            showAnim: "scale",
+            showOtherMonths: true,
+            dayNamesMin: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+            //$.datepicker.regional['de']
+            //beforeShowDay: highlightDays,
+            showOptions: { origin: ["top", "left"] }
+        });
+
+        jQuery.validator.addMethod(
+            'date',
+            function (value, element, params) {
+                if (this.optional(element)) {
+                    return true;
+                };
+                var result = false;
+                try {
+                    $.datepicker.parseDate(dateFormat, value);
+                    result = true;
+                } catch (err) {
+                    result = false;
+                }
+                return result;
+            },
+            ''
+        );
+
+
+    });
+</script>
+
+

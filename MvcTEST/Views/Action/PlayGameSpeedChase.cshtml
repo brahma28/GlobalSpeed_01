@@ -1,0 +1,234 @@
+﻿@using MvcTEST.HtmlHelpers
+@model MvcTEST.Models.GameData
+@{
+    ViewBag.Title = "Play Game Static Fields";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+    body {background: #80a8bd url(/ImagesApp/playground-bg.png) repeat-x;margin:0;position:absolute;top:0;right:0;bottom:0;left:0;}
+    table.playground { width:100%; height:100%;border-collapse:collapse;position:absolute;top:0;right:0;bottom:0;left:0;}
+    table.playground tr td { padding:0; }
+    table.playground tr td div.field { width:130px; height:130px; background-color:#e30613; border:solid 10px #fff; text-align:center; color:#fff; font:bold 80px arial; line-height:130px; margin:0 50px 0 50px; }
+    table.playground tr td.right div.field{ float:right; }    
+    table.playground tr td.center > table.center-fields{ width:260px; margin:0px auto; }
+    table.playground tr td.center > table.center-fields tr td > div.field { margin: 5px; }
+    table.playground tr td.center > div { margin: 0px auto; }
+    a#gamemenu{position:absolute;left:250px;background-image:url(/ImagesApp/buttons/gamemenu.png);width:100px;height:36px;text-decoration:none;}
+    a#gamemenu > span {color:#fff;font:bold 16px arial;display:block;width:100px;height:36px;text-align:center;line-height:36px;cursor:pointer}
+</style>
+<script src="/Scripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery-css-transform.js"></script>
+<script type="text/javascript" src="/Scripts/rotate3Di.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jquery.jplayer.min.js"></script>
+<script type="text/javascript">
+    var wsUri = "ws://localhost:8080/test";
+    var action = {
+        soundturnon: function (field) {
+            $("#zvuk2").jPlayer({ swfPath: "/Scripts/js/Jplayer.swf", wmode: "window" });
+            $('#zvuk2').jPlayer("setMedia", { mp3: "/ImagesApp/Bleep-SoundBible.com-1927126940.mp3" });
+            $('#zvuk2').jPlayer("supplied", "mp3");
+            $('#zvuk2').jPlayer("play");
+            $('#' + field).css('background-color', 'yellow');
+            $('#' + field).css('color', '#e30613')
+        },
+        sound: function (field) {
+            $("#zvuk2").jPlayer({ swfPath: "/Scripts/js/Jplayer.swf", wmode: "window" });
+            $('#zvuk2').jPlayer("setMedia", { mp3: "/ImagesApp/Bleep-SoundBible.com-1927126940.mp3" });
+            $('#zvuk2').jPlayer("supplied", "mp3");
+            $('#zvuk2').jPlayer("play");
+        },
+        turnon: function (field) {
+            $('#' + field).css('background-color', 'yellow');
+            $('#' + field).css('color', '#e30613');
+        },
+        turnoff: function (field) {
+            $('#' + field).css('background-color', '#e30613');
+            $('#' + field).css('background-color', '#e30613');
+            $('#' + field).css('background-color', '#e30613');
+            $('#' + field).css('background-color', '#e30613');
+            $('#' + field).css('background-color', '#e30613');
+            $('#' + field).css('color', '#fff');
+        },
+        turnoffnoeffects: function (field) {
+            $('#' + field).css('background-color', '#e30613');
+            $('#' + field).css('background-color', '#e30613');
+            $('#' + field).css('background-color', '#e30613');
+            $('#' + field).css('background-color', '#e30613');
+            $('#' + field).css('background-color', '#e30613');
+            $('#' + field).css('color', '#fff');
+        },
+        countdown: function (secs) {
+            count = parseInt(secs) + 1;
+            counter = setInterval(timer, 1000);
+            $("#bigtext").hide();
+            $("#bigtext span").css("font-size", "400px");
+            $("#bigtext span").html("");
+            $("#bigtext").css("line-height", "700px");
+        },
+        message: function (msg) {
+            if (msg == "hide")
+                $("#bigtext").hide();
+            else {
+                $("#bigtext").css("line-height", "80px");
+                $("#bigtext span").html(msg);
+                $("#bigtext span").css("font-size", "50px");
+                $("#bigtext").fadeIn(400);
+            }
+        },
+        message2: function (msg) {
+            if (msg == "hide")
+                $("#bigtext").hide();
+            else {
+                $("#bigtext").css("line-height", "580px");
+                $("#bigtext span").html(msg);
+                $("#bigtext span").css("font-size", "350px");
+                $("#bigtext").fadeIn(400);
+            }
+        },
+        gameover: function (msg) {
+            document.getElementById("gamemenu").style.display = "block";
+            $("#bigtext").css("line-height", "80px");
+            $("#bigtext span").html(msg);
+            $("#bigtext span").css("font-size", "50px");
+            $("#bigtext").fadeIn(400);
+        }
+    }
+    function init() {
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = function (evt) { onOpen(evt) };
+        websocket.onclose = function (evt) { onClose(evt) };
+        websocket.onmessage = function (evt) { onMessage(evt) };
+        websocket.onerror = function (evt) { onError(evt) };
+    }
+    function onOpen(evt) {
+        websocket.send("ID!!@Model.userid;@Model.gameid");
+    }
+    function onClose(evt) {
+
+    }
+    function onMessage(evt) {
+        var data = evt.data.split("!!");
+        action[data[0]](data[1]);
+        //action.turnon('fldx');
+        //action.turnoff('fldx');
+        //alert("ss");
+        //$('#fldx').rotate3Di(360, 200);
+    }
+    function onError(evt) {
+        //alert("ERROR:" + evt.data);
+        alert("Cannot connect to server...");
+    }
+    function doSend(message) {
+        //writeToScreen("SENT: " + message);
+        websocket.send(message);
+    }
+    //debugger;
+    window.addEventListener("load", init, false);
+    //debugger;
+    var count = 6;
+    var counter = null;//
+    function timer() {
+        count = count - 1;
+        //ZVUK
+        $("#zvuk1").jPlayer({ swfPath: "/Scripts/js/Jplayer.swf", wmode: "window" });
+        $('#zvuk1').jPlayer("setMedia", { mp3: "/ImagesApp/Beep-SoundBible.com-923660219.mp3" });
+        $('#zvuk1').jPlayer("supplied", "mp3");
+
+        $("#zvuk2").jPlayer({ swfPath: "/Scripts/js/Jplayer.swf", wmode: "window" });
+        $('#zvuk2').jPlayer("setMedia", { mp3: "/ImagesApp/Bleep-SoundBible.com-1927126940.mp3" });
+        $('#zvuk2').jPlayer("supplied", "mp3");
+
+        if (count <= 0) {
+            $('#zvuk2').jPlayer("play");
+            $("#bigtext span").text("GO");
+            $("#bigtext span").css("font-size", "400px");
+            $("#bigtext").fadeIn(400);
+            $("#bigtext").fadeOut(400);
+            //$('#jquery_audioPlayer').jPlayer("stop");
+            clearInterval(counter);
+            websocket.send("COUNTDOWN!!DONE");
+            return;
+        }
+        else {
+            $('#zvuk1').jPlayer("play");
+            $("#bigtext span").text(count.toString());
+            $("#bigtext").fadeIn(400);
+            $("#bigtext").fadeOut(400);
+            //$('#jquery_audioPlayer').jPlayer("stop");
+        }
+
+        //Do code for showing the number of seconds here
+    }
+    //action.countdown("5");
+    function onButton() {
+        $('#fld5').rotate3Di(360, 500);
+        action.turnon('fld5');
+    }
+</script>
+</head>
+<body>
+    <div id="zvuk1" class="jp-jplayer"></div>
+    <div id="zvuk2" class="jp-jplayer"></div>
+    <table class="playground">
+        <tr>
+            <td>
+                <div class="field" id=@Html.Raw("fld" + @ViewBag.teren["F01ID"])>@ViewBag.chase.F01Name</div>
+            </td>
+            <td class="center">
+                <div class="field" id=@Html.Raw("fld" + @ViewBag.teren["F02ID"])>@ViewBag.chase.F02Name</div>
+            </td>
+            <td class="right">
+                <div class="field" id=@Html.Raw("fld" + @ViewBag.teren["F03ID"])>@ViewBag.chase.F03Name</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="field" id=@Html.Raw("fld" + @ViewBag.teren["F08ID"])>@ViewBag.chase.F08Name</div>
+            </td>
+            <td class="center">
+                <table class="center-fields">
+                    <tr>
+                        <td>
+                            <div class="field" id=@Html.Raw("fld" + @ViewBag.teren["F09ID"])>@ViewBag.chase.F09Name</div>
+                        </td>
+                        <td>
+                            <div class="field" id=@Html.Raw("fld"+@ViewBag.teren["F12ID"])>@ViewBag.chase.F12Name</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="field" id=@Html.Raw("fld" + @ViewBag.teren["F10ID"])>@ViewBag.chase.F10Name</div>
+                        </td>
+                        <td>
+                            <div class="field" id=@Html.Raw("fld" + @ViewBag.teren["F11ID"])>@ViewBag.chase.F11Name</div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="right">
+                <div class="field" id=@Html.Raw("fld" + @ViewBag.teren["F04ID"])>@ViewBag.chase.F04Name</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="field" id=@Html.Raw("fld" + @ViewBag.teren["F07ID"])>@ViewBag.chase.F07Name</div>
+            </td>
+            <td class="center">
+                <div class="field" id=@Html.Raw("fld" + @ViewBag.teren["F06ID"])>@ViewBag.chase.F06Name</div>
+            </td>
+            <td class="right">
+                <div class="field" id=@Html.Raw("fld" + @ViewBag.teren["F05ID"])>@ViewBag.chase.F05Name</div>
+            </td>
+        </tr>
+    </table>
+    <div id="bigtext" style="position:absolute;top:0px;right:0;bottom:0;left:0px;background-color:rgba(100, 100, 100, 0.5); text-align:center; line-height:700px;display:none;">
+        <span style="font-size:600px;color:yellow; font-family:'Arial Black'">GO</span>
+    </div>    
+    <a id="gamemenu" href="@Url.Action("StartGame")" style="display:none;">
+        <span>@Html.Translate("menu")</span>
+    </a>
+</body>
+</html>

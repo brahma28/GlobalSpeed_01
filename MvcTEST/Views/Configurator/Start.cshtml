@@ -1,0 +1,152 @@
+﻿@model MvcTEST.Models.tblTemplate
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "AdminHome")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+
+    <table style="width: 100%">
+        <!-- NAZIV EKRANA-->
+        <tr>
+            <td align="left" colspan="3">
+                <font size="5"><b>@Html.Translate("KONFIGURATOR")</b></font>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:left ; vertical-align:bottom; " colspan="2" >
+                <font size="4"><b>1.</b> @Html.Translate("Što imate?")</font>
+            </td>
+            <td align="right">
+                <img src="~/ImagesApp/KonfiguratorIkona.png" />
+            </td>
+        </tr>
+        <tr>
+            <td align="left" colspan="3">
+                <hr />
+            </td>
+        </tr>
+        <!-- TABELA:  -->
+        <tr>
+
+            <td colspan="3">
+                <div id="tereni">
+                    <table style="width: 100%; text-align: left; height:400px; ">
+                        <tr>
+                            <td>
+                                <table style="width: 100%; text-align: center;">
+                                            <tr>
+                                                <td>
+                                            <label for="rbSpeedCourt">
+                                                            <img src="~/ImagesApp/GekauftSpeedCourt.png" />
+                                            </label>
+                                                </td>
+                                                <td>
+                                            <label for="rbSpeedTrack">
+                                                            <img src="~/ImagesApp/GekauftSpeedTrack.png" />
+                                            </label>
+                                                </td>
+                                                <td>
+                                            <label for="rbSpeedCourtAndTrack">
+                                                            <img src="~/ImagesApp/GekauftBeides.png" />
+                                            </label>
+                                                </td>   
+                                            </tr>
+                                            <tr>
+                                        <td style="width: 150px;">
+                                                    @Html.RadioButton("rb", Model.SpeedCourt, Model.SpeedCourt==true?true:false, new {id = "rbSpeedCourt"} )
+                                                </td>    
+                                                <td style="width: 150px">
+                                                    @Html.RadioButton("rb", Model.SpeedTrack, Model.SpeedTrack==true?true:false, new {id = "rbSpeedTrack"})
+                                                </td>
+                                                <td style="width: 150px">
+                                                    @Html.RadioButton("rb", Model.SpeedCourtAndTrack, Model.SpeedCourtAndTrack==true?true:false, new {id = "rbSpeedCourtAndTrack"})
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                        <td style="width: 150px">
+                                            <label for="rbSpeedCourt" style="color: #0360a3; font-weight: bold; font-size: 20px">SpeedCourt</label>
+                                                </td>    
+                                        <td style="width: 150px">
+                                            <label for="rbSpeedTrack" style="color: #0360a3; font-weight: bold; font-size: 20px">SpeedTrack</label>
+                                                </td>
+                                        <td style="width: 150px">
+                                            <label for="rbSpeedCourtAndTrack" style="color: #0360a3; font-weight: bold; font-size: 20px">Beides</label>
+                                                </td>
+                                            </tr>
+                                    </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- tabela sa gumbima -->
+                    <table style="width:100%; " >
+                        <tr>
+                            <!-- CANCEL -->
+                            <td>
+                                <input type="button" value='@Html.Translate("Odustani").ToUpper()' onclick="history.back()" class="cancel"/>
+                            </td>
+                            <!-- OK -->
+                            <td style="text-align:right;">
+                                <input type="button" value='@Html.Translate("Spremi").ToUpper()' onclick="location.href = '/Configurator/Start2'" class="save"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </td>
+        <script>
+            $(document).ready(function () {
+
+                $('#rbSpeedCourt').click(function () {
+                    //
+                    $.post('@Url.Action("AjaxSetTerens", "Configurator")', { radiobutton: 'speedcourt' },
+                         function (data) {
+                             //alert("1");
+                         });
+
+                });
+                $('#rbSpeedTrack').click(function () {
+                    //
+                    $.post('@Url.Action("AjaxSetTerens", "Configurator")', { radiobutton: 'speedtrack' },
+                         function (data) {
+                             //alert("1");
+                         });
+
+                });
+                $('#rbSpeedCourtAndTrack').click(function () {
+                    //
+                    $.post('@Url.Action("AjaxSetTerens", "Configurator")', { radiobutton: 'speedcourtandtrack' },
+                         function (data) {
+                             //alert("1");
+                         });
+
+                });
+
+            });
+
+
+
+
+
+
+            </script>
+
+
+
+        </tr>
+    </table>
+
+</div>
+
+
+
+
+
+
+

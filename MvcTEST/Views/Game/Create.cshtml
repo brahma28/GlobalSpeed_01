@@ -1,0 +1,169 @@
+﻿@model MvcTEST.Models.tblGame
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Home")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>tblGame</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NameHR)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NameHR)
+            @Html.ValidationMessageFor(model => model.NameHR)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NameENG)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NameENG)
+            @Html.ValidationMessageFor(model => model.NameENG)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsRandom)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsRandom)
+            @Html.ValidationMessageFor(model => model.IsRandom)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RandomValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RandomValue)
+            @Html.ValidationMessageFor(model => model.RandomValue)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RandomType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RandomType)
+            @Html.ValidationMessageFor(model => model.RandomType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsTimeLimit)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsTimeLimit)
+            @Html.ValidationMessageFor(model => model.IsTimeLimit)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TimeLimit)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TimeLimit)
+            @Html.ValidationMessageFor(model => model.TimeLimit)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Objectives)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Objectives)
+            @Html.ValidationMessageFor(model => model.Objectives)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Definition)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Definition)
+            @Html.ValidationMessageFor(model => model.Definition)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DescriptionHR)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DescriptionHR)
+            @Html.ValidationMessageFor(model => model.DescriptionHR)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumShownFields)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumShownFields)
+            @Html.ValidationMessageFor(model => model.NumShownFields)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumRepetition)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumRepetition)
+            @Html.ValidationMessageFor(model => model.NumRepetition)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RandomFields)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RandomFields)
+            @Html.ValidationMessageFor(model => model.RandomFields)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QuickGamePool)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.QuickGamePool)
+            @Html.ValidationMessageFor(model => model.QuickGamePool)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryID, "tblCategory")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CategoryID", String.Empty)
+            @Html.ValidationMessageFor(model => model.CategoryID)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+</div>

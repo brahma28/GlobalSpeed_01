@@ -1,0 +1,254 @@
+﻿@{
+    //ViewBag.Title = "teren2";
+    ////Layout = null;
+}
+<style>
+
+.polje_red
+{ 
+    color:red; 
+    width:50px; 
+    height:50px; 
+    background-color:red;
+
+} 
+.polje_white
+{ 
+    color:red; 
+    width:50px; 
+    height:50px; 
+    background-color:white;
+
+} 
+
+.polje_lgray
+{ 
+    color:red; 
+    width:30px; 
+    height:30px; 
+    background-color:lightslategray;
+
+} 
+.teren
+{ 
+    width: 100%; 
+    text-align: left; 
+    height:470px; 
+    vertical-align:top; 
+    border-spacing:0px; 
+    border:0px; 
+    PADDING:0; 
+    border-collapse:collapse;
+
+} 
+.polje_text
+{ 
+    width:20px; 
+    position:relative; 
+    border:0px;
+    top:13px;
+
+} 
+.polje_text_malo
+{ 
+    width:12px; 
+    position:relative; 
+    border:0px;
+    
+
+} 
+</style>
+
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+        
+    
+
+
+
+
+
+
+<div style="width:@(ViewBag.teren.Width.ToString())px; height:@(ViewBag.teren.Height.ToString())px; color:black; background-color:white; position:relative;">
+
+    @if (ViewBag.teren.F01Active == true){ 
+    <div style=" position:absolute; width:@(ViewBag.teren.F01DimensionX.ToString())px; height:@(ViewBag.teren.F01DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F01PositionX.ToString())px; top:@(ViewBag.teren.F01PositionY.ToString())px; " >
+        <input id="F01" value="@(ViewBag.teren.F01Name)" class="polje_text"/>
+    </div>
+    }     
+    @if (ViewBag.teren.F02Active == true){ 
+    <div style=" position:absolute; width:@(ViewBag.teren.F02DimensionX.ToString())px; height:@(ViewBag.teren.F02DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F02PositionX.ToString())px; top:@(ViewBag.teren.F02PositionY.ToString())px; " >
+        <input id="F02"  value="@(ViewBag.teren.F02Name)" class="polje_text"/>
+    </div>
+    }     
+    @if (ViewBag.teren.F03Active == true){     
+    <div style=" position:absolute; width:@(ViewBag.teren.F03DimensionX.ToString())px; height:@(ViewBag.teren.F03DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F03PositionX.ToString())px; top:@(ViewBag.teren.F03PositionY.ToString())px; " > 
+        <input id="F03"  value="@(ViewBag.teren.F03Name)"  class="polje_text"/>
+    </div>
+    }     
+    @if (ViewBag.teren.F04Active == true){      
+    <div  style=" position:absolute; width:@(ViewBag.teren.F04DimensionX.ToString())px; height:@(ViewBag.teren.F04DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F04PositionX.ToString())px; top:@(ViewBag.teren.F04PositionY.ToString())px; " >
+        <input id="F04" value="@(ViewBag.teren.F04Name)"  class="polje_text"/>
+    </div>
+    }     
+    @if (ViewBag.teren.F05Active == true){     
+    <div style=" position:absolute; width:@(ViewBag.teren.F05DimensionX.ToString())px; height:@(ViewBag.teren.F05DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F05PositionX.ToString())px; top:@(ViewBag.teren.F05PositionY.ToString())px; " >
+        <input id="F05"  value="@(ViewBag.teren.F05Name)"  class="polje_text"/>
+    </div>
+    }     
+    @if (ViewBag.teren.F06Active == true){        
+    <div style=" position:absolute; width:@(ViewBag.teren.F06DimensionX.ToString())px; height:@(ViewBag.teren.F06DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F06PositionX.ToString())px; top:@(ViewBag.teren.F06PositionY.ToString())px; " >
+        <input id="F06"  value="@(ViewBag.teren.F06Name)"  class="polje_text"/>
+    </div>
+     }     
+    @if (ViewBag.teren.F07Active == true){    
+    <div style=" position:absolute; width:@(ViewBag.teren.F07DimensionX.ToString())px; height:@(ViewBag.teren.F07DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F07PositionX.ToString())px; top:@(ViewBag.teren.F07PositionY.ToString())px; " > 
+        <input id="F07"  value="@(ViewBag.teren.F07Name)"  class="polje_text"/>
+    </div>
+     }     
+    @if (ViewBag.teren.F08Active == true){     
+    <div style=" position:absolute; width:@(ViewBag.teren.F08DimensionX.ToString())px; height:@(ViewBag.teren.F08DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F08PositionX.ToString())px; top:@(ViewBag.teren.F08PositionY.ToString())px; " > 
+        <input id="F08"  value="@(ViewBag.teren.F08Name)"  class="polje_text"/>
+    </div>
+     }     
+    @if (ViewBag.teren.F09Active == true){      
+    <div style=" position:absolute; width:@(ViewBag.teren.F09DimensionX.ToString())px; height:@(ViewBag.teren.F09DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F09PositionX.ToString())px; top:@(ViewBag.teren.F09PositionY.ToString())px; " >
+        <input id="F09"  value="@(ViewBag.teren.F09Name)"  class="polje_text_malo"/>
+    </div>
+       }     
+    @if (ViewBag.teren.F10Active == true){      
+    <div style=" position:absolute; width:@(ViewBag.teren.F10DimensionX.ToString())px; height:@(ViewBag.teren.F10DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F10PositionX.ToString())px; top:@(ViewBag.teren.F10PositionY.ToString())px; " > 
+        <input id="F10"  value="@(ViewBag.teren.F10Name)"  class="polje_text_malo"/>
+    </div>
+       }     
+    @if (ViewBag.teren.F11Active == true){      
+    <div style=" position:absolute; width:@(ViewBag.teren.F11DimensionX.ToString())px; height:@(ViewBag.teren.F11DimensionX.ToString())px;  color:red;  background-color:red;   left:@(ViewBag.teren.F11PositionX.ToString())px; top:@(ViewBag.teren.F11PositionY.ToString())px; " > 
+        <input id="F11"  value="@(ViewBag.teren.F11Name)"  class="polje_text_malo"/>
+    </div>
+       }     
+    @if (ViewBag.teren.F12Active == true){     
+    <div style=" position:absolute; width:@(ViewBag.teren.F12DimensionX.ToString())px; height:@(ViewBag.teren.F12DimensionX.ToString())px;  color:red; background-color:red;  left:@(ViewBag.teren.F12PositionX.ToString())px; top:@(ViewBag.teren.F12PositionY.ToString())px; " > 
+        <input id="F12"  value="@(ViewBag.teren.F12Name)"  class="polje_text_malo"/>
+    </div>
+       }   
+
+</div>
+
+        <script>
+            $(document).ready(function () {
+
+                $('#F01').focusout(function () {
+                    var ime01 = $('#F01').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F01', ime: ime01},
+                         function (data) {
+                             //alert("1");
+                         });
+                });
+                $('#F02').focusout(function () {
+                    var ime02 = $('#F02').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F02', ime: ime02},
+                         function (data) {
+                             //alert("1");
+                         });
+                });
+                $('#F03').focusout(function () {
+                    var ime03 = $('#F03').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F03', ime: ime03},
+                         function (data) {
+                             //alert("1");
+                         });
+                });
+                $('#F04').focusout(function () {
+                    var ime04 = $('#F04').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F04', ime: ime04},
+                         function (data) {
+                             //alert("1");
+                         });
+                });
+                $('#F05').focusout(function () {
+                    var ime05 = $('#F05').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F05', ime: ime05},
+                         function (data) {
+                             //alert("1");
+                         });
+                });
+                $('#F06').focusout(function () {
+                    var ime06 = $('#F06').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F06', ime: ime06},
+                         function (data) {
+                             //alert("1");
+                         });
+                });
+                $('#F07').focusout(function () {
+                    var ime07 = $('#F07').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F07', ime: ime07},
+                         function (data) {
+                             //alert("1");
+                         });
+                });
+                $('#F08').focusout(function () {
+                    var ime08 = $('#F08').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F08', ime: ime08},
+                         function (data) {
+                             //alert("1");
+                         });
+                });
+                $('#F09').focusout(function () {
+                    var ime09 = $('#F09').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F09', ime: ime09},
+                         function (data) {
+                             //alert("1");
+                         });
+                })
+                $('#F10').focusout(function () {
+                    var ime10 = $('#F10').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F10', ime: ime10},
+                         function (data) {
+                             //alert("1");
+                         });
+                })
+                $('#F11').focusout(function () {
+                    var ime11 = $('#F11').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F11', ime: ime11},
+                         function (data) {
+                             //alert("1");
+                         });
+                })
+                $('#F12').focusout(function () {
+                    var ime12 = $('#F12').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F12', ime: ime12},
+                         function (data) {
+                             //alert("1");
+                         });
+                })
+                $('#F13').focusout(function () {
+                    var ime13 = $('#F13').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F13', ime: ime13},
+                         function (data) {
+                             //alert("1");
+                         });
+                })
+                $('#F14').focusout(function () {
+                    var ime14 = $('#F14').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F14', ime: ime14},
+                         function (data) {
+                             //alert("1");
+                         });
+                })
+                $('#F15').focusout(function () {
+                    var ime14 = $('#F15').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F15', ime: ime15},
+                         function (data) {
+                             //alert("1");
+                         });
+                })
+                $('#F16').focusout(function () {
+                    var ime14 = $('#F16').val();
+                    $.post('@Url.Action("AjaxSetImePolja", "Configurator")', { broj: 'F16', ime: ime16},
+                         function (data) {
+                             //alert("1");
+                         });
+                })
+
+            });
+
+        </script>

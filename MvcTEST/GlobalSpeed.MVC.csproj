@@ -1,0 +1,1183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{92CCACEE-5B9D-48D0-A6FC-F1DD35491E5F}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MvcTEST</RootNamespace>
+    <AssemblyName>MvcTEST</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DesktopBuildPackageLocation>..\..\--PUBLISH--\GlobalSpeed.MVC.zip</DesktopBuildPackageLocation>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.20710.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActionController.cs" />
+    <Compile Include="Controllers\AdminHomeController.cs" />
+    <Compile Include="Controllers\BreakController.cs" />
+    <Compile Include="Controllers\CoachController.cs" />
+    <Compile Include="Controllers\ConfiguratorController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Controllers\GameBreak.cs" />
+    <Compile Include="Controllers\GameCombinationController.cs" />
+    <Compile Include="Controllers\GameCombined.cs" />
+    <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\GameDMSJumpController.cs" />
+    <Compile Include="Controllers\GameDMSJumpProtocols.cs" />
+    <Compile Include="Controllers\GameDMSQuickController.cs" />
+    <Compile Include="Controllers\GameDMSQuickFeet.cs" />
+    <Compile Include="Controllers\GameFree.cs" />
+    <Compile Include="Controllers\GameInOutController.cs" />
+    <Compile Include="Controllers\GameJumpingController.cs" />
+    <Compile Include="Controllers\GameReactionController.cs" />
+    <Compile Include="Controllers\GameResultsController.cs" />
+    <Compile Include="Controllers\GameSpeedChaseController.cs" />
+    <Compile Include="Controllers\GameSpeedMemoryController.cs" />
+    <Compile Include="Controllers\GameTappingController.cs" />
+    <Compile Include="Controllers\GroupeController.cs" />
+    <Compile Include="Controllers\GSController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogonController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\QuickstartController.cs" />
+    <Compile Include="Controllers\ResultsController.cs" />
+    <Compile Include="Controllers\ResultsGameController.cs" />
+    <Compile Include="Controllers\ResultsGroupeController.cs" />
+    <Compile Include="Controllers\ResultsUserController.cs" />
+    <Compile Include="Controllers\RumpelstiltskinController.cs" />
+    <Compile Include="Controllers\StatsController.cs" />
+    <Compile Include="Controllers\StatsGameController.cs" />
+    <Compile Include="Controllers\StatsGroupController.cs" />
+    <Compile Include="Controllers\StatsUserController.cs" />
+    <Compile Include="Controllers\TerminsController.cs" />
+    <Compile Include="Controllers\TrainerHomeController.cs" />
+    <Compile Include="Controllers\UGController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserHomeController.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSpeedDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GlobalSpeedDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlHelpers\LanguageExtensions.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\GameData.cs" />
+    <Compile Include="Models\getCoaches_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getCoachs_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getDatepickerDates_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getGameByUser_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getGroupByUser_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getGroupMembers_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getHighscoresAll_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getHighscoresTop5P1_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getHighscoresTop5P2_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getHighscoresTop5_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getHighscores_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getLast5Games_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getNews_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getPlayerByUser_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getResultGameByUser_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getResultGroupByUser_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getResultPlayerByUser_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getResult_Part02_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getResult_Part1_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getResult_Part2_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getStatsParameter_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getTerminInDay_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getUserGroup_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getUserProfil_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getUsersInGroup_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblCategory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblDictionary.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblDocument.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGame.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGameDisplayObject.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGameEvent.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGameSensor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblLanguage.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblMemoryType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblNew.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblReactionSignal.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblReactionType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblResult.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSchedule.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSensorType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSpeedEntry.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSport.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblStatsParameter.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblTemplate.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblTemplate2.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblTemplateSensor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblTerm.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblTrainer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblUser.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblUserGroup.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbUser2.cs" />
+    <Compile Include="Models\usp_tblSpeedEntry_LstByInstance_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_tblUserGroup_LstPaged_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_tblUserGroup_Lst_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwDocument.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwGame.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwGameFull.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwGroupMember.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwResult.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwResultFull.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwResultGameHighscore.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwResult_Part01.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwResult_Part02.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwResult_Part1.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwResult_Part2.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwTemplate.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwTerm.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwUser.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwUserGroup.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\GlobalSpeed.sql" />
+    <Content Include="Content\datepicker.css" />
+    <Content Include="Content\Logon.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\Site_.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\style_ie.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ImagesApp\1.ico" />
+    <Content Include="ImagesApp\1_24.ico" />
+    <Content Include="ImagesApp\3x3plv.png" />
+    <Content Include="ImagesApp\5x5nar.png" />
+    <Content Include="ImagesApp\7x7zel.png" />
+    <Content Include="ImagesApp\9x9nar.png" />
+    <Content Include="ImagesApp\arrow.png" />
+    <Content Include="ImagesApp\BastijanNico.jpg" />
+    <Content Include="ImagesApp\Beep-SoundBible.com-923660219.mp3" />
+    <Content Include="ImagesApp\bg-logon.jpg" />
+    <Content Include="ImagesApp\Bleep-SoundBible.com-1927126940.mp3" />
+    <Content Include="ImagesApp\buttons\abbrechen.png" />
+    <Content Include="ImagesApp\buttons\aktion.png" />
+    <Content Include="ImagesApp\buttons\auswertung.png" />
+    <Content Include="ImagesApp\buttons\benutzer-anlegen.png" />
+    <Content Include="ImagesApp\buttons\benutzer.png" />
+    <Content Include="ImagesApp\buttons\bg\admin-home-link-1.png" />
+    <Content Include="ImagesApp\buttons\bg\admin-home-link-2.png" />
+    <Content Include="ImagesApp\buttons\bg\admin-home-link-3.png" />
+    <Content Include="ImagesApp\buttons\bg\admin-home-link-4.png" />
+    <Content Include="ImagesApp\buttons\bg\benutzer-anlegen.png" />
+    <Content Include="ImagesApp\buttons\bg\chip.png" />
+    <Content Include="ImagesApp\buttons\bg\documents.png" />
+    <Content Include="ImagesApp\buttons\bg\e-mail.png" />
+    <Content Include="ImagesApp\buttons\bg\gray130.png" />
+    <Content Include="ImagesApp\buttons\bg\gruppen-anlegen.png" />
+    <Content Include="ImagesApp\buttons\bg\logo.png" />
+    <Content Include="ImagesApp\buttons\bg\menu-aktion.png" />
+    <Content Include="ImagesApp\buttons\bg\menu-auswertung.png" />
+    <Content Include="ImagesApp\buttons\bg\menu-benutzer-trainer.png" />
+    <Content Include="ImagesApp\buttons\bg\menu-ergebnisse.png" />
+    <Content Include="ImagesApp\buttons\bg\menu-konfigurator.png" />
+    <Content Include="ImagesApp\buttons\bg\menu-quick-start.png" />
+    <Content Include="ImagesApp\buttons\bg\orange130.png" />
+    <Content Include="ImagesApp\buttons\bg\orange290.png" />
+    <Content Include="ImagesApp\buttons\bg\pdf.png" />
+    <Content Include="ImagesApp\buttons\bg\print.png" />
+    <Content Include="ImagesApp\buttons\bg\game-creator.png" />
+    <Content Include="ImagesApp\GameSpeedChase.png" />
+    <Content Include="ImagesApp\user-silhouette.png" />
+    <Content Include="ImagesApp\buttons\bg\xls.png" />
+    <Content Include="ImagesApp\buttons\edit.png" />
+    <Content Include="ImagesApp\buttons\ergebnisse.png" />
+    <Content Include="ImagesApp\buttons\game-creator.png" />
+    <Content Include="ImagesApp\buttons\gruppen-editor.png" />
+    <Content Include="ImagesApp\buttons\help.png" />
+    <Content Include="ImagesApp\buttons\news.png" />
+    <Content Include="ImagesApp\buttons\quick-game.png" />
+    <Content Include="ImagesApp\buttons\save.png" />
+    <Content Include="ImagesApp\buttons\search.png" />
+    <Content Include="ImagesApp\buttons\settings.png" />
+    <Content Include="ImagesApp\cal-next.png" />
+    <Content Include="ImagesApp\cal-prev.png" />
+    <Content Include="ImagesApp\close.png" />
+    <Content Include="ImagesApp\COACH.png" />
+    <Content Include="ImagesApp\CONFIGURATOR.png" />
+    <Content Include="ImagesApp\countdown.jpg" />
+    <Content Include="ImagesApp\create.png" />
+    <Content Include="ImagesApp\delete.png" />
+    <Content Include="ImagesApp\description_duration.png" />
+    <Content Include="ImagesApp\details.png" />
+    <Content Include="ImagesApp\edit.png" />
+    <Content Include="ImagesApp\flag_cro.jpg" />
+    <Content Include="ImagesApp\flag_deu.jpg" />
+    <Content Include="ImagesApp\flag_uk.png" />
+    <Content Include="ImagesApp\FOOT_AC.png" />
+    <Content Include="ImagesApp\FOOT_BOTH.png" />
+    <Content Include="ImagesApp\FOOT_FREE.png" />
+    <Content Include="ImagesApp\FOOT_LEFT.png" />
+    <Content Include="ImagesApp\FOOT_RIGHT.png" />
+    <Content Include="ImagesApp\gamecONFIGURATION.jpg" />
+    <Content Include="ImagesApp\gamemenu.png" />
+    <Content Include="ImagesApp\GekauftBeides.png" />
+    <Content Include="ImagesApp\GekauftSpeedCourt.png" />
+    <Content Include="ImagesApp\GekauftSpeedTrack.png" />
+    <Content Include="ImagesApp\gumb_abbrechen.png" />
+    <Content Include="ImagesApp\GUMB_AUSWERTEN.png" />
+    <Content Include="ImagesApp\gumb_bearbeiten.png" />
+    <Content Include="ImagesApp\gumb_drucken.png" />
+    <Content Include="ImagesApp\gumb_email.png" />
+    <Content Include="ImagesApp\gumb_excelexport.png" />
+    <Content Include="ImagesApp\gumb_konfigurator.jpg" />
+    <Content Include="ImagesApp\buttons\konfigurator.png" />
+    <Content Include="ImagesApp\gumb_natrag.png" />
+    <Content Include="ImagesApp\gumb_obojeskupa.png" />
+    <Content Include="ImagesApp\gumb_ok.png" />
+    <Content Include="ImagesApp\gumb_pdfdownload.png" />
+    <Content Include="ImagesApp\buttons\quickgame.png" />
+    <Content Include="ImagesApp\gumb_speedtrack.png" />
+    <Content Include="ImagesApp\gumb_teren.png" />
+    <Content Include="ImagesApp\icon_quickStart_out.gif" />
+    <Content Include="ImagesApp\ikona_ekvilajzer.png" />
+    <Content Include="ImagesApp\ikona_gamepad.png" />
+    <Content Include="ImagesApp\ikona_info.png" />
+    <Content Include="ImagesApp\ikona_right.png" />
+    <Content Include="ImagesApp\inout.png" />
+    <Content Include="ImagesApp\inout1.png" />
+    <Content Include="ImagesApp\iphone_messages_icon.png" />
+    <Content Include="ImagesApp\input-text.png" />
+    <Content Include="ImagesApp\jumping.png" />
+    <Content Include="ImagesApp\jumping2.png" />
+    <Content Include="ImagesApp\KONFIGURATION_ABSCHLIESSEN.png" />
+    <Content Include="ImagesApp\KonfiguratorIkona.png" />
+    <Content Include="ImagesApp\lf.jpg" />
+    <Content Include="ImagesApp\memory.png" />
+    <Content Include="ImagesApp\NumShownFields1.png" />
+    <Content Include="ImagesApp\NumShownFields2.png" />
+    <Content Include="ImagesApp\NumShownFields4.png" />
+    <Content Include="ImagesApp\OK.jpg" />
+    <Content Include="ImagesApp\BackgroundLoginDPI.png" />
+    <Content Include="ImagesApp\benutzer.jpg" />
+    <Content Include="ImagesApp\benutzer2.jpg" />
+    <Content Include="ImagesApp\benutzeranlegen.jpg" />
+    <Content Include="ImagesApp\benutzeranlegen.png" />
+    <Content Include="ImagesApp\benutzer_anmelden.jpg" />
+    <Content Include="ImagesApp\benutzer_udubljen.jpg" />
+    <Content Include="ImagesApp\chipaktiviren.jpg" />
+    <Content Include="ImagesApp\dokumentewervalten.jpg" />
+    <Content Include="ImagesApp\ergebnise_udubljeno.jpg" />
+    <Content Include="ImagesApp\facebook.jpg" />
+    <Content Include="ImagesApp\gamecreator.jpg" />
+    <Content Include="ImagesApp\gamecreator.png" />
+    <Content Include="ImagesApp\gruppen.jpg" />
+    <Content Include="ImagesApp\gruppen.png" />
+    <Content Include="ImagesApp\gruppenanlegen.jpg" />
+    <Content Include="ImagesApp\ikona1.jpg" />
+    <Content Include="ImagesApp\ikonastatistika.jpg" />
+    <Content Include="ImagesApp\info.jpg" />
+    <Content Include="ImagesApp\jumptest.jpg" />
+    <Content Include="ImagesApp\logo.jpg" />
+    <Content Include="ImagesApp\logo2.jpg" />
+    <Content Include="ImagesApp\mail.jpg" />
+    <Content Include="ImagesApp\oko.png" />
+    <Content Include="ImagesApp\photochellikona.png" />
+    <Content Include="ImagesApp\photochellikonaCRVENA.png" />
+    <Content Include="ImagesApp\photochellikonaPLAVA.png" />
+    <Content Include="ImagesApp\pin\00.png" />
+    <Content Include="ImagesApp\pin\01.png" />
+    <Content Include="ImagesApp\pin\02.png" />
+    <Content Include="ImagesApp\pin\03.png" />
+    <Content Include="ImagesApp\pin\04.png" />
+    <Content Include="ImagesApp\pin\05.png" />
+    <Content Include="ImagesApp\pin\06.png" />
+    <Content Include="ImagesApp\pin\07.png" />
+    <Content Include="ImagesApp\pin\08.png" />
+    <Content Include="ImagesApp\pin\09.png" />
+    <Content Include="ImagesApp\pin\del1.png" />
+    <Content Include="ImagesApp\pin\x.png" />
+    <Content Include="ImagesApp\plocanoga.png" />
+    <Content Include="ImagesApp\plocanoga_mali.png" />
+    <Content Include="ImagesApp\plocarazmakplav.png" />
+    <Content Include="ImagesApp\plocarazmakplavvert.ico" />
+    <Content Include="ImagesApp\plocarazmaksiv.png" />
+    <Content Include="ImagesApp\plocarazmaksivvert.png" />
+    <Content Include="ImagesApp\pocetak2.png" />
+    <Content Include="ImagesApp\pocetak2paralel.png" />
+    <Content Include="ImagesApp\pocetak4.png" />
+    <Content Include="ImagesApp\postavke.jpg" />
+    <Content Include="ImagesApp\pratitrag.png" />
+    <Content Include="ImagesApp\prazan.png" />
+    <Content Include="ImagesApp\profilbild.jpg" />
+    <Content Include="ImagesApp\quickgame.jpg" />
+    <Content Include="ImagesApp\quickgame.png" />
+    <Content Include="ImagesApp\quickgamesbutton.png" />
+    <Content Include="ImagesApp\QUICKSTART.png" />
+    <Content Include="ImagesApp\RAAB-GAME.png" />
+    <Content Include="ImagesApp\REACTIONTEST.png" />
+    <Content Include="ImagesApp\reakcija.png" />
+    <Content Include="ImagesApp\rf.jpg" />
+    <Content Include="ImagesApp\right.jpg" />
+    <Content Include="ImagesApp\ruler_lock.png" />
+    <Content Include="ImagesApp\save.jpg" />
+    <Content Include="ImagesApp\save.png" />
+    <Content Include="ImagesApp\search-input.png" />
+    <Content Include="ImagesApp\search.jpg" />
+    <Content Include="ImagesApp\search.png" />
+    <Content Include="ImagesApp\shuttlerun.jpg" />
+    <Content Include="ImagesApp\speedchase.png" />
+    <Content Include="ImagesApp\speedmemory.png" />
+    <Content Include="ImagesApp\speedpart.png" />
+    <Content Include="ImagesApp\speedtrackikona.png" />
+    <Content Include="ImagesApp\speichner.jpg" />
+    <Content Include="ImagesApp\start.png" />
+    <Content Include="ImagesApp\startfield.png" />
+    <Content Include="ImagesApp\StartNaPolju.png" />
+    <Content Include="ImagesApp\StartPoredPolja.png" />
+    <Content Include="ImagesApp\statistika.ico" />
+    <Content Include="ImagesApp\TAPPING.png" />
+    <Content Include="ImagesApp\TAPPING12.png" />
+    <Content Include="ImagesApp\buttons\trainer.png" />
+    <Content Include="ImagesApp\upitnik.jpg" />
+    <Content Include="ImagesApp\var1free.png" />
+    <Content Include="ImagesApp\var2order.png" />
+    <Content Include="ImagesApp\var2order2.png" />
+    <Content Include="ImagesApp\var3sequnz.png" />
+    <Content Include="ImagesApp\XxX.png" />
+    <Content Include="ImagesApp\zvucniks.png" />
+    <Content Include="Images\01_GS_Login02.jpg" />
+    <Content Include="Images\1_24.ico" />
+    <Content Include="Images\BackgroundDPI.png" />
+    <Content Include="Images\BackgroundLoginDPI.png" />
+    <Content Include="Images\BallIcon.gif" />
+    <Content Include="Images\blankObject.png" />
+    <Content Include="Images\blankPlayer.png" />
+    <Content Include="Images\btnAction.gif" />
+    <Content Include="Images\btnDialerActive.gif" />
+    <Content Include="Images\btnDialerDummy.gif" />
+    <Content Include="Images\btnDown.gif" />
+    <Content Include="Images\btnResults.gif" />
+    <Content Include="Images\btnStats.gif" />
+    <Content Include="Images\btnUp.gif" />
+    <Content Include="Images\btnUser.gif" />
+    <Content Include="Images\close.jpg" />
+    <Content Include="Images\DocumentIcon.gif" />
+    <Content Include="Images\DocumentTransparentIcon.gif" />
+    <Content Include="Images\GroupIcon.png" />
+    <Content Include="Images\hover.png" />
+    <Content Include="Images\iconChat.gif" />
+    <Content Include="Images\iconHelp.gif" />
+    <Content Include="Images\iconHelp.png" />
+    <Content Include="Images\iconSettings.gif" />
+    <Content Include="Images\iphone-bg.png" />
+    <Content Include="Images\nav-indicator-bg.png" />
+    <Content Include="Images\PeopleIcon.gif" />
+    <Content Include="Images\PeopleTransparentIcon.gif" />
+    <Content Include="Images\PlusIcon.gif" />
+    <Content Include="Images\PlusTransparentIcon.gif" />
+    <Content Include="Images\ResultsIcon.png" />
+    <Content Include="Images\RFIDIcon.gif" />
+    <Content Include="Images\SearchIcon.gif" />
+    <Content Include="Images\silhouette.png" />
+    <Content Include="Images\StatisticsIcon.png" />
+    <Content Include="Images\statistika.ico" />
+    <Content Include="Scripts\fancybox\blank.gif" />
+    <Content Include="Scripts\fancybox\fancybox-x.png" />
+    <Content Include="Scripts\fancybox\fancybox-y.png" />
+    <Content Include="Scripts\fancybox\fancybox.png" />
+    <Content Include="Scripts\fancybox\fancy_close.png" />
+    <Content Include="Scripts\fancybox\fancy_loading.png" />
+    <Content Include="Scripts\fancybox\fancy_nav_left.png" />
+    <Content Include="Scripts\fancybox\fancy_nav_right.png" />
+    <Content Include="Scripts\fancybox\fancy_shadow_e.png" />
+    <Content Include="Scripts\fancybox\fancy_shadow_n.png" />
+    <Content Include="Scripts\fancybox\fancy_shadow_ne.png" />
+    <Content Include="Scripts\fancybox\fancy_shadow_nw.png" />
+    <Content Include="Scripts\fancybox\fancy_shadow_s.png" />
+    <Content Include="Scripts\fancybox\fancy_shadow_se.png" />
+    <Content Include="Scripts\fancybox\fancy_shadow_sw.png" />
+    <Content Include="Scripts\fancybox\fancy_shadow_w.png" />
+    <Content Include="Scripts\fancybox\fancy_title_left.png" />
+    <Content Include="Scripts\fancybox\fancy_title_main.png" />
+    <Content Include="Scripts\fancybox\fancy_title_over.png" />
+    <Content Include="Scripts\fancybox\fancy_title_right.png" />
+    <Content Include="Scripts\fancybox\jquery.easing-1.3.pack.js" />
+    <Content Include="Scripts\fancybox\jquery.fancybox-1.3.4.css" />
+    <Content Include="Scripts\fancybox\jquery.fancybox-1.3.4.js" />
+    <Content Include="Scripts\fancybox\jquery.fancybox-1.3.4.pack.js" />
+    <Content Include="Scripts\fancybox\jquery.mousewheel-3.0.4.pack.js" />
+    <Content Include="Scripts\js\add-on\jplayer.playlist.min.js" />
+    <Content Include="Scripts\js\add-on\jquery.jplayer.inspector.js" />
+    <Content Include="Scripts\js\Jplayer.swf" />
+    <Content Include="Scripts\js\jquery.jplayer.min.js" />
+    <Content Include="Scripts\js\popcorn\popcorn.jplayer.js" />
+    <Content Include="Scripts\terenfieldsname.js" />
+    <Content Include="Scripts\teren.js" />
+    <Content Include="Scripts\jquery-css-transform.js" />
+    <Content Include="Scripts\js\iphone-scroller.js" />
+    <Content Include="Scripts\js\jquery-1.2.6.min.js" />
+    <Content Include="Scripts\js\.DS_Store" />
+    <Content Include="Content\Fonts\calibri.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\calibrib.ttf" />
+    <Content Include="Content\Fonts\calibrii.ttf" />
+    <Content Include="Content\Fonts\CalibriL.ttf" />
+    <Content Include="Content\Fonts\CalibriLI.ttf" />
+    <Content Include="Content\Fonts\calibriz.ttf" />
+    <EmbeddedResource Include="Content\Fonts\calibri.eot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\reportGame.rdlc" />
+    <EmbeddedResource Include="Reports\reportGroup.rdlc" />
+    <EmbeddedResource Include="Reports\reportUser.rdlc" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="packages.config" />
+    <Content Include="GlobalSpeedDataSet.xsc">
+      <DependentUpon>GlobalSpeedDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="Content\Fonts\OpenSans-Bold.ttf" />
+    <Content Include="Content\Fonts\OpenSans-Regular.ttf" />
+    <None Include="GlobalSpeedDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GlobalSpeedDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="GlobalSpeedDataSet.xss">
+      <DependentUpon>GlobalSpeedDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery.ui.datepicker-de.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\rotate3Di.js" />
+    <Content Include="Views\Shared\Report.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Action\Index.cshtml" />
+    <Content Include="Views\Action\Details.cshtml" />
+    <Content Include="Views\Action\Create.cshtml" />
+    <Content Include="Views\Action\Edit.cshtml" />
+    <Content Include="Views\Action\Delete.cshtml" />
+    <Content Include="Views\Results\Index.cshtml" />
+    <Content Include="Views\Results\Details.cshtml" />
+    <Content Include="Views\Results\Create.cshtml" />
+    <Content Include="Views\Results\Edit.cshtml" />
+    <Content Include="Views\Results\Delete.cshtml" />
+    <Content Include="Views\Stats\Index.cshtml" />
+    <Content Include="Views\Stats\Details.cshtml" />
+    <Content Include="Views\Stats\Create.cshtml" />
+    <Content Include="Views\Stats\Edit.cshtml" />
+    <Content Include="Views\Stats\Delete.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\Logon\Index.cshtml" />
+    <Content Include="Views\Logon\_ViewStart.cshtml" />
+    <Content Include="Views\Logon\_Layout.cshtml" />
+    <Content Include="Views\Home\Termini.cshtml" />
+    <Content Include="Views\User\_Layout.cshtml" />
+    <Content Include="Views\Groupe\Index.cshtml" />
+    <Content Include="Views\Groupe\Details.cshtml" />
+    <Content Include="Views\Groupe\Create.cshtml" />
+    <Content Include="Views\Groupe\Edit.cshtml" />
+    <Content Include="Views\Groupe\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\User_Search.cshtml" />
+    <Content Include="Views\Results\Result_Search.cshtml" />
+    <Content Include="Views\Stats\Index2.cshtml" />
+    <Content Include="Views\Action\NothingYet.cshtml" />
+    <Content Include="Views\Action\QUICKGAME.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Game\Index.cshtml" />
+    <Content Include="Views\Game\Details.cshtml" />
+    <Content Include="Views\Game\Create.cshtml" />
+    <Content Include="Views\Game\Edit.cshtml" />
+    <Content Include="Views\Game\Delete.cshtml" />
+    <Content Include="Views\UserHome\Index.cshtml" />
+    <Content Include="Views\UserHome\Details.cshtml" />
+    <Content Include="Views\UserHome\Create.cshtml" />
+    <Content Include="Views\UserHome\Edit.cshtml" />
+    <Content Include="Views\UserHome\Delete.cshtml" />
+    <Content Include="Views\TrainerHome\Index.cshtml" />
+    <Content Include="Views\TrainerHome\Details.cshtml" />
+    <Content Include="Views\TrainerHome\Create.cshtml" />
+    <Content Include="Views\TrainerHome\Edit.cshtml" />
+    <Content Include="Views\TrainerHome\Delete.cshtml" />
+    <Content Include="Views\AdminHome\Index.cshtml" />
+    <Content Include="Views\AdminHome\Details.cshtml" />
+    <Content Include="Views\AdminHome\Create.cshtml" />
+    <Content Include="Views\AdminHome\Edit.cshtml" />
+    <Content Include="Views\AdminHome\Delete.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\Termins\IndexOld.cshtml" />
+    <Content Include="Views\Termins\Details.cshtml" />
+    <Content Include="Views\Termins\Create.cshtml" />
+    <Content Include="Views\Termins\Edit.cshtml" />
+    <Content Include="Views\Termins\Delete.cshtml" />
+    <Content Include="Views\GameResults\Index.cshtml" />
+    <Content Include="Views\GameResults\Details.cshtml" />
+    <Content Include="Views\GameResults\Create.cshtml" />
+    <Content Include="Views\GameResults\Edit.cshtml" />
+    <Content Include="Views\GameResults\Delete.cshtml" />
+    <Content Include="Views\Quickstart\Index.cshtml" />
+    <Content Include="Views\Quickstart\Details.cshtml" />
+    <Content Include="Views\Quickstart\Create.cshtml" />
+    <Content Include="Views\Quickstart\Edit.cshtml" />
+    <Content Include="Views\Quickstart\Delete.cshtml" />
+    <Content Include="Views\Configurator\Index.cshtml" />
+    <Content Include="Views\Configurator\Details.cshtml" />
+    <Content Include="Views\Configurator\Create.cshtml" />
+    <Content Include="Views\Configurator\Edit.cshtml" />
+    <Content Include="Views\Configurator\Delete.cshtml" />
+    <Content Include="Views\Coach\Index.cshtml" />
+    <Content Include="Views\Coach\Details.cshtml" />
+    <Content Include="Views\Coach\Create.cshtml" />
+    <Content Include="Views\Coach\Edit.cshtml" />
+    <Content Include="Views\Coach\Delete.cshtml" />
+    <Content Include="Views\Coach\List.cshtml" />
+    <Content Include="Views\AdminHome\Tereni.cshtml" />
+    <Content Include="Views\GameInOut\Index.cshtml" />
+    <Content Include="Views\GameInOut\Details.cshtml" />
+    <Content Include="Views\GameInOut\Create_old.cshtml" />
+    <Content Include="Views\GameInOut\Edit.cshtml" />
+    <Content Include="Views\GameInOut\Delete.cshtml" />
+    <Content Include="Views\GameJumping\Index.cshtml" />
+    <Content Include="Views\GameJumping\Details.cshtml" />
+    <Content Include="Views\GameJumping\Create_old.cshtml" />
+    <Content Include="Views\GameJumping\Edit.cshtml" />
+    <Content Include="Views\GameJumping\Delete.cshtml" />
+    <Content Include="Views\GameTapping\Index.cshtml" />
+    <Content Include="Views\GameTapping\Details.cshtml" />
+    <Content Include="Views\GameTapping\Create_old.cshtml" />
+    <Content Include="Views\GameTapping\Edit.cshtml" />
+    <Content Include="Views\GameTapping\Delete.cshtml" />
+    <Content Include="Views\ResultsGame\Index.cshtml" />
+    <Content Include="Views\ResultsGame\Details.cshtml" />
+    <Content Include="Views\ResultsGame\Create.cshtml" />
+    <Content Include="Views\ResultsGame\Edit.cshtml" />
+    <Content Include="Views\ResultsGame\Delete.cshtml" />
+    <Content Include="Views\ResultsGame\highscores.cshtml" />
+    <Content Include="Views\ResultsUser\Index.cshtml" />
+    <Content Include="Views\ResultsUser\Details.cshtml" />
+    <Content Include="Views\ResultsUser\Create.cshtml" />
+    <Content Include="Views\ResultsUser\Edit.cshtml" />
+    <Content Include="Views\ResultsUser\Delete.cshtml" />
+    <Content Include="Views\ResultsUser\highscores.cshtml" />
+    <Content Include="Views\ResultsGroupe\Index.cshtml" />
+    <Content Include="Views\ResultsGroupe\Details.cshtml" />
+    <Content Include="Views\ResultsGroupe\Create.cshtml" />
+    <Content Include="Views\ResultsGroupe\Edit.cshtml" />
+    <Content Include="Views\ResultsGroupe\Delete.cshtml" />
+    <Content Include="Views\ResultsGroupe\highscores.cshtml" />
+    <Content Include="Views\ResultsUser\Profil.cshtml" />
+    <Content Include="Views\Configurator\Fancy.cshtml" />
+    <Content Include="Views\Action\StartGame.cshtml" />
+    <Content Include="Views\Action\PlayGame.cshtml" />
+    <Content Include="Views\Configurator\Games.cshtml" />
+    <Content Include="Views\GameInOut\RandomFields.cshtml" />
+    <Content Include="Views\GameInOut\SaveAs.cshtml" />
+    <Content Include="Views\GameJumping\RandomFields.cshtml" />
+    <Content Include="Views\GameTapping\RandomFields.cshtml" />
+    <Content Include="Views\Configurator\Start.cshtml" />
+    <Content Include="Views\Configurator\Start2.cshtml" />
+    <Content Include="Views\Configurator\Start3.cshtml" />
+    <Content Include="Views\Configurator\Start4.cshtml" />
+    <Content Include="Views\Configurator\Start5.cshtml" />
+    <Content Include="Views\Configurator\Start6.cshtml" />
+    <Content Include="Views\Configurator\Start23.cshtml" />
+    <Content Include="Views\Configurator\teren.cshtml" />
+    <Content Include="Views\ResultsUser\BenutzerProfil.cshtml" />
+    <Content Include="Views\StatsGame\Index2.cshtml" />
+    <Content Include="Views\StatsGame\Details.cshtml" />
+    <Content Include="Views\StatsGame\Create.cshtml" />
+    <Content Include="Views\StatsGame\Edit.cshtml" />
+    <Content Include="Views\StatsGame\Delete.cshtml" />
+    <Content Include="Views\StatsGroup\Index2.cshtml" />
+    <Content Include="Views\StatsGroup\Details.cshtml" />
+    <Content Include="Views\StatsGroup\Create.cshtml" />
+    <Content Include="Views\StatsGroup\Edit.cshtml" />
+    <Content Include="Views\StatsGroup\Delete.cshtml" />
+    <Content Include="Views\StatsUser\Index2.cshtml" />
+    <Content Include="Views\StatsUser\Details.cshtml" />
+    <Content Include="Views\StatsUser\Create.cshtml" />
+    <Content Include="Views\StatsUser\Edit.cshtml" />
+    <Content Include="Views\StatsUser\Delete.cshtml" />
+    <Content Include="Views\StatsGame\highscores1.cshtml" />
+    <Content Include="Views\StatsGame\Index.cshtml" />
+    <Content Include="Views\StatsGroup\Index.cshtml" />
+    <Content Include="Views\StatsGroup\highscores2.cshtml" />
+    <Content Include="Views\StatsUser\Index.cshtml" />
+    <Content Include="Views\StatsUser\highscores3.cshtml" />
+    <Content Include="Views\AdminHome\Language.cshtml" />
+    <Content Include="Views\Configurator\teren.cshtml" />
+    <Content Include="Views\Configurator\teren2.cshtml" />
+    <Content Include="Views\Configurator\Start24.cshtml" />
+    <Content Include="Views\Configurator\Start25.cshtml" />
+    <Content Include="Views\Configurator\Start26.cshtml" />
+    <Content Include="Views\Configurator\Start27.cshtml" />
+    <Content Include="Views\Configurator\Start28.cshtml" />
+    <Content Include="Views\Configurator\Start29.cshtml" />
+    <Content Include="Views\Configurator\terenspeedtrack.cshtml" />
+    <Content Include="Views\Configurator\teren25speedtrack.cshtml" />
+    <Content Include="Views\Configurator\teren26speedtrack.cshtml" />
+    <Content Include="Views\Configurator\teren27speedtrack.cshtml" />
+    <Content Include="Views\Configurator\teren28speedtrack.cshtml" />
+    <Content Include="Views\Configurator\teren29speedtrack.cshtml" />
+    <Content Include="Views\Configurator\teren3.cshtml" />
+    <Content Include="Views\Configurator\teren4.cshtml" />
+    <Content Include="Views\Configurator\teren1.cshtml" />
+    <Content Include="Views\Configurator\teren6.cshtml" />
+    <Content Include="Views\GameInOut\Create.cshtml" />
+    <Content Include="Views\GameJumping\Create.cshtml" />
+    <Content Include="Views\GameTapping\Create.cshtml" />
+    <Content Include="Views\GameInOut\RandomFields_02.cshtml" />
+    <Content Include="Views\GameInOut\teren.cshtml" />
+    <Content Include="Views\User\EditFromStart.cshtml" />
+    <Content Include="Views\GameSpeedChase\Index.cshtml" />
+    <Content Include="Views\GameSpeedChase\Details.cshtml" />
+    <Content Include="Views\GameSpeedChase\Create.cshtml" />
+    <Content Include="Views\GameSpeedChase\Edit.cshtml" />
+    <Content Include="Views\GameSpeedChase\Delete.cshtml" />
+    <Content Include="Views\GameSpeedMemory\Index.cshtml" />
+    <Content Include="Views\GameSpeedMemory\Details.cshtml" />
+    <Content Include="Views\GameSpeedMemory\Create.cshtml" />
+    <Content Include="Views\GameSpeedMemory\Edit.cshtml" />
+    <Content Include="Views\GameSpeedMemory\Delete.cshtml" />
+    <Content Include="Views\GameDMSQuickFeet\Index.cshtml" />
+    <Content Include="Views\GameDMSQuickFeet\Details.cshtml" />
+    <Content Include="Views\GameDMSQuickFeet\Create.cshtml" />
+    <Content Include="Views\GameDMSQuickFeet\Edit.cshtml" />
+    <Content Include="Views\GameDMSQuickFeet\Delete.cshtml" />
+    <Content Include="Views\GameDMSJumpProtocols\Index.cshtml" />
+    <Content Include="Views\GameDMSJumpProtocols\Details.cshtml" />
+    <Content Include="Views\GameDMSJumpProtocols\Create.cshtml" />
+    <Content Include="Views\GameDMSJumpProtocols\Edit.cshtml" />
+    <Content Include="Views\GameDMSJumpProtocols\Delete.cshtml" />
+    <Content Include="Views\GameBreak\Index.cshtml" />
+    <Content Include="Views\GameBreak\Details.cshtml" />
+    <Content Include="Views\GameBreak\Create.cshtml" />
+    <Content Include="Views\GameBreak\Edit.cshtml" />
+    <Content Include="Views\GameBreak\Delete.cshtml" />
+    <Content Include="Views\GameCombined\Index.cshtml" />
+    <Content Include="Views\GameCombined\Details.cshtml" />
+    <Content Include="Views\GameCombined\Create.cshtml" />
+    <Content Include="Views\GameCombined\Edit.cshtml" />
+    <Content Include="Views\GameCombined\Delete.cshtml" />
+    <Content Include="Views\GameFree\Index.cshtml" />
+    <Content Include="Views\GameFree\Details.cshtml" />
+    <Content Include="Views\GameFree\Create.cshtml" />
+    <Content Include="Views\GameFree\Edit.cshtml" />
+    <Content Include="Views\GameFree\Delete.cshtml" />
+    <Content Include="Views\GameReaction\Index.cshtml" />
+    <Content Include="Views\GameReaction\Details.cshtml" />
+    <Content Include="Views\GameReaction\Create.cshtml" />
+    <Content Include="Views\GameReaction\Edit.cshtml" />
+    <Content Include="Views\GameReaction\Delete.cshtml" />
+    <Content Include="Views\GameSpeedChase\ChaseSymbolFields.cshtml" />
+    <Content Include="Views\GameSpeedChase\ChaseSymbolFieldsAll.cshtml" />
+    <Content Include="Views\GameSpeedChase\ChaseSymbolFieldsCreateTemp.cshtml" />
+    <Content Include="Views\GameSpeedChase\ChaseSymbolFieldsFunction.cshtml" />
+    <Content Include="Views\GameSpeedChase\ChaseSymbolFieldsImage.cshtml" />
+    <Content Include="Views\GameSpeedChase\ChaseSymbolFieldsWord.cshtml" />
+    <Content Include="Views\GameSpeedChase\RandomFields.cshtml" />
+    <Content Include="Views\GameSpeedChase\RandomFieldsCreate.cshtml" />
+    <Content Include="Views\GameSpeedChase\teren.cshtml" />
+    <Content Include="Views\GameSpeedMemory\RandomFields.cshtml" />
+    <Content Include="Views\GameSpeedMemory\teren.cshtml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reports\Game.rdlc">
+      <BrowseToURL>~/Reports</BrowseToURL>
+    </Content>
+    <Content Include="Reports\ProbnaPita.rdlc">
+      <BrowseToURL>~/Reports</BrowseToURL>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6046</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

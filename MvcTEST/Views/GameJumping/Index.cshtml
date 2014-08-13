@@ -1,0 +1,171 @@
+﻿@model IEnumerable<MvcTEST.Models.tblGame>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Home")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameHR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameENG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsRandom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RandomValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RandomType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsTimeLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Objectives)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Definition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionHR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumShownFields)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumRepetition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RandomFields)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuickGamePool)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblCategory.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinStayTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxStayTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinFlyTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxFlyTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartField)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Countdown)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameHR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameENG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsRandom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RandomValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RandomType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsTimeLimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeLimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Objectives)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Definition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriptionHR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumShownFields)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumRepetition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RandomFields)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuickGamePool)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblCategory.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinStayTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxStayTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinFlyTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxFlyTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartField)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Countdown)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+
+</div>

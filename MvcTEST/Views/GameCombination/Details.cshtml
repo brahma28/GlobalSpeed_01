@@ -1,0 +1,192 @@
+﻿@model MvcTEST.Models.tblGameCombination
+
+@{
+    ViewBag.Title = "Combination Details";
+}
+
+<div id="l1" style="padding: 10px; padding-left: 40px; width: 890px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Games", "Configurator")">
+            <img src="~/ImagesApp/close.png" border="0" />
+        </a>
+    </div>
+    <div style="vertical-align: central; background-color: white; width: 860px; height: 730px;  border: 2px; border-radius: 10px; -moz-border-radius: 10px; border-style: solid; border-color: #aaaaaa; ">
+
+        <div style="padding-left:15px; padding-top:10px; padding-right:15px;">
+
+
+
+            <div>
+                <table style="width: 730px;">
+                    <tr>
+                        <td>
+                            <table style="width: 320px; text-align: left">
+                                <tr>
+                                    <td>
+                                        <img src="~/ImagesApp/combination_icon.png" height="70" />
+                                    </td>
+                                    <td>
+                                        <div id="errorsi" style="float: left; margin-right: 40px; color: red;">@Html.Raw(ViewBag.errori) </div>
+                                        <font size="5" style="color: #0360a3; font-family: 'Open Sans', sans-serif; padding-right: 10px;">
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <table style="width: 365px; text-align: right;">
+                                <tr>
+                                    <td colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left;">
+                                        <div class="editor-label" style="text-align: center; width: 175px; font-size: 16px; color: #0360a3; font-weight: bold;">
+                                            @Html.LabelFor(model => model.CombinationName, "Combination name")
+                                        </div>
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <div class="editor-field">
+                                            @Html.DisplayFor(model => model.CombinationName)
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width: 50px;"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <hr />
+
+            <table>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                            Game 1
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+
+                            @ViewBag.gamecombination.Game1Name
+
+                        </div>
+                    </td>
+                </tr><tr><td colspan="3"><br /></td></tr>
+                <td>
+                    <div class="display-label">
+                        Game 2
+                    </div>
+                </td>
+                <td>
+                    <div class="display-field">
+                        @ViewBag.gamecombination.Game2Name
+                    </div>
+                </td>
+                </tr><tr><td colspan="3"><br /></td></tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                            @*@Html.DisplayNameFor(model => model.GameID3)*@
+                            Game 3
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @ViewBag.gamecombination.Game3Name
+                        </div>
+                    </td>
+                </tr><tr><td colspan="3"><br /></td></tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                            @*@Html.DisplayNameFor(model => model.GameID4)*@
+                            Game 4
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @ViewBag.gamecombination.Game4Name
+                        </div>
+                    </td>
+                </tr><tr><td colspan="3"><br /></td></tr>
+                <tr>
+                    <td>
+
+                        <div class="display-label">
+                            @*@Html.DisplayNameFor(model => model.GameID5)*@
+                            Game 5
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @ViewBag.gamecombination.Game5Name
+                        </div>
+                    </td>
+                </tr><tr><td colspan="3"><br /></td></tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                            @*@Html.DisplayNameFor(model => model.GameID6)*@
+                            Game 6
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @ViewBag.gamecombination.Game6Name
+                        </div>
+                    </td>
+                </tr><tr><td colspan="3"><br /></td></tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                            @*@Html.DisplayNameFor(model => model.GameID7)*@
+                            Game 7
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @ViewBag.gamecombination.Game7Name
+                        </div>
+                    </td>
+                </tr><tr><td colspan="3"><br /></td></tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                            @*@Html.DisplayNameFor(model => model.GameID8)*@
+                            Game 8
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @ViewBag.gamecombination.Game8Name
+                        </div>
+                    </td>
+                </tr><tr><td colspan="3"><br /></td></tr>
+                <tr>
+                    <td>
+                        <div class="display-label">
+                            @*@Html.DisplayNameFor(model => model.GameID9)*@
+                            Game 9
+                        </div>
+                    </td>
+                    <td>
+                        <div class="display-field">
+                            @ViewBag.gamecombination.Game9Name
+                        </div>
+            </table>
+            <!-- skrivena polja -->
+            @Html.HiddenFor(model => model.GameCombinationID)
+            @Html.HiddenFor(model => model.Modification)
+            @Html.HiddenFor(model => model.Active)
+
+        </div>
+    </div>
+</div>
+</div>
+@Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+@Html.ActionLink("Back to List", "Index")
+</p>

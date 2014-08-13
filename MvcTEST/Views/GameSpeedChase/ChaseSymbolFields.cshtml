@@ -1,0 +1,554 @@
+﻿@model MvcTEST.Models.tblChaseSymbol
+@{
+    Layout = null;
+
+}
+@*@model MvcTEST.Models.tblChaseSymbol*@
+@*@using MvcTEST.HtmlHelpers*@
+<style type="text/css">
+    /*#fld1, #fld2, #fld3, #fld4, #fld5, #fld6, #fld7, #fld8, #fld9, #fld10, #fld11, #fld12
+    {
+    background-image: linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+    background-image: -o-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+    background-image: -moz-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+    background-image: -webkit-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+    background-image: -ms-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        border: 2px solid #bbb;
+        cursor: default;
+        background-color: white;
+
+    }*/
+
+    .fldSmall {
+        border: 2px solid #bbb;
+        width: 41px;
+        height: 41px;
+        line-height: 41px;
+        font-size: 17px;
+        text-align: center;
+        vertical-align: middle;
+        background-image: linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        background-image: -o-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        background-image: -moz-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        background-image: -webkit-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        background-image: -ms-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        border: 2px solid #bbb;
+    }
+
+    .fldSmallOff {
+        width: 41px;
+        height: 41px;
+        line-height: 41px;
+        font-size: 17px;
+        text-align: center;
+        vertical-align: middle;
+        background-image: none;
+        background-color: white;
+        border: dashed 2px #bbb;
+        color: #bbb;
+    }
+
+    .fldBig {
+        width: 85px;
+        height: 85px;
+        margin: 10px;
+        font-size: 15px;
+        text-align: center;
+        line-height: 15px;
+        vertical-align: middle;
+        background-image: linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        background-image: -o-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        background-image: -moz-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        background-image: -webkit-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        background-image: -ms-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        border: 2px solid #bbb;
+        color: black;
+    }
+
+    .fldBigOff {
+        width: 85px;
+        height: 85px;
+        margin: 10px;
+        font-size: 35px;
+        text-align: center;
+        line-height: 85px;
+        vertical-align: middle;
+        background-image: none;
+        background-color: white;
+        border: dashed 2px #bbb;
+        color: #bbb;
+    }
+
+    .hollow {
+        border: 2px solid #bbb;
+        background-color: white;
+    }
+
+    #fldC {
+        width: 85px;
+        height: 85px;
+        margin: 2px 2px 2px 2px;
+        vertical-align: top;
+    }
+
+    #symbolPics {
+        width: 80px;
+        height: 80px;
+    }
+
+    .hide_show5 {
+        width: 85px;
+        height: 85px;
+        margin: 10px;
+        font-size: 35px;
+        text-align: center;
+        line-height: 85px;
+        vertical-align: middle;
+        background-image: linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        background-image: -o-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        background-image: -moz-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        background-image: -webkit-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        background-image: -ms-linear-gradient(bottom, rgb(209,209,209) 25%, rgb(237,237,237) 63%);
+        border: 2px solid #bbb;
+        color: black;
+    }
+    /*#fld1Off, #fld2Off, #fld3Off, #fld4Off, #fld5Off, #fld6Off, #fld7Off, #fld8Off, #fld9Off, #fld10Off, #fld11Off, #fld12Off
+    {
+    background-image: linear-gradient(bottom, rgb(255,255,255) 25%, rgb(255,255,255) 63%);
+    background-image: -o-linear-gradient(bottom, rgb(255,255,255) 25%, rgb(255,255,255) 63%);
+    background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 25%, rgb(255,255,255) 63%);
+    background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 25%, rgb(255,255,255) 63%);
+    background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 25%, rgb(255,255,255) 63%);
+        border: 1px solid #eee;
+        cursor: default;
+        background-color: #bbb;
+
+    }*/
+</style>
+
+
+@*<script type="text/javascript" src="/Scripts/jquery-css-transform.js"></script>
+    <script type="text/javascript" src="/Scripts/rotate3Di.js"></script>*@
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<script type="text/javascript" src="/Scripts/fancybox/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript" src="/Scripts//fancybox/jquery.Easing-1.3.pack.js"></script>
+<link id="size-stylesheet" href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Scripts/fancybox/jquery.fancybox-1.3.4.css")" type="text/css" media="screen" />
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />*@
+    <meta http-equiv="PRAGMA" content="NO-CACHE">
+    <title>RandomFields</title>
+    <style type="text/css">
+        body {
+            background: #80a8bd url(/ImagesApp/playground-bg.png) repeat-x;
+            margin: 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        table.playground {
+            width: 100%;
+            height: 95%;
+            border-collapse: collapse;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+            table.playground tr td {
+                padding: 0;
+            }
+
+                table.playground tr td div.field {
+                    width: 70px;
+                    height: 70px;
+                    background-color: #e30613;
+                    border: solid 5px #fff;
+                    text-align: center;
+                    color: #fff;
+                    font: bold 80px arial;
+                    line-height: 130px;
+                    margin: 0 50px 0 50px;
+                }
+
+                table.playground tr td.right div.field {
+                    float: right;
+                }
+
+                table.playground tr td.center > table.center-fields {
+                    width: 130px;
+                    margin: 0px auto;
+                }
+
+                    table.playground tr td.center > table.center-fields tr td > div.field {
+                        margin: 5px;
+                    }
+
+                table.playground tr td.center > div {
+                    margin: 0px auto;
+                }
+
+        a#gamemenu {
+            position: absolute;
+            left: 250px;
+            background-image: url(/ImagesApp/buttons/gamemenu.png);
+            width: 100px;
+            height: 36px;
+            text-decoration: none;
+        }
+
+            a#gamemenu > span {
+                color: #fff;
+                font: bold 16px arial;
+                display: block;
+                width: 100px;
+                height: 36px;
+                text-align: center;
+                line-height: 36px;
+                cursor: pointer;
+            }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- CLICK = exec setRandomField GameID, Field -->
+
+
+            @*
+                            //string ss = "";
+                            //ss = Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 1 });                
+@* for (int i = 1; i <= 32; i++)
+                {
+                    if (ViewBag.teren["F" + i.ToString("D2") + "Active"] == "True" && ViewBag.teren["F" + i.ToString("D2") + "PhotoCell"] != "True")
+                    {
+                        ss = Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = i });
+                        @Html.Raw("  <div class='fldBig' id='fld" + ViewBag.teren["F" + i.ToString("D2") + "ID"] + "' style=' position:absolute; width:" +
+                    ViewBag.teren["F" + i.ToString("D2") + "DimensionX"] + "px; height:" + ViewBag.teren["F" + i.ToString("D2") + "DimensionX"] + "px; color:red; background-color:red; left:" +
+                              ViewBag.teren["F" + i.ToString("D2") + "PositionX"] + "px; top:" + ViewBag.teren["F" + i.ToString("D2") + "PositionY"] + "px; '> " + "<img style='height:" + ViewBag.teren["F" + i.ToString("D2") + "DimensionX"] + "px; width:" + ViewBag.teren["F" + i.ToString("D2") + "DimensionX"] + "px; ' src=" +
+                         ss + " alt='myimage' onclick='onShowUpload(" + i + ")' />  </div></br>")
+                    }
+                } *@
+
+
+
+            <table class="playground">
+                <tr>
+                    <td>
+                        <table>
+                        <tr><td style="text-align:right;">
+                        <div class="field" id='@Html.Raw("fld" + @ViewBag.teren["F01ID"])'>
+                            <img width="70" height="70" src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 1 })' alt='myimage' onclick='onShowUpload("1")' />
+                        </div>
+                        </td>
+                        <td style="text-align:left; color:yellow; font-size:x-large;">
+                        @ViewBag.chase.F01Name
+                        </td>
+                        </tr>
+                        <tr><td colspan="2" style="text-align:center; color:white;">W:&nbsp
+                        @ViewBag.chase.F01Word
+                        </td></tr>
+                        <tr>
+                        <tr><td colspan="2" style="text-align:center; color:white;">Fx:&nbsp
+                        @ViewBag.chase.F01Fx   
+                        </td></tr></table>
+                    </td>
+                    <td>
+                        <table>
+                        <tr><td style="text-align:center;">
+                        <div class="field" id='@Html.Raw("fld" + @ViewBag.teren["F02ID"])'>
+                            <img width="70" height="70" src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 2 })' alt='myimage' onclick='onShowUpload("2")' />
+                        </div>
+                        </td>
+                        <td style="text-align:left; color:yellow; font-size:x-large;">
+                        @ViewBag.chase.F02Name
+                        </td>
+                        </tr>
+                        <tr><td style="text-align:center; color:white;">W:&nbsp
+                        @ViewBag.chase.F02Word
+                        </td></tr>
+                        <tr>
+                        <tr><td style="text-align:center; color:white;">Fx:&nbsp
+                        @ViewBag.chase.F02Fx   
+                        </td></tr></table>
+                    </td>
+                    <td>
+                        <table>
+                        <tr><td style="text-align:center;">
+                        <div class="field" id='@Html.Raw("fld" + @ViewBag.teren["F03ID"])'>
+                            <img width="70" height="70" src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 3 })' alt='myimage' onclick='onShowUpload("3")' />
+                        </div>
+                        </td>
+                        <td style="text-align:left; color:yellow; font-size:x-large;">
+                        @ViewBag.chase.F03Name
+                        </td>
+                        </tr>
+                        <tr><td style="text-align:center; color:white;">W:&nbsp
+                        @ViewBag.chase.F03Word
+                        </td></tr>
+                        <tr>
+                        <tr><td style="text-align:center; color:white;">Fx:&nbsp
+                        @ViewBag.chase.F03Fx   
+                        </td></tr></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                        <tr><td style="text-align:center;">
+                        <div class="field" id='@Html.Raw("fld" + @ViewBag.teren["F08ID"])'>
+                            <img width="70" height="70" src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 8 })' alt='myimage' onclick='onShowUpload("8")' />
+                        </div>
+                        </td>
+                        <td style="text-align:left; color:yellow; font-size:x-large;">
+                        @ViewBag.chase.F08Name
+                        </td>
+                        </tr>
+                        <tr><td style="text-align:center; color:white;">W:&nbsp
+                        @ViewBag.chase.F08Word
+                        </td></tr>
+                        <tr>
+                        <tr><td style="text-align:center; color:white;">Fx:&nbsp
+                        @ViewBag.chase.F08Fx   
+                        </td></tr></table>
+                    </td>
+                    <td class="center">
+                        <table class="center-fields">
+                            <tr>
+                                <td>
+                                    <table>
+                                    <tr><td style="text-align:center;">
+                                    <div class="field" id='@Html.Raw("fld" + @ViewBag.teren["F09ID"])'>
+                                        <img width="70" height="70" src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 9 })' alt='myimage' onclick='onShowUpload("9")' />
+                                    </div>
+                                    </td>
+                                    <td style="text-align:left; color:yellow; font-size:x-large;">
+                                    @ViewBag.chase.F09Name
+                                    </td>
+                                    </tr>
+                                    <tr><td style="text-align:center; color:white;">W:&nbsp
+                                    @ViewBag.chase.F09Word
+                                    </td></tr>
+                                    <tr>
+                                    <tr><td style="text-align:center; color:white;">Fx:&nbsp
+                                    @ViewBag.chase.F09Fx   
+                                    </td></tr></table>
+                                </td>
+                                <td>
+                                    <table>
+                                    <tr><td style="text-align:center;">
+                                    <div class="field" id='@Html.Raw("fld" + @ViewBag.teren["F12ID"])'>
+                                        <img width="70" height="70" src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 12 })' alt='myimage' onclick='onShowUpload("12")' />
+                                    </div>
+                                    </td>
+                                    <td style="text-align:left; color:yellow; font-size:x-large;">
+                                    @ViewBag.chase.F12Name
+                                    </td>
+                                    </tr>
+                                    <tr><td colspan="2" style="text-align:center; color:white;">W:&nbsp
+                                    @ViewBag.chase.F12Word
+                                    </td></tr>
+                                    <tr>
+                                    <tr><td colspan="2" style="text-align:center; color:white;">Fx:&nbsp
+                                    @ViewBag.chase.F12Fx   
+                                    </td></tr></table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table>
+                                    <tr><td style="text-align:center;">
+                                    <div class="field" id='@Html.Raw("fld" + @ViewBag.teren["F10ID"])'>
+                                        <img width="70" height="70" src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 10 })' alt='myimage' onclick='onShowUpload("10")' />
+                                    </div>
+                                    </td>
+                                    <td style="text-align:left; color:yellow; font-size:x-large;">
+                                    @ViewBag.chase.F10Name
+                                    </td>
+                                    </tr>
+                                    <tr><td style="text-align:center; color:white;">W:&nbsp
+                                    @ViewBag.chase.F10Word
+                                    </td></tr>
+                                    <tr>
+                                    <tr><td style="text-align:center; color:white;">Fx:&nbsp
+                                    @ViewBag.chase.F10Fx   
+                                    </td></tr></table>
+                                </td>
+                                <td>
+                                    <table>
+                                    <tr><td style="text-align:center;">
+                                    <div class="field" id='@Html.Raw("fld" + @ViewBag.teren["F11ID"])'>
+                                        <img width="70" height="70" src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 11 })' alt='myimage' onclick='onShowUpload("11")' />
+                                    </div>
+                                    </td>
+                                    <td style="text-align:left; color:yellow; font-size:x-large;">
+                                    @ViewBag.chase.F11Name
+                                    </td>
+                                    </tr>
+                                    <tr><td style="text-align:center; color:white;">W:&nbsp
+                                    @ViewBag.chase.F11Word
+                                    </td></tr>
+                                    <tr>
+                                    <tr><td style="text-align:center; color:white;">Fx:&nbsp
+                                    @ViewBag.chase.F11Fx   
+                                    </td></tr></table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="right">
+                        <table>
+                        <tr><td style="text-align:center;">
+                        <div class="field" id='@Html.Raw("fld" + @ViewBag.teren["F04ID"])'>
+                            <img width="70" height="70" src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 4 })' alt='myimage' onclick='onShowUpload("4")' />
+                        </div>
+                        </td>
+                        <td style="text-align:left; color:yellow; font-size:x-large;">
+                        @ViewBag.chase.F04Name
+                        </td>
+                        </tr>
+                        <tr><td style="text-align:center; color:white;">W:&nbsp
+                        @ViewBag.chase.F04Word
+                        </td></tr>
+                        <tr>
+                        <tr><td style="text-align:center; color:white;">Fx:&nbsp
+                        @ViewBag.chase.F04Fx   
+                        </td></tr></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                        <tr><td style="text-align:center;">
+                        <div class="field" id='@Html.Raw("fld" + @ViewBag.teren["F07ID"])'>
+                            <img width="70" height="70" src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 7 })' alt='myimage' onclick='onShowUpload("7")' />
+                        </div>
+                        </td>
+                        <td style="text-align:left; color:yellow; font-size:x-large;">
+                        @ViewBag.chase.F07Name
+                        </td>
+                        </tr>
+                        <tr><td style="text-align:center; color:white;">W:&nbsp
+                        @ViewBag.chase.F07Word
+                        </td></tr>
+                        <tr>
+                        <tr><td style="text-align:center; color:white;">Fx:&nbsp
+                        @ViewBag.chase.F07Fx   
+                        </td></tr></table>
+                    </td>
+                    <td class="center">
+                        <table>
+                        <tr><td style="text-align:center;">
+                        <div class="field" id='@Html.Raw("fld" + @ViewBag.teren["F06ID"])'>
+                            <img width="70" height="70" src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 6 })' alt='myimage' onclick='onShowUpload("6")' />
+                        </div>
+                        </td>
+                        <td style="text-align:left; color:yellow; font-size:x-large;">
+                        @ViewBag.chase.F06Name
+                        </td>
+                        </tr>
+                        <tr><td style="text-align:center; color:white;">W:&nbsp
+                        @ViewBag.chase.F06Word
+                        </td></tr>
+                        <tr>
+                        <tr><td style="text-align:center; color:white;">Fx:&nbsp
+                        @ViewBag.chase.F06Fx   
+                        </td></tr></table>
+                    </td>
+                    <td class="right">
+                        <table>
+                        <tr><td style="text-align:center;">
+                        <div class="field" id='@Html.Raw("fld" + @ViewBag.teren["F05ID"])'>
+                            <img width="70" height="70" src='@Url.Action("DisplayImages", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = 5 })' alt='myimage' onclick='onShowUpload("5")' />
+                        </div>
+                        </td>
+                        <td style="text-align:left; color:yellow; font-size:x-large;">
+                        @ViewBag.chase.F05Name
+                        </td>
+                        </tr>
+                        <tr><td style="text-align:center; color:white;">W:&nbsp
+                        @ViewBag.chase.F05Word
+                        </td></tr>
+                        <tr>
+                        <tr><td style="text-align:center; color:white;">Fx:&nbsp
+                        @ViewBag.chase.F05Fx   
+                        </td></tr></table>
+                    </td>
+                </tr>
+            </table>
+
+
+
+
+    <div style="position:fixed;bottom:0;width:100%; background-color:#80a8bd; color:white;">
+    @{
+
+        @Html.Raw("<br />");
+                           //for (int i = 1; i <= 32; i++)
+                           for (int i = 1; i <= 12; i++)                               
+                           {
+                               if (ViewBag.teren["F" + i.ToString("D2") + "Active"] == "True" && ViewBag.teren["F" + i.ToString("D2") + "PhotoCell"] != "True")
+                               {
+                                   using (Html.BeginForm("ChaseSymbolFields", "GameSpeedChase", new { id = @ViewBag.game.ID, fieldid = i }, FormMethod.Post, new { enctype = "multipart/form-data", id = "isub" + i }))
+                                   {
+                                       var nm = ViewBag.teren["F" + i.ToString("D2") + "Name"];                                       
+                                       var wr = ViewBag.teren["F" + i.ToString("D2") + "Word"];
+                                       var fx = ViewBag.teren["F" + i.ToString("D2") + "Fx"];                                       
+                                    @Html.Raw(" <div id='uploadfld" + i + "' style='float: right; margin-right: 10px; display: none' class='show_hide" + i + "'> " +
+                                                                                "Name:<input type='text' value='"+nm+"' name='nam' id='nam'/></br> " +  
+                                                                                "Word:<input type='text' id='wrd' name='wrd' value='"+wr+"'/></br> " +                                                      
+                                                                                "Fx-ja :<input type='text'  id='fx' name='fx' value='"+fx+"'/></br> " +                                                            
+                                                                                "Pictur:<input type='file' name='fileUpload' /> " +
+                                                                                "<input type='submit' value='SAVE' class='save' />" +
+
+                                                                                "</div>")
+                                   }
+                               }
+                           }
+    }
+        <div id='uploadfld0' style="text-align:center; color:white; ">
+                <font size="6">(click on pictur for edit)</font>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    $("[id^='isub']").submit(function (e) {
+        e.preventDefault(); // nemoj submitati više puta
+        this.submit(); // običan submit
+
+        setTimeout(function () { //potrebno samo za Chrome
+            document.location.reload();
+        }, 100);
+    });
+
+    function onShowUpload(broj) {
+        // skrivanje svih
+        //for (var i = 0; i <= 32; i++) {
+        for (var i = 0; i <= 12; i++) {
+            $('#uploadfld' + i).hide(); //show
+        }
+        // prikaz odgovarajućeg
+        $(".show_hide" + broj).show();
+    }
+    $(document).ready(function () {
+        $('#fld10').css('cursor', 'pointer');
+        $('#fld01').css('cursor', 'pointer');
+
+    });
+
+</script>
+
+

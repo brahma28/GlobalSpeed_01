@@ -1,0 +1,465 @@
+﻿@using MvcTEST.Models
+@using MvcTEST.HtmlHelpers
+
+@model MvcTEST.Models.tblChaseSymbol
+@{
+    Layout = null;
+    string fieldId, chaseSymbolID;
+    tblChaseSymbol chaseSymbol;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SpeedChase Words</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <style type="text/css">
+        body
+        {
+            background: #80a8bd url(/ImagesApp/playground-bg.png) repeat-x;
+            margin: 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        table.playground
+        {
+            width: 100%;
+            height: 90%;
+            border-collapse: collapse;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 40px;
+            left: 0;
+        }
+        table.playground tr td
+        {
+            padding: 0;
+        }
+        table.playground tr td div.field
+        {
+            width: 130px;
+            height: 130px;
+            background-color: #fff;
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+            color: #fff;
+            font: bold 80px arial;
+            line-height: 130px;
+            margin: 0 50px 0 50px;
+            position: relative;
+        }
+        table.playground tr td.right div.field
+        {
+            float: right;
+        }
+        table.playground tr td.center > table.center-fields
+        {
+            width: 260px;
+            margin: 0px auto;
+        }
+        table.playground tr td.center > table.center-fields tr td > div.field
+        {
+            margin: 5px;
+        }
+        table.playground tr td.center > div
+        {
+            margin: 0px auto;
+        }
+        input[type=color]
+        {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 16px;
+            height: 16px;
+            cursor:pointer;
+        }
+        div.field a.question
+        {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: url(/ImagesApp/question.png) no-repeat 0% 0%;
+        }        
+        div.field textarea
+        {
+            border: none;
+            outline: none;
+            resize: none;
+            width: 110px;
+            text-align: center;
+            font: bold 20px 'helvetica','arial';
+            vertical-align: middle;
+        }
+        input[type=submit]
+        {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: url(/imagesapp/buttons/bg/orange130.png) no-repeat 0% 0%;
+            width: 130px;
+            height: 51px;
+            border: none;
+            color: #fff;
+            font: bold 16px GlobalSpeed;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var f1 = document.getElementById("fld_1");
+            if (f1.innerHTML.length == 0) {
+                f1.focus();
+            }
+        };
+        function SetQuestion(sender, fieldIndex) {
+            var hdn = document.getElementById("question_" + fieldIndex);
+            var txt = prompt("Fragetext für richtige Antwort auf dem Gebiet?", hdn.value);
+            if (txt != null) {
+                hdn.value = txt;
+                sender.title = "Fragetext: " + hdn.value;
+            }
+        }
+        function SetColor(sender, index) {
+            document.getElementById("fld_" + index).style.color = sender.value;
+        }
+        function IsCombinationValid() {
+            var areas = document.getElementsByTagName("textarea");
+            var words = new Array();            
+            for (var i = 0; i < areas.length; i++) {
+                var exists = false;
+                var word = Trim(areas[i].value);
+                for (var j = 0; j < words.length; j++) {
+                    if (word.length > 0 && word == words[j]) {                        
+                        exists = true;
+                        break;
+                    }
+                }
+                if (exists) {
+                    alert("There are more fields with same word. Please, set different word for each field.");
+                    return false;                    
+                }
+                else if (word.length > 0) {
+                    words.push(word);
+                }
+            }
+            if (words.length == 0) {
+                alert("Words have not been entered.");
+                return false;
+            }
+        }
+        function Trim(str) {
+            return str.replace(/^\s*|\s*$/g, "");
+        }
+    </script>
+</head>
+<body>
+    <form method="post" action="/GameSpeedChase/ChaseSymbolFieldsWord" onsubmit="return IsCombinationValid()">
+    <table class="playground">
+        <tr>
+            <td>
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F01ID"];
+                        string question1 = String.Empty;
+                        string word1 = "", color1 = "#000000";
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question1 = Server.HtmlEncode(chaseSymbol.Question);
+                            word1 = chaseSymbol.Word;
+                            color1 = chaseSymbol.Color;                           
+                        <input type="hidden" name="csID_1" value="@chaseSymbolID" />
+                        }
+                    }
+                    <a href="javascript:;" title="Fragetext: @question1" onclick="SetQuestion(this, '1')" class="question"></a>
+                    <input type="hidden" id="question_1" name="question_1" value="@question1" />
+                    <input type="color" onchange="SetColor(this, '1')" name="color_1" value="@color1" />
+                    <textarea id="fld_1" name="fld_1" tabindex="1" style="color:@color1">@word1</textarea>                    
+                    <input type="hidden" id="fldID_1" name="fldID_1" value="@fieldId" />
+                </div>
+            </td>
+            <td class="center">
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F02ID"];
+                        string question2 = String.Empty;
+                        string word2 = "", color2 = "#000000";
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question2 = Server.HtmlEncode(chaseSymbol.Question); 
+                            word2 = chaseSymbol.Word;
+                            color2 = chaseSymbol.Color;
+                        <input type="hidden" name="csID_2" value="@chaseSymbolID" />
+                        }
+                    }
+                    <a href="javascript:;" title="Fragetext: @question2" onclick="SetQuestion(this, '2')" class="question"></a>
+                    <input type="hidden" id="question_2" name="question_2" value="@question2" />
+                    <textarea id="fld_2" name="fld_2" tabindex="2" style="color:@color2">@word2</textarea>
+                    <input type="color" onchange="SetColor(this, '2')" name="color_2" value="@color2" />
+                    <input type="hidden" id="fldID_2" name="fldID_2" value="@fieldId" />
+                </div>
+            </td>
+            <td class="right">
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F03ID"];
+                        string question3 = String.Empty;
+                        string word3 = "", color3 = "#000000";
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question3 = Server.HtmlEncode(chaseSymbol.Question); 
+                            word3 = chaseSymbol.Word;
+                            color3 = chaseSymbol.Color;
+                        <input type="hidden" name="csID_3" value="@chaseSymbolID" />
+                        }
+                    }
+                    <a href="javascript:;" title="Fragetext: @question3" onclick="SetQuestion(this, '3')" class="question"></a>
+                    <input type="hidden" id="question_3" name="question_3" value="@question3" />
+                    <input type="color" onchange="SetColor(this, '3')" name="color_3" value="@color3" />
+                    <textarea id="fld_3" name="fld_3" tabindex="3" style="color:@color3">@word3</textarea>
+                    <input type="hidden" id="fldID_3" name="fldID_3" value="@fieldId" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F08ID"];
+                        string question8 = String.Empty;
+                        string word8 = "", color8 = "#000000";
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question8 = Server.HtmlEncode(chaseSymbol.Question); 
+                            word8 = chaseSymbol.Word;
+                            color8 = chaseSymbol.Color;
+                        <input type="hidden" name="csID_8" value="@chaseSymbolID" />
+                        }
+                    }
+                    <a href="javascript:;" onclick="SetQuestion(this, '8')" class="question"></a>
+                    <input type="hidden" id="question_8" name="question_8" value="@question8" />
+                    <input type="color" onchange="SetColor(this, '8')" name="color_8" value="@color8" />
+                    <textarea id="fld_8" name="fld_8" tabindex="4" style="color:@color8">@word8</textarea>
+                    <input type="hidden" id="fldID_8" name="fldID_8" value="@fieldId" />
+                </div>
+            </td>
+            <td class="center">
+                <table class="center-fields">
+                    <tr>
+                        <td>
+                            <div class="field">
+                                @{
+                                    fieldId = ViewBag.teren["F09ID"];
+                                    string question9 = String.Empty;
+                                    string word9 = "", color9 = "#000000";
+                                    if (ViewBag.ListChaseSymbols != null)
+                                    {
+                                        chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                                        chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                                        question9 = Server.HtmlEncode(chaseSymbol.Question); 
+                                        word9 = chaseSymbol.Word;
+                                        color9 = chaseSymbol.Color;
+                                    <input type="hidden" name="csID_9" value="@chaseSymbolID" />
+                                    }
+                                }
+                                <a href="javascript:;" onclick="SetQuestion(this, '9')" class="question"></a>
+                                <input type="hidden" id="question_9" name="question_9" value="@question9" />
+                                <input type="color" onchange="SetColor(this, '9')" name="color_9" value="@color9" />
+                                <textarea id="fld_9" name="fld_9" tabindex="5" style="color:@color9">@word9</textarea>
+                                <input type="hidden" id="fldID_9" name="fldID_9" value="@fieldId" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="field">
+                                @{
+                                    fieldId = ViewBag.teren["F12ID"];
+                                    string question12 = String.Empty;
+                                    string word12 = "", color12 = "#000000";
+                                    if (ViewBag.ListChaseSymbols != null)
+                                    {
+                                        chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                                        chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                                        question12 = Server.HtmlEncode(chaseSymbol.Question); 
+                                        word12 = chaseSymbol.Word;
+                                        color12 = chaseSymbol.Color;
+                                    <input type="hidden" name="csID_12" value="@chaseSymbolID" />
+                                    }
+                                }
+                                <a href="javascript:;" onclick="SetQuestion(this, '12')" class="question"></a>
+                                <input type="hidden" id="question_12" name="question_12" value="@question12" />
+                                <input type="color" onchange="SetColor(this, '12')" name="color_12" value="@color12" />
+                                <textarea id="fld_12" name="fld_12" tabindex="6" style="color:@color12">@word12</textarea>
+                                <input type="hidden" id="fldID_12" name="fldID_12" value="@fieldId" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="field">
+                                @{
+                                    fieldId = ViewBag.teren["F10ID"];
+                                    string question10 = String.Empty;
+                                    string word10 = "", color10 = "#000000";
+                                    if (ViewBag.ListChaseSymbols != null)
+                                    {
+                                        chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                                        chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                                        question10 = Server.HtmlEncode(chaseSymbol.Question); 
+                                        word10 = chaseSymbol.Word;
+                                        color10 = chaseSymbol.Color;
+                                    <input type="hidden" name="csID_10" value="@chaseSymbolID" />
+                                    }
+                                }
+                                <a href="javascript:;" onclick="SetQuestion(this, '10')" class="question"></a>
+                                <input type="hidden" id="question_10" name="question_10" value="@question10" />
+                                <input type="color" onchange="SetColor(this, '10')" name="color_10" value="@color10" />
+                                <textarea id="fld_10" name="fld_10" tabindex="7" style="color:@color10">@word10</textarea>
+                                <input type="hidden" id="fldID_10" name="fldID_10" value="@fieldId" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="field">
+                                @{
+                                    fieldId = ViewBag.teren["F11ID"];
+                                    string question11 = String.Empty;
+                                    string word11 = "", color11 = "#000000";
+                                    if (ViewBag.ListChaseSymbols != null)
+                                    {
+                                        chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                                        chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                                        question11 = Server.HtmlEncode(chaseSymbol.Question); 
+                                        word11 = chaseSymbol.Word;
+                                        color11 = chaseSymbol.Color;
+                                    <input type="hidden" name="csID_11" value="@chaseSymbolID" />
+                                    }
+                                }
+                                <a href="javascript:;" onclick="SetQuestion(this, '11')" class="question"></a>
+                                <input type="hidden" id="question_11" name="question_11" value="@question11" />
+                                <input type="color" onchange="SetColor(this, '11')" name="color_11" value="@color11" />
+                                <textarea id="fld_11" name="fld_11" tabindex="8" style="color:@color11">@word11</textarea>
+                                <input type="hidden" id="fldID_11" name="fldID_11" value="@fieldId" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="right">
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F04ID"];
+                        string question4 = String.Empty;
+                        string word4 = "", color4 = "#000000";
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question4 = Server.HtmlEncode(chaseSymbol.Question); 
+                            word4 = chaseSymbol.Word;
+                            color4 = chaseSymbol.Color;
+                        <input type="hidden" name="csID_4" value="@chaseSymbolID" />
+                        }
+                    }
+                    <a href="javascript:;" onclick="SetQuestion(this, '4')" class="question"></a>
+                    <input type="hidden" id="question_4" name="question_4" value="@question4" />
+                    <input type="color" onchange="SetColor(this, '4')" name="color_4" value="@color4" />
+                    <textarea id="fld_4" name="fld_4" tabindex="9" style="color:@color4">@word4</textarea>
+                    <input type="hidden" id="fldID_4" name="fldID_4" value="@fieldId" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F07ID"];
+                        string question7 = String.Empty;
+                        string word7 = "", color7 = "#000000";
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question7 = Server.HtmlEncode(chaseSymbol.Question); 
+                            word7 = chaseSymbol.Word;
+                            color7 = chaseSymbol.Color;
+                        <input type="hidden" name="csID_7" value="@chaseSymbolID" />
+                        }
+                    }
+                    <a href="javascript:;" onclick="SetQuestion(this, '7')" class="question"></a>
+                    <input type="hidden" id="question_7" name="question_7" value="@question7" />
+                    <input type="color" onchange="SetColor(this, '7')" name="color_7" value="@color7" />
+                    <textarea id="fld_7" name="fld_7" tabindex="10" style="color:@color7">@word7</textarea>
+                    <input type="hidden" id="fldID_7" name="fldID_7" value="@fieldId" />
+                </div>
+            </td>
+            <td class="center">
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F06ID"];
+                        string question6 = String.Empty;
+                        string word6 = "", color6 = "#000000";
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question6 = Server.HtmlEncode(chaseSymbol.Question); 
+                            word6 = chaseSymbol.Word;
+                            color6 = chaseSymbol.Color;
+                        <input type="hidden" name="csID_6" value="@chaseSymbolID" />
+                        }
+                    }
+                    <a href="javascript:;" onclick="SetQuestion(this, '6')" class="question"></a>
+                    <input type="hidden" id="question_6" name="question_6" value="@question6" />
+                    <input type="color" onchange="SetColor(this, '6')" name="color_6" value="@color6" />
+                    <textarea id="fld_6" name="fld_6" tabindex="11" style="color:@color6">@word6</textarea>
+                    <input type="hidden" id="fldID_6" name="fldID_6" value="@fieldId" />
+                </div>
+            </td>
+            <td class="right">
+                <div class="field">
+                    @{
+                        fieldId = ViewBag.teren["F05ID"];
+                        string question5 = String.Empty;
+                        string word5 = "", color5 = "#000000";
+                        if (ViewBag.ListChaseSymbols != null)
+                        {
+                            chaseSymbol = (ViewBag.ListChaseSymbols as List<tblChaseSymbol>).Find(cs => cs.FieldID.ToString() == fieldId);
+                            chaseSymbolID = chaseSymbol.ChaseSymbolID.ToString();
+                            question5 = Server.HtmlEncode(chaseSymbol.Question); 
+                            word5 = chaseSymbol.Word;
+                            color5 = chaseSymbol.Color;
+                        <input type="hidden" name="csID_5" value="@chaseSymbolID" />
+                        }
+                    }
+                    <a href="javascript:;" onclick="SetQuestion(this, '5')" class="question"></a>
+                    <input type="hidden" id="question_5" name="question_5" value="@question5" />
+                    <input type="color" onchange="SetColor(this, '5')" name="color_5" value="@color5" />
+                    <textarea id="fld_5" name="fld_5" tabindex="12" style="color:@color5">@word5</textarea>
+                    <input type="hidden" id="fldID_5" name="fldID_5" value="@fieldId" />
+                </div>
+            </td>
+        </tr>
+    </table>
+    @{
+        if (@ViewBag.GameId != null)
+        {
+        <input type="hidden" name="gameID" value="@ViewBag.GameId.ToString()" />
+        }
+    }
+    <input type="submit" value='@Html.Translate("save").ToUpper()' />
+    </form>
+</body>
+</html>

@@ -1,0 +1,348 @@
+﻿@model MvcTEST.Models.tblGameCombination
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div id="l1" style="padding: 10px; padding-left: 40px; width: 890px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Games", "Configurator")">
+            <img src="~/ImagesApp/close.png" border="0" />
+        </a>
+    </div>
+
+    @*@using (Html.BeginForm())*@
+    @using (Html.BeginForm("Edit", "GameCombination", FormMethod.Post, new { enctype = "multipart/form-data", id = "gamecombination" }))    
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div style="vertical-align: central; background-color: white; width: 860px; height: 730px;  border: 2px; border-radius: 10px; -moz-border-radius: 10px; border-style: solid; border-color: #aaaaaa; ">
+
+            <div style="padding-left:15px; padding-top:10px; padding-right:15px;">
+
+                <div>
+                    <table style="width: 730px;">
+                        <tr>
+                            <td>
+                                <table style="width: 320px; text-align: left">
+                                    <tr>
+                                        <td>
+                                            <img src="~/ImagesApp/combination_icon.png" height="70" />
+                                        </td>
+                                        <td>
+                                            <div id="errorsi" style="float: left; margin-right: 40px; color: red;">@Html.Raw(ViewBag.errori) </div>
+                                            <font size="5" style="color: #0360a3; font-family: 'Open Sans', sans-serif; padding-right: 10px;">
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table style="width: 365px; text-align: right;">
+                                    <tr>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left;">
+                                            <div class="editor-label" style="text-align: center; width: 175px; font-size: 16px; color: #0360a3; font-weight: bold;">
+                                                @Html.LabelFor(model => model.CombinationName, "Combination name")
+                                            </div>
+                                        </td>
+                                        <td style="text-align: left;">
+                                            <div class="editor-field">
+                                                @Html.EditorFor(model => model.CombinationName)
+                                                @Html.ValidationMessageFor(model => model.CombinationName)
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width: 50px;"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <hr />
+
+                <table>
+                    <tr>
+                        <td>
+                            <table style="width: 50%; vertical-align: top; padding-right:20px; ">
+                                <tr>
+                                    <td>
+                                        <!-- -->
+
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.Active)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <!-- -->
+                                        <div class="editor-field" style="font-size: 12px; width: 100px; ">
+                                            @Html.EditorFor(model => model.Active, new { style = "font-size:12px; width:100px; " })
+                                            @Html.ValidationMessageFor(model => model.Active)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr><td colspan="3"><br /></td></tr>
+                                <tr>
+                                    <td>
+                                        <!-- -->
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.Modification)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="editor-field" style="font-size: 12px; width: 150px; ">
+                                            @*@Html.TextBoxFor(model => model.Modification, new { @Value = ViewBag.Modification.ToString("d") })*@
+                                            @Html.TextBoxFor(model => model.Modification, new { style = "font-size:12px; width:150px; " })
+                                            @*@Html.ValidationMessageFor(model => model.Modification)*@
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width:20px; "></td>
+                        <td>
+                            <table style="width: 50%; vertical-align: top; padding-left:20px; ">
+                                <tr>
+                                    <td>
+                                        <!-- -->
+                                        <div class="editor-label">
+                                            @Html.LabelFor(model => model.GameID1, "1. Game")
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <!-- -->
+
+                                                            <div class="editor-field" style="width:300px; height:28px; -moz-border-radius: 10px; border-radius: 10px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                                                @Html.DropDownListFor(model => model.GameID1,
+                                          new SelectList(ViewBag.games, "ID", "Name"),
+                                                        "-- Bitte select --",
+                                                        new { style = "width: 300px; font-size:13px;" }
+                                       )
+                                                                                </div>
+
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr><td colspan="3"><br /></td></tr>
+                                                                        <!-- -->
+                                                                        <tr>
+                                                                            <td>
+                                                                                <!-- -->
+                                                                                <div class="editor-label">
+                                                                                    @Html.LabelFor(model => model.GameID2, "2. Game")
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <!-- -->
+                                                                                                    <div class="editor-field" style="width:300px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                                                                                        @Html.DropDownListFor(model => model.GameID2,
+                                          new SelectList(ViewBag.games, "ID", "Name"),
+                                                        "-- Bitte select --",
+                                                        new { style = "width: 300px;  font-size:13px; " }
+                                       )
+                                                                                                                        </div>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                                <tr><td colspan="3"><br /></td></tr>
+                                                                                                                <!-- -->
+                                                                                                                <tr>
+                                                                                                                    <td>
+                                                                                                                        <!-- -->
+                                                                                                                        <div class="editor-label">
+                                                                                                                            @Html.LabelFor(model => model.GameID3, "3. Game")
+                                                                                                                                            </div>
+                                                                                                                                        </td>
+                                                                                                                                        <td>
+                                                                                                                                            <!-- -->
+                                                                                                                                            <div class="editor-field" style="width:300px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                                                                                                                                @Html.DropDownListFor(model => model.GameID3,
+                                          new SelectList(ViewBag.games, "ID", "Name"),
+                                                        "-- Bitte select --",
+                         new { style = "width: 300px; font-size:13px;" }
+                                       )
+                                                                                                                                                                </div>
+                                                                                                                                                            </td>
+                                                                                                                                                        </tr>
+                                                                                                                                                        <tr><td colspan="3"><br /></td></tr>
+                                                                                                                                                        <!-- -->
+                                                                                                                                                        <tr>
+                                                                                                                                                            <td>
+                                                                                                                                                                <!-- -->
+                                                                                                                                                                <div class="editor-label">
+                                                                                                                                                                    @Html.LabelFor(model => model.GameID4, "4. Game")
+                                                                                                                                                                                    </div>
+                                                                                                                                                                                </td>
+                                                                                                                                                                                <td>
+                                                                                                                                                                                    <!-- -->
+                                                                                                                                                                                    <div class="editor-field" style="width:300px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                                                                                                                                                                        @Html.DropDownListFor(model => model.GameID4,
+                                          new SelectList(ViewBag.games, "ID", "Name"),
+                                                        "-- Bitte select --",
+                         new { style = "width: 300px; font-size:13px;" }
+                                       )
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </td>
+                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                <tr><td colspan="3"><br /></td></tr>
+                                                                                                                                                                                                <!-- -->
+                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                    <td>
+                                                                                                                                                                                                        <!-- -->
+                                                                                                                                                                                                        <div class="editor-label">
+                                                                                                                                                                                                            @Html.LabelFor(model => model.GameID5, "5. Game")
+                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                            <!-- -->
+                                                                                                                                                                                                                            <div class="editor-field" style="width:300px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                                                                                                                                                                                                                @Html.DropDownListFor(model => model.GameID5,
+                                          new SelectList(ViewBag.games, "ID", "Name"),
+                                                        "-- Bitte select --",
+                         new { style = "width: 300px; font-size:13px;" }
+                                       )
+                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                            </td>
+                                                                                                                                                                                                                                        </tr>
+                                                                                                                                                                                                                                        <tr><td colspan="3"><br /></td></tr>
+                                                                                                                                                                                                                                        <!-- -->
+                                                                                                                                                                                                                                        <tr>
+                                                                                                                                                                                                                                            <td>
+                                                                                                                                                                                                                                                <!-- -->
+                                                                                                                                                                                                                                                <div class="editor-label">
+                                                                                                                                                                                                                                                    @Html.LabelFor(model => model.GameID6, "6. Game")
+                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                                                                    <!-- -->
+                                                                                                                                                                                                                                                                    <div class="editor-field" style="width:300px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                                                                                                                                                                                                                                                        @Html.DropDownListFor(model => model.GameID6,
+                                          new SelectList(ViewBag.games, "ID", "Name"),
+                                                        "-- Bitte select --",
+                         new { style = "width: 300px; font-size:13px;" }
+                                       )
+                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                    </td>
+                                                                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                                                                <tr><td colspan="3"><br /></td></tr>
+                                                                                                                                                                                                                                                                                <!-- -->
+                                                                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                                                                    <td>
+                                                                                                                                                                                                                                                                                        <!-- -->
+                                                                                                                                                                                                                                                                                        <div class="editor-label">
+                                                                                                                                                                                                                                                                                            @Html.LabelFor(model => model.GameID7, "7. Game")
+                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                                                                                            <!-- -->
+                                                                                                                                                                                                                                                                                                            <div class="editor-field" style="width:300px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                                                                                                                                                                                                                                                                                                @Html.DropDownListFor(model => model.GameID7,
+                                          new SelectList(ViewBag.games, "ID", "Name"),
+                                                        "-- Bitte select --",
+                         new { style = "width: 300px; font-size:13px;" }
+                                       )
+                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                            </td>
+                                                                                                                                                                                                                                                                                                                        </tr>
+                                                                                                                                                                                                                                                                                                                        <tr><td colspan="3"><br /></td></tr>
+                                                                                                                                                                                                                                                                                                                        <!-- -->
+                                                                                                                                                                                                                                                                                                                        <tr>
+                                                                                                                                                                                                                                                                                                                            <td>
+                                                                                                                                                                                                                                                                                                                                <!-- -->
+                                                                                                                                                                                                                                                                                                                                <div class="editor-label">
+                                                                                                                                                                                                                                                                                                                                    @Html.LabelFor(model => model.GameID8, "8. Game")
+                                                                                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                </td>
+                                                                                                                                                                                                                                                                                                                                                <td>
+                                                                                                                                                                                                                                                                                                                                                    <!-- -->
+                                                                                                                                                                                                                                                                                                                                                    <div class="editor-field" style="width:300px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                                                                                                                                                                                                                                                                                                                                        @Html.DropDownListFor(model => model.GameID8,
+                                          new SelectList(ViewBag.games, "ID", "Name"),
+                                                        "-- Bitte select --",
+                         new { style = "width: 300px; font-size:13px;" }
+                                       )
+                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                    </td>
+                                                                                                                                                                                                                                                                                                                                                                </tr>
+                                                                                                                                                                                                                                                                                                                                                                <tr><td colspan="3"><br /></td></tr>
+                                                                                                                                                                                                                                                                                                                                                                <!-- -->
+                                                                                                                                                                                                                                                                                                                                                                <tr>
+                                                                                                                                                                                                                                                                                                                                                                    <td>
+                                                                                                                                                                                                                                                                                                                                                                        <!-- -->
+                                                                                                                                                                                                                                                                                                                                                                        <div class="editor-label">
+                                                                                                                                                                                                                                                                                                                                                                            @Html.LabelFor(model => model.GameID9, "9. Game")
+                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                                                                                                                                                                            <!-- -->
+                                                                                                                                                                                                                                                                                                                                                                                            <div class="editor-field" style="width:300px; height:28px; -moz-border-radius: 5px; border-radius: 5px; border: 2px; border-style: solid; border-color: #aaaaaa; ">
+                                                                                                                                                                                                                                                                                                                                                                                                @Html.DropDownListFor(model => model.GameID9,
+                                          new SelectList(ViewBag.games, "ID", "Name"),
+                                                        "-- Bitte select --",
+                         new { style = "width: 300px; font-size:13px;" }
+                                       )
+                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                            </td>
+                                                                                                                                                                                                                                                                                                                                                                                                        </tr>
+                                                                                                                                                                                                                                                                                                                                                                                                        <tr><td colspan="3"><br /></td></tr>
+                                                                                                                                                                                                                                                                                                                                                                                                        <!-- -->
+                                                                                                                                                                                                                                                                                                                                                                                                        @Html.HiddenFor(model => model.GameCombinationID)
+                                                                                                                                                                                                                                                                                                                                                                                                                            @Html.HiddenFor(model => model.Modification)
+                                                                                                                                                                                                                                                                                                                                                                                                                                            </table>
+                                                                                                                                                                                                                                                                                                                                                                                                                                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <!-- TABELA SA GUMBIMA -->
+                            <table style="width: 100%; ">
+                                <tr>
+                                    <td>
+                                        @*<div id="delete" class="medvedButton">@Html.Translate("Delete")</div>*@
+                                                        <input id="delete" type="button" value="ABBRECHEN" class="gray-button" />
+                                                    </td>
+                                                    <td style="text-align:right">
+                                                        <p>
+                                                            <input id="Save" type="submit" class="save" style="float:right; padding-right:10px;" value="SAVE" />
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                </table>
+
+
+            </div>
+        </div>
+    }
+</div>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Active").width(100);
+        $("#Modification").datepicker({ dateFormat: 'dd/mm/yy' });
+
+    });        
+    
+    $('#delete').click(function () {
+        if (confirm("Sind Sie sicher?")) {
+            $.post('@Url.Action("Delete", "GameCombination", new { Model.GameCombinationID })', function (data) {
+                window.location.href = '@Url.Action("Index","GameCombination")';
+            });
+        }
+        return false;
+    });
+
+
+</script>
+
+

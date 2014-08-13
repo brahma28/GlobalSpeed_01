@@ -1,0 +1,244 @@
+﻿@model IEnumerable<MvcTEST.Models.tblResult>
+@using MvcTEST.Models 
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+    var db = new MvcTEST.Models.SpeedCourtConfigDbEntities();
+    //var asd = db.getNameFromDictionary("Bitte wahlen", ((tblUser)Session["User"]).ID).FirstOrDefault().Name;
+    
+    
+}
+<style>
+
+#ui-state-active, .ui-state-active  {
+    background: #0360a3 !important;
+    /*font-weight:bold !important;*/
+    background-image:none;
+    color: #FFFFFF !important;
+}
+
+
+#ui-datepicker-header, .ui-datepicker-header,#ui-widget-header, .ui-widget-header {
+    background: #FFFFFF !important;
+    background-image:none;
+    border:0px  !important;
+}
+
+#highlight, .highlight a {
+    color: #0360a3 !important;
+    font-weight:bold !important;
+}
+
+#whitehighlight, .whitehighlight a {
+    color: #ffffff !important;
+    font-weight:bold !important;
+}
+
+</style>
+@*<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.24/themes/base/jquery-ui.css">*@
+<div id="l1" style="padding: 10px; width: 950px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color:#EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        @*<a href="@Url.Action("Index", "Results")" > <img src="~/ImagesApp/close.png" border="0" /></a>*@
+                            @if (Html.User().Role == 50)
+                            {
+                                <!-- VLASNIK -->
+                                <a id="aron" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 40)
+                            {
+                                <!-- TRENER -->
+                                <a id="aron" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if (Html.User().Role == 20 || Html.User().Role == 30)
+                            {
+                                <!-- IGRAC -->
+                                <a id="aron" href="@Url.Action("Index", "UserHome")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else if  (Html.User().Role == 10)
+                            {
+                                <!-- QUICKGAME -->
+                                <a id="aron" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+                            else
+                            {
+                                <!-- ... -->
+                                <a id="aron" href="@Url.Action("Index", "User")">
+                                    <img src="~/ImagesApp/close.png" />
+                                </a>
+                            }
+    </div>
+<div id="l1" style="padding: 10px; width: 850px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color:white;">
+
+
+
+<table style="text-align:left; width:100%" >
+    <tr>
+        <td align="left" style="width:100%">
+            <div id="zaglavlje">
+            <text><b><font color="#0360a3" size="5">@ViewBag.user.Surname.ToUpper(), @ViewBag.user.Name.ToUpper() - @ViewBag.groupname</font></b></text>
+                @*@ViewBag.usergroup.Name*@
+            <hr />
+            </div>
+        </td>
+    </tr>
+</table>
+
+<table style="text-align:left; width:100% " >
+    <tr>
+        <td style="vertical-align:top ">
+            <div id="kalendar"  style="text-align:left; width:300px" >
+                <table style="text-align:left " >
+                    <tr >
+                        <td >
+                            <!-- kalendar -->
+                            <div id="datepicker" style="font-size: 12px"></div>
+                            <script>
+
+                                var dates = [@ViewBag.selecteddates];
+                                // rumpelstiltskin
+                                //tips are optional but good to have
+                                var tips = ['some description', 'some other description'];
+
+                                function highlightDays(date) {
+
+                                    // debugger;
+                                    for (var i = 0; i < dates.length; i++) {
+                                        if (dates[i] != '') {
+                                            if (dates[i].getDate() == date.getDate()) {
+                                                //debugger;
+                                                if (selectedDate != null && (formatDateHomeMade(date) == selectedDate))
+                                                    return [true, 'whitehighlight'];
+                                                else
+                                                    return [true, 'highlight'];
+
+                                            }
+                                        }
+                                    }
+                                    return [true, ''];
+                                }
+
+                                var formatDateHomeMade = function (date) {
+                                    return "0" + (date.getMonth() + 1).toString() + '/' + date.getDate() + '/' + date.getFullYear();
+                                }
+
+                                $("#datepicker").datepicker(
+                                    {
+                                        inline: true,
+                                        showOtherMonths: true,
+                                        dayNamesMin: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+                                        //$.datepicker.regional['de']
+                                        beforeShowDay: highlightDays,
+                                        onSelect: function (date, inst) {
+                                            selectedDate = date;
+                                            $.post("/resultsuser/getHighscores?UserID=" +  @ViewBag.user.ID  + "&datum=" + date, {}, function (ret) {
+                                                $("#highscores").html(ret);
+                                            }
+                                                );
+                                        },
+
+                                        onChangeMonthYear: function (year,month,inst) {
+                                            
+                                            var date = $("#datepicker").datepicker('getDate');
+                                            var strDate = month + "/" + date.getDate() + "/" + year;
+                                            $.post("/resultsuser/getHighscoreDates?ID=" + @ViewBag.user.ID + "&datum=" + strDate, {}, function (ret) {                                                                                                
+                                                eval("dates = [" + ret + "];");
+                                                $("#datepicker").datepicker('refresh');
+ 
+                                                var queryDate = new Date(year, month - 1, date.getDate()); // Dashes won't work
+                                                $('#datepicker').datepicker('setDate', queryDate);
+                                                $(".ui-datepicker-current-day").trigger("click");                                               
+                                            });
+                                        },
+
+                                    });
+
+                                var selectedDate = null;
+                                $(".ui-datepicker-current-day").trigger("click");
+                            </script>
+                        </td>
+                    </tr>    
+                    <tr >
+                        <td>
+                            <!-- poruka ispod kalendara -->
+                            <!-- Bitte wahlen Sie ein Datum aus damit die Ergebnisse angezeigt werden. -->
+                            <text><font size="3">@Html.Translate("Bitte wahlen")</font></text>
+                        </td>
+                    </tr>   
+                </table>   
+            </div>
+        </td>
+        <td>
+            <div id="highscores"  style="text-align:left; width:550px; height:500px" >
+                @Html.Partial("highscores")
+
+
+            </div>
+        </td>
+    </tr>
+</table>
+<!-- tabela sa gumbima -->
+<table style="text-align:left; width:100%" >
+    <tr>
+        <!-- cancel -->
+        <td align="left">
+            <a href="/Results/index">
+                <img src="~/ImagesApp/gumb_abbrechen.png" />
+            </a>
+        </td>
+        <!-- e-mail -->
+        <td>
+            <a href="javascript:void(0);" onclick="onMail()">
+
+            <img src="~/ImagesApp/gumb_email.png" />
+            </a>
+        </td>
+        <!-- print -->
+        <td>
+            <a href="javascript:alert('Please be sure to set your printer to Landscape.');window.print();">
+            <img src="~/ImagesApp/gumb_drucken.png" />
+            </a>
+        </td>
+        <!-- excel export -->
+        <td>
+            <a href="javascript:void(0);" onclick="onSearchClick()">
+            <img src="~/ImagesApp/gumb_excelexport.png" />
+            </a>
+        </td>
+        <!-- PDF download -->
+        <td>
+            <a href="javascript:void(0);" onclick="onSearchClick()">
+            <img src="~/ImagesApp/gumb_pdfdownload.png" />
+            </a>
+        </td>
+    </tr>
+</table>
+<script>
+    function onSearchClick() {
+        $.post("results/AjaxSearch?search=" + escape($("#txtSearch").val()), {}, function (ret) {
+            $("#content").html(ret);
+        }
+            );
+    }
+    function onMail() {
+
+        var picker = $("#datepicker").datepicker('getDate');
+        var month = picker.getMonth() + 1;
+        var url = "/resultsuser/SendMail?ID=" + @ViewBag.user.ID + "&datum=" + picker.getFullYear() + "-" + month + "-" + picker.getDate();
+
+        $.post(url, {}, function (ret) {
+            alert(ret);
+        }
+            );
+    }
+</script>
+</div>
+
+</div>

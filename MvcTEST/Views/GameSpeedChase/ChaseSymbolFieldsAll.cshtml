@@ -1,0 +1,338 @@
+﻿@using MvcTEST.Models
+@using MvcTEST.HtmlHelpers
+@using System.Text
+@model MvcTEST.Models.tblChaseSymbol
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SpeedChase Words</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <style type="text/css">
+        body
+        {
+            background: #80a8bd url(/ImagesApp/playground-bg.png) repeat-x;
+            margin: 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        input[type=file]
+        {
+            display: none;
+        }
+        table.playground
+        {
+            width: 100%;
+            height: 90%;
+            border-collapse: collapse;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 40px;
+            left: 0;
+        }
+        table.playground tr td
+        {
+            padding: 0;
+        }
+        table.playground tr td div.field
+        {
+            width: 130px;
+            height: 130px;
+            background-color: #fff;
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+            color: #fff;
+            font: bold 80px arial;
+            line-height: 130px;
+            margin: 0 50px 0 50px;
+            position: relative;
+        }
+        table.playground tr td.right div.field
+        {
+            float: right;
+        }
+        table.playground tr td.center > table.center-fields
+        {
+            width: 260px;
+            margin: 0px auto;
+        }
+        table.playground tr td.center > table.center-fields tr td > div.field
+        {
+            margin: 5px;
+        }
+        table.playground tr td.center > div
+        {
+            margin: 0px auto;
+        }
+        div.field a.question
+        {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: url(/ImagesApp/question.png) no-repeat 0% 0%;
+        }        
+        div.field a.question:hover
+        {
+            background-color:none;
+            outline:none;
+        }
+        input[type=color]
+        {
+            position: absolute;
+            top: 2px;
+            right: 68px;
+            width: 16px;
+            height: 16px;
+            cursor:pointer;
+        }        
+        div.field a.word
+        {
+            position:absolute;
+            top: 2px;
+            right: 46px;
+            width: 20px;
+            height: 20px;
+            background: url(/imagesapp/ChaseField1_20.png) no-repeat 0% 0%;
+        }
+        div.field a.fx
+        {
+            position:absolute;
+            top: 2px;
+            right: 24px;
+            width: 20px;
+            height: 20px;
+            background: url(/imagesapp/ChaseField3_20.png) no-repeat 0% 0%;
+        }
+        div.field a.img
+        {
+            position:absolute;
+            top: 2px;
+            right: 2px;
+            width: 20px;
+            height: 20px;
+            background: url(/imagesapp/ChaseField2_20.png) no-repeat 0% 0%;
+        }
+        div.field textarea
+        {
+            border: none;
+            outline: none;
+            resize: none;
+            width: 110px;
+            position:absolute;
+            top:50px;
+            left:20px;
+            text-align: center;
+            font: bold 20px 'helvetica','arial';            
+            color:#000000;
+        }
+        input[type=submit]
+        {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: url(/imagesapp/buttons/bg/orange130.png) no-repeat 0% 0%;
+            width: 130px;
+            height: 51px;
+            border: none;
+            color: #fff;
+            font: bold 16px GlobalSpeed;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var f1 = document.getElementById("w_fld_1");
+            if (f1.innerHTML.length == 0) {
+                f1.focus();
+            }
+        };
+        function InitWord(fieldIndex) {
+            document.getElementById("entryType_" + fieldIndex).value = "1";
+            var fld = document.getElementById("w_fld_" + fieldIndex);
+            fld.style.display = "block";
+            fld.focus();
+            document.getElementById("color_" + fieldIndex).style.display = "block";
+            document.getElementById("f_fld_" + fieldIndex).style.display = "none";
+            var img = document.getElementById("img_" + fieldIndex);
+            if (img != null) {
+                img.style.display = "none";
+            }
+        }
+        function InitFunction(fieldIndex) {
+            document.getElementById("entryType_" + fieldIndex).value = "2";
+            var fld = document.getElementById("f_fld_" + fieldIndex);
+            fld.style.display = "block";
+            fld.focus();
+            document.getElementById("w_fld_" + fieldIndex).style.display = "none";
+            document.getElementById("color_" + fieldIndex).style.display = "none";
+            var img = document.getElementById("img_" + fieldIndex);
+            if (img != null) {
+                img.style.display = "none";
+            }
+        }
+        function InitUpload(fieldIndex, fieldId, chaseSymbolId) {
+            document.getElementById("entryType_" + fieldIndex).value = "3";
+            document.getElementById("color_" + fieldIndex).style.display = "none";
+            document.getElementById("w_fld_" + fieldIndex).style.display = "none";
+            document.getElementById("f_fld_" + fieldIndex).style.display = "none";
+            var img = document.getElementById("img_" + fieldIndex);
+            if (img != null) {
+                img.style.display = "block";
+            }
+            var fileInput = document.getElementById("file");            
+            if (img == null || confirm("Do you want to change current picture?")) {
+                fileInput.onchange = function () {
+                    if (IsUploadImage()) {
+                        document.getElementById("fldId").value = fieldId;
+                        document.getElementById("csId").value = chaseSymbolId;
+                        document.forms[0].submit();
+                    }
+                    else {
+                        this.value = "";
+                        alert("Selected file type is not valid.\nUpload allows only image files: .jpg, .png, .gif, .bmp");
+                    }
+                };
+                fileInput.click();
+            }
+        }
+
+        function IsUploadImage() {
+            var filePath = document.getElementById("file").value;
+            var startIndex = filePath.lastIndexOf(".");
+            if (startIndex == -1) {
+                return false;
+            }
+            else {
+                var ext = filePath.substring(startIndex);
+                switch (ext) {
+                    case ".jpg":
+                    case ".png":
+                    case ".gif":
+                    case ".bmp":
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        }
+        function SetQuestion(sender, fieldIndex) {
+            var hdn = document.getElementById("question_" + fieldIndex);
+            var txt = prompt("Fragetext für richtige Antwort auf dem Gebiet?", hdn.value);
+            if (txt != null) {
+                hdn.value = txt;
+                sender.title = "Fragetext: " + hdn.value;
+            }
+        }
+        function SetColor(sender, index) {
+            document.getElementById("w_fld_" + index).style.color = sender.value;
+        }
+    </script>
+</head>
+<body>
+    <form method="post" action="/GameSpeedChase/ChaseSymbolFieldsAllImage" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" />
+        <input type="hidden" id="fldId" name="fldId" />
+        <input type="hidden" id="csId" name="csId" />
+        @{
+            if (@ViewBag.GameId != null)
+            {
+                <input type="hidden" name="imgGameId" value="@ViewBag.GameId.ToString()" />
+            }
+        }
+    </form>
+    <form method="post" action="/GameSpeedChase/ChaseSymbolFieldsAll">
+    <table class="playground" id="tblPlayground">
+        <tr>
+            <td>
+                @{
+                    Html.RenderAction("GetFieldHTML", new { fieldIndex = 1, fieldId = ViewBag.teren["F01ID"], queryGameId = ViewBag.GameId });
+                }
+            </td>
+            <td class="center">
+                @{
+                    Html.RenderAction("GetFieldHTML", new { fieldIndex = 2, fieldId = ViewBag.teren["F02ID"], queryGameId = ViewBag.GameId });
+                }
+            </td>
+            <td class="right">
+                @{
+                    Html.RenderAction("GetFieldHTML", new { fieldIndex = 3, fieldId = ViewBag.teren["F03ID"], queryGameId = ViewBag.GameId });
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @{
+                    Html.RenderAction("GetFieldHTML", new { fieldIndex = 4, fieldId = ViewBag.teren["F08ID"], queryGameId = ViewBag.GameId });
+                }
+            </td>
+            <td class="center">
+                <table class="center-fields">
+                    <tr>
+                        <td>
+                            @{
+                                Html.RenderAction("GetFieldHTML", new { fieldIndex = 5, fieldId = ViewBag.teren["F09ID"], queryGameId = ViewBag.GameId });
+                            }
+                        </td>
+                        <td>
+                            @{
+                                Html.RenderAction("GetFieldHTML", new { fieldIndex = 6, fieldId = ViewBag.teren["F12ID"], queryGameId = ViewBag.GameId });
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @{
+                                Html.RenderAction("GetFieldHTML", new { fieldIndex = 7, fieldId = ViewBag.teren["F10ID"], queryGameId = ViewBag.GameId });
+                            }
+                        </td>
+                        <td>
+                            @{
+                                Html.RenderAction("GetFieldHTML", new { fieldIndex = 8, fieldId = ViewBag.teren["F11ID"], queryGameId = ViewBag.GameId });
+                            }
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="right">
+                @{
+                    Html.RenderAction("GetFieldHTML", new { fieldIndex = 9, fieldId = ViewBag.teren["F04ID"], queryGameId = ViewBag.GameId });
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @{
+                    Html.RenderAction("GetFieldHTML", new { fieldIndex = 10, fieldId = ViewBag.teren["F07ID"], queryGameId = ViewBag.GameId });
+                }
+            </td>
+            <td class="center">
+                @{
+                    Html.RenderAction("GetFieldHTML", new { fieldIndex = 11, fieldId = ViewBag.teren["F06ID"], queryGameId = ViewBag.GameId });
+                }
+            </td>
+            <td class="right">
+                @{
+                    Html.RenderAction("GetFieldHTML", new { fieldIndex = 12, fieldId = ViewBag.teren["F05ID"], queryGameId = ViewBag.GameId });
+                }
+            </td>
+        </tr>
+    </table>
+    @{
+      if (@ViewBag.GameId != null)
+      {
+        <input type="hidden" name="gameId" value="@ViewBag.GameId.ToString()" />
+      }
+    }
+    <input type="submit" value='@Html.Translate("save").ToUpper()' />
+    </form>
+</body>
+</html>

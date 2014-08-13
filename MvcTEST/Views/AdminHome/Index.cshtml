@@ -1,0 +1,122 @@
+﻿@using MvcTEST.HtmlHelpers
+
+@{
+    ViewBag.Title = "Konfigurator";
+}
+
+
+@*<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">*@
+    <div align="right" style="border: 0px solid;">
+@*        <a href="@Url.Action("Index", "Home")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>*@
+    </div>
+    <table style="text-align:left; width:680px; ">
+        <tr>
+            <td style="vertical-align:middle">
+                <input id="txtSearch" type="text" value="@Html.Translate("Traži")" class="search" onfocus="if(this.value=='@Html.Translate("Traži")')this.value='';" onblur="if(this.value=='')this.value='@Html.Translate("Traži")'" tabindex="1"  onkeypress="if((event.which ? event.which : event.keyCode) == 13) onSearchClick()" />
+            </td>
+            <td style="padding:5px 0 0 10px">
+                    <a href="javascript:void(0);" onclick="onSearchClick()">
+                        <img src="~/ImagesApp/search.png" />
+                    </a>
+            </td>
+            <td>
+                <div style="width:480px; "></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <br />
+            </td>
+        </tr>
+    </table>    
+            <div style="text-align:left; padding: 10px; width: 800px; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #ffffff;">
+            <table style="text-align: left">
+            <tr>
+                <td colspan="2">
+                    <font size="5" style="color: black"; font-family: 'Open Sans', sans-serif;>
+                    @Html.Translate("Dobrodošli")</font> 
+                <font size="5" style="color:#0360a3 "; font-family: 'Open Sans', sans-serif;>
+                        @ViewBag.korisnik.Name</font>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <font size="5" style="color: black"; font-family: 'Open Sans', sans-serif;>
+                    @Html.Translate("što želite sljedeće učiniti?")
+                    </font>
+                </td>
+            </tr>
+                <tr>
+                    <td colspan="2">
+                        <br />
+                    </td>
+                </tr>
+            <tr>
+            <td style="vertical-align:bottom;padding:8px 10px 0 0">
+                <img src="~/ImagesApp/buttons/bg/admin-home-link-1.png" />
+                </td>
+                <td>
+                    <a href="@Url.Action("Index", "User")">
+                <font size="5" style="color: #0360a3"; font-family: 'Open Sans', sans-serif;><b>
+                    @Html.Translate("Stvorite ili uredite korisnika")
+                    </b></font>
+                    </a>
+                </td>
+            </tr>
+                <tr>
+                    <td colspan="2">
+                        <br />
+                    </td>
+                </tr>
+            <tr>
+            <td style="vertical-align:bottom;padding:8px 10px 0 0">
+                <img src="~/ImagesApp/buttons/bg/admin-home-link-2.png" />
+                </td>
+                <td>
+                    <a href="@Url.Action("Index", "Quickstart")">
+                <font size="5" style="color: #0360a3"; font-family: 'Open Sans', sans-serif;><b>
+                    @Html.Translate("Uređivanje i pokretanje igara")
+                    </b></font>
+                    </a>
+                </td>
+            </tr>
+                <tr>
+                    <td colspan="2">
+                        <br />
+                    </td>
+                </tr>
+            <tr>
+            <td style="vertical-align:bottom;padding:8px 10px 0 0">
+                <img src="~/ImagesApp/buttons/bg/admin-home-link-3.png" />
+                </td>
+                <td>
+                    <a href="@Url.Action("Start", "Configurator")">
+                <font size="5" style="color: #0360a3"; font-family: 'Open Sans', sans-serif;><b>
+                    @Html.Translate("Novo uređivanje terena")
+                    </b></font>
+                    </a>
+                </td>
+            </tr>
+                <tr>
+                    <td colspan="2">
+                        <br />
+                    </td>
+                </tr>
+            <tr>
+            <td style="vertical-align:bottom;padding:8px 10px 0 0">
+                <img src="~/ImagesApp/buttons/bg/admin-home-link-4.png" />
+                </td>
+                <td>
+                    <a href="@Url.Action("Index", "Quickstart")">
+                <font size="5" style="color: #0360a3"; font-family: 'Open Sans', sans-serif;><b>
+                    @Html.Translate("Pokreni QuickGame")
+                    </b></font>
+                    </a>
+                </td>
+            </tr>
+            </table>  
+            </div>     
+
+
+ @*   </div>*@

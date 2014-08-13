@@ -1,0 +1,192 @@
+﻿
+@{
+    Layout = null;
+    
+}
+
+<style type="text/css">
+
+    .fldSmall {
+        width: 24px;
+        height: 24px;
+        margin-left: 1px;
+        margin-top: 1px;
+        font-size: 12px;
+        font-family: Verdana;
+        font-weight: bold;
+        text-align: center;
+        /*line-height: 24px;*/
+        vertical-align: middle;
+        background-color: red;
+        color: white;
+    }
+
+    .fldBig {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        font-size: 22px;
+        font-family: Verdana;
+        font-weight: bold;
+        text-align: center;
+        line-height: 50px;
+        vertical-align: middle;
+        background-color: red;
+        color: white;
+    }
+
+    .fldSmallOff {        
+	    width:41px;
+	    height: 41px;
+	    line-height: 41px;
+	    font-size: 17px;
+	    text-align: center;
+        vertical-align:middle; 
+        background-image: none;
+        background-color: white;
+        border: dashed 2px #bbb;
+        color: #bbb;
+    }
+
+    .fldBigOff {
+	    width:85px;
+	    height: 85px;
+	    margin:10px;
+	    font-size: 35px;
+	    text-align: center;
+	    line-height: 85px;
+        vertical-align:middle;
+        background-image: none;
+        background-color: white;
+        border: dashed 2px #bbb;
+        color: #bbb;
+    }
+
+    .hollow {
+        border:2px solid #bbb;
+        background-color: white;
+    }
+
+    #fldC {
+        width: 85px;
+        height: 85px;
+        margin: 2px 2px 2px 2px;
+        vertical-align:top;
+    }
+
+</style>
+
+
+    @*<script type="text/javascript" src="/Scripts/jquery-css-transform.js"></script>
+    <script type="text/javascript" src="/Scripts/rotate3Di.js"></script>*@
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="/Scripts/fancybox/jquery.fancybox-1.3.4.js"></script>
+    <script type="text/javascript" src="/Scripts//fancybox/jquery.Easing-1.3.pack.js"></script>
+    <link id="size-stylesheet" href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Scripts/fancybox/jquery.fancybox-1.3.4.css")" type="text/css" media="screen" />
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RandomFields</title>
+</head>
+
+<body>
+    <!-- CLICK = exec setRandomField GameID, Field -->
+    <div style=" /*margin-top:50px;*/">
+        <div>
+            <table border="0" style="width:300px; border-color:yellow; vertical-align:top; ">
+                <tr>
+
+                    <td style="width: 100px; height: 100px;"><div id="fld@(ViewBag.teren.F01ID.ToString())" class="fldBig">@ViewBag.teren.F01Name</div></td>
+                            <td style="width: 100px; height: 100px; "><div id="fld@(ViewBag.teren.F02ID.ToString())" class="fldBig">@ViewBag.teren.F02Name</div></td>
+                                    <td style="width: 100px; height: 100px; "><div id="fld@(ViewBag.teren.F03ID.ToString())" class="fldBig">@ViewBag.teren.F03Name</div></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 100px; height: 100px;"><div id="fld@(ViewBag.teren.F08ID.ToString())" class="fldBig">@ViewBag.teren.F08Name</div></td>
+                                                    <td style="width: 100px; height: 100px;">
+                                                        <div id="xfldc">
+                                                            <table style="width: 50px; height: 50px;" border="0">
+
+                                                                <tr>
+                                                                    <td style="width:25px; "><div id="fld@(ViewBag.teren.F09ID.ToString())" class="fldSmall">@ViewBag.teren.F09Name</div></td>
+                                                                            <td style="width:25px; "><div id="fld@(ViewBag.teren.F10Name.ToString())" class="fldSmall">@ViewBag.teren.F10Name</div></td>
+                                                                                </tr>
+
+                                                                                <tr>
+                                                                                    <td style="width:25px; "><div id="fld@(ViewBag.teren.F12ID.ToString())" class="fldSmall">@ViewBag.teren.F12Name</div></td>
+                                                                                            <td style="width:25px; "><div id="fld@(ViewBag.teren.F11ID.ToString())" class="fldSmall">@ViewBag.teren.F11Name</div></td>
+                                                                                                </tr>
+
+                                                                                            </table>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td style="width: 100px; height:100px; "><div id="fld@(ViewBag.teren.F04ID.ToString())" class="fldBig">@ViewBag.teren.F04Name</div></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td style="width: 100px; height: 100px;"><div id="fld@(ViewBag.teren.F07ID.ToString())" class="fldBig">@ViewBag.teren.F07Name</div></td>
+                                                                                                    <td style="width: 100px; height: 100px;"><div id="fld@(ViewBag.teren.F06ID.ToString())" class="fldBig">@ViewBag.teren.F06Name</div></td>
+                                                                                                            <td style="width: 100px; height: 100px;"><div id="fld@(ViewBag.teren.F05ID.ToString())" class="fldBig">@ViewBag.teren.F05Name</div></td>
+                                                                                                                </tr>
+                                                                                                                <tr>
+
+                                                                                                                    <td colspan="2" style="width:100px; text-align:left; padding-left:15px;"><p style="width:100px;"></p></td>
+
+                                                                                                                    <td style="width:100px; "><div id="del" class="fldBig">DEL</div></td>
+                                                                                                                </tr>
+                                                                                                            </table>
+        </div>
+
+    </div>
+    
+    <div id="log"></div>
+    <div id="logID"></div>
+</body>
+
+<script type="text/javascript">
+    var A1 = [];
+    var A2 = [];
+    var sss;
+    if (window.parent.$('#RandomFields').val() != '') {
+        A1 = window.parent.$('#RandomFields').val().split(',');
+        A2 = window.parent.$('#RandomFieldsID').val().split(',');
+        $("p").html(A1.toString());
+        $('#log').attr('name', A1.toString());
+        $('#logID').attr('name', A2.toString());
+    }
+    //fancybox-content
+    $("[id^='fld']").css('cursor', 'pointer');
+    $("#del").css('cursor', 'pointer');
+
+    $("[id^='fld']").click(function () {
+        //alert( $('#StartField').html());
+        //alert(window.parent.$('#RandomFields').val());
+            //sss = $(this).attr('id');
+
+                //if (ss.length == 0) {
+                //    ss = ($(this).text());
+                //    ssID = (sss.replace('fld', ''));
+                //} else {
+                //    ss = ss + ',' + ($(this).text());
+                //    ssID = ssID + ',' + (sss.replace('fld', ''));
+                //}
+                A1.push($(this).text());
+                A2.push($(this).attr('id').replace('fld', ''));
+
+                $('#log').attr('name', A1.toString());
+                $("p").html(A1.toString());
+                $('#logID').attr('name', A2.toString());
+        //alert(A1 +'-'+A2);
+    });
+    $("#del").click(function () {
+        A1.pop();
+        $("p").html(A1.toString());
+        A2.pop();
+        $('#log').attr('name', A1.toString());
+        $('#logID').attr('name', A2.toString());
+    });
+    </script>
+
+
+</html>

@@ -1,0 +1,364 @@
+﻿@model MvcTEST.Models.tblGame
+@using MvcTEST.HtmlHelpers
+@{
+    ViewBag.Title = "Jumping";
+}
+
+<style>
+    #newXXXVal {
+        z-index: 10000;
+        position: relative;
+        padding: 25px;
+        width: 580px;
+        height: 100px;
+        text-align: left;
+        overflow: hidden;
+        margin: 0px;
+        font: bold 11px Verdana, Sans-serif;
+        color: #fff;
+        font-size: 16px;
+        color: black;
+        -moz-box-shadow: 3px 3px 5px 6px #000;
+        -webkit-box-shadow: 3px 3px 5px 6px #000;
+        box-shadow: 0px 0px 20px 0px gray;
+        border: 0px solid;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+    }
+
+</style>
+
+<div id="l1" style="padding: 10px; margin-bottom:20px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Games", "Configurator")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+
+    @using (Html.BeginForm("Create", "GameJumping", FormMethod.Post, new { enctype = "multipart/form-data", id = "fvujq-form1" }))
+    { 
+        
+        @Html.ValidationSummary(false)  
+
+        <table style="width:100%;table-layout:fixed">
+            <tr>
+                <td style="width:200px">
+                    <table style="width: 500px; text-align: left">
+                        <tr>
+                            <td>
+                                <img src="~/ImagesApp/jumping2.png" />
+                            </td>
+                            <td>
+                                <div id="errorsi" style="float: left; margin-right: 40px; color: red;"> </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <div style="float:right;">
+                        <table style="width:100%;">
+                            <tr>
+                                <td colspan="2" style="padding-bottom:20px;text-align:right">
+                                    <font size="6" style="color: #0360a3; font-family: 'Open Sans', sans-serif;">
+                                        <b> @ViewBag.game.ToUpper() </b></td>
+                            </tr>
+                            <tr>
+                                <td style="width:200px;text-align:right">
+                                    <div class="editor-label" style="width:200px">
+                                         @Html.LabelFor(model => model.Name, @Html.Translate("Naziv igre"))
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="editor-field" style="width: 300px;">
+                                        @Html.TextBoxFor(model => model.Name, new { @Value = ViewBag.game, style = "width: 280px;" })
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <hr /> 
+      
+        @Html.HiddenFor(model => model.CategoryID)
+                
+        <table class="edit">
+            <tr>
+                <td class="label">
+                    @Html.LabelFor(model => model.TimeLimit, @Html.Translate("Spieldauer"))
+                </td>
+                <td colspan="3">
+                    <table><tr><td>
+                    <div class="editor-field" style="width: 100px;">
+                        @Html.TextBoxFor(model => model.TimeLimit, new { @Value = 10, style = "width: 100px;" })
+                        @* @Html.ValidationMessageFor(model => model.TimeLimit)*@
+                    </div>
+                    <td style="padding-left:5px">
+                        (Sec)                    
+                    </td></tr></table>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    @Html.LabelFor(model => model.Description, @Html.Translate("Description"))
+                </td>
+                <td colspan="3">
+                    <div class="editor-field" style="width:670px">
+                        @Html.TextBoxFor(model => model.Description, new { style = "width: 670px;" })                       
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    @Html.LabelFor(model => model.DescriptionDuration, @Html.Translate("Description duration"))                
+                </td>
+                <td colspan="3">
+                    <div class="editor-field" style="width:245px;">
+                        @Html.EditorFor(model => model.DescriptionDuration)                   
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                        @Html.LabelFor(model => model.QuickGamePool, @Html.Translate("QuickGame Pool"))
+                </td>
+                <td colspan="3">
+                    <div class="editor-field" style="width: 245px;">
+                        @Html.EditorFor(model => model.QuickGamePool)
+                        @*    @Html.ValidationMessageFor(model => model.QuickGamePool)*@
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    @Html.Translate("Bodenkontaktzeit")
+                </td>
+                <td colspan="3">
+                    <table>
+                        <tr>
+                            <td style="padding-left:10px">
+                                @Html.LabelFor(model => model.MinStayTime, "(min.)")                        
+                            </td>
+                            <td>
+                                <div class="editor-field" style="width:100px;">
+                                   @Html.TextBoxFor(model => model.MinStayTime, new { style = "width:100px;" })
+                                </div>
+                            </td>
+                            <td style="padding-left:5px">
+                                [ms]
+                            </td>
+                            <td style="padding-left:55px">
+                                @Html.LabelFor(model => model.MaxStayTime, "(max.)")
+                            </td>
+                            <td>
+                                <div class="editor-field" style="width:100px;">
+                                   @Html.TextBoxFor(model => model.MaxStayTime, new { style = "width:100px;" })
+                                </div>
+                            </td>
+                            <td style="padding-left:5px">
+                                [ms]
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    @Html.Translate("Flugdauer")
+                </td>
+                <td colspan="3">
+                    <table>
+                        <tr>
+                            <td style="padding-left:10px">
+                               @Html.LabelFor(model => model.MinFlyTime, "(min.)")
+                            </td>
+                            <td>
+                                <div class="editor-field" style="width:100px;">
+                                   @Html.TextBoxFor(model => model.MinFlyTime, new { style = "width:100px;" })
+                                </div>
+                            </td>
+                            <td style="padding-left:5px">
+                                [ms]
+                            </td>
+                            <td style="padding-left:55px">
+                               @Html.LabelFor(model => model.MaxFlyTime, "(max.)")
+                            </td>
+                            <td>
+                                <div class="editor-field" style="width:100px;">
+                                   @Html.TextBoxFor(model => model.MaxFlyTime, new { style = "width:100px;" })
+                                </div>
+                            </td>
+                            <td style="padding-left:5px">
+                                [ms]
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    @Html.LabelFor(model => model.Countdown, @Html.Translate("Countdown"))
+                </td>
+                <td colspan="3">
+                    <div class="editor-field" style="width: 60px;">
+                        @Html.TextBoxFor(model => model.Countdown, new { @Value = 3, style = "width: 50px;" })
+                        @* @Html.ValidationMessageFor(model => model.Countdown)*@
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    @Html.Translate("Mittlere Platten")
+                </td>
+                <td colspan="3" style="padding:15px 0 10px 10px">
+                    <table>
+                        <tr>
+                            <td>
+                                <div id="NumShownFields1">
+                                    <img style="width: 150px; height: 50px;" src="~/ImagesApp/NumShownFields1.png" />
+                                </div>
+                            </td>
+                            <td style="padding-left:20px">
+                                <div id="NumShownFields2">
+                                    <img style="width: 150px; height: 50px;" src="~/ImagesApp/NumShownFields2.png" />
+                                </div>
+                            </td>
+                            <td style="padding-left:20px">
+                                <div id="NumShownFields4">
+                                    <img style="width: 150px; height: 50px;" src="~/ImagesApp/NumShownFields4.png" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">
+                                @Html.RadioButtonFor(m => m.NumShownFields, 1)
+                            </td>
+                            <td style="text-align:center;padding-left:20px">
+                                @Html.RadioButtonFor(m => m.NumShownFields, 2)
+                            </td>
+                            <td style="text-align:center;padding-left:20px">
+                                @Html.RadioButtonFor(m => m.NumShownFields, 4)
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                        @Html.LabelFor(model => model.StartField, @Html.Translate("Starten Feld"))
+                </td>
+                <td colspan="3" style="padding:15px 0 10px 10px">
+                    <table>
+                        <tr>
+                            <!-- 0 - STOJI ISPRED POLJA, NA POČETKU -->
+                            <td>
+                                <div id="StartFieldOff" style="width: 150px; height: 50px;">
+                                    <img style="width: 150px; height: 50px;" src="~/ImagesApp/StartPoredPolja.png" />
+                                </div>
+                            </td>
+                            <!-- 1 - STOJI NA POLJU, NA POČETKU  -->
+                            <td style="padding-left:20px">
+                                <div id="StartFieldOn" style="width: 150px; height: 50px;">
+                                    <img style="width: 150px; height: 50px;" src="~/ImagesApp/StartNaPolju.png" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">
+                                @Html.RadioButtonFor(m => m.StartField, 0)
+                            </td>
+                            <td style="text-align:center;padding-left:20px">
+                                 @Html.RadioButtonFor(m => m.StartField, 1)
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">
+                    @Html.Translate("Broj skokova")
+                </td>
+                <!-- broj skokova (količina) -->
+                <td colspan="3">
+                    <div class="editor-field" style="width: 60px;">
+                        @Html.TextBoxFor(model => model.Quantity, new { style = "width: 60px;" })
+                        @* @Html.ValidationMessageFor(model => model.Quantity)*@
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <p>
+            <input id="Save" type="submit" class="gray-button" style="float:right" value="@Html.Translate("Stvori igru").ToUpper()"/>
+        </p>
+        <div style="clear:both"></div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>
+
+
+<script>
+    $(document).ready(function () {
+
+        $("#fvujq-form1").submit(function () {
+            var grr = "";
+            //alert($("#DescriptionDuration").val().trim().length);     
+            if ($("#Name").val().trim().length == 0) {
+                grr = grr + "@Html.Translate("Naziv igre")" + " <br />";
+            }
+
+            if (!$.isNumeric($("#TimeLimit").val().trim()) && $("#TimeLimit").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Spieldauer")" + " <br />";
+            }
+
+            if (!$.isNumeric($("#DescriptionDuration").val().trim())) {
+                grr = grr + "@Html.Translate("Description duration")" + " <br />";
+            }
+
+@*            if (!$.isNumeric($("#NumRepetition")) && $("#NumRepetition").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Please enter the numbers for number repetition")" + "! <br />";
+            }*@
+
+            if (!$.isNumeric($("#MinStayTime")) && $("#MinStayTime").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Bodenkontaktzeit")" + " min. <br />";
+            }
+            if (!$.isNumeric($("#MinFlyTime")) && $("#MinFlyTime").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Flugdauer")" + " min. <br />";
+            }
+            if (!$.isNumeric($("#MaxStayTime")) && $("#MaxStayTime").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Bodenkontaktzeit")" + " max. <br />";
+            }
+            if (!$.isNumeric($("#MaxFlyTime")) && $("#MaxFlyTime").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Flugdauer")" + " max. <br />";
+            }
+            if (!$.isNumeric($("#Quantity")) && $("#Quantity").val().trim().length > 0) {
+                grr = grr + "@Html.Translate("Broj skokova")" + " <br />";
+            }
+
+            if (!$.isNumeric($("#Countdown").val())) {
+                grr = grr + "@Html.Translate("Countdown")" + " <br />";
+            }
+
+
+            if (grr.length == 0) {
+
+                $("#errorsi").html(grr).hide();
+                return true;
+            } else {
+                grr = "@Html.Translate("Please enter the numbers for")" + ": </br>" + grr;
+
+                $("#errorsi").html(grr).show();
+                return false;
+            }
+
+
+
+        });
+
+    });
+
+</script>

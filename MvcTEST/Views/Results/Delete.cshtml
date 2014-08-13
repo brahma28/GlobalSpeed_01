@@ -1,0 +1,67 @@
+﻿@model MvcTEST.Models.tblSpeedEntry
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>tblSpeedEntry</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MatID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MatID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EntryTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EntryTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Interval)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Interval)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tblSensorType.SensorType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tblSensorType.SensorType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.InstanceID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.InstanceID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GameID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GameID)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

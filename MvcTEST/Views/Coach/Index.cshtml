@@ -1,0 +1,113 @@
+﻿@model IEnumerable<MvcTEST.Models.tblUser>
+
+@{
+    ViewBag.Title = "COACHES LIST";
+}
+
+
+<div id="l1" style="padding: 10px; width: inherit; height: inherit; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #EFECE7;">
+    <div align="right" style="border: 0px solid;">
+        <a href="@Url.Action("Index", "Home")" >
+            <img src="~/ImagesApp/close.png" border="0" /></a>
+    </div>
+    <p>
+        @Html.ActionLink("Create New", "Create") |
+        <a href="@(Url.Content("~/Users/Index/"))" style="text-decoration:none;">
+             <font color="#660033">Add from list</font>
+        </a>
+    </p>
+
+    <div id="content">
+        <table style="width: 100%; text-align: left;">
+            <tr>
+                <!-- exec [getGameByUser] null -->
+                <td>
+
+                    <div id="coacheas" style="padding: 10px; width: 840px; height: 420px; position: relative; z-index: 1; -moz-box-shadow: 3px 3px 5px 6px #000; -webkit-box-shadow: 3px 3px 5px 6px #000; box-shadow: 0px 0px 20px 0px gray; border: 0px solid; border-radius: 10px; -moz-border-radius: 10px; background-color: #FFF">
+                        <text><b><font color="#0360a3" size="5">COACHES LIST</font></b></text>
+                        <br />
+                        <hr />
+                        <table style="width: 840px; line-height: 13px; border: 0; height: 20px;">
+                            <tr>
+                                <td style="width: 100px;">
+                                    <text><b><font color="#0360a3">@Html.DisplayNameFor(model => model.Name)</font></b></text>
+                                </td>
+                                <td style="width: 100px;">
+                                    <text><b><font color="#0360a3">@Html.DisplayNameFor(model => model.Surname)</font></b></text>
+                                </td>
+                                <td style="width: 100px;">
+                                    <text><b><font color="#0360a3">@Html.DisplayNameFor(model => model.Birthday)</font></b></text>
+                                </td>
+                                <td style="width: 100px;">
+                                    <text><b><font color="#0360a3">@Html.DisplayNameFor(model => model.RFID)</font></b></text>
+                                </td>
+                                <td style="width: 100px;">
+                                    <text><b><font color="#0360a3">Group</font></b></text>
+                                </td>
+                                <td style="width: 100px;">
+                                    <text><b><font color="#0360a3">Sport</font></b></text>
+                                </td>
+                                <td style="width: 100px;">
+                                    <text><b><font color="#0360a3">@Html.DisplayNameFor(model => model.Notes)</font></b></text>
+                                </td>
+                                <td style="width: 40px;">
+                                    <text><b><font color="#0360a3">@Html.DisplayNameFor(model => model.IsActiv)</font></b></text>
+                                </td>
+                                <td style="width: 100px;"></td>
+                            </tr>
+                        </table>
+                        <div id="coacheasin" style="width: 840px; height: 340px; position: inherit; background-color: #FFF; overflow-y: scroll; overflow-x: hidden;">
+
+                            <table style=" width: 840px;  border: 0; height: 320px; overflow-y: scroll;">
+                                @foreach (var item in Model)
+                                {
+                                    <tr style="vertical-align:top; height: 13px;  "> 
+                                        <td colspan="9" align="left" style="height: 13px;">
+                                            <hr />
+                                        </td>
+                                    </tr>                                      
+                                    <tr style="vertical-align:top; height: 13px;  ">
+
+                                        <td style="width: 100px; height: 13px;">
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td style="width: 100px; height: 13px;">
+                                            @Html.DisplayFor(modelItem => item.Surname)
+                                        </td>
+                                        <td style="width: 100px; height: 13px;">
+                                            @Html.TextBoxFor(modelItem => item.Birthday, String.Format("{0:dd/MM/yyyy}",item.Birthday ))
+                                        </td>
+                                        <td style="width: 100px; height: 13px;">
+                                            @Html.DisplayFor(modelItem => item.RFID)
+                                        </td>
+                                        <td style="width: 100px; height: 13px;">
+                                            @Html.DisplayFor(modelItem => item.tblUserGroup.Name)
+                                        </td>
+                                        <td style="width: 100px; height: 13px;">
+                                            @Html.DisplayFor(modelItem => item.tblSport.Name)
+                                        </td>
+                                        <td style="width: 100px; height: 13px;">
+                                            @Html.DisplayFor(modelItem => item.Notes)
+                                        </td>
+                                        <td style="width: 40px; height: 13px;">
+                                            @Html.DisplayFor(modelItem => item.IsActiv)
+                                        </td>
+                                        <td style="width: 100px; height: 13px;">
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+@*                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
+
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+

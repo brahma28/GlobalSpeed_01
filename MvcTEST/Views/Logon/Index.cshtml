@@ -1,0 +1,377 @@
+﻿@model MvcTEST.Models.tblUser 
+@using MvcTEST.HtmlHelpers
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jquery.jplayer.min.js"></script>
+<script type="text/javascript">
+
+    var ss = "";
+
+    var wsUri = "ws://localhost:8080/test";
+
+
+    var action = {
+        pin: function (nr) {
+            window.location.href = "@(Url.Action("Index2", "Logon")+"?value=")" + nr;
+        }
+    };
+
+    function init() {
+        websocket = new WebSocket(wsUri);
+        websocket.onopen = function (evt) { onOpen(evt) };        
+        websocket.onmessage = function (evt) { onMessage(evt) };
+        websocket.onerror = function (evt) { onError(evt) };
+    }
+
+    function onOpen(evt) {
+        websocket.send("LOGON!!0");//24,31,30
+    }
+    
+    function onMessage(evt) {
+        var data = evt.data.split("!!");
+        action[data[0]](data[1]);
+    }
+
+    function onError(evt) {
+        alert("Cannot connect to server...");
+    }
+
+    
+    window.addEventListener("load", init, false);
+
+    function PlaySound(soundObj) {
+        var sound = document.getElementById(soundObj);
+        sound.Play();
+    }
+</script>
+<img id="center" src="~/ImagesApp/BackgroundLoginDPI.png" style="height:100%; width:100%;"/>
+<div id="meni" style="position: absolute; left:200px; top: 60%;">
+    <div id="Login1" style="width: 300px; height: 67px; border-radius: 7px;">
+        
+            <input id="BENUTZERANMELDEN" type="button" value="BENUTZER ANMELDEN" style="border:0px; background-color: #fcfcfc;
+            font-family: verdana; font-size: 1.4em; color: #0360a3;
+            border-radius: 10px; width: 300px; height: 70px; " />
+       
+    </div>
+    <br />
+    <div>
+        <table align="center" style="width: 0%;" id="tblPin">
+            <tr>
+                <td>
+                    <div id="broj" style="width: 30px; height: 30px; border-radius: 7px; " name="1" class="jura1" >
+                        <img src="~/ImagesApp/pin/01.png" />
+                    </div>
+
+                </td>
+                <td>
+                    <div id="broj" style="width: 30px; height: 30px; border-radius: 7px;" name="2" class="jura1">
+                        <img src="~/ImagesApp/pin/02.png"  />
+                    </div>
+                </td>
+                <td>
+                    <div id="broj" style="width: 30px; height: 30px; border-radius: 7px;" name="3" class="jura1">
+                        <img src="~/ImagesApp/pin/03.png" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="broj" style="width: 30px; height: 30px; border-radius: 7px;" name="4" class="jura1">
+                        <img src="~/ImagesApp/pin/04.png" />
+                    </div>
+                </td>
+                <td>
+                    <div id="broj" style="width: 30px; height: 30px; border-radius: 7px;" name="5" class="jura1">
+                        <img src="~/ImagesApp/pin/05.png" />
+                    </div>
+                </td>
+                <td>
+                    <div id="broj" style="width: 30px; height: 30px; border-radius: 7px;" name="6" class="jura1">
+                        <img src="~/ImagesApp/pin/06.png" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="broj" style="width: 30px; height: 30px; border-radius: 7px;" name="7" class="jura1">
+                        <img src="~/ImagesApp/pin/07.png" />
+                    </div>
+                </td>
+                <td>
+                    <div id="broj" style="width: 30px; height: 30px; border-radius: 7px;" name="8" class="jura1">
+                        <img src="~/ImagesApp/pin/08.png" />
+                    </div>
+                </td>
+                <td>
+                    <div id="broj" style="width: 30px; height: 30px; border-radius: 7px;" name="9" class="jura1">
+                        <img src="~/ImagesApp/pin/09.png" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="width: 30px; height: 30px; border-radius: 7px;" name="ok">
+                        <img src="~/ImagesApp/pin/x.png" />
+                    </div>
+                </td>
+                <td>
+                    <div id="broj" style="width: 30px; height: 30px; border-radius: 7px;" name="0">
+                        <img src="~/ImagesApp/pin/00.png" />
+                    </div>
+                </td>
+                <td>
+                    <div  id="broj" style="width: 30px; height: 30px; border-radius: 7px;" name="del" class="jura1">
+                        <img src="~/ImagesApp/pin/x.png" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <br />
+
+    <div id="pin1" style="width: 300px; height: 67px; border-radius: 7px; text-align:center; display:none; color:white;">      
+            <font size="10" color="white">*      </font> 
+    </div>
+    <div id="pin2" style="width: 300px; height: 67px; border-radius: 7px; text-align:center; display:none; color:white;">      
+            <font size="10" color="white">* *    </font> 
+    </div>
+    <div id="pin3" style="width: 300px; height: 67px; border-radius: 7px; text-align:center; display:none; color:white;">      
+            <font size="10" color="white">* * *  </font> 
+    </div>
+    <div id="pin4" style="width: 300px; height: 67px; border-radius: 7px; text-align:center; display:none; color:white;">      
+            <font size="10" color="white">* * * *</font> 
+    </div>
+
+</div>
+ <div id="jquery_audioPlayer" class="jp-jplayer"></div>
+<script>
+    //var rx = /INPUT|SELECT|TEXTAREA/i;
+
+    //$(document).bind("keydown keypress", function (e) {
+    //    if (e.which == 8) { // 8 == backspace
+    //        if (!rx.test(e.target.tagName) || e.target.disabled || e.target.readOnly) {
+    //            e.preventDefault();
+    //        }
+    //    }
+    //});
+
+    $(document).ready(function () {
+        $("#jquery_audioPlayer").jPlayer({
+            swfPath: "/Scripts/js/Jplayer.swf",
+            wmode: "window"
+        });
+        $('#jquery_audioPlayer').jPlayer("setMedia", { mp3: "/ImagesApp/Beep-SoundBible.com-923660219.mp3" });
+        $('#jquery_audioPlayer').jPlayer("supplied", "mp3");
+        
+        $(document).keyup(function (e) {
+                $('#jquery_audioPlayer').jPlayer("stop");
+            //alert(e.keyCode);
+            if ((e.keyCode == 46) && ss.length > 0) {
+
+                ss = ss.substring(0, ss.length - 1);
+                //alert(ss + ' ' + e.keyCode);
+            }
+                //alert(ss.length);
+                if (ss.length < 1 || ss.length > 4) {
+ 
+                    $('#pin1').hide();
+                    $('#pin2').hide();
+                    $('#pin3').hide();
+                    $('#pin4').hide();
+                }
+                if (ss.length == 1) {
+                    $('#jquery_audioPlayer').jPlayer("play");   
+                    $('#pin1').show();         
+                    $('#pin2').hide(); 
+                    $('#pin3').hide(); 
+                    $('#pin4').hide(); 
+                }
+                if (ss.length == 2) {
+                    $('#jquery_audioPlayer').jPlayer("play");  
+                    $('#pin1').hide(); //show
+                    $('#pin2').show(); //hide
+                    $('#pin3').hide(); //hide
+                    $('#pin4').hide(); //hide
+                }
+                if (ss.length == 3) {
+                    $('#jquery_audioPlayer').jPlayer("play");  
+                    $('#pin1').hide(); //show
+                    $('#pin2').hide(); //hide
+                    $('#pin3').show(); //hide
+                    $('#pin4').hide(); //hide
+                }
+                if (ss.length == 4) {
+                    $('#jquery_audioPlayer').jPlayer("play");  
+                    $('#pin1').hide(); //show
+                    $('#pin2').hide(); //hide
+                    $('#pin3').hide(); //hide
+                    $('#pin4').show(); //hide
+                }
+        });
+        $(document).keypress(function (e) {
+
+            if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) || (e.keyCode == 13)) {
+                
+                ss = ss + String.fromCharCode(e.keyCode);
+
+
+                //alert(String.fromCharCode(e.keyCode));
+                if (ss.length > 4 && e.keyCode != 13) {
+                    alert('PIN nur 4 Anzahl!\nBitte wiederholen Sie!');
+                    ss = "";
+                }
+                if (e.keyCode == 13) {
+                    //alert(ss);
+                    window.location.href = "@(Url.Action("Index2", "Logon")+"?value=")" + ss;
+                }
+            }
+            else {
+                if (e.keyCode != 46) { alert('Bitte nur Zahlen!'); }
+            }
+            ////alert(ss.length);
+            //if (ss.length < 1 || ss.length > 4) {
+
+            //    $('#pin1').hide();
+            //    $('#pin2').hide();
+            //    $('#pin3').hide();
+            //    $('#pin4').hide();
+            //}
+            //if (ss.length == 1) {
+            //    $('#jquery_audioPlayer').jPlayer("play");
+            //    $('#pin1').show();
+            //    $('#pin2').hide();
+            //    $('#pin3').hide();
+            //    $('#pin4').hide();
+            //}
+            //if (ss.length == 2) {
+            //    $('#jquery_audioPlayer').jPlayer("play");
+            //    $('#pin1').hide(); //show
+            //    $('#pin2').show(); //hide
+            //    $('#pin3').hide(); //hide
+            //    $('#pin4').hide(); //hide
+            //}
+            //if (ss.length == 3) {
+            //    $('#jquery_audioPlayer').jPlayer("play");
+            //    $('#pin1').hide(); //show
+            //    $('#pin2').hide(); //hide
+            //    $('#pin3').show(); //hide
+            //    $('#pin4').hide(); //hide
+            //}
+            //if (ss.length == 4) {
+            //    $('#jquery_audioPlayer').jPlayer("play");
+            //    $('#pin1').hide(); //show
+            //    $('#pin2').hide(); //hide
+            //    $('#pin3').hide(); //hide
+            //    $('#pin4').show(); //hide
+            //}
+
+        });
+
+        $('#BENUTZERANMELDEN').click(function () {
+            window.location.href = "@(Url.Action("Index2", "Logon")+"?value=")" + ss;
+            @*$.post('@Url.Action("Index2", "Logon")', {  id:'PIN', name:'PIN', type:'hidden', value: ss },
+                function (data) {
+                    //alert("logiranje");
+                });*@
+            
+        });
+
+        $("#Login1, #broj").hover(
+            function () { $(this).css({ "box-shadow": "0px 0px 10px 0px #0360a3" }); },
+            function () { $(this).css({ "box-shadow": "0px 0px 0px #ccc" }); }
+        );
+
+        $("[id~='broj']").click(
+        //$(".jura1").click(
+            function () {
+                if  ($(this).attr('name') == 'del') {
+                        ss = ss.substring(0, ss.length - 1);
+                }
+                else {
+                        ss = ss + $(this).attr('name');
+                }
+
+                if (ss.length < 1 || ss.length > 4) {
+                    $('#pin1').hide();
+                    $('#pin2').hide();
+                    $('#pin3').hide();
+                    $('#pin4').hide();
+                }
+                if (ss.length == 1) {
+                    $('#jquery_audioPlayer').jPlayer("play");
+                    $('#pin1').show();
+                    $('#pin2').hide();
+                    $('#pin3').hide();
+                    $('#pin4').hide();
+                }
+                if (ss.length == 2) {
+                    $('#jquery_audioPlayer').jPlayer("play");
+                    $('#pin1').hide(); //show
+                    $('#pin2').show(); //hide
+                    $('#pin3').hide(); //hide
+                    $('#pin4').hide(); //hide
+                }
+                if (ss.length == 3) {
+                    $('#jquery_audioPlayer').jPlayer("play");
+                    $('#pin1').hide(); //show
+                    $('#pin2').hide(); //hide
+                    $('#pin3').show(); //hide
+                    $('#pin4').hide(); //hide
+                }
+                if (ss.length == 4) {
+                    $('#jquery_audioPlayer').jPlayer("play");
+                    $('#pin1').hide(); //show
+                    $('#pin2').hide(); //hide
+                    $('#pin3').hide(); //hide
+                    $('#pin4').show(); //hide
+                }
+                ////alert("Value: " + $(this).attr('name'));
+                //if ($(this).attr('name') != 'ok') 
+                //{
+
+                //    ss = ss + $(this).attr('name');
+                //    //$("x").html("<form action='/' method='post'> <input data-val='true' data-val-number='The field PIN must be a number.' id='PIN' name='PIN' type='hidden' value='" + ss + "' /> <button type='submit' value='OK' style='width: 30px; height: 30px; border:0px; padding: 0 0 0 0;'><img src='/ImagesApp/OK.jpg' /></button></form>");
+                //}
+                //else 
+                //{
+
+                //    //var ii = parseInt(ss);
+                //    //alert(ii + " Value: " + ss);
+                //    //$('#PIN').val(ii);
+                //}
+
+            }
+        );
+
+        $(window).resize(function () {
+            $('#center').css({ 'height': (($(document).height()) - 1) + 'px' });
+            $('#center').css({ 'width': (($(document).width()) - 1) + 'px' });
+        });
+        
+        var pinImages = document.getElementById("tblPin").getElementsByTagName("img");
+        for (var pi = 0; pi < pinImages.length; pi++) {
+            pinImages[pi].onmouseup = function () {
+                $('#jquery_audioPlayer').jPlayer("stop");
+            }
+        }
+    });
+</script>
+
+<script type='text/javascript'>
+    $(function () {
+        //$('#center').css({'height':(($(document).height())-162)+'px'});
+
+        $(window).resize(function () {
+
+            if (dh > 400 && dw > 640) {
+                var dh = $(document).height() - 20;
+            var dw = $(document).width();                
+                $('#center').css({ 'height': ((dh) + 0) + 'px' });
+                $('#center').css({ 'width': ((dw) - 0) + 'px' });
+            }
+            $('#meni').css({ 'top': ((dh) / 2) + 50 + 'px' });
+            //$('#meni').css({ 'left': (($(document).width()) - 30) + 'px' });
+        });
+    });
+</script>
